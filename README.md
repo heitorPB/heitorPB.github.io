@@ -4,4 +4,4 @@ My personal site with my random stuff
 
 Made from scratch with Jekyll, bootstrap and black magic :)
 
-no license so far :(
+Heitor's log, by Heitor is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).

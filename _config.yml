@@ -22,7 +22,7 @@ lang: en
 # make blog at /bla/*
 permalink: /bla/:year/:month/:day/:title:output_ext
 
-#name: Heitor de Bittencourt
+name: Heitor de Bittencourt
 #tagline: Physicist
 email: your-email@example.com
 twitter_username:
@@ -37,9 +37,10 @@ plugins:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
+exclude:
+   - README.md
+   - Gemfile
+   - Gemfile.lock
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/

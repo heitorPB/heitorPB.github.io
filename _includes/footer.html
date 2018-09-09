@@ -1,7 +1,11 @@
 	<footer class="mastfoot mt-auto">
 		<div class="inner">
-  			<p class="copyright">{{site.time | date: '%Y'}} @ {% if site.name %}{{site.name}}{% endif %}</p>
-			<p>blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+			<!-- <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a> --!>
+			{% assign year = site.time | date: '%Y' | minus: 0 %}
+			<br />{{ site.title }}, 2018{% if year > 2018 %} - {{ site.time | date: '%Y'}}{% endif %}
+			by <a href="{{site.baseurl}}/me.html">Heitor</a>
+			is licensed under a
+			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 		</div>
 	</footer>
 </div>
