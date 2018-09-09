@@ -1,6 +1,6 @@
 #Heitor's log
 
-My personal site with my random stuff
+[My personal site](https://heitorpb.github.io) with my random stuff
 
 Made from scratch with Jekyll, bootstrap and black magic :)
 Colors and CSS based on
