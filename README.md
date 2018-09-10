@@ -5,7 +5,8 @@
 Made from scratch with Jekyll, bootstrap and black magic :)
 Colors and CSS based on
 [Cover example](https://getbootstrap.com/docs/4.1/examples/cover/) and
-[Monday template](https://github.com/artemsheludko/monday).
+[Monday template](https://github.com/artemsheludko/monday) (i didn't use this
+yet).
 
 
 Heitor's log, by Heitor is licensed under a

@@ -60,6 +60,7 @@ body {
   color: rgba(255, 255, 255, .5);
   background-color: transparent;
   border-bottom: .25rem solid transparent;
+  transition: border-bottom-color .666s;
 }
 
 .nav-masthead .nav-link:hover,
@@ -109,15 +110,15 @@ body {
 /*
  * Lists
  */
-.myList {
+main li { /* all lists inside <main> */
   text-align: left;
 }
 
-.myLink {
+main a { /* all <a ...> inside <main> */
   color: #fff;
   transition: background-color .666s;
 }
-.myLink:hover {
+main a:hover {
   color: #eee;
   background-color: #111;
   text-decoration: none;

@@ -3,12 +3,18 @@ title: my projects
 layout: default
 ---
 
-Here are some of my random projects :)
+### Here are some of my projects :)
 
-- my [Fortran tutorial](https://gist.github.com/heitorPB/abc750898443d6302b0b733c8a87faa5),
-  in portuguese only. Tem o básico de Fortran, alguns poucos exemplos e alguns
-  comentários, além de links diversos para sua diversão!
+<br><br>
+Some of them might be usefull or interesting or just awesome :P
+<br><br>
 
-- p2
+- my **[Fortran tutorial](https://gist.github.com/heitorPB/abc750898443d6302b0b733c8a87faa5)**,
+  in portuguese only.
 
-- p3
+  Tem o básico de Fortran, alguns poucos exemplos e alguns comentários, além
+  de links diversos para sua diversão!
+
+- proj2
+
+- proj3
