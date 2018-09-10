@@ -1,0 +1,16 @@
+{% comment %}
+<!-- template for adding 3 entries to index.html --!>
+{% endcomment %}
+
+<br>
+<div class="container">
+	<h2>Last 3 entries:</h2>
+
+	<ul>
+		{% for post in site.posts limit: 3 %}
+			<li class="myList">
+				{{ post.date | date: '%Y' }} • {{ post.date | date: '%b' }} • {{ post.date | date: '%d' }} • <a class="myLink" href="{{ post.url }}"><strong>{{ post.title }}</strong></a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

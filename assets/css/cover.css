@@ -105,3 +105,20 @@ body {
   color: rgba(255, 255, 255, .5);
   font-size: .8rem;
 }
+
+/*
+ * Lists
+ */
+.myList {
+  text-align: left;
+}
+
+.myLink {
+  color: #fff;
+  transition: background-color .666s;
+}
+.myLink:hover {
+  color: #eee;
+  background-color: #111;
+  text-decoration: none;
+}
