@@ -13,7 +13,9 @@ grupy, sancaLUG, HS
 
 my photo
 
-made with jekyll and cover theme
+made with jekyll, bootstrap and black magic :)
+with help from cover theme and [jekyll-postfiles](https://nhoizey.github.io/jekyll-postfiles/)
+
 
 Feel free to get in touch :) I'll try to answer your question "shortly"!
 

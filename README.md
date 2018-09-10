@@ -8,6 +8,9 @@ Colors and CSS based on
 [Monday template](https://github.com/artemsheludko/monday) (i didn't use this
 yet).
 
+Nice plugin for making life easier:
+
+- [jekyll-postfiles](https://nhoizey.github.io/jekyll-postfiles/)
 
 Heitor's log, by Heitor is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
