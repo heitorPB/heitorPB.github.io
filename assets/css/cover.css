@@ -116,10 +116,12 @@ main li { /* all lists inside <main> */
 
 main a { /* all <a ...> inside <main> */
   color: #fff;
+  font-weight: bold;
+  font-style: italic;
   transition: background-color .666s;
 }
 main a:hover {
-  color: #eee;
+  color: #ddd;
   background-color: #111;
   text-decoration: none;
 }

@@ -41,7 +41,6 @@ exclude:
    - README.md
    - Gemfile
    - Gemfile.lock
-   - _posts/**/*.png
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
