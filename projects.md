@@ -1,6 +1,7 @@
 ---
 title: my projects
 layout: default
+permalink: /projects.html
 ---
 
 ### Here are some of my projects :)

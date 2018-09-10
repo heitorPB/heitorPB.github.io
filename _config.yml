@@ -20,7 +20,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 lang: en
 
 # make blog at /bla/*
-permalink: /bla/:year/:month/:day/:title:output_ext
+permalink: /bla/:year/:month/:day/:title/
 
 name: Heitor de Bittencourt
 #tagline: Physicist
@@ -41,6 +41,7 @@ exclude:
    - README.md
    - Gemfile
    - Gemfile.lock
+   - _posts/**/*.png
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
