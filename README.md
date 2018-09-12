@@ -1,4 +1,4 @@
-#Heitor's log
+# Heitor's log
 
 [My personal site](https://heitorpb.github.io) with my random stuff
 
@@ -7,6 +7,9 @@ Colors and CSS based on
 [Cover example](https://getbootstrap.com/docs/4.1/examples/cover/) and
 [Monday template](https://github.com/artemsheludko/monday) (i didn't use this
 yet).
+
+Code highlight CSS is `monokay` from
+[jekyll-pygments-themes](https://github.com/jwarby/jekyll-pygments-themes/)
 
 Nice plugin for making life easier:
 

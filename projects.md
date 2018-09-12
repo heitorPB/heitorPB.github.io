@@ -1,6 +1,6 @@
 ---
 title: my projects
-layout: default
+layout: projects
 permalink: /projects.html
 ---
 
