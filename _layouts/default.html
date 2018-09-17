@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
-  {% include head.html %}
+	{% include head.html %}
 
-  <body>
-    <div id="wrapper">
+	<body>
+		<div id="wrapper">
 
-      {% include nav.html %}
+			{% include nav.html %}
 
-      <main role="main" class="inner cover">
-        {{ content }}
-      </main>
+			<main role="main" class="inner cover">
+				<br>
+				{{ content }}
+				<br>
+			</main>
 
-
-      {% include footer.html %}
-      {% include javascripts.html %}
-    </div>
-  </body>
+			{% include footer.html %}
+			{% include javascripts.html %}
+		</div>
+	</body>
 </html>
