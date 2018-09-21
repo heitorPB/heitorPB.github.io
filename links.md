@@ -1,3 +1,8 @@
+---
+layout: default
+title: minhas fotos
+---
+
 - [/Fotos/2018-08-04_HardronicFestival_CERN](https://drive.google.com/open?id=1co-_sY-R4Ji7gkETVoqf5uqbgkqzUaS1)
 
 - [/Fotos/2018-08-14_CERN](https://drive.google.com/open?id=13QDSWFwXYTV9DurYXG_Y1zCJY7mODQr7)
