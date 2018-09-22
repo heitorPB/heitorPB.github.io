@@ -1,7 +1,21 @@
 ---
 layout: default
-title: minhas fotos
+title: my photos
+permalink: /8yRh_photos/
 ---
+
+## Here are some of my photos :)
+
+<br>
+
+My photos are realease under a
+[Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/),
+except where noted otherwise or where another license is dictated by content
+not controlled by me.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+<img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" class="mx-auto d-block" alt="CC-BY-NC-ND-4.0">
+</a><br>
 
 - [/Fotos/2017-01-26_MissaFormaturaJessica_Bauru](https://drive.google.com/open?id=1rtDDM10aOblXazYl1HBVYfmZCy4istOe)
 - [/Fotos/2017-01-27_Churrasco-formatura-Jessica_Bauru](https://drive.google.com/open?id=1VuToOZLxS8S5x2uVp0v3f9BDjqjJIUZn)
