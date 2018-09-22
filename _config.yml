@@ -23,6 +23,7 @@ lang: en
 permalink: /bla/:year/:month/:day/:title/
 
 name: Heitor de Bittencourt
+author: Heitor de Bittencourt
 #tagline: Physicist
 #email: your-email@example.com
 #twitter_username:
@@ -34,7 +35,8 @@ theme: minima
 highlighter: rouge
 plugins:
   - jekyll-feed
-
+  - jekyll-postfiles
+  - jekyll/twemoji
 include:
    - random/
 
@@ -45,6 +47,7 @@ exclude:
    - README.md
    - Gemfile
    - Gemfile.lock
+   - run-jekyll.sh
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/

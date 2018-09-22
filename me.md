@@ -8,8 +8,8 @@ Heitor de Bittencourt is a brazillian physicist and open-source enthusiast.
 
 <img src="assets/imgs/me.jpg" class="float-right img-fluid" alt="me with Shiva :D" style="width:60%;">
 
-He is a Bachelor in Physics (2017) by the University of São Paulo, Brazil. Previous
-research includei: _Geometric and Image Processing for Body Evaluation_ (2011 -
+He has a Bachelor in Physics (2017) by the University of São Paulo, Brazil. Previous
+research include: _Geometric and Image Processing for Body Evaluation_ (2011 -
 2012); _Numerical Simulations for Magnetic Resonance Imaging_ (2013-2015).
 Currently, he is a MSc student at Institute of Physics of São Carlos,
 where studies RF electronics for NMR. Heitor is also a CERN researcher for Data
@@ -35,7 +35,7 @@ appreciates a composer that can use the contrast of these styles in the same
 song.
 
 <p class="text-center">
-Feel free to get in touch :) He'll try to answer you "shortly"!
+Feel free to get in touch :) He'll try to answer you "shortly"! Your options:
 </p>
 
 <img src="assets/imgs/qrcode.png" class="float-left img-fluid" alt="my vCard" style="width:40%; margin-right:6px;">

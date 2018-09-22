@@ -19,6 +19,8 @@ not controlled by me.
 
 Hope you enjoy them!
 
+- [/Fotos/2012-07-25_fotos-antigas-voMario-e-3porquinhas](https://drive.google.com/open?id=1J1mwCqUy79KjjZpnnAJ3VlVMPQNfe7Vb)
+- [/Fotos/2013-02-27_Symposium-in-Honor-of-Prof.-Dan-Kleppner_SaoCarlos](https://drive.google.com/open?id=1N8OKMCSlXNQQniUNy9jTJqd997KJSKuJ)
 - [/Fotos/2017-01-26_MissaFormaturaJessica_Bauru](https://drive.google.com/open?id=1rtDDM10aOblXazYl1HBVYfmZCy4istOe)
 - [/Fotos/2017-01-27_Churrasco-formatura-Jessica_Bauru](https://drive.google.com/open?id=1VuToOZLxS8S5x2uVp0v3f9BDjqjJIUZn)
 - [/Fotos/2017-01-27_FormaturaJessica_Bauru](https://drive.google.com/open?id=12kCzFaqyYSaRnJHOcQQsfLBKxGi2080g)
