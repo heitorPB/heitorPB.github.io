@@ -17,6 +17,8 @@ not controlled by me.
 <img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" class="mx-auto d-block" alt="CC-BY-NC-ND-4.0">
 </a><br>
 
+Hope you enjoy them!
+
 - [/Fotos/2017-01-26_MissaFormaturaJessica_Bauru](https://drive.google.com/open?id=1rtDDM10aOblXazYl1HBVYfmZCy4istOe)
 - [/Fotos/2017-01-27_Churrasco-formatura-Jessica_Bauru](https://drive.google.com/open?id=1VuToOZLxS8S5x2uVp0v3f9BDjqjJIUZn)
 - [/Fotos/2017-01-27_FormaturaJessica_Bauru](https://drive.google.com/open?id=12kCzFaqyYSaRnJHOcQQsfLBKxGi2080g)
