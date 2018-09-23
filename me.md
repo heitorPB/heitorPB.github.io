@@ -54,11 +54,11 @@ pub key is [here](heitor.public.gpg-key).
 ---
 
 This site is made with [Jekyll](https://jekyllrb.com/), Bootstrap and black
-magic :) With help from coffee, chocolate, 
+magic :) Hosted on [GitHub Pages](https://pages.github.com/), with help from
+chocolate, coffee,
 [cover theme](https://getbootstrap.com/docs/4.1/examples/cover/),
-[GitHub Pages](https://pages.github.com/),
 [jekyll-postfiles](https://nhoizey.github.io/jekyll-postfiles/),
-`monokay` from [jekyll-pygments-themes](https://github.com/jwarby/jekyll-pygments-themes/),
+`monokay` from [jekyll-pygments-themes](https://github.com/jwarby/jekyll-pygments-themes/)
 and [twemoji](https://github.com/twitter/twemoji).
 
 Everything is provided under a

@@ -8,7 +8,7 @@ permalink: /8yRh_photos/
 
 <br>
 
-My photos are realease under a
+My photos are realeased under a
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/),
 except where noted otherwise or where another license is dictated by content
 not controlled by me.
