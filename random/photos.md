@@ -22,6 +22,7 @@ Hope you enjoy them!
 - [2012-07-25 fotos-antigas-voMario-e-3porquinhas](https://drive.google.com/open?id=1J1mwCqUy79KjjZpnnAJ3VlVMPQNfe7Vb)
 
 - [2013-02-27 Symposium-in-Honor-of-Prof.-Dan-Kleppner_SaoCarlos](https://drive.google.com/open?id=1N8OKMCSlXNQQniUNy9jTJqd997KJSKuJ)
+- [2013-07-11 Parati](https://drive.google.com/open?id=1N2L9iAkY0TPkiLBRbWXcoroZwVgXnb1f)
 
 - [2015-06-24 Brasilia](https://drive.google.com/open?id=1rPQDj_zU60IMnHvPWJIv248mycOGJhrl)
 - [2015-08-00 Helsinki](https://drive.google.com/open?id=1xh4MJD8Cqn82jIDeq8CzD7M0MvotQK9U)
