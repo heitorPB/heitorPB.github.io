@@ -23,8 +23,17 @@ Hope you enjoy them!
 
 - [2013-02-27_Symposium-in-Honor-of-Prof.-Dan-Kleppner_SaoCarlos](https://drive.google.com/open?id=1N8OKMCSlXNQQniUNy9jTJqd997KJSKuJ)
 
+- [2016-01-07_Helsinki-Frozen-Sea-Finland](https://drive.google.com/open?id=11l0XCEk2xbC_vBRbyPayxuGXTKOsw59b)
+- [2016-01-10_LuxHelsinki-Finland](https://drive.google.com/open?id=1cqCts5IDP0qQw53Yg-AC4XQ2ql5rlqSs)
+- [2016-01-24_SnowSuomenlinnaHelsinki-Finland](https://drive.google.com/open?id=1L1Pi3wcnJpk64y0x8Exk70ht14QsuyMH)
+- [2016-02-27_Helsinki](https://drive.google.com/open?id=1nxm6zFyOMow5dmn5ivFR-F85k4M14AKR)
+- [2016-02-28_Seurasaari-Helsinki](https://drive.google.com/open?id=1z1S9Ri0olq-C_fsoPRSO1P-cXImNp_Tb)
+- [2016-03-02_Turku-Finland](https://drive.google.com/open?id=1G-qODSrNLscQC82RdDDyWy9LdZZy2A5y)
+- [2016-03-18_Moscow-Russia](https://drive.google.com/open?id=19NvLtFRGr8YNRMMReA4tPApf5eDMzUr6)
+- [2016-03-23_St_Petersburg-Russia](https://drive.google.com/open?id=1zALvtyTAJh81tUUw69r9ZgEWJrlIxNMI)
 - [2016-05-12_SheepIsland-Helsinki](https://drive.google.com/open?id=1d1Two_3resUnut_TdcWU4mCNSzfI1PCc)
 - [2016-05-18_SuomenlinnaSubmarine](https://drive.google.com/open?id=1_R29pjtbJy1m4RVyAah_H2mNMTB6F2tI)
+- [2016-06-28_Nummirock_Finland](https://drive.google.com/open?id=1G-7rkkXbIUIYwrR1cOwxTZ3rsXcU8IBx)
 - [2016-07-11_Berlin-Germany](https://drive.google.com/open?id=1apc0Ib8nn25etlvOLMqnnFdWbq7MfxQf)
 - [2016-07-14_Gottingen-Germany](https://drive.google.com/open?id=1sTcAgjollj9FOhc93cHCX7zaXbpI9zc3)
 - [2016-07-15_Hanover-Germany](https://drive.google.com/open?id=1EtXbzdlu2Wh8onLCqey8XHcx1ALzoTFa)
