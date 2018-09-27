@@ -18,6 +18,7 @@ description: Yeaah
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 lang: en
+encoding: utf-8
 
 # make blog at /bla/*
 permalink: /bla/:year/:month/:day/:title/

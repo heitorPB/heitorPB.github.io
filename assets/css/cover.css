@@ -138,6 +138,13 @@ main a:hover {
   color: #eee;
 }
 
+/* center all images, but not images with emoji class */
+img:not(.emoji) {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+}
 
 /*
  * Twemoji same size as text
