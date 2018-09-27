@@ -84,10 +84,3 @@ missing some blue points.
 *[GPX]: GPS Exchange Format
 
 [^1]: [Latitude: 46.1323565, Longitude: 5.9559113](https://osm.org/go/0CFL8Bq5?m=)
-
-
-### TODO
-
-- get rid of this entire section. The file ends with the footnotes and shit
-- nice text
-- hemmingWay check and grammar check and shit like that
