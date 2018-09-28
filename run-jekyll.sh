@@ -10,3 +10,6 @@ bundle exec jekyll serve $1
 
 echo -e "\n\n"
 echo "Oh, you are evil! you killed jekyll server! :O"
+
+echo -e "\n\nIf you want to upload to github, build the files instead of \
+serving them!!"
