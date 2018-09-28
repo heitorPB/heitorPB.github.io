@@ -38,7 +38,10 @@ song.
 Feel free to get in touch :) He'll try to answer you "shortly"! Your options:
 </p>
 
+
+<a href="assets/imgs/qrcode.png">
 <img src="assets/imgs/qrcode.png" class="float-left img-fluid" alt="my vCard" style="width:40%; margin-right:6px;">
+</a>
 
 email: heitorpbittencourt [at] gmail [dot] com. The pgp fingerprint
 is `295E 499C 134B 4C0B 642D  DFAB C591 DE99 BDDC BBD2` and the

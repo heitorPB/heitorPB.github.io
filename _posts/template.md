@@ -20,3 +20,4 @@ title: Post title
   - rename file: `_posts/yyyy-mm-dd-title.md` or
     `_posts/yyyy-mm-dd-title/date-title.md`
   - check categories and tags and language and YAML shit
+  - if new tag: add it to the template also!
