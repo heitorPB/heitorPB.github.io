@@ -35,8 +35,10 @@ appreciates a composer that can use the contrast of these styles in the same
 song.
 
 <p class="text-center">
-Feel free to get in touch :) He'll try to answer you "shortly"! Your options:
+Feel free to get in touch :) He'll try to answer you "shortly"! Your options
+(and/or scan the qr code below):
 </p>
+
 
 
 <a href="assets/imgs/qrcode.png">

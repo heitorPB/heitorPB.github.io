@@ -62,7 +62,7 @@ Nice! But the nicest thing would be a simple way to add the GPX coordinates on
 top of the map of the region. The library
 [geotiler](https://github.com/wrobell/geotiler) provides a way to get the map
 from [OpenStreetMap](http://openstreetmap.org/). You might need
-[Redis](https://redis.io/) running as server in the background for _geotiles_
+[Redis](https://redis.io/) running as server in the background for _geotiler_
 to work. Here's the code:
 
 ~~~ python
@@ -75,7 +75,8 @@ coloured points showing the path and some texts. The result:
 [![The coloured points are our hiking path :)](map.png)](map.png)
 
 The blue points mark the beginning of the hike. And it changes colours all the
-way to the green points, marking the end of our 5892.3 meters walk :) but for
+way to the green points, marking the end of our 5892.3 meters walk :) As you
+can see, we got pretty close to the westest Swiss point! For
 some reason, my phone lost GPS connection in the beginning, that's why it's
 missing some blue points.
 

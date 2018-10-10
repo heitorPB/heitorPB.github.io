@@ -138,8 +138,8 @@ main a:hover {
   color: #eee;
 }
 
-/* center all images, but not images with emoji and feed-icon class */
-img:not(.emoji .feed-icon) {
+/* center all images, but not images with emoji class */
+img:not(.emoji):not(.feed-icon) {
   max-width: 100%;
   height: auto;
   margin: auto;
@@ -167,7 +167,7 @@ img.emoji {
   line-height: .42em;
 }
 
-img.feed-icon{
+img.feed-icon {
   height: .8em;
   width: 1em;
   vertical-align: -0.1em;
