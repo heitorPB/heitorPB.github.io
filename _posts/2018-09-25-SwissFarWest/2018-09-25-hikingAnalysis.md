@@ -7,8 +7,8 @@ tags: [hiking, python]
 title: The Swiss Far West and GPX fun
 ---
 
-Yesterday my supervisor and I went to a hike to the _Swiss Far West_, the westest
-part of Switzerland. Unfortunately, we couldn't go to the precise westest point
+Yesterday my supervisor and I went to a hike to the _Swiss Far West_, the westernmost
+part of Switzerland. Unfortunately, we couldn't go to the precise westernmost point
 of the border with France, because that's in the middle of the river _Le
 Rhône_[^1] and we didn't want to get inside the water.
 
@@ -76,7 +76,7 @@ coloured points showing the path and some texts. The result:
 
 The blue points mark the beginning of the hike. And it changes colours all the
 way to the green points, marking the end of our 5892.3 meters walk :) As you
-can see, we got pretty close to the westest Swiss point! For
+can see, we got pretty close to the westernmost Swiss point! For
 some reason, my phone lost GPS connection in the beginning, that's why it's
 missing some blue points.
 
