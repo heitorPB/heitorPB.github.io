@@ -44,9 +44,12 @@ include:
    - random/
 
 defaults:
-  -
-    scope:
+  - scope:
       path: "/random/*.md"
+    values:
+      sitemap: false
+  - scope:
+      path: "google*.html"
     values:
       sitemap: false
 
