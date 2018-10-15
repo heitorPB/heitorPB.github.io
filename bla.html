@@ -1,4 +1,5 @@
 ---
+image: "/assets/imgs/qrcode.png"
 layout: default
 title: bla
 ---
@@ -15,7 +16,7 @@ title: bla
           {%- if post.author -%}
             {{ post.author | prepend: " • " }}
           {%- endif -%}</p>
-        <p>{{ post.excerpt |  newline_to_br | split: "<br />" | first | truncatewords: 30 }}</p>
+        <p>{{ post.excerpt | truncatewords: 32 | newline_to_br | split: "<br />" | first }}</p>
     </li>
   {% endfor %}
 </ul>
