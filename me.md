@@ -1,4 +1,5 @@
 ---
+image: "/assets/imgs/me.jpg"
 title: me
 layout: default
 permalink: /me.html
@@ -27,7 +28,8 @@ His CV can be found, partially, in
 
 He has a passion for photography and pretends he knows something about it. He
 enjoys walking around cities and mountains and forests to take pictures. Most
-of them are not published anywhere but some are in his Facebook.
+of them are not published anywhere but some are in his Facebook and some in his
+[Flickr](https://www.flickr.com/photos/heitorpb/).
 
 Heitor is also a music enthusiast. From the sweetness of Tchaikovsky's ballets, to
 the nastiness of Sepultura and also the uniqueness of Heilung's experiments. He
@@ -40,21 +42,20 @@ Feel free to get in touch :) He'll try to answer you "shortly"! Your options
 </p>
 
 
+<div class="clearfix" markdown="1">
+<a href="assets/imgs/qrcode.png"><img src="assets/imgs/qrcode.png" class="float-left img-fluid" alt="my vCard" style="width:40%; margin-right:19px;"></a>
 
-<a href="assets/imgs/qrcode.png">
-<img src="assets/imgs/qrcode.png" class="float-left img-fluid" alt="my vCard" style="width:40%; margin-right:6px;">
-</a>
-
-email: heitorpbittencourt [at] gmail [dot] com. The pgp fingerprint
-is `295E 499C 134B 4C0B 642D  DFAB C591 DE99 BDDC BBD2` and the
-pub key is [here](heitor.public.gpg-key).
-
-- [telegram](https://t.me/wololo666)
+- email: heitorpbittencourt [at] gmail [dot] com. The pgp fingerprint
+  is `295E 499C 134B 4C0B 642D  DFAB C591 DE99 BDDC BBD2` and the
+  pub key is [here](heitor.public.gpg-key).
 - [facebook](https://www.facebook.com/wololo666)
+- [flickr](https://www.flickr.com/photos/heitorpb/)
 - [github](https://github.com/heitorPB/)
 - [matrix](https://matrix.to/#/@heitor:matrix.org)
+- [telegram](https://t.me/wololo666)
 
-<br>
+<br><br>
+</div>
 
 ---
 

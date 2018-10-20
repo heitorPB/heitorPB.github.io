@@ -1,5 +1,6 @@
 ---
 title: my projects
+image: "/assets/imgs/qrcode.png"
 layout: default
 permalink: /projects.html
 ---
@@ -19,6 +20,10 @@ Some of them might be usefull or interesting or just awesome :P
   de links diversos para sua diversão! Esse tutorial está em constante
   evolução, não hesite em entrar em contato com comentários, dúvidas,
   sugestőes, críticas, pedidos, chocolates...
+
+- **[Hiking Analysis](https://github.com/heitorPB/HikingAnalysis)**,
+  _When a physicist goes hiking, (s)he expects some statistics and plots._ A
+  set of tools to analyse a hike.
 
 - **[spyTOC](https://github.com/heitorPB//)**
   a template for [Python Markdown](https://python-markdown.github.io).

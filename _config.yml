@@ -29,6 +29,7 @@ author: Heitor de Bittencourt
 #email: your-email@example.com
 #twitter_username:
 #github_username: heitorPB
+logo: "/assets/imgs/qrcode.png"
 
 # Build settings
 markdown: kramdown
@@ -39,6 +40,7 @@ plugins:
   - jekyll-postfiles
   - jekyll/twemoji
   - jekyll-sitemap
+  - jekyll-seo-tag
 
 include:
    - random/
@@ -52,6 +54,12 @@ defaults:
       path: "google*.html"
     values:
       sitemap: false
+  - scope:
+      path: "/_posts/**.md"
+    values:
+      image: "/assets/imgs/me.jpg"
+
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -61,3 +69,4 @@ exclude:
    - Gemfile
    - Gemfile.lock
    - run-jekyll.sh
+   - _posts/template.md

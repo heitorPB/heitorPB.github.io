@@ -1,4 +1,5 @@
 ---
+image: "/assets/imgs/me.jpg"
 layout: home
 title: home
 permalink: /index.html

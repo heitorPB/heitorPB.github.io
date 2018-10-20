@@ -1,9 +1,10 @@
 ---
 author: Heitor
 categories: [random]
+image: "{{ page.url}}/map.png" or leave blank
 language: [português, english, latin]
 layout: post
-tags: [photography, test, python, hiking]
+tags: [photography, test, python, hiking, analysis]
 title: Post title
 ---
 
@@ -19,5 +20,6 @@ title: Post title
   - check for nice title
   - rename file: `_posts/yyyy-mm-dd-title.md` or
     `_posts/yyyy-mm-dd-title/date-title.md`
+  - add the first image to the "image" YAML tag
   - check categories and tags and language and YAML shit
   - if new tag: add it to the template also!
