@@ -16,7 +16,7 @@ title: bla
           {%- if post.author -%}
             {{ post.author | prepend: " • " }}
           {%- endif -%}</p>
-        <p>{{ post.excerpt | truncatewords: 32 | newline_to_br | split: "<br />" | first }}</p>
+        <p>{{ post.excerpt | truncatewords: 30 | newline_to_br | split: "<br />" | first }}</p>
     </li>
   {% endfor %}
 </ul>
