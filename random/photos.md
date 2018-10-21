@@ -17,7 +17,8 @@ not controlled by me.
 <img src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" class="mx-auto d-block" alt="CC-BY-NC-ND-4.0">
 </a><br>
 
-Hope you enjoy them!
+Hope you enjoy them! You might prefer to browser the published fotos in my
+[Flickr](https://www.flickr.com/photos/heitorpb/).
 
 - [2012-07-25 fotos-antigas-voMario-e-3porquinhas](https://drive.google.com/open?id=1J1mwCqUy79KjjZpnnAJ3VlVMPQNfe7Vb)
 
