@@ -73,3 +73,4 @@ Hope you enjoy them!
 - [2018-10-12 Geneva-Switzerland](https://drive.google.com/open?id=1-qoHrr4GdAtkjuF041IKsazq5afrWVFx)
 - [2018-10-12 Hiking-France](https://drive.google.com/open?id=1QMB1hq96eWWBAJwNZL9W549FF1JkM72f)
 - [2018-10-14 GeoCaching-Pregnin-France](https://drive.google.com/open?id=1Tv8k81INNDiYA0rUHagdnxVO4h11JqBU)
+- [2018-10-21 St.Peter-Catedral_Geneva-Switzerland](https://drive.google.com/open?id=12-Kn6f36Jf4HruEj-Y3c5Z3KsKq52uyK)
