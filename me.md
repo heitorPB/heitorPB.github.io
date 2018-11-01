@@ -29,7 +29,7 @@ His CV can be found, partially, in
 He has a passion for photography and pretends he knows something about it. He
 enjoys walking around cities and mountains and forests to take pictures. Most
 of them are not published anywhere but some are in his Facebook and some in his
-[Flickr](https://www.flickr.com/photos/heitorpb/).
+Flickr.
 
 Heitor is also a music enthusiast. From the sweetness of Tchaikovsky's ballets, to
 the nastiness of Sepultura and also the uniqueness of Heilung's experiments. He

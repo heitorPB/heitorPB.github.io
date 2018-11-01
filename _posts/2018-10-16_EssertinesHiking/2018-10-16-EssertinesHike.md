@@ -2,7 +2,7 @@
 author: Heitor
 categories: [random]
 language: english
-layout: post
+layout: "post"
 tags: [photography, hiking, analysis]
 title: "Hiking in Essertines - Switzerland"
 ---
@@ -15,7 +15,7 @@ beautiful buildings, small roads and wineries.
 
 Essertines belongs to the municipality of Dardagny. 1 861 people live in
 there[^wtf]. There are 16 winemakers[^winemakers]. The vast majority of
-apartments there have 3 rooms.
+apartments there have 3 rooms[^wtf].
 
 [![](imgs/DSC_3371.JPG)](https://www.flickr.com/photos/heitorpb/44493621755/in/album-72157702559519395/)
 
@@ -90,9 +90,9 @@ flower well.
 [![](imgs/DSC_3369.JPG)](https://www.flickr.com/photos/heitorpb/30468024607/in/album-72157702559519395/)
 
 That was the end of our meeting. A very productive one, if you ask. Everyone
-was actively involved! No one falling asleep or leaving for a coffee. Our hike
-was ~3.6 km long at an average speed of 1.25 m/s[^analysis]. I burned ~185
-kcal[^endomondo].
+was actively involved! No one falling asleep or leaving for a coffee and never
+returning. Our hike was ~3.6 km long at an average speed of 1.25
+m/s[^analysis]. I burned ~185 kcal[^endomondo].
 
 [![](imgs/map.png)](imgs/map.png)
 

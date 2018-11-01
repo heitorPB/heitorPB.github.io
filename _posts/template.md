@@ -4,7 +4,7 @@ categories: [random]
 image: "{{ page.url}}/map.png" or leave blank
 language: [português, english, latin]
 layout: post
-tags: [photography, test, python, hiking, analysis]
+tags: [analysis, geocache, hiking, photography, python, test]
 title: Post title
 ---
 
