@@ -1,7 +1,7 @@
 ---
 author: Heitor
 categories: [random]
-image: "{{ page.url}}/map.png" or leave blank
+localimage: "map.png" or leave blank for default
 language: [português, english, latin]
 layout: post
 tags: [analysis, geocache, hiking, photography, python, test]

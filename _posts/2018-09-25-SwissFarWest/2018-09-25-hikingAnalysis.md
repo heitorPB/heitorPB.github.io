@@ -2,6 +2,7 @@
 author: Heitor
 categorires: [random]
 language: english
+localimage: "map.png"
 layout: post
 tags: [hiking, analysis, python]
 title: The Swiss Far West and GPX fun

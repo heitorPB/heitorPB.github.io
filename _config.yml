@@ -40,7 +40,6 @@ plugins:
   - jekyll-postfiles
   - jekyll/twemoji
   - jekyll-sitemap
-  - jekyll-seo-tag
 
 include:
    - random/

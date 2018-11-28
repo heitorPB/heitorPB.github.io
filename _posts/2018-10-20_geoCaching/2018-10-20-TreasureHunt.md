@@ -3,6 +3,7 @@ author: Heitor
 categories: [random]
 language: [english]
 layout: post
+localimage: "map.png"
 tags: [hiking, geocache]
 title: "Treasure Hunt"
 ---

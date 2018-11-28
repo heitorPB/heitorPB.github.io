@@ -2,6 +2,7 @@
 author: Heitor
 categories: [random]
 language: english
+localimage: "imgs/DSC_3333.JPG"
 layout: "post"
 tags: [photography, hiking, analysis]
 title: "Hiking in Essertines - Switzerland"
