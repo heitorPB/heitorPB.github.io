@@ -39,7 +39,6 @@ plugins:
   - jekyll-feed
   - jekyll-postfiles
   - jekyll/twemoji
-  - jekyll-sitemap
 
 include:
    - random/
