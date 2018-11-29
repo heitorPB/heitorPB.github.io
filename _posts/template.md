@@ -4,7 +4,7 @@ categories: [random]
 localimage: "map.png" or leave blank for default
 language: [português, english, latin]
 layout: post
-tags: [analysis, geocache, hiking, photography, python, test]
+tags: [analysis, geocache, hiking, photography, python, random, test]
 title: Post title
 ---
 
