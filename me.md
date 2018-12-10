@@ -7,14 +7,15 @@ permalink: /me.html
 
 Heitor de Bittencourt is a brazillian physicist and open-source enthusiast.
 
-<img src="assets/imgs/me.jpg" class="float-right img-fluid" alt="me with Shiva :D" style="width:60%;">
-
+<img src="assets/imgs/me.jpg" class="float-right img-fluid" alt="me with Shiva :D" style="width:60%; margin:1rem; min-width:11rem">
+<p class="text-justify" markdown="1">
 He has a Bachelor in Physics (2017) by the University of São Paulo, Brazil. Previous
 research include: _Geometric and Image Processing for Body Evaluation_ (2011 -
 2012); _Numerical Simulations for Magnetic Resonance Imaging_ (2013-2015).
 Currently, he is a MSc student at Institute of Physics of São Carlos,
 where studies RF electronics for NMR. Heitor is also a CERN researcher for Data
 Preservation and Open Access.
+</p>
 
 During his free time, he is a co-organizer of technological groups of São
 Carlos city: [grupy-sanca](https://www.grupysanca.com.br),
@@ -43,7 +44,7 @@ Feel free to get in touch :) He'll try to answer you "shortly"! Your options
 
 
 <div class="clearfix" markdown="1">
-<a href="assets/imgs/qrcode.png"><img src="assets/imgs/qrcode.png" class="float-left img-fluid" alt="my vCard" style="width:40%; margin-right:19px;"></a>
+<a href="assets/imgs/qrcode.png"><img src="assets/imgs/qrcode.png" class="float-left img-fluid" alt="my vCard" style="width:40%; margin-right:1.3rem;"></a>
 
 - email: heitorpbittencourt [at] gmail [dot] com. The pgp fingerprint
   is `295E 499C 134B 4C0B 642D  DFAB C591 DE99 BDDC BBD2` and the
@@ -59,8 +60,9 @@ Feel free to get in touch :) He'll try to answer you "shortly"! Your options
 
 ---
 
-This site is made with [Jekyll](https://jekyllrb.com/), Bootstrap and black
+This site is made with [Jekyll](https://jekyllrb.com/) and black
 magic :) Hosted on [GitHub Pages](https://pages.github.com/), with help from
+[Bootstrap](https://getbootstrap.com/),
 chocolate, coffee,
 [cover theme](https://getbootstrap.com/docs/4.1/examples/cover/),
 [jekyll-postfiles](https://nhoizey.github.io/jekyll-postfiles/),

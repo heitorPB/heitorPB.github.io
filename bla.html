@@ -3,7 +3,9 @@ image: "/assets/imgs/qrcode.png"
 layout: default
 title: bla
 ---
-<h1>Latest Stuff &emsp;<a class="feed-link" href="/feed.xml"><img src="/assets/imgs/feed-icon.svg" class="feed-icon"></a></h1>
+<a class="feed-link" href="/feed.xml"><img src="/assets/imgs/feed-icon.svg" class="float-right feed-icon"></a>
+<h1>Latest Thoughts</h1>
+
 <br>
 
 <ul>
@@ -12,11 +14,12 @@ title: bla
       <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
         <p class="nicerDate">
           {%- assign date_format = site.minima.date_format | default: "%b %d, %Y" -%}
-          {{ post.date | date: date_format }}
+          🗓️ {{ post.date | date: date_format }}
           {%- if post.author -%}
             {{ post.author | prepend: " • " }}
           {%- endif -%}</p>
         <p>{{ post.excerpt | truncatewords: 30 | newline_to_br | split: "<br />" | first }}</p>
     </li>
+    <br>
   {% endfor %}
 </ul>
