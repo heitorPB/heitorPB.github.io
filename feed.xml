@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://heitorpb.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2018-11-29T17:48:37+01:00</updated><id>https://heitorpb.github.io/feed.xml</id><title type="html">Heitor’s log</title><subtitle>Yeaah</subtitle><author><name>Heitor de Bittencourt</name></author><entry><title type="html">Python.format</title><link href="https://heitorpb.github.io/bla/2018/11/29/format/" rel="alternate" type="text/html" title="Python.format" /><published>2018-11-29T00:00:00+01:00</published><updated>2018-11-29T00:00:00+01:00</updated><id>https://heitorpb.github.io/bla/2018/11/29/format</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/11/29/format/">&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://heitorpb.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2018-12-10T16:03:59+01:00</updated><id>https://heitorpb.github.io/feed.xml</id><title type="html">Heitor’s log</title><subtitle>Yeaah</subtitle><author><name>Heitor de Bittencourt</name></author><entry><title type="html">Python.format</title><link href="https://heitorpb.github.io/bla/2018/11/29/format/" rel="alternate" type="text/html" title="Python.format" /><published>2018-11-29T00:00:00+01:00</published><updated>2018-11-29T00:00:00+01:00</updated><id>https://heitorpb.github.io/bla/2018/11/29/format</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/11/29/format/">&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
 with &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; and then tell python to change that to something. For example:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -538,6 +538,14 @@ for testing \( \LaTeX \) :&lt;/p&gt;
 &lt;p&gt;It works!&lt;/p&gt;
 
 &lt;p&gt;It works?&lt;/p&gt;
+
+&lt;div class=&quot;alert alert-dark&quot;&gt;
+&lt;blockquote class=&quot;blockquote&quot;&gt;
+&lt;p&gt;This is a reminder for me in the future: &lt;em&gt;it &lt;strong&gt;is possible&lt;/strong&gt; to have&lt;/em&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown&lt;/code&gt; inside &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; code blocks!!&lt;/p&gt;
+&lt;footer class=&quot;blockquote-footer&quot;&gt;Me, in the past.&lt;/footer&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;

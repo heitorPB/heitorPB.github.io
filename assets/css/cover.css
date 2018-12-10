@@ -31,7 +31,6 @@ html, body, #wrapper {
 }
 
 body {
-  font-family: 'Inconsolata', monospace;
   display: -ms-flexbox;
   display: flex;
   color: #fff;
@@ -44,7 +43,7 @@ body {
 }
 
 .cover-container {
-  max-width: 48em;
+  max-width: 48rem;
 }
 
 
@@ -82,7 +81,7 @@ body {
   border-bottom-color: #fff;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 48rem) {
   .masthead-brand {
     float: left;
   }
@@ -150,10 +149,10 @@ img:not(.emoji):not(.feed-icon) {
  * Twemoji same size as text
  */
 img.emoji {
-  height: 1em;
-  width: 1em;
-  margin: 0 .05em 0 .1em;
-  vertical-align: -0.1em;
+  height: 1rem;
+  width: 1rem;
+  margin: 0 .05rem 0 .1rem;
+  vertical-align: -0.1rem;
 }
 
 /*
@@ -163,15 +162,28 @@ img.emoji {
   font-size: 85%;
   display: block;
   color: #8c959d;
-  text-indent: 3em;
-  line-height: .42em;
+  text-indent: 3rem;
+  line-height: .42rem;
 }
 
 img.feed-icon {
-  height: .8em;
-  width: 1em;
+  height: 1.8rem;
+  width: 1.8rem;
   vertical-align: -0.1em;
 }
 .feed-link:hover{
   background-color: #333;
+}
+
+
+/**
+ * Adapted from Normalize.css
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1rem; /* 2 */
 }
