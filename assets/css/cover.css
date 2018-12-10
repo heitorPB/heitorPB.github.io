@@ -33,6 +33,7 @@ html, body, #wrapper {
 body {
   display: -ms-flexbox;
   display: flex;
+  font-family: 'Noto Serif', serif;
   color: #fff;
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
