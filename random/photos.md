@@ -76,3 +76,5 @@ Hope you enjoy them! You might prefer to browser the published fotos in my
 - [2018-10-14 GeoCaching-Pregnin-France](https://drive.google.com/open?id=1Tv8k81INNDiYA0rUHagdnxVO4h11JqBU)
 - [2018-10-21 St.Peter-Catedral_Geneva-Switzerland](https://drive.google.com/open?id=12-Kn6f36Jf4HruEj-Y3c5Z3KsKq52uyK) ____ [Flickr](https://www.flickr.com/photos/heitorpb/albums/72157701299705031)
 - [2018-10-26 Hiking-JuraMountains-France](https://drive.google.com/open?id=1B3t0lXdjqG6_Zt87mX_W1yYjH_eZl3eQ) ____ [Flickr](https://www.flickr.com/photos/heitorpb/albums/72157702768040744)
+- [2018-12-05 CERN-SCoolLab](https://drive.google.com/open?id=1hVNmE9zECIDgZIKnWXGJD5XzYG-CFrYZ)
+- [2018-12-14 CERN-ITCenter-AntimatterFactory](https://drive.google.com/open?id=1QtkvuoYlMxJwyuuaoOf3KfXZ_FXr72um)
