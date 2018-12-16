@@ -1,1 +1,4 @@
+# Hiii :D
 Sitemap: https://heitorpb.github.io/sitemap.xml
+User-agent: *
+Disallow:

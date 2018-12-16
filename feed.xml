@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://heitorpb.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2018-12-10T16:59:52+01:00</updated><id>https://heitorpb.github.io/feed.xml</id><title type="html">Heitor’s log</title><subtitle>Yeaah</subtitle><author><name>Heitor de Bittencourt</name></author><entry><title type="html">Python.format</title><link href="https://heitorpb.github.io/bla/2018/11/29/format/" rel="alternate" type="text/html" title="Python.format" /><published>2018-11-29T00:00:00+01:00</published><updated>2018-11-29T00:00:00+01:00</updated><id>https://heitorpb.github.io/bla/2018/11/29/format</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/11/29/format/">&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heitor's log</title>
+    <description>Yeaah</description>
+    <link>https://heitorpb.github.io/</link>
+    <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 16 Dec 2018 13:30:37 +0100</pubDate>
+    <lastBuildDate>Sun, 16 Dec 2018 13:30:37 +0100</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Python.format</title>
+        <description>&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
 with &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; and then tell python to change that to something. For example:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -37,7 +50,24 @@ with &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; and then te
 &lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;&lt;/p&gt;</content><author><name>Heitor</name></author><category term="python" /><category term="random" /><summary type="html">The python way of formatting strings is very interesting. You just need a string with {} and then tell python to change that to something. For example:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://heitorpb.github.io/assets/imgs/me.jpg" /></entry><entry><title type="html">Treasure Hunt</title><link href="https://heitorpb.github.io/bla/2018/10/20/TreasureHunt/" rel="alternate" type="text/html" title="Treasure Hunt" /><published>2018-10-20T00:00:00+02:00</published><updated>2018-10-20T00:00:00+02:00</updated><id>https://heitorpb.github.io/bla/2018/10/20/TreasureHunt</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/10/20/TreasureHunt/">&lt;p&gt;So, I decided to hunt treasures &lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt; Real treasures, not the ones from movies or
+&lt;p&gt;&lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 29 Nov 2018 00:00:00 +0100</pubDate>
+        <link>https://heitorpb.github.io/bla/2018/11/29/format/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/11/29/format/</guid>
+        
+        <category>python</category>
+        
+        <category>random</category>
+        
+        
+        <category>random</category>
+        
+      </item>
+    
+      <item>
+        <title>Treasure Hunt</title>
+        <description>&lt;p&gt;So, I decided to hunt treasures &lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt; Real treasures, not the ones from movies or
 TV series. Some real humans hid real treasures around the world. And of course
 they created real maps with instructions. This way other people can find those
 treasures!&lt;/p&gt;
@@ -144,7 +174,24 @@ awesome!&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Saint-Genis-Pouilly&quot;&gt;Saint-Genis-Pouilly - Wikipedia&lt;/a&gt; &lt;a href=&quot;#fnref:church&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Heitor</name></author><category term="hiking" /><category term="geocache" /><summary type="html">So, I decided to hunt treasures 😎 Real treasures, not the ones from movies or TV series. Some real humans hid real treasures around the world. And of course they created real maps with instructions. This way other people can find those treasures!</summary></entry><entry><title type="html">Hiking in Essertines - Switzerland</title><link href="https://heitorpb.github.io/bla/2018/10/16/EssertinesHike/" rel="alternate" type="text/html" title="Hiking in Essertines - Switzerland" /><published>2018-10-16T00:00:00+02:00</published><updated>2018-10-16T00:00:00+02:00</updated><id>https://heitorpb.github.io/bla/2018/10/16/EssertinesHike</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/10/16/EssertinesHike/">&lt;p&gt;Last week we had another &lt;em&gt;walking meeting&lt;/em&gt;! This time, we went to the village
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 20 Oct 2018 00:00:00 +0200</pubDate>
+        <link>https://heitorpb.github.io/bla/2018/10/20/TreasureHunt/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/10/20/TreasureHunt/</guid>
+        
+        <category>hiking</category>
+        
+        <category>geocache</category>
+        
+        
+        <category>random</category>
+        
+      </item>
+    
+      <item>
+        <title>Hiking in Essertines - Switzerland</title>
+        <description>&lt;p&gt;Last week we had another &lt;em&gt;walking meeting&lt;/em&gt;! This time, we went to the village
 of Essertines, near Geneva, Switzerland. It’s a very lovely place, with old
 beautiful buildings, small roads and wineries.&lt;/p&gt;
 
@@ -260,7 +307,26 @@ m/s&lt;sup id=&quot;fnref:analysis&quot;&gt;&lt;a href=&quot;#fn:analysis&quot; 
       &lt;p&gt;&lt;a href=&quot;https://www.endomondo.com/users/25410601/workouts/1215399714&quot;&gt;Endomondo&lt;/a&gt; &lt;a href=&quot;#fnref:endomondo&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Heitor</name></author><category term="photography" /><category term="hiking" /><category term="analysis" /><summary type="html">Last week we had another walking meeting! This time, we went to the village of Essertines, near Geneva, Switzerland. It’s a very lovely place, with old beautiful buildings, small roads and wineries.</summary></entry><entry><title type="html">The Swiss Far West and GPX fun</title><link href="https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis/" rel="alternate" type="text/html" title="The Swiss Far West and GPX fun" /><published>2018-09-25T00:00:00+02:00</published><updated>2018-09-25T00:00:00+02:00</updated><id>https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis/">&lt;p&gt;Yesterday my supervisor and I went to a hike to the &lt;em&gt;Swiss Far West&lt;/em&gt;, the westernmost
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 16 Oct 2018 00:00:00 +0200</pubDate>
+        <link>https://heitorpb.github.io/bla/2018/10/16/EssertinesHike/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/10/16/EssertinesHike/</guid>
+        
+        <category>photography</category>
+        
+        <category>hiking</category>
+        
+        <category>analysis</category>
+        
+        
+        <category>random</category>
+        
+      </item>
+    
+      <item>
+        <title>The Swiss Far West and GPX fun</title>
+        <description>&lt;p&gt;Yesterday my supervisor and I went to a hike to the &lt;em&gt;Swiss Far West&lt;/em&gt;, the westernmost
 part of Switzerland. Unfortunately, we couldn’t go to the precise westernmost point
 of the border with France, because that’s in the &lt;abbr title=&quot;Latitude: 46.1323565, Longitude: 5.9559113&quot;&gt;middle&lt;/abbr&gt; of the river &lt;em&gt;Le
 Rhône&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and we didn’t want to get inside the water.&lt;/p&gt;
@@ -460,7 +526,24 @@ missing some blue points.&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://osm.org/go/0CFL8Bq5?m=&quot;&gt;Latitude: 46.1323565, Longitude: 5.9559113&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Heitor</name></author><category term="hiking" /><category term="analysis" /><category term="python" /><summary type="html">Yesterday my supervisor and I went to a hike to the Swiss Far West, the westernmost part of Switzerland. Unfortunately, we couldn’t go to the precise westernmost point of the border with France, because that’s in the middle of the river Le Rhône1 and we didn’t want to get inside the water. Latitude: 46.1323565, Longitude: 5.9559113 &amp;#8617;</summary></entry><entry><title type="html">Mussum Ipsum</title><link href="https://heitorpb.github.io/bla/2018/09/06/lorem/" rel="alternate" type="text/html" title="Mussum Ipsum" /><published>2018-09-06T00:00:00+02:00</published><updated>2018-09-06T00:00:00+02:00</updated><id>https://heitorpb.github.io/bla/2018/09/06/lorem</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/09/06/lorem/">&lt;p&gt;Mussum Ipsum, cacilds vidis litro abertis. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Cevadis im ampola pa arma uma pindureta. Suco de cevadiss deixa as pessoas mais interessantis. Paisis, filhis, espiritis santis.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 25 Sep 2018 00:00:00 +0200</pubDate>
+        <link>https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis/</guid>
+        
+        <category>hiking</category>
+        
+        <category>analysis</category>
+        
+        <category>python</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Mussum Ipsum</title>
+        <description>&lt;p&gt;Mussum Ipsum, cacilds vidis litro abertis. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Cevadis im ampola pa arma uma pindureta. Suco de cevadiss deixa as pessoas mais interessantis. Paisis, filhis, espiritis santis.&lt;/p&gt;
 
 &lt;p&gt;A ordem dos tratores não altera o pão duris. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Atirei o pau no gatis, per gatis num morreus. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.&lt;/p&gt;
 
@@ -468,7 +551,22 @@ missing some blue points.&lt;/p&gt;
 
 &lt;p&gt;Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Diuretics paradis num copo é motivis de denguis. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!&lt;/p&gt;
 
-&lt;p&gt;Interagi no mé, cursus quis, vehicula ac nisi. In elementis mé pra quem é amistosis quis leo. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Leite de capivaris, leite de mula manquis sem cabeça.&lt;/p&gt;</content><author><name>Cicero, Mussum, Diego Esteves</name></author><category term="test" /><summary type="html">Mussum Ipsum, cacilds vidis litro abertis. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Cevadis im ampola pa arma uma pindureta. Suco de cevadiss deixa as pessoas mais interessantis. Paisis, filhis, espiritis santis.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://heitorpb.github.io/assets/imgs/me.jpg" /></entry><entry><title type="html">test</title><link href="https://heitorpb.github.io/bla/2018/09/05/test/" rel="alternate" type="text/html" title="test" /><published>2018-09-05T00:00:00+02:00</published><updated>2018-09-05T00:00:00+02:00</updated><id>https://heitorpb.github.io/bla/2018/09/05/test</id><content type="html" xml:base="https://heitorpb.github.io/bla/2018/09/05/test/">&lt;p&gt;this is a &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; entry&lt;sup id=&quot;fnref:bla&quot;&gt;&lt;a href=&quot;#fn:bla&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; for testing tests&lt;/p&gt;
+&lt;p&gt;Interagi no mé, cursus quis, vehicula ac nisi. In elementis mé pra quem é amistosis quis leo. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Leite de capivaris, leite de mula manquis sem cabeça.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 06 Sep 2018 00:00:00 +0200</pubDate>
+        <link>https://heitorpb.github.io/bla/2018/09/06/lorem/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/09/06/lorem/</guid>
+        
+        <category>test</category>
+        
+        
+        <category>random</category>
+        
+      </item>
+    
+      <item>
+        <title>test</title>
+        <description>&lt;p&gt;this is a &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; entry&lt;sup id=&quot;fnref:bla&quot;&gt;&lt;a href=&quot;#fn:bla&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; for testing tests&lt;/p&gt;
 
 &lt;p&gt;This is a python &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; code:&lt;/p&gt;
 
@@ -553,4 +651,18 @@ for testing \( \LaTeX \) :&lt;/p&gt;
       &lt;p&gt;&lt;a href=&quot;https://lmgtfy.com/?q=bla&quot;&gt;blablabla&lt;/a&gt; &lt;a href=&quot;#fnref:bla&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Heitor</name></author><category term="[&quot;random&quot;]" /><category term="test" /><summary type="html">this is a test entry1 for testing tests blablabla &amp;#8617;</summary></entry></feed>
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 05 Sep 2018 00:00:00 +0200</pubDate>
+        <link>https://heitorpb.github.io/bla/2018/09/05/test/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/09/05/test/</guid>
+        
+        <category>test</category>
+        
+        
+        <category>random</category>
+        
+      </item>
+    
+  </channel>
+</rss>
