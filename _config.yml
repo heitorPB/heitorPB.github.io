@@ -36,7 +36,6 @@ markdown: kramdown
 theme: minima
 highlighter: rouge
 plugins:
-  - jekyll-feed
   - jekyll-postfiles
   - jekyll/twemoji
 
