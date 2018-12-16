@@ -9,17 +9,19 @@ Heitor de Bittencourt is a brazillian physicist and open-source enthusiast.
 
 <img src="assets/imgs/me.jpg" class="float-right img-fluid" alt="me with Shiva :D" style="width:60%; margin:1rem; min-width:11rem">
 <p class="text-justify" markdown="1">
-He has a Bachelor in Physics (2017) by the University of São Paulo, Brazil. Previous
-research include: _Geometric and Image Processing for Body Evaluation_ (2011 -
-2012); _Numerical Simulations for Magnetic Resonance Imaging_ (2013-2015).
+He has a Bachelor in Physics (2017) by the University of São Paulo, Brazil.
 Currently, he is a MSc student at Institute of Physics of São Carlos,
-where studies RF electronics for NMR. Heitor is also a CERN researcher for Data
-Preservation and Open Access.
+where studies RF electronics for NMR. Heitor is also a CERN researcher for
+_Data Preservation and Open Access_.
+Previous research include:
+_Geometric and Image Processing for Body Evaluation_ (2011 - 2012);
+_Numerical Simulations for Magnetic Resonance Imaging_ (2013-2015).
 </p>
 
-During his free time, he is a co-organizer of technological groups of São
-Carlos city: [grupy-sanca](https://www.grupysanca.com.br),
-[sancaLUG](https://sancalug.org) and
+During his free time, he is a co-organizer of technological groups of
+[São Carlos - Brazil](https://osm.org/go/NqLuVLA-?relation=297986):
+[grupy-sanca](https://www.grupysanca.com.br) (Python users group),
+[sancaLUG](https://sancalug.org) (Linux users group) and
 [sanca hackerspace](https://sancahs.grupysanca.com.br).
 
 His CV can be found, partially, in
@@ -30,7 +32,7 @@ His CV can be found, partially, in
 He has a passion for photography and pretends he knows something about it. He
 enjoys walking around cities and mountains and forests to take pictures. Most
 of them are not published anywhere but some are in his Facebook and some in his
-Flickr.
+[Flickr](https://www.flickr.com/photos/heitorpb/).
 
 Heitor is also a music enthusiast. From the sweetness of Tchaikovsky's ballets, to
 the nastiness of Sepultura and also the uniqueness of Heilung's experiments. He
@@ -50,7 +52,7 @@ Feel free to get in touch :) He'll try to answer you "shortly"! Your options
   is `295E 499C 134B 4C0B 642D  DFAB C591 DE99 BDDC BBD2` and the
   pub key is [here](heitor.public.gpg-key).
 - [facebook](https://www.facebook.com/wololo666)
-- [flickr](https://www.flickr.com/photos/heitorpb/)
+- [flickr](https://www.flickr.com/people/heitorpb/)
 - [github](https://github.com/heitorPB/)
 - [matrix](https://matrix.to/#/@heitor:matrix.org)
 - [telegram](https://t.me/wololo666)
@@ -65,9 +67,11 @@ magic :) Hosted on [GitHub Pages](https://pages.github.com/), with help from
 [Bootstrap](https://getbootstrap.com/),
 chocolate, coffee,
 [cover theme](https://getbootstrap.com/docs/4.1/examples/cover/),
+[feed icon](https://www.feedicons.com/) by Mozilla Foundation,
 [jekyll-postfiles](https://nhoizey.github.io/jekyll-postfiles/),
 `monokay` from [jekyll-pygments-themes](https://github.com/jwarby/jekyll-pygments-themes/)
-and [twemoji](https://github.com/twitter/twemoji).
+and [twemoji](https://github.com/twitter/twemoji)
+through [jekyll-twemoji](https://github.com/JuanitoFatas/jekyll-twemoji).
 
 Everything is provided under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
