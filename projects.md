@@ -27,14 +27,8 @@ Some of them might be usefull or interesting or just awesome :P
   Record your hike using your mobile phone (or another GPS tracker) and this
   tool gives you nice statistics, plots and map.
 
-- **[spyTOC](https://github.com/heitorPB//)**
-  a template for [Python Markdown](https://python-markdown.github.io).
-
-  The idea is to turn a markdown file in an html5 with a nice layout and a nice
-  TOC to facilitate identification of where you are in the document.
+- proj2
 
 - proj3
-
-- proj4
 
 *[TOC]: Table of Contents
