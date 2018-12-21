@@ -5,8 +5,8 @@
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 Dec 2018 13:30:37 +0100</pubDate>
-    <lastBuildDate>Sun, 16 Dec 2018 13:30:37 +0100</lastBuildDate>
+    <pubDate>Fri, 21 Dec 2018 16:54:25 +0100</pubDate>
+    <lastBuildDate>Fri, 21 Dec 2018 16:54:25 +0100</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -586,7 +586,7 @@ for testing \( \LaTeX \) :&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;test.png&quot; alt=&quot;img test&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;some Markdown tests&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Just &lt;code class=&quot;highlighter-rouge&quot;&gt;some Markdown tests&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;bold&lt;/strong&gt;&lt;/li&gt;
@@ -598,7 +598,7 @@ for testing \( \LaTeX \) :&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Some more &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; code:&lt;/p&gt;
+&lt;p&gt;Some more &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; code from Julia &lt;a href=&quot;https://qojulia.org/&quot;&gt;Quantum Optics&lt;/a&gt; package:&lt;/p&gt;
 
 &lt;div class=&quot;language-julia highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;QuantumOptics&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FockBasis&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;)&lt;/span&gt;
