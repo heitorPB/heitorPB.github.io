@@ -79,3 +79,5 @@ Hope you enjoy them! You might prefer to browser the published fotos in my
 - [2018-12-05 CERN-SCoolLab](https://drive.google.com/open?id=1hVNmE9zECIDgZIKnWXGJD5XzYG-CFrYZ)
 - [2018-12-14 CERN-ITCenter-AntimatterFactory](https://drive.google.com/open?id=1QtkvuoYlMxJwyuuaoOf3KfXZ_FXr72um) **-->** [Flickr](https://www.flickr.com/photos/heitorpb/albums/72157704652716634)
 - [2018-12-17 Grenoble-France](https://drive.google.com/open?id=12X-ZfU61K0JoOkNd--Tq_bvCU6x9VFX9)
+- [2018-12-20 CERN](https://drive.google.com/open?id=1D5LQ9b10TZ2mOj3enUQ5P4zTvI8EN7M-)
+- [2018-12-22 Geneva-Switzerland](https://drive.google.com/open?id=1lkVkMjFPP_qEO-irAkgT1wICeUV98x04)
