@@ -9,7 +9,7 @@ permalink: /projects.html
 
 <br>
 
-Some of them might be usefull or interesting or just awesome :P
+Some of them might be useful or interesting or just awesome :P
 
 <br>
 
