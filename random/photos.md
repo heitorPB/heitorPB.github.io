@@ -18,7 +18,7 @@ not controlled by me.
 </a><br>
 
 Hope you enjoy them! You might prefer to browser the published fotos in my
-[Flickr](https://www.flickr.com/photos/heitorpb/).
+[Flickr](https://www.flickr.com/photos/heitorpb/albums).
 
 - [2012-07-25 fotos-antigas-voMario-e-3porquinhas](https://drive.google.com/open?id=1J1mwCqUy79KjjZpnnAJ3VlVMPQNfe7Vb)
 
@@ -81,3 +81,7 @@ Hope you enjoy them! You might prefer to browser the published fotos in my
 - [2018-12-17 Grenoble-France](https://drive.google.com/open?id=12X-ZfU61K0JoOkNd--Tq_bvCU6x9VFX9)
 - [2018-12-20 CERN](https://drive.google.com/open?id=1D5LQ9b10TZ2mOj3enUQ5P4zTvI8EN7M-)
 - [2018-12-22 Geneva-Switzerland](https://drive.google.com/open?id=1lkVkMjFPP_qEO-irAkgT1wICeUV98x04)
+
+- [2019-01-03 Lausanne-Switzerland](https://drive.google.com/open?id=1Vsfxl5_QPbhLsqKTp4gvAETgXJfxcj06)
+- [2019-01-04 Montreaux-Switzerland](https://drive.google.com/open?id=139wmIUq4vm9-QD9YPw6v7ePhUMBMWan_)
+- [2019-01-04 Vevey-Switzerland](https://drive.google.com/open?id=1VD0vmmtlGJyefZiAYW6rmbCDqbVx-eR9)
