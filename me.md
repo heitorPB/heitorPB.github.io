@@ -8,15 +8,13 @@ permalink: /me.html
 Heitor de Bittencourt is a brazillian physicist and open-source enthusiast.
 
 <img src="assets/imgs/me.jpg" class="float-right img-fluid" alt="me with Shiva :D" style="width:60%; margin:1rem; min-width:11rem">
-<p class="text-justify" markdown="1">
 He has a Bachelor in Physics (2017) by the University of São Paulo, Brazil.
-Currently, he is a MSc student at Institute of Physics of São Carlos,
-where studies RF electronics for NMR. Heitor is also a CERN researcher for
-_Data Preservation and Open Access_.
-Previous research include:
-_Geometric and Image Processing for Body Evaluation_ (2011 - 2012);
-_Numerical Simulations for Magnetic Resonance Imaging_ (2013-2015).
-</p>
+Currently, he is a MSc student at Institute of Physics of São Carlos, in the
+same university, where studies RF electronics for NMR. Previous research
+include:
+- _Geometric and Image Processing for Body Evaluation_ (2011 - 2012);
+- _Numerical Simulations for Magnetic Resonance Imaging_ (2013 - 2015);
+- CERN researcher for _Data Preservation and Open Access_ (2018).
 
 During his free time, he is a co-organizer of technological groups of
 [São Carlos - Brazil](https://osm.org/go/NqLuVLA-?relation=297986):
