@@ -12,6 +12,8 @@ Last week we had another _walking meeting_! This time, we went to the village
 of Essertines, near Geneva, Switzerland. It's a very lovely place, with old
 beautiful buildings, small roads and wineries.
 
+Click the images to see them bigger and to comment them.
+
 [![](imgs/DSC_3333.JPG)](https://www.flickr.com/photos/heitorpb/30468016197/in/album-72157702559519395/)
 
 Essertines belongs to the municipality of Dardagny. 1 861 people live in
