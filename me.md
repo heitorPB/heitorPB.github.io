@@ -52,6 +52,7 @@ Feel free to get in touch :) He'll try to answer you "shortly"! Your options
 - [facebook](https://www.facebook.com/wololo666)
 - [flickr](https://www.flickr.com/people/heitorpb/)
 - [github](https://github.com/heitorPB/)
+- [gitlab](https://gitlab.com/heitorPB/)
 - [matrix](https://matrix.to/#/@heitor:matrix.org)
 - [telegram](https://t.me/wololo666)
 
