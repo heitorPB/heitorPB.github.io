@@ -10,7 +10,7 @@ Heitor de Bittencourt is a brazillian physicist and open-source enthusiast.
 <img src="assets/imgs/me.jpg" class="float-right img-fluid" alt="me with Shiva :D" style="width:60%; margin:1rem; min-width:11rem">
 He has a Bachelor in Physics (2017) by the [University of São Paulo](https://usp.br), Brazil.
 Currently, he is a MSc student at [Institute of Physics of São Carlos](https://ifsc.usp.br/), in the
-same university, where studies RF electronics for NMR. Previous research
+same university, and is a Python Developer at [Itera](http://itera.com.br/). Previous research
 include:
 - _Geometric and Image Processing for Body Evaluation_ (2011 - 2012);
 - _Numerical Simulations for Magnetic Resonance Imaging_ (2013 - 2015);
