@@ -5,9 +5,173 @@
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Jan 2019 20:29:15 +0100</pubDate>
-    <lastBuildDate>Sat, 05 Jan 2019 20:29:15 +0100</lastBuildDate>
+    <pubDate>Wed, 18 Mar 2020 18:53:27 -0300</pubDate>
+    <lastBuildDate>Wed, 18 Mar 2020 18:53:27 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Always close your Matplotlib figures</title>
+        <description>&lt;p&gt;I’m working on a simulation that generates gigabytes of raw data. But I am a
+Physicist: I &lt;em&gt;need plots&lt;/em&gt;, not tables! So I made a set of scripts in Python
+that parses all this data and generates about 50 plots.&lt;/p&gt;
+
+&lt;p&gt;It’s not a problem to generate lots of pdf’s with the plots. It’s not a problem
+to write the Python code to parse the data and generate the plots.
+&lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;Pandas&lt;/a&gt; makes our life easy to read data and
+&lt;a href=&quot;https://matplotlib.org/&quot;&gt;Matplotlib&lt;/a&gt; has a nice interface to turn data in
+figures.&lt;/p&gt;
+
+&lt;p&gt;I have a code with a structure like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;For every parameter alpha:
+   Read the relevant Data
+   Process the data
+   Make and save the plot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In Python words:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;# Fixing random state for reproducibility
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19680801&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Generate fake data&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# pretend to do something with it
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;plot_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#plt.show()
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'plots/{fname}.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;read_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plot_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If I run this code, It will create 50 png’s in the folder &lt;code class=&quot;highlighter-rouge&quot;&gt;plots/&lt;/code&gt;, similar to
+this one:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;plots/0.png&quot; alt=&quot;random data in a plot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, what’s the problem here?&lt;/p&gt;
+
+&lt;p&gt;Try running the code!&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;python plot.py
+plot.py:22: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;matplotlib.pyplot.figure&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; are retained &lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;explicitly closed and may consume too much memory. &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;To control this warning, see the rcParam &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;figure.max_open_warning&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  fig &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; plt.figure&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This warning appears several times. And it is a &lt;em&gt;warning&lt;/em&gt;, not an error: the
+code will &lt;em&gt;probably&lt;/em&gt; work fine.
+It says &lt;code class=&quot;highlighter-rouge&quot;&gt;and may consume too much memory&lt;/code&gt;. But how much is too much?
+Let’s use the &lt;a href=&quot;https://www.gnu.org/software/time/&quot;&gt;GNU time&lt;/a&gt; command to
+discover the amount of memory used:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/usr/bin/time &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%M&quot;&lt;/span&gt; python bad-example.py
+bad-example.py:22: RuntimeWarning: More than 20 figures have been opened.
+Figures created through the pyplot interface &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;matplotlib.pyplot.figure&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; are
+retained &lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;explicitly closed and may consume too much memory. &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;To control
+this warning, see the rcParam &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;figure.max_open_warning&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  fig &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; plt.figure&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+ ... ommiting several repeated messages here
+bad-example.py:22: RuntimeWarning: More than 20 figures have been opened.
+Figures created through the pyplot interface &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;matplotlib.pyplot.figure&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; are
+retained &lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;explicitly closed and may consume too much memory. &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;To control
+this warning, see the rcParam &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;figure.max_open_warning&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+  fig &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; plt.figure&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+  182032
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The last number is the peak memory usage, in kbytes. In this case: 182032
+kbytes.&lt;/p&gt;
+
+&lt;p&gt;Now, let’s fix the warning. The problem is that we have too many figures
+opened: we need to close them. The simplest way is to call &lt;code class=&quot;highlighter-rouge&quot;&gt;plt.close(fig)&lt;/code&gt;
+when the figure is not needed anymore:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;# Fixing random state for reproducibility
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;19680801&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Generate fake data&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# pretend to do something with it
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;plot_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;#plt.show()
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'plots/{fname}.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;read_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plot_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, let’s see how much memory it uses:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/usr/bin/time &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;%M&quot;&lt;/span&gt; python good-example.py
+106652
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;About 75000 kbytes saved!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 18 Mar 2020 00:00:00 -0300</pubDate>
+        <link>https://heitorpb.github.io/bla/2020/03/18/close-matplotlib-figures/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2020/03/18/close-matplotlib-figures/</guid>
+        
+        <category>analysis</category>
+        
+        <category>linux</category>
+        
+        <category>python</category>
+        
+        <category>matplotlib</category>
+        
+        <category>random</category>
+        
+        
+        <category>random</category>
+        
+      </item>
     
       <item>
         <title>Python.format</title>
@@ -52,7 +216,7 @@ with &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; and then te
 
 &lt;p&gt;&lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 29 Nov 2018 00:00:00 +0100</pubDate>
+        <pubDate>Thu, 29 Nov 2018 00:00:00 -0200</pubDate>
         <link>https://heitorpb.github.io/bla/2018/11/29/format/</link>
         <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/11/29/format/</guid>
         
@@ -176,7 +340,7 @@ awesome!&lt;/p&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Sat, 20 Oct 2018 00:00:00 +0200</pubDate>
+        <pubDate>Sat, 20 Oct 2018 00:00:00 -0300</pubDate>
         <link>https://heitorpb.github.io/bla/2018/10/20/TreasureHunt/</link>
         <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/10/20/TreasureHunt/</guid>
         
@@ -194,6 +358,8 @@ awesome!&lt;/p&gt;
         <description>&lt;p&gt;Last week we had another &lt;em&gt;walking meeting&lt;/em&gt;! This time, we went to the village
 of Essertines, near Geneva, Switzerland. It’s a very lovely place, with old
 beautiful buildings, small roads and wineries.&lt;/p&gt;
+
+&lt;p&gt;Click the images to see them bigger and to comment them.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/heitorpb/30468016197/in/album-72157702559519395/&quot;&gt;&lt;img src=&quot;imgs/DSC_3333.JPG&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -309,7 +475,7 @@ m/s&lt;sup id=&quot;fnref:analysis&quot;&gt;&lt;a href=&quot;#fn:analysis&quot; 
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Tue, 16 Oct 2018 00:00:00 +0200</pubDate>
+        <pubDate>Tue, 16 Oct 2018 00:00:00 -0300</pubDate>
         <link>https://heitorpb.github.io/bla/2018/10/16/EssertinesHike/</link>
         <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/10/16/EssertinesHike/</guid>
         
@@ -528,7 +694,7 @@ missing some blue points.&lt;/p&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Tue, 25 Sep 2018 00:00:00 +0200</pubDate>
+        <pubDate>Tue, 25 Sep 2018 00:00:00 -0300</pubDate>
         <link>https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis/</link>
         <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/09/25/hikingAnalysis/</guid>
         
@@ -553,7 +719,7 @@ missing some blue points.&lt;/p&gt;
 
 &lt;p&gt;Interagi no mé, cursus quis, vehicula ac nisi. In elementis mé pra quem é amistosis quis leo. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Leite de capivaris, leite de mula manquis sem cabeça.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 06 Sep 2018 00:00:00 +0200</pubDate>
+        <pubDate>Thu, 06 Sep 2018 00:00:00 -0300</pubDate>
         <link>https://heitorpb.github.io/bla/2018/09/06/lorem/</link>
         <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/09/06/lorem/</guid>
         
@@ -653,7 +819,7 @@ for testing \( \LaTeX \) :&lt;/p&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Wed, 05 Sep 2018 00:00:00 +0200</pubDate>
+        <pubDate>Wed, 05 Sep 2018 00:00:00 -0300</pubDate>
         <link>https://heitorpb.github.io/bla/2018/09/05/test/</link>
         <guid isPermaLink="true">https://heitorpb.github.io/bla/2018/09/05/test/</guid>
         

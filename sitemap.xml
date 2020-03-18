@@ -54,6 +54,12 @@
 
 	
 		<url>
+			<loc>https://heitorpb.github.io/bla/2020/03/18/close-matplotlib-figures/</loc>
+			<changefreq>monthly</changefreq>
+			<priority>1.0</priority>
+		</url>
+	
+		<url>
 			<loc>https://heitorpb.github.io/bla/2018/11/29/format/</loc>
 			<changefreq>monthly</changefreq>
 			<priority>1.0</priority>
