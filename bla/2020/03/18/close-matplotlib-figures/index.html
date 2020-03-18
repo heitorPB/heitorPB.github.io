@@ -80,10 +80,10 @@ figures.</p>
 
 <p>I have a code with a structure like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>For every parameter alpha:
-   Read the relevant Data
-   Process the data
-   Make and save the plot
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">For</span> <span class="n">every</span> <span class="n">parameter</span> <span class="n">alpha</span><span class="p">:</span>
+   <span class="n">Read</span> <span class="n">the</span> <span class="n">relevant</span> <span class="n">Data</span>
+   <span class="n">Process</span> <span class="n">the</span> <span class="n">data</span>
+   <span class="n">Make</span> <span class="ow">and</span> <span class="n">save</span> <span class="n">the</span> <span class="n">plot</span>
 </code></pre></div></div>
 
 <p>In Python words:</p>
@@ -132,9 +132,9 @@ this one:</p>
 
 <p>Try running the code!</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python plot.py
-plot.py:22: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface <span class="o">(</span><span class="sb">`</span>matplotlib.pyplot.figure<span class="sb">`</span><span class="o">)</span> are retained <span class="k">until </span>explicitly closed and may consume too much memory. <span class="o">(</span>To control this warning, see the rcParam <span class="sb">`</span>figure.max_open_warning<span class="sb">`</span><span class="o">)</span><span class="nb">.</span>
-  fig <span class="o">=</span> plt.figure<span class="o">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">plot</span><span class="o">.</span><span class="n">py</span>
+<span class="n">plot</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="o">.</span> <span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span> <span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="o">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span> <span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">)</span><span class="o">.</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>This warning appears several times. And it is a <em>warning</em>, not an error: the
@@ -143,19 +143,19 @@ It says <code class="highlighter-rouge">and may consume too much memory</code>. 
 Let’s use the <a href="https://www.gnu.org/software/time/">GNU time</a> command to
 discover the amount of memory used:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/time <span class="nt">-f</span> <span class="s2">"%M"</span> python bad-example.py
-bad-example.py:22: RuntimeWarning: More than 20 figures have been opened.
-Figures created through the pyplot interface <span class="o">(</span><span class="sb">`</span>matplotlib.pyplot.figure<span class="sb">`</span><span class="o">)</span> are
-retained <span class="k">until </span>explicitly closed and may consume too much memory. <span class="o">(</span>To control
-this warning, see the rcParam <span class="sb">`</span>figure.max_open_warning<span class="sb">`</span><span class="o">)</span><span class="nb">.</span>
-  fig <span class="o">=</span> plt.figure<span class="o">()</span>
- ... ommiting several repeated messages here
-bad-example.py:22: RuntimeWarning: More than 20 figures have been opened.
-Figures created through the pyplot interface <span class="o">(</span><span class="sb">`</span>matplotlib.pyplot.figure<span class="sb">`</span><span class="o">)</span> are
-retained <span class="k">until </span>explicitly closed and may consume too much memory. <span class="o">(</span>To control
-this warning, see the rcParam <span class="sb">`</span>figure.max_open_warning<span class="sb">`</span><span class="o">)</span><span class="nb">.</span>
-  fig <span class="o">=</span> plt.figure<span class="o">()</span>
-  182032
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">f</span> <span class="s">"</span><span class="si">%</span><span class="s">M"</span> <span class="n">python</span> <span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span>
+<span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="o">.</span>
+<span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span>
+<span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="o">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span>
+<span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">)</span><span class="o">.</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+ <span class="o">...</span> <span class="n">ommiting</span> <span class="n">several</span> <span class="n">repeated</span> <span class="n">messages</span> <span class="n">here</span>
+<span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="o">.</span>
+<span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span>
+<span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="o">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span>
+<span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">)</span><span class="o">.</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+  <span class="mi">182032</span>
 </code></pre></div></div>
 
 <p>The last number is the peak memory usage, in kbytes. In this case: 182032
@@ -203,8 +203,8 @@ when the figure is not needed anymore:</p>
 
 <p>Now, let’s see how much memory it uses:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/time <span class="nt">-f</span> <span class="s2">"%M"</span> python good-example.py
-106652
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">f</span> <span class="s">"</span><span class="si">%</span><span class="s">M"</span> <span class="n">python</span> <span class="n">good</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span>
+<span class="mi">106652</span>
 </code></pre></div></div>
 
 <p><img draggable="false" title=":sunglasses:" alt="😎" src="https://twemoji.maxcdn.com/2/svg/1f60e.svg" class="emoji" /></p>
