@@ -20,7 +20,7 @@ figures.
 
 I have a code with a structure like this:
 
-~~~
+~~~ python
 For every parameter alpha:
    Read the relevant Data
    Process the data
@@ -42,7 +42,7 @@ So, what's the problem here?
 
 Try running the code!
 
-~~~ bash
+~~~ python
 $ python plot.py
 plot.py:22: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
   fig = plt.figure()
@@ -54,7 +54,7 @@ It says `and may consume too much memory`. But how much is too much?
 Let's use the [GNU time](https://www.gnu.org/software/time/) command to
 discover the amount of memory used:
 
-~~~ bash
+~~~ python
 $ /usr/bin/time -f "%M" python bad-example.py
 bad-example.py:22: RuntimeWarning: More than 20 figures have been opened.
 Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are
@@ -83,7 +83,7 @@ when the figure is not needed anymore:
 
 Now, let's see how much memory it uses:
 
-~~~ bash
+~~~ python
 $ /usr/bin/time -f "%M" python good-example.py
 106652
 ~~~
