@@ -5,7 +5,7 @@ localimage:
 language: [english]
 layout: post
 tags: [linux, random]
-title: Random numbers from /dev/urandom in Bash
+title: "Random numbers from /dev/urandom in Bash"
 ---
 
 In a GNU/Linux distributions, there are special files (`/dev/random` and
@@ -14,18 +14,17 @@ do we get random numbers from them in a bash script?
 
 If we try to `cat` them we get random things:
 
-~~~ julia
+~~~ bash
 $ cat /dev/random
 XB>7;Mq'\'$,dH՞ՈT=H}0]eS19Ѡ
 Hd9)7ܢVO'y.ۧMW^C
 ~~~
 
 Something a bit weirder happens with `/dev/urandom`: it continues vomiting
-characters at you until you stop it with `Ctrl + C`.
+characters really fast at you until you stop it with `Ctrl + C`.
 
 What's the difference between `/dev/random` and `/dev/urandom`? Lets check the
-manpage for `urandom`, as of Linux 5.5:
-
+manpage for `random (4)`, as of Linux 5.6:
 
        The  random number generator gathers environmental noise from device driv‐
        ers and other sources into an entropy pool.  The generator also  keeps  an
@@ -45,7 +44,7 @@ manpage for `urandom`, as of Linux 5.5:
        high quality randomness, and can afford indeterminate delays.
 
        When the entropy pool is empty, reads from /dev/random  will  block  until
-       additional  environmental  noise  is  gathered.
+       additional  environmental  noise  is  gathered. (...)
 
 From this, we get that:
 
@@ -56,15 +55,19 @@ From this, we get that:
 - `/dev/urandom` is preferred.
 - both files gives us _bytes_.
 
+And from the Kernel's source we get that `urandom` uses
+[ChaCha20](https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant) as CSPRNG.
+[^kernel-source]
+
 We now need a tool to read a specific number of bytes from those files and
-convert it to something human readable. And here comes `od`[^od], a Unix
-command to display data in several formats. The default is octal, hence the
+convert it to something human readable. And here comes `od`, a Unix
+command to display data in several formats.[^od] The default is octal, hence the
 name `od`: _octal dump_.
 
-With this uttility we can read `N` bytes from a file and display it in a
+With this utility we can read `N` bytes from a file and display it in a
 specified format. For example, here's the dump of `Hello World":
 
-``` julia
+``` bash
 $ echo Hello World | od
 0000000 062510 066154 020157 067527 066162 005144
 0000014
@@ -72,14 +75,14 @@ $ echo Hello World | od
 
 The first column is the offset, and then the octal representation of that line.
 So, the second line of the output means: starting at the offset `0000014` we
-have nothign, i.g. there are 14 (in octal, or 12 in decimal) characters in that
+have nothing, i.g. there are 14 (in octal, or 12 in decimal) characters in that
 string.
 
 It looks like `od` does not know how to count. There are 11 chars in `Hello
 World`! Lets see each char individually (`-c`) in octal (`-b`):
 
-``` julia
-echo "Hello World" | od -cb
+``` bash
+$ echo "Hello World" | od -cb
 0000000   H   e   l   l   o       W   o   r   l   d  \n
         110 145 154 154 157 040 127 157 162 154 144 012
 0000014
@@ -87,38 +90,31 @@ echo "Hello World" | od -cb
 
 Sweet, it counted the line ending as well.
 
-`od` can also read `N` bytes from a source and display it in a speficied
+`od` can also read `N` bytes from a source and display it in a specified
 format. So, to read 4 bytes from `/dev/urandom`, display it as an unsigned
 integer without the offset column:
 
-``` julia
+``` bash
 $ od -vAn -N4 -t u4 < /dev/urandom
   402803061
 ```
 
+And to use in your bash code:
 
+``` bash
+for i in $(seq 1 10)
+do
+	random=$(od -vAn -N4 -t u4 < /dev/urandom)
+	echo $random
+done
+```
 
-
-
-[SOMETHING ABOUT FLOATS]
-
-[CONCLUSIOn]
+With this code, those 32 bits (4 bytes) from `urandom` are interpreted as an
+integer. How do we get floats? If interested only in the range `[0, 1)`: simply
+divide by the greatest possible value, \\( 2^{32} - 1\\).
 
 
 *[PRNG]: pseudorandom number generator
+*[CSPRNG]: cryptographiccally secure pseudorandom number generator
 [^od]: [Gnu Coreutils](https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html)
-
-### TODO
-
-- get rid of this entire section. The file ends with the footnotes and shit,
-  but before this fucking section
-- nice text
-- hemmingWay check and grammar check and shit like that
-- **last** things to do:
-  - check for nice title
-  - rename file: `_posts/yyyy-mm-dd-title.md` or
-    `_posts/yyyy-mm-dd-title/date-title.md`
-  - add the first image to the "image" YAML tag
-  - check categories and tags and language and YAML shit
-  - if new tag: add it to the template also!
-  - review first paragraph: first paragraph should be small and summarize everything
+[^kernel-source]: [file `drivers/char/random.c`](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&id=4aa37c463764052c68c5c430af2a67b5d784c1e0)
