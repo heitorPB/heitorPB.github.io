@@ -5,9 +5,138 @@
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 18 Mar 2020 19:00:17 -0300</pubDate>
-    <lastBuildDate>Wed, 18 Mar 2020 19:00:17 -0300</lastBuildDate>
+    <pubDate>Tue, 07 Apr 2020 17:38:37 -0300</pubDate>
+    <lastBuildDate>Tue, 07 Apr 2020 17:38:37 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Random numbers from /dev/urandom in Bash</title>
+        <description>&lt;p&gt;In a GNU/Linux distributions, there are special files (&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;) to access the kernel’s random number generator. But how
+do we get random numbers from them in a bash script?&lt;/p&gt;
+
+&lt;p&gt;If we try to &lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt; them we get random things:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /dev/random
+XB&amp;gt;7&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;Mq&lt;span class=&quot;s1&quot;&gt;'\'&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$,&lt;/span&gt;dH՞ՈT&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;H&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;0]eS19Ѡ
+Hd9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;7ܢVO&lt;span class=&quot;s1&quot;&gt;'y.ۧMW^C
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Something a bit weirder happens with &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;: it continues vomiting
+characters really fast at you until you stop it with &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + C&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;What’s the difference between &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;? Lets check the
+manpage for &lt;code class=&quot;highlighter-rouge&quot;&gt;random (4)&lt;/code&gt;, as of Linux 5.6:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   The  random number generator gathers environmental noise from device driv‐
+   ers and other sources into an entropy pool.  The generator also  keeps  an
+   estimate  of  the  number of bits of noise in the entropy pool.  From this
+   entropy pool, random numbers are created.
+
+   When read, the /dev/urandom device returns random bytes using a pseudoran‐
+   dom number generator seeded from the entropy pool.  Reads from this device
+   do not block (i.e., the CPU is not yielded), but can incur an  appreciable
+   delay when requesting large amounts of data.
+
+   The  /dev/random  device  is a legacy interface which dates back to a time
+   where  the  cryptographic  primitives  used  in  the   implementation   of
+   /dev/urandom  were  not  widely trusted.  It will return random bytes only
+   within the estimated number of bits of fresh noise in  the  entropy  pool,
+   blocking if necessary.  /dev/random is suitable for applications that need
+   high quality randomness, and can afford indeterminate delays.
+
+   When the entropy pool is empty, reads from /dev/random  will  block  until
+   additional  environmental  noise  is  gathered. (...)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From this, we get that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the Kernel maintains a pool of entropy from random things that happens in the
+computer.&lt;/li&gt;
+  &lt;li&gt;both special files use this entropy pool to seed a &lt;abbr title=&quot;pseudorandom number generator&quot;&gt;PRNG&lt;/abbr&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; waits until there are enough randomness to output something.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt; is preferred.&lt;/li&gt;
+  &lt;li&gt;both files gives us &lt;em&gt;bytes&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And from the Kernel’s source we get that &lt;code class=&quot;highlighter-rouge&quot;&gt;urandom&lt;/code&gt; uses
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant&quot;&gt;ChaCha20&lt;/a&gt; as &lt;abbr title=&quot;cryptographiccally secure pseudorandom number generator&quot;&gt;CSPRNG&lt;/abbr&gt;.
+&lt;sup id=&quot;fnref:kernel-source&quot;&gt;&lt;a href=&quot;#fn:kernel-source&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;We now need a tool to read a specific number of bytes from those files and
+convert it to something human readable. And here comes &lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt;, a Unix
+command to display data in several formats.&lt;sup id=&quot;fnref:od&quot;&gt;&lt;a href=&quot;#fn:od&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; The default is octal, hence the
+name &lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt;: &lt;em&gt;octal dump&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;With this utility we can read &lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt; bytes from a file and display it in a
+specified format. For example, here’s the dump of `Hello World”:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;Hello World | &lt;span class=&quot;nb&quot;&gt;od
+&lt;/span&gt;0000000 062510 066154 020157 067527 066162 005144
+0000014
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The first column is the offset, and then the octal representation of that line.
+So, the second line of the output means: starting at the offset &lt;code class=&quot;highlighter-rouge&quot;&gt;0000014&lt;/code&gt; we
+have nothing, i.g. there are 14 (in octal, or 12 in decimal) characters in that
+string.&lt;/p&gt;
+
+&lt;p&gt;It looks like &lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt; does not know how to count. There are 11 chars in &lt;code class=&quot;highlighter-rouge&quot;&gt;Hello
+World&lt;/code&gt;! Lets see each char individually (&lt;code class=&quot;highlighter-rouge&quot;&gt;-c&lt;/code&gt;) in octal (&lt;code class=&quot;highlighter-rouge&quot;&gt;-b&lt;/code&gt;):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello World&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;od&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-cb&lt;/span&gt;
+0000000   H   e   l   l   o       W   o   r   l   d  &lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;
+        110 145 154 154 157 040 127 157 162 154 144 012
+0000014
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sweet, it counted the line ending as well.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt; can also read &lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt; bytes from a source and display it in a specified
+format. So, to read 4 bytes from &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;, display it as an unsigned
+integer without the offset column:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;od&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vAn&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-N4&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; u4 &amp;lt; /dev/urandom
+  402803061
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And to use in your bash code:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;seq &lt;/span&gt;1 10&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do
+	&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;od&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vAn&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-N4&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; u4 &amp;lt; /dev/urandom&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$random&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this code, those 32 bits (4 bytes) from &lt;code class=&quot;highlighter-rouge&quot;&gt;urandom&lt;/code&gt; are interpreted as an
+integer. How do we get floats? If interested only in the range &lt;code class=&quot;highlighter-rouge&quot;&gt;[0, 1)&lt;/code&gt;: simply
+divide by the greatest possible value, \( 2^{32} - 1\).&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:kernel-source&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0&quot;&gt;file &lt;code class=&quot;highlighter-rouge&quot;&gt;drivers/char/random.c&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:kernel-source&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:od&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html&quot;&gt;Gnu Coreutils&lt;/a&gt; &lt;a href=&quot;#fnref:od&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Tue, 07 Apr 2020 00:00:00 -0300</pubDate>
+        <link>https://heitorpb.github.io/bla/2020/04/07/bash-random-numbers/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2020/04/07/bash-random-numbers/</guid>
+        
+        <category>linux</category>
+        
+        <category>random</category>
+        
+        
+        <category>random</category>
+        
+      </item>
     
       <item>
         <title>Always close your Matplotlib figures</title>
