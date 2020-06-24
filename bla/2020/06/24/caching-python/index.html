@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- custom css AFTER bootstrap -->
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&amp;subset=greek-ext,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/cover.css">
+	<link rel="stylesheet" href="/assets/css/solarized-dark.css">
+
+	<link rel="icon" type="image/png" href="/assets/favicon.png">
+	<title>Caching computation in Python</title>
+	<meta name="description" content="">
+
+	<!-- Facebook/Twitter/SEO -->
+	<meta property="og:title" content="Caching computation in Python"/>
+	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/06/24/caching-python/"/>
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Heitor's log"/>
+	<meta property="og:description" content="Yeaah"/>
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="">
+	<meta name="twitter:title" content="Caching computation in Python" />
+	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/06/24/caching-python/" />
+	<meta name="twitter:description" content="Yeaah" />
+
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="https://heitorpb.github.io/sitemap.xml" />
+	<link rel="alternate" type="application/rss+xml" href="https://heitorpb.github.io/feed.xml">
+</head>
+
+
+	<body>
+		<div id="wrapper">
+
+			<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	<header class="masthead mb-auto">
+		<div class="inner">
+			<h3 class="masthead-brand">Heitor&#39;s log</h3>
+			<nav class="nav nav-masthead justify-content-center">
+				<a class="nav-link "    href="/"             >Home</a>
+				<a class="nav-link "       href="/me.html"      >Me</a>
+				<a class="nav-link " href="/projects.html">Projects</a>
+				<a class="nav-link active"     href="/bla/"         >Bla</a>
+			</nav>
+		</div>
+	</header>
+
+
+			<main role="main" class="inner cover">
+				<br>
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">Caching computation in Python</h1>
+		<p class="post-meta">
+			<time class="dt-published" datetime="2020-06-24T00:00:00-03:00" itemprop="datePublished">Jun 24, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Heitor</span></span></p>
+	</header>
+
+	<br>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p>Caching is an optimization strategy that stores data in some memory, instead of
+using and discarding it. The idea is to store data to serve if faster in the
+future. This might save CPU time at the cost of increased memory usage.</p>
+
+<p>There are many types of cache (hardware caches, network caches, software
+caches…), with different applications and performances. In this post I will
+discuss one type of software cache: <em>memoization</em>.</p>
+
+<h2 id="memoization">Memoization</h2>
+
+<p>Memoization is a software cache technique in which the results of functions
+are saved in a cache. The entries of this cache are served when the function is
+called with the same inputs, instead of executing the function again.</p>
+
+<p>It has this name because it is a “memorization” process: it saves the output of
+a function for a given input. Let’s see an example: the factorial. A Python
+code of the recursive version is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>Every time this function is called, it calculates \( (n-1)! \),
+\( (n-2)! \), \( (n-3)! \), \( (n-4)! \), …, this is very fast for small
+values of \(n\), but it can take some time for larger inputs:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="mf">3.6</span> <span class="err">µ</span><span class="n">s</span> <span class="err">±</span> <span class="mf">81.5</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">100000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="mf">7.4</span> <span class="err">µ</span><span class="n">s</span> <span class="err">±</span> <span class="mf">1.16</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">100000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="mf">13.5</span> <span class="err">µ</span><span class="n">s</span> <span class="err">±</span> <span class="mf">92.3</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">100000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="mi">294</span> <span class="err">µ</span><span class="n">s</span> <span class="err">±</span> <span class="mf">9.45</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+<span class="mf">1.04</span> <span class="n">ms</span> <span class="err">±</span> <span class="mi">128</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">1000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>So, it takes longer to calculate more intermediate results. Let’s try to
+memoize it manually:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MemoizedFactorial</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>And to use it:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">MemoizedFactorial</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># prints 120
+</span></code></pre></div></div>
+
+<p>And how fast it is?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">x</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+<span class="mi">147</span> <span class="n">ns</span> <span class="err">±</span> <span class="mf">0.877</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>So, about 150 ns vs 1 ms to calculate the same number.
+It is only ~7000 times faster to calculate this version of \(2000!\).
+And then there’s something interesting for \(n &lt; 2000\):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">21</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">x</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="mi">147</span> <span class="n">ns</span> <span class="err">±</span> <span class="mi">2</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">22</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">x</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="mi">137</span><span class="p">)</span>
+<span class="mi">150</span> <span class="n">ns</span> <span class="err">±</span> <span class="mf">0.896</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">23</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">x</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">147</span> <span class="n">ns</span> <span class="err">±</span> <span class="mf">2.47</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">24</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">x</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="mi">175</span> <span class="n">ns</span> <span class="err">±</span> <span class="mf">0.81</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>It takes roughly the same amount of time to “calculate” any value. And it is
+expected: we are only retrieving values of a dictionary.</p>
+
+<p>And notice the memory consumption for each function:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">26</span><span class="p">]:</span> <span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">26</span><span class="p">]:</span> <span class="mi">73816</span>
+</code></pre></div></div>
+
+<p>This trades a function to an object that holds 73 KB of cache and yields a
+dramatic performance increase.</p>
+
+<p>It stores 2000 results in 73KB, what would happen if we had 2 million entries?
+And then continue calculating more million entries? This implementation would
+keep consuming more and more memory until there’s no more space.</p>
+
+<p>To overcome this situation, there are many
+<a href="https://en.wikipedia.org/wiki/Cache_replacement_policies">caching algorithms</a>
+that put in place policies to discard cached data when it becomes full. Here I will discuss the
+<em>Least Recently Used</em> approach.</p>
+
+<h2 id="least-recently-used-lru">Least Recently Used (LRU)</h2>
+
+<p>It is important to define a maximum size for the cache. This way the system
+does not grow indefinitely and you can have control about its memory
+consumption.</p>
+
+<p>The downside is to discard information when the cache is at its limit. One way
+of doing so is keeping only the recent entries, discarding the least recently
+used.</p>
+
+<p>This is not as simple as the example above, because it needs to also keep track
+of when each entry was cached. On the other hand, it is already implemented in
+Python’s Standard Library :) The module
+<a href="https://docs.python.org/3/library/functools.html">functools</a> provides us the
+decorator <code class="highlighter-rouge">lru_cache</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+
+<span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>It is the same function from the first code, but with a decorator added. The
+default maximum size of the cache is <code class="highlighter-rouge">128</code>, I increased so we can compare
+the timings with our handmade version:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="mi">68</span> <span class="n">ns</span> <span class="err">±</span> <span class="mf">0.697</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">28</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+<span class="mf">64.1</span> <span class="n">ns</span> <span class="err">±</span> <span class="mf">1.05</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This decorated function is almost three times faster than the handmade cache.</p>
+
+<p>Another interesting advantage of this decorator is that it provides some
+methods to see what happened with the cache:</p>
+
+<ul>
+  <li>
+    <p>The <code class="highlighter-rouge">cache_info()</code> method displays some statistics about that cache: how many
+<em>hits</em> (the number of times the requested data was in the cache), <em>misses</em>
+(the number of times the requested data was not in the cache), the maximum
+number of entries in the cache and the current number of cached items.</p>
+  </li>
+  <li>
+    <p>The <code class="highlighter-rouge">cache_clear()</code> method empties the cache.</p>
+  </li>
+</ul>
+
+<p>Let’s see them in action:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">factorial</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">factorial</span><span class="o">.</span><span class="n">cache_info</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="n">CacheInfo</span><span class="p">(</span><span class="n">hits</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">misses</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">currsize</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="mi">402387260077093773543702433923003985719374864210714632543799910429938512398629020592044208486969404800479988610197196058631666872994808558901323829669944590997424504087073759918823627727188732519779505950995276120874975462497043601418278094646496291056393887437886487337119181045825783647849977012476632889835955735432513185323958463075557409114262417474349347553428646576611667797396668820291207379143853719588249808126867838374559731746136085379534524221586593201928090878297308431392844403281231558611036976801357304216168747609675871348312025478589320767169132448426236131412508780208000261683151027341827977704784635868170164365024153691398281264810213092761244896359928705114964975419909342221566832572080821333186116811553615836546984046708975602900950537616475847728421889679646244945160765353408198901385442487984959953319101723355556602139450399736280750137837615307127761926849034352625200015888535147331611702103968175921510907788019393178114194545257223865541461062892187960223838971476088506276862967146674697562911234082439208160153780889893964518263243671616762179168909779911903754031274622289988005195444414282012187361745992642956581746628302955570299024324153181617210465832036786906117260158783520751516284225540265170483304226143974286933061690897968482590125458327168226458066526769958652682272807075781391858178889652208164348344825993266043367660176999612831860788386150279465955131156552036093988180612138558600301435694527224206344631797460594682573103790084024432438465657245014402821885252470935190620929023136493273497565513958720559654228749774011413346962715422845862377387538230483865688976461927383814900140767310446640259899490222221765904339901886018566526485061799702356193897017860040811889729918311021171229845901641921068884387121855646124960798722908519296819372388642614839657382291123125024186649353143970137428531926649875337218940694281434118520158014123344828015051399694290153483077644569099073152433278288269864602789864321139083506217095002597389863554277196742822248757586765752344220207573630569498825087968928162753848863396909959826280956121450994871701244516461260379029309120889086942028510640182154399457156805941872748998094254742173582401063677404595741785160829230135358081840096996372524230560855903700624271243416909004153690105933983835777939410970027753472000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">factorial</span><span class="o">.</span><span class="n">cache_info</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">CacheInfo</span><span class="p">(</span><span class="n">hits</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">misses</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">currsize</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="mi">402387260077093773543702433923003985719374864210714632543799910429938512398629020592044208486969404800479988610197196058631666872994808558901323829669944590997424504087073759918823627727188732519779505950995276120874975462497043601418278094646496291056393887437886487337119181045825783647849977012476632889835955735432513185323958463075557409114262417474349347553428646576611667797396668820291207379143853719588249808126867838374559731746136085379534524221586593201928090878297308431392844403281231558611036976801357304216168747609675871348312025478589320767169132448426236131412508780208000261683151027341827977704784635868170164365024153691398281264810213092761244896359928705114964975419909342221566832572080821333186116811553615836546984046708975602900950537616475847728421889679646244945160765353408198901385442487984959953319101723355556602139450399736280750137837615307127761926849034352625200015888535147331611702103968175921510907788019393178114194545257223865541461062892187960223838971476088506276862967146674697562911234082439208160153780889893964518263243671616762179168909779911903754031274622289988005195444414282012187361745992642956581746628302955570299024324153181617210465832036786906117260158783520751516284225540265170483304226143974286933061690897968482590125458327168226458066526769958652682272807075781391858178889652208164348344825993266043367660176999612831860788386150279465955131156552036093988180612138558600301435694527224206344631797460594682573103790084024432438465657245014402821885252470935190620929023136493273497565513958720559654228749774011413346962715422845862377387538230483865688976461927383814900140767310446640259899490222221765904339901886018566526485061799702356193897017860040811889729918311021171229845901641921068884387121855646124960798722908519296819372388642614839657382291123125024186649353143970137428531926649875337218940694281434118520158014123344828015051399694290153483077644569099073152433278288269864602789864321139083506217095002597389863554277196742822248757586765752344220207573630569498825087968928162753848863396909959826280956121450994871701244516461260379029309120889086942028510640182154399457156805941872748998094254742173582401063677404595741785160829230135358081840096996372524230560855903700624271243416909004153690105933983835777939410970027753472000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="n">factorial</span><span class="o">.</span><span class="n">cache_info</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="n">CacheInfo</span><span class="p">(</span><span class="n">hits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">misses</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">currsize</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>After emptying the cache, there’s no information apart the maximum size. The
+first time the function is called, there will be only misses as the cache is
+empty. The second time this function is called, the result is already
+available.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Caching is an optimization technique in which we trade expensive computation
+for memory. This memory, of course, needs to have a faster access than
+computing the data again. As a consequence, the cache needs to be small.</p>
+
+<p>To keep the cache under control, a number of caching strategies exists. The
+Least Recently Used approach is an efficient way to keep only the most
+recently used entries. It is available in Python as
+<a href="https://docs.python.org/3/library/functools.html#functools.lru_cache">functools.lru_cache</a>.</p>
+
+	</div>
+
+	<a class="u-url" href="/bla/2020/06/24/caching-python/" hidden></a>
+</article>
+				<br>
+			</main>
+
+				<footer class="mastfoot mt-auto text-center">
+		<div class="inner">
+			
+			<br />Heitor's log, 2018 - 2020
+			by <a href="/me.html">Heitor</a>
+			is licensed under a
+			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.
+		</div>
+	</footer>
+</div>
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		</div>
+	</body>
+</html>
