@@ -5,9 +5,58 @@
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 24 Jun 2020 17:26:55 -0300</pubDate>
-    <lastBuildDate>Wed, 24 Jun 2020 17:26:55 -0300</lastBuildDate>
+    <pubDate>Tue, 11 Aug 2020 16:35:44 -0300</pubDate>
+    <lastBuildDate>Tue, 11 Aug 2020 16:35:44 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Multiple urls for a git remote</title>
+        <description>&lt;p&gt;AKA automagic mirroring of your GitHub into GitLab.&lt;/p&gt;
+
+&lt;p&gt;There is a simple way to set up git to use multiple push URLs for a single
+remote. This way you can easily mirror any git repository into any hosting
+provider when &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;ing.&lt;/p&gt;
+
+&lt;p&gt;Let’s say your GitHub’s user is &lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt; and you want to mirror your &lt;code class=&quot;highlighter-rouge&quot;&gt;repo&lt;/code&gt; into
+GitLab. Your local clone is initially:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fetch&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;push&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we need to configure the &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt; remote to have two URLs:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote set-url &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--push&lt;/span&gt; origin git@github.com:user/repo.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote set-url &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--push&lt;/span&gt; origin git@gitlab.com:user/repo.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And the magical result:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;fetch&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;push&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+origin  git@gitlab.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;push&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This makes every &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; send the changes to both GitHub and GitLab,
+creating an automatic backup.&lt;/p&gt;
+
+&lt;p&gt;But note that &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt; is still from GitHub. It is not possible to pull
+changes from two different repositories.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Aug 2020 00:00:00 -0300</pubDate>
+        <link>https://heitorpb.github.io/bla/2020/08/11/git-multiple-remotes/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2020/08/11/git-multiple-remotes/</guid>
+        
+        <category>git</category>
+        
+        <category>random</category>
+        
+        
+        <category>random</category>
+        
+      </item>
     
       <item>
         <title>Caching computation in Python</title>
