@@ -5,9 +5,135 @@
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Aug 2020 16:35:44 -0300</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2020 16:35:44 -0300</lastBuildDate>
+    <pubDate>Sun, 13 Sep 2020 17:26:35 -0300</pubDate>
+    <lastBuildDate>Sun, 13 Sep 2020 17:26:35 -0300</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Be careful with your Docker logs</title>
+        <description>&lt;p&gt;This week, one of our testing servers got clogged and stopped responding: the
+disk was full and it crashed some services. This machine is used only for
+running Docker containers, so it must be a Docker problem, right?&lt;/p&gt;
+
+&lt;p&gt;Kind of.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-problem&quot;&gt;The Problem&lt;/h3&gt;
+
+&lt;p&gt;This test server has 100 GiB of disk, and it was full. As it is a “Docker only”
+server, the first obvious thing to check is how much space Docker used:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker system &lt;span class=&quot;nb&quot;&gt;df
+&lt;/span&gt;TYPE             TOTAL    ACTIVE    SIZE       RECLAIMABLE
+Images           21       18        16GB       10.07GB &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;60%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Containers       18       17        812.8MB    15.24MB &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Local Volumes    69       14        6.428GB    395.9MB &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Build Cache      0        0         0B         0B
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So, Docker is using about 23 GB. And the volumes are not to blame, they are
+using only 6.4 GB. Pruning it would free some space and in fact saved the
+machine. But a few hours later, the disk was full again. Something flooded the
+disk, and it was not in any Docker container or volume.&lt;/p&gt;
+
+&lt;p&gt;I checked the machine logs, and they were small:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; 0 /var/log
+1.6G    /var/log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I dug deeper and saw something weird:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; 0 /var/
+99G     var/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And then, the guilty service appeared:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; 0 /var/lib/
+97.6G   /var/lib
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; 0 /var/lib/docker
+96.7G   /var/lib/docer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So it was Docker the whole time. But, what else Docker has, besides images,
+layers, containers, volumes and build cache, as reported by &lt;code class=&quot;highlighter-rouge&quot;&gt;docker system df&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;Docker has logs.&lt;/p&gt;
+
+&lt;p&gt;By default, Docker saves the output of each container in a &lt;code class=&quot;highlighter-rouge&quot;&gt;json&lt;/code&gt; file in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/lib/docker/containers/&amp;lt;container_ID&amp;gt;/&amp;lt;container_ID&amp;gt;-json.log&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; /var/lib/docker/containers/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.log
+
+315M    /var/lib/docker/containers/016.../016...-json.log
+164K    /var/lib/docker/containers/0d1.../0d1...-json.log
+51G     /var/lib/docker/containers/0f7.../0f7...-json.log
+6G      /var/lib/docker/containers/0f8.../0f8...-json.log
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Yeah, there were huge log files…&lt;/p&gt;
+
+&lt;p&gt;By
+&lt;a href=&quot;https://docs.docker.com/config/containers/logging/json-file/#options&quot;&gt;default&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Docker saves the output of each container in &lt;code class=&quot;highlighter-rouge&quot;&gt;json&lt;/code&gt; format. That is the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;json-file&lt;/code&gt; log driver.&lt;/li&gt;
+  &lt;li&gt;Each &lt;code class=&quot;highlighter-rouge&quot;&gt;*-json.log&lt;/code&gt; can grow without any limits.&lt;/li&gt;
+  &lt;li&gt;There can be any number of log files.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;possible-solutions&quot;&gt;Possible solutions&lt;/h3&gt;
+
+&lt;p&gt;There are some ways to solve this problem:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;periodically remove/trim the logs, with a cron job or &lt;code class=&quot;highlighter-rouge&quot;&gt;logrotate&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;use an external log aggregator like &lt;a href=&quot;https://www.fluentd.org/&quot;&gt;fluentd&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;configure Docker to not flood the disk.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;First option is nice and generic. Second option is the most robust, but
+involves setting up another server and configure things. For this server, the
+third option is good enough.&lt;/p&gt;
+
+&lt;p&gt;Let’s tell Docker to keep log files with a maximum of 1GB and to
+have a maximum of 3 log files per service. To do so, we need to configure the
+docker daemon. It is as simple as adding these lines to
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/docker/daemon.json&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&quot;log-driver&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;json-file&quot;&lt;/span&gt;,
+        &lt;span class=&quot;s2&quot;&gt;&quot;log-opts&quot;&lt;/span&gt;: &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;max-size&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;1g&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;max-file&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now it is time to restart docker. This automagically trimmed all the logs
+and the machine was usable again. Services were running smoothly and well.&lt;/p&gt;
+
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Always rotate your logs.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 13 Sep 2020 00:00:00 -0300</pubDate>
+        <link>https://heitorpb.github.io/bla/2020/09/13/careful_with_docker_logs/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2020/09/13/careful_with_docker_logs/</guid>
+        
+        <category>Docker</category>
+        
+        <category>linux</category>
+        
+        <category>optimization</category>
+        
+        <category>random</category>
+        
+        <category>sysadmin</category>
+        
+        <category>test</category>
+        
+        
+        <category>random</category>
+        
+      </item>
     
       <item>
         <title>Multiple urls for a git remote</title>

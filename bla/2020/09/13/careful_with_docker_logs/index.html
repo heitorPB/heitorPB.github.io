@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- custom css AFTER bootstrap -->
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&amp;subset=greek-ext,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/cover.css">
+	<link rel="stylesheet" href="/assets/css/solarized-dark.css">
+
+	<link rel="icon" type="image/png" href="/assets/favicon.png">
+	<title>Be careful with your Docker logs</title>
+	<meta name="description" content="">
+
+	<!-- Facebook/Twitter/SEO -->
+	<meta property="og:title" content="Be careful with your Docker logs"/>
+	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/09/13/careful_with_docker_logs/"/>
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Heitor's log"/>
+	<meta property="og:description" content="Yeaah"/>
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="">
+	<meta name="twitter:title" content="Be careful with your Docker logs" />
+	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/09/13/careful_with_docker_logs/" />
+	<meta name="twitter:description" content="Yeaah" />
+
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="https://heitorpb.github.io/sitemap.xml" />
+	<link rel="alternate" type="application/rss+xml" href="https://heitorpb.github.io/feed.xml">
+</head>
+
+
+	<body>
+		<div id="wrapper">
+
+			<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	<header class="masthead mb-auto">
+		<div class="inner">
+			<h3 class="masthead-brand">Heitor&#39;s log</h3>
+			<nav class="nav nav-masthead justify-content-center">
+				<a class="nav-link "    href="/"             >Home</a>
+				<a class="nav-link "       href="/me.html"      >Me</a>
+				<a class="nav-link " href="/projects.html">Projects</a>
+				<a class="nav-link active"     href="/bla/"         >Bla</a>
+			</nav>
+		</div>
+	</header>
+
+
+			<main role="main" class="inner cover">
+				<br>
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">Be careful with your Docker logs</h1>
+		<p class="post-meta">
+			<time class="dt-published" datetime="2020-09-13T00:00:00-03:00" itemprop="datePublished">Sep 13, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Heitor</span></span></p>
+	</header>
+
+	<br>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p>This week, one of our testing servers got clogged and stopped responding: the
+disk was full and it crashed some services. This machine is used only for
+running Docker containers, so it must be a Docker problem, right?</p>
+
+<p>Kind of.</p>
+
+<h3 id="the-problem">The Problem</h3>
+
+<p>This test server has 100 GiB of disk, and it was full. As it is a “Docker only”
+server, the first obvious thing to check is how much space Docker used:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker system <span class="nb">df
+</span>TYPE             TOTAL    ACTIVE    SIZE       RECLAIMABLE
+Images           21       18        16GB       10.07GB <span class="o">(</span>60%<span class="o">)</span>
+Containers       18       17        812.8MB    15.24MB <span class="o">(</span>1%<span class="o">)</span>
+Local Volumes    69       14        6.428GB    395.9MB <span class="o">(</span>6%<span class="o">)</span>
+Build Cache      0        0         0B         0B
+</code></pre></div></div>
+
+<p>So, Docker is using about 23 GB. And the volumes are not to blame, they are
+using only 6.4 GB. Pruning it would free some space and in fact saved the
+machine. But a few hours later, the disk was full again. Something flooded the
+disk, and it was not in any Docker container or volume.</p>
+
+<p>I checked the machine logs, and they were small:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> <span class="nt">-d</span> 0 /var/log
+1.6G    /var/log
+</code></pre></div></div>
+
+<p>I dug deeper and saw something weird:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> <span class="nt">-d</span> 0 /var/
+99G     var/
+</code></pre></div></div>
+
+<p>And then, the guilty service appeared:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> <span class="nt">-d</span> 0 /var/lib/
+97.6G   /var/lib
+<span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> <span class="nt">-d</span> 0 /var/lib/docker
+96.7G   /var/lib/docer
+</code></pre></div></div>
+
+<p>So it was Docker the whole time. But, what else Docker has, besides images,
+layers, containers, volumes and build cache, as reported by <code class="highlighter-rouge">docker system df</code>?</p>
+
+<p>Docker has logs.</p>
+
+<p>By default, Docker saves the output of each container in a <code class="highlighter-rouge">json</code> file in
+<code class="highlighter-rouge">/var/lib/docker/containers/&lt;container_ID&gt;/&lt;container_ID&gt;-json.log</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> /var/lib/docker/containers/<span class="k">*</span>/<span class="k">*</span>.log
+
+315M    /var/lib/docker/containers/016.../016...-json.log
+164K    /var/lib/docker/containers/0d1.../0d1...-json.log
+51G     /var/lib/docker/containers/0f7.../0f7...-json.log
+6G      /var/lib/docker/containers/0f8.../0f8...-json.log
+...
+</code></pre></div></div>
+
+<p>Yeah, there were huge log files…</p>
+
+<p>By
+<a href="https://docs.docker.com/config/containers/logging/json-file/#options">default</a>:</p>
+<ul>
+  <li>Docker saves the output of each container in <code class="highlighter-rouge">json</code> format. That is the
+<code class="highlighter-rouge">json-file</code> log driver.</li>
+  <li>Each <code class="highlighter-rouge">*-json.log</code> can grow without any limits.</li>
+  <li>There can be any number of log files.</li>
+</ul>
+
+<h3 id="possible-solutions">Possible solutions</h3>
+
+<p>There are some ways to solve this problem:</p>
+<ul>
+  <li>periodically remove/trim the logs, with a cron job or <code class="highlighter-rouge">logrotate</code>.</li>
+  <li>use an external log aggregator like <a href="https://www.fluentd.org/">fluentd</a>.</li>
+  <li>configure Docker to not flood the disk.</li>
+</ul>
+
+<p>First option is nice and generic. Second option is the most robust, but
+involves setting up another server and configure things. For this server, the
+third option is good enough.</p>
+
+<p>Let’s tell Docker to keep log files with a maximum of 1GB and to
+have a maximum of 3 log files per service. To do so, we need to configure the
+docker daemon. It is as simple as adding these lines to
+<code class="highlighter-rouge">/etc/docker/daemon.json</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
+        <span class="s2">"log-driver"</span>: <span class="s2">"json-file"</span>,
+        <span class="s2">"log-opts"</span>: <span class="o">{</span><span class="s2">"max-size"</span>: <span class="s2">"1g"</span>, <span class="s2">"max-file"</span>: <span class="s2">"3"</span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now it is time to restart docker. This automagically trimmed all the logs
+and the machine was usable again. Services were running smoothly and well.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Always rotate your logs.</p>
+
+	</div>
+
+	<a class="u-url" href="/bla/2020/09/13/careful_with_docker_logs/" hidden></a>
+</article>
+				<br>
+			</main>
+
+				<footer class="mastfoot mt-auto text-center">
+		<div class="inner">
+			
+			<br />Heitor's log, 2018 - 2020
+			by <a href="/me.html">Heitor</a>
+			is licensed under a
+			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.
+		</div>
+	</footer>
+</div>
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		</div>
+	</body>
+</html>
