@@ -93,12 +93,12 @@ figures.</p>
 
 
 <span class="c1"># Fixing random state for reproducibility
-</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">read_data</span><span class="p">():</span>
     <span class="s">"""Generate fake data"""</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
@@ -109,12 +109,12 @@ figures.</p>
 
 
 <span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'o'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'o'</span><span class="p">)</span>
     <span class="c1">#plt.show()
-</span>    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">f</span><span class="s">'plots/{fname}.png'</span><span class="p">)</span>
+</span>    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">f'plots/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s">.png'</span><span class="p">)</span>
 
 
 <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
@@ -132,9 +132,9 @@ this one:</p>
 
 <p>Try running the code!</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">plot</span><span class="o">.</span><span class="n">py</span>
-<span class="n">plot</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="o">.</span> <span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span> <span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="o">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span> <span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">)</span><span class="o">.</span>
-  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">plot</span><span class="p">.</span><span class="n">py</span>
+<span class="n">plot</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="p">.</span> <span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span> <span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="p">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span> <span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">).</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>This warning appears several times. And it is a <em>warning</em>, not an error: the
@@ -143,18 +143,18 @@ It says <code class="highlighter-rouge">and may consume too much memory</code>. 
 Let’s use the <a href="https://www.gnu.org/software/time/">GNU time</a> command to
 discover the amount of memory used:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">f</span> <span class="s">"</span><span class="si">%</span><span class="s">M"</span> <span class="n">python</span> <span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span>
-<span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="o">.</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">f</span> <span class="s">"%M"</span> <span class="n">python</span> <span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="p">.</span><span class="n">py</span>
+<span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="p">.</span>
 <span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span>
-<span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="o">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span>
-<span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">)</span><span class="o">.</span>
-  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
- <span class="o">...</span> <span class="n">ommiting</span> <span class="n">several</span> <span class="n">repeated</span> <span class="n">messages</span> <span class="n">here</span>
-<span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="o">.</span>
+<span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="p">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span>
+<span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">).</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+ <span class="p">...</span> <span class="n">ommiting</span> <span class="n">several</span> <span class="n">repeated</span> <span class="n">messages</span> <span class="n">here</span>
+<span class="n">bad</span><span class="o">-</span><span class="n">example</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span> <span class="nb">RuntimeWarning</span><span class="p">:</span> <span class="n">More</span> <span class="n">than</span> <span class="mi">20</span> <span class="n">figures</span> <span class="n">have</span> <span class="n">been</span> <span class="n">opened</span><span class="p">.</span>
 <span class="n">Figures</span> <span class="n">created</span> <span class="n">through</span> <span class="n">the</span> <span class="n">pyplot</span> <span class="n">interface</span> <span class="p">(</span><span class="sb">`matplotlib.pyplot.figure`</span><span class="p">)</span> <span class="n">are</span>
-<span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="o">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span>
-<span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">)</span><span class="o">.</span>
-  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">retained</span> <span class="n">until</span> <span class="n">explicitly</span> <span class="n">closed</span> <span class="ow">and</span> <span class="n">may</span> <span class="n">consume</span> <span class="n">too</span> <span class="n">much</span> <span class="n">memory</span><span class="p">.</span> <span class="p">(</span><span class="n">To</span> <span class="n">control</span>
+<span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">see</span> <span class="n">the</span> <span class="n">rcParam</span> <span class="sb">`figure.max_open_warning`</span><span class="p">).</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
   <span class="mi">182032</span>
 </code></pre></div></div>
 
@@ -170,12 +170,12 @@ when the figure is not needed anymore:</p>
 
 
 <span class="c1"># Fixing random state for reproducibility
-</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
+</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">read_data</span><span class="p">():</span>
     <span class="s">"""Generate fake data"""</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
@@ -186,13 +186,13 @@ when the figure is not needed anymore:</p>
 
 
 <span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">fname</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'o'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'o'</span><span class="p">)</span>
     <span class="c1">#plt.show()
-</span>    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">f</span><span class="s">'plots/{fname}.png'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</span>    <span class="n">fig</span><span class="p">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">f'plots/</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s">.png'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
 
 <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
@@ -203,7 +203,7 @@ when the figure is not needed anymore:</p>
 
 <p>Now, let’s see how much memory it uses:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">f</span> <span class="s">"</span><span class="si">%</span><span class="s">M"</span> <span class="n">python</span> <span class="n">good</span><span class="o">-</span><span class="n">example</span><span class="o">.</span><span class="n">py</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">time</span> <span class="o">-</span><span class="n">f</span> <span class="s">"%M"</span> <span class="n">python</span> <span class="n">good</span><span class="o">-</span><span class="n">example</span><span class="p">.</span><span class="n">py</span>
 <span class="mi">106652</span>
 </code></pre></div></div>
 

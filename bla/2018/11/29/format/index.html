@@ -71,39 +71,39 @@
 		<p>The python way of formatting strings is very interesting. You just need a string
 with <code class="highlighter-rouge">{}</code> and then tell python to change that to something. For example:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="s">'3'</span>
 </code></pre></div></div>
 
 <p>And you can also format that to a string:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'$£@æȩ'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'$£@æȩ'</span><span class="p">)</span>
 <span class="s">'$£@æȩ'</span>
 </code></pre></div></div>
 
 <p>The next obvious step is to format a string to itself:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">)</span>
 <span class="s">'{}'</span>
 </code></pre></div></div>
 
 <p>Note that the result is a <em>string</em>:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">))</span>
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">str</span><span class="s">'&gt;</span><span class="err">
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">))</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">str</span><span class="s">'&gt;
 </span></code></pre></div></div>
 
 <p>And we can <em>evaluate</em> that string to turn it into a code:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">))</span>
 <span class="p">{}</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">)))</span>
-<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">dict</span><span class="s">'&gt;</span><span class="err">
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">)))</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">dict</span><span class="s">'&gt;
 </span></code></pre></div></div>
 
 <p>Now, some ultra advanced python code to rule them all:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}.format({})'</span><span class="p">)</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">,</span> <span class="p">{})))</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'"{}"'</span><span class="p">,</span> <span class="p">{}))</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">))))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}.format({})'</span><span class="p">).</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">,</span> <span class="p">{}))).</span><span class="nb">format</span><span class="p">(</span><span class="s">'"{}"'</span><span class="p">,</span> <span class="p">{})).</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">'{}'</span><span class="p">))))</span>
 <span class="s">'{}'</span>
 </code></pre></div></div>
 

@@ -77,14 +77,14 @@ result becomes unpredictable</p>
 reading it in Python as an ASCII file gives an error:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'k'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'ascii'</span><span class="p">)</span> <span class="k">as</span> <span class="n">afile</span><span class="p">:</span>
-<span class="o">...</span>     <span class="n">afile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="o">...</span>
+<span class="p">...</span>     <span class="n">afile</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+<span class="p">...</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="n">File</span> <span class="s">"/usr/lib/python3.8/encoding/ascii.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">26</span><span class="p">,</span> <span class="ow">in</span> <span class="n">decode</span>
-        <span class="k">return</span> <span class="n">codecs</span><span class="o">.</span><span class="n">ascii_decode</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="nb">UnicodeDecodeError</span><span class="p">:</span> <span class="s">'ascii'</span> <span class="n">codec</span> <span class="n">can</span><span class="s">'t decode byte 0xc3 in position 8:</span><span class="err">
-</span><span class="s">        ordinal not in range(128)</span><span class="err">
+        <span class="k">return</span> <span class="n">codecs</span><span class="p">.</span><span class="n">ascii_decode</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">errors</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">UnicodeDecodeError</span><span class="p">:</span> <span class="s">'ascii'</span> <span class="n">codec</span> <span class="n">can</span><span class="s">'t decode byte 0xc3 in position 8:
+        ordinal not in range(128)
 </span></code></pre></div></div>
 
 <p>I’ve run into this problem last week, when I had to parse hundreds of <abbr title="comma-separated values are simple text files that represent a spreadsheet">csv</abbr> files.
@@ -134,7 +134,7 @@ encoding.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>f <span class="k">in</span> <span class="k">*</span>
 <span class="k">do
-	</span><span class="nv">enc</span><span class="o">=</span><span class="k">$(</span>file <span class="nt">--mime-encoding</span> <span class="s2">"</span><span class="nv">$f</span><span class="s2">"</span> | <span class="nb">sed</span> <span class="nt">-E</span> <span class="s1">'s/.*: //g'</span><span class="k">)</span>
+	</span><span class="nv">enc</span><span class="o">=</span><span class="si">$(</span>file <span class="nt">--mime-encoding</span> <span class="s2">"</span><span class="nv">$f</span><span class="s2">"</span> | <span class="nb">sed</span> <span class="nt">-E</span> <span class="s1">'s/.*: //g'</span><span class="si">)</span>
 	<span class="k">if</span> <span class="o">[</span> <span class="nv">$enc</span> <span class="o">!=</span> <span class="s2">"utf-8"</span> <span class="o">]</span>
 	<span class="k">then
 		</span><span class="nb">echo </span>Converting from <span class="nv">$enc</span> to UTF-8: <span class="nv">$f</span>
