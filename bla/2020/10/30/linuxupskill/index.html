@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- custom css AFTER bootstrap -->
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&amp;subset=greek-ext,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/cover.css">
+	<link rel="stylesheet" href="/assets/css/solarized-dark.css">
+
+	<link rel="icon" type="image/png" href="/assets/favicon.png">
+	<title>Linux Upskill Challenge</title>
+	<meta name="description" content="">
+
+	<!-- Facebook/Twitter/SEO -->
+	<meta property="og:title" content="Linux Upskill Challenge"/>
+	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/10/30/linuxupskill/"/>
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Heitor's log"/>
+	<meta property="og:description" content="Yeaah"/>
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="">
+	<meta name="twitter:title" content="Linux Upskill Challenge" />
+	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/10/30/linuxupskill/" />
+	<meta name="twitter:description" content="Yeaah" />
+
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="https://heitorpb.github.io/sitemap.xml" />
+	<link rel="alternate" type="application/rss+xml" href="https://heitorpb.github.io/feed.xml">
+</head>
+
+
+	<body>
+		<div id="wrapper">
+
+			<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	<header class="masthead mb-auto">
+		<div class="inner">
+			<h3 class="masthead-brand">Heitor&#39;s log</h3>
+			<nav class="nav nav-masthead justify-content-center">
+				<a class="nav-link "    href="/"             >Home</a>
+				<a class="nav-link "       href="/me.html"      >Me</a>
+				<a class="nav-link " href="/projects.html">Projects</a>
+				<a class="nav-link active"     href="/bla/"         >Bla</a>
+			</nav>
+		</div>
+	</header>
+
+
+			<main role="main" class="inner cover">
+				<br>
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">Linux Upskill Challenge</h1>
+		<p class="post-meta">
+			<time class="dt-published" datetime="2020-10-30T00:00:00-03:00" itemprop="datePublished">Oct 30, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Heitor</span></span></p>
+	</header>
+
+	<br>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p>The Linux Upskill Challenge is a month-long course on Reddit (<a href="https://www.reddit.com/r/linuxupskillchallenge">r/linuxupskillchallenge</a>), about Linux Server Administration.</p>
+
+<p>It is not a formal course, neither gives a certificate to share on social
+media. I think this makes the course more valuable, because the people taking
+it are doing to learn, and not to brag online.</p>
+
+<p>It is a hands-on course with a lot of extra resources for the curious. Although
+I’ve been using GNU/Linux in my personal computer for a long time, I don’t
+consider myself an expert. I know my way around, but I’ve never dug deeper.
+This is a nice opportunity to learn more and also use a remote <abbr title="Virtual Private Server">VPS</abbr> for free.
+<img draggable="false" title=":sunglasses:" alt="😎" src="https://twemoji.maxcdn.com/2/svg/1f60e.svg" class="emoji" /></p>
+
+<h2 id="daily-logs">Daily logs</h2>
+
+<p>Here are some thoughts about each lecture. It is not meant to be a collection of
+study notes, as use a different system for that, but a brain dump of random
+ideas.</p>
+
+<h3 id="days-0-and-1">Days 0 and 1</h3>
+
+<p>Goal: get a remote server for free and learn how to manage it.</p>
+
+<p>Decided to use Google Cloud Compute, just because. That dashboard is so
+chaotic… The most difficult task of the day was setting up the SSH public key
+to log to my new <abbr title="Virtual Machine">VM</abbr>.</p>
+
+<p>SSH keys are awesome. I’ve been using them for a long time for remote access
+and they make life way easier. <code class="highlighter-rouge">ssh-copy-id</code> command is easier than
+<code class="highlighter-rouge">cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address "mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys"</code>,
+but for old servers is not an option. The machine I’m using at my university to
+run the simulations for my Master’s studies did not accept <code class="highlighter-rouge">ssh-copy-id</code>…</p>
+
+<h3 id="day-2">Day 2</h3>
+
+<p>Goal: learn to navigate in the machine using only the terminal.</p>
+
+<p>I’ve been using GNU/Linux for more than 10 years, I’m pretty confident with the
+terminal. But there’s always something new to learn: <code class="highlighter-rouge">ls -ltra</code> is a nice
+example to find the most recently altered files.</p>
+
+<h3 id="day-3">Day 3</h3>
+
+<p>Goal: get familiar with <code class="highlighter-rouge">root</code> things.</p>
+
+<p>Mind blow of the day: I saw lots of attempts to connect to this <abbr title="Virtual Machine">VM</abbr> in
+<code class="highlighter-rouge">/var/log/auth.log</code> file. Awesome. Bots everywhere.</p>
+
+<p>I am running ArchLinux on my Raspberry Pi 3, it uses <code class="highlighter-rouge">journalctl</code> for the logs:
+<code class="highlighter-rouge">journalctl /usr/bin/sshd</code>.</p>
+
+<p>It was nice to learn about <code class="highlighter-rouge">sudo -i</code>. I’ve been using <code class="highlighter-rouge">sudo su -</code> to become
+root and is good to know there are other ways to do it as well. The details
+about the differences and other comments are explained
+<a href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used">here</a>.</p>
+
+<h3 id="day-4">Day 4</h3>
+
+<p>Goal: install stuff, explore the file structure and get familiar with “walking”
+around.</p>
+
+<p><code class="highlighter-rouge">man hier</code> blew my mind. Oh, this is awesome. I googled about the filesystem
+hierarchy so many times and did not know I already had all the information in
+front of me.</p>
+
+<h3 id="day-5">Day 5</h3>
+
+<p>Goal: get familiar with <code class="highlighter-rouge">TAB</code>, <code class="highlighter-rouge">less</code>, <code class="highlighter-rouge">more</code>, and hidden/dot files.</p>
+
+<p>I was never a big fan of <code class="highlighter-rouge">more</code>. I normally use <code class="highlighter-rouge">less</code> as a pager, because it
+allows me to scroll up and down easier, search for a string, jump to a
+position, and quite fast for huge files.</p>
+
+<p>The <code class="highlighter-rouge">history</code> command is nice. I know about it and never used directly. I
+prefer to <code class="highlighter-rouge">ctrl + r</code> and a trick to use the Up/Down arrows to use the text that
+has already been typed as the prefix for searching commands. Only works with
+Bash, though. Check <code class="highlighter-rouge">readline</code> on
+<a href="https://wiki.archlinux.org/index.php/Readline#History">ArchWiki</a> for more
+details.</p>
+
+<h3 id="day-6">Day 6</h3>
+
+<p>Goal: learn <code class="highlighter-rouge">Vim</code> and how to exit it.</p>
+
+<p>I’ve been using Vim for quite a long time. I use it for almost everything
+related to text: coding, writing my Master’s Thesis, writing TODO lists,
+writing these notes, and probably other things I can’t remember now. And
+despite those years of usage, every week I learn something new about it.
+Learning Vim is a hard task, but definitely worth it.</p>
+
+<p>I started the <code class="highlighter-rouge">vimtutor</code> but never finished it. So many times. They say it
+takes about half an hour to go through it, I’ll try to do it (again). Actually,
+I’ll try <code class="highlighter-rouge">neovim</code>’s tutorial (<code class="highlighter-rouge">:Tutor&lt;Enter&gt;</code>).</p>
+
+<p>The insane new thing about Vim that I learned today is that it has seven (!)
+basic modes:</p>
+<ul>
+  <li>Normal mode</li>
+  <li>Visual mode</li>
+  <li>Select mode</li>
+  <li>Insert mode</li>
+  <li>Command-line mode (or Cmdline mode)</li>
+  <li>Ex mode</li>
+  <li>Terminal-Job mode</li>
+</ul>
+
+<p>And then there are seven <em>additional</em> modes:</p>
+<ul>
+  <li>Operator-pending mode</li>
+  <li>Replace mode</li>
+  <li>Virtual Replace mode</li>
+  <li>Insert Normal mode</li>
+  <li>Terminal-Normal mode</li>
+  <li>Insert Visual mode</li>
+  <li>Insert Select mode</li>
+</ul>
+
+<p>You can read more about them with the internal help: <code class="highlighter-rouge">:help vim-modes</code>.
+Curiously, <code class="highlighter-rouge">neovim</code> has one fewer additional mode (at least as of <code class="highlighter-rouge">nvim
+0.4.4</code>).</p>
+
+<h3 id="day-7">Day 7</h3>
+
+<p>Goal: install a web server and use it to host a page.</p>
+
+<p>The instructions are for Apache2, a.k.a. <code class="highlighter-rouge">httpd</code>, but I decided to use Caddy
+instead. I’m curious about it’s automatic conversion from Markdown to HTML.</p>
+
+<p>I got the binary from the <a href="https://caddyserver.com/download">Download page</a> and
+followed the official documentation to install it, creating a <code class="highlighter-rouge">systemd</code> service
+file.</p>
+
+<p>I am using this <code class="highlighter-rouge">Caddyfile</code> to serve a static-website:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:80 {
+	root * /var/lib/caddy/www/
+	encode zstd gzip
+	templates
+	file_server
+}
+</code></pre></div></div>
+
+<p>And my <code class="highlighter-rouge">/var/lib/caddy/www/index.html</code> is a very complex one:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ { include "index.md" | markdown }}
+</code></pre></div></div>
+
+<h4 id="afterthoughts">Afterthoughts</h4>
+
+<p>I should just follow the course. Lets play with Apache2. It is also simple, for
+some reason I expected it to be a quite complex to set up. On the other hand, I
+need to write html instead of Markdown :( but I can have a nice text only web
+page using only one tag:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;pre&gt;</span>
+# Title
+
+## Section
+
+bla
+</code></pre></div></div>
+
+<h3 id="day-8">Day 8</h3>
+
+<p>Goal: search for specific patterns in text files.</p>
+
+<p>The Apache2 logs are in <code class="highlighter-rouge">/var/log/apache2</code>. To get all IP addresses that
+connected to Apache:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sed</span> <span class="nt">-E</span> <span class="s1">'s/ (.*)//g'</span> access.log | <span class="nb">sort</span> <span class="nt">-n</span> | <span class="nb">uniq
+</span>27.123.241.20
+45.148.121.28
+45.148.121.85
+54.93.196.88
+62.33.138.6
+66.249.75.147
+66.249.75.149
+74.120.14.52
+75.76.251.71
+91.193.5.58
+92.118.160.17
+99.10.249.153
+103.49.188.166
+116.28.214.153
+125.41.10.86
+125.43.93.10
+125.47.64.145
+139.162.119.197
+142.118.76.99
+173.174.64.235
+174.51.18.48
+177.76.230.216
+179.99.69.186
+186.71.77.9
+192.241.239.84
+193.118.53.210
+194.87.138.60
+209.126.3.185
+209.17.97.34
+</code></pre></div></div>
+
+<p>Grepping <code class="highlighter-rouge">/var/log/auth.log</code> I can see 72 different IPs trying to log as
+<code class="highlighter-rouge">root</code> and 10 other random users. Hahah, nice.</p>
+
+<p>I like to know that <code class="highlighter-rouge">cut</code> can also remove words from a string, I finally got
+what the <code class="highlighter-rouge">--fields</code> option mean.</p>
+
+<h3 id="day-9">Day 9</h3>
+
+<p>Goal: First look at network security.</p>
+
+<p>The first task is to find open ports. I’ve used <code class="highlighter-rouge">nmap</code> for that before and
+let’s see what happens, when running it on the remote server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap localhost
+Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2020-10-15 11:32 <span class="nt">-03</span>
+Nmap scan report <span class="k">for </span>localhost <span class="o">(</span>127.0.0.1<span class="o">)</span>
+Host is up <span class="o">(</span>0.000086s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>0.07 seconds
+</code></pre></div></div>
+
+<p>Nice, it can see <code class="highlighter-rouge">ssh</code> and something for <code class="highlighter-rouge">http</code>, that is <code class="highlighter-rouge">apache2</code> on port <code class="highlighter-rouge">80</code>
+here. But it is interesting how different it is from my laptop:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap 35.228.166.73
+Starting Nmap 7.80 <span class="o">(</span> https://nmap.org <span class="o">)</span> at 2020-10-15 11:32 <span class="nt">-03</span>
+Nmap scan report <span class="k">for </span>73.166.228.35.bc.googleusercontent.com <span class="o">(</span>35.228.166.73<span class="o">)</span>
+Host is up <span class="o">(</span>0.25s latency<span class="o">)</span><span class="nb">.</span>
+Not shown: 995 closed ports
+PORT     STATE    SERVICE
+19/tcp   filtered chargen
+22/tcp   open     ssh
+25/tcp   filtered smtp
+80/tcp   open     http
+5555/tcp filtered freeciv
+
+Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>23.00 seconds
+</code></pre></div></div>
+
+<p>It finds three other <code class="highlighter-rouge">filtered</code> services. The manual says:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The state is either open, filtered, closed, or unfiltered. Open means that
+an application on the target machine is listening for connections/packets
+on that port. Filtered means that a firewall, filter, or other network
+obstacle is blocking the port so that Nmap cannot tell whether it is open
+or closed.
+</code></pre></div></div>
+
+<p>So, those ports might be or might not be open.</p>
+
+<p>I tried to host something at those ports and could not get a connection from my
+laptop, so they are blocked by Google by default and there’s nothing (?) I can
+do. I can use all other ports though.</p>
+
+<p>I’ve never used <a href="https://launchpad.net/ufw">ufw</a> before. It is time to learn
+how to properly use a firewall and this one is simple and powerful enough,
+although it uses <code class="highlighter-rouge">iptables</code> and not the “modern” <code class="highlighter-rouge">nftables</code>. I liked how simple
+it is to allow or deny traffic in a port. But I can’t compare with other tools.</p>
+
+<p>Changing my SSH port to a random number. I thought it was a bit pointless, but
+apparently it
+<a href="https://web.archive.org/web/20201013122112/https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity/">is not</a>.
+Using <code class="highlighter-rouge">nmap</code>, it shows the port open, but with <code class="highlighter-rouge">unknown</code> as the service. Sounds
+good.</p>
+
+<h3 id="day-10">Day 10</h3>
+
+<p>Goal: run stuff periodically with <code class="highlighter-rouge">cron</code> jobs.</p>
+
+<p>Lazy people automate stuff :)</p>
+
+<p><code class="highlighter-rouge">systemd</code> can also run jobs at specific times, using <code class="highlighter-rouge">systemd/timers</code>.</p>
+
+<p>A fun cron job to add is to periodically change the SSH banner:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /etc/cron.hourly/banner
+<span class="c">#!/bin/sh</span>
+
+/usr/games/fortune | /usr/games/cowsay <span class="o">&gt;</span> /etc/banner.txt
+</code></pre></div></div>
+
+<h3 id="day-11">Day 11</h3>
+
+<p>Goal: searching for files and patterns.</p>
+
+<p>I’ve been using blindly <code class="highlighter-rouge">find</code> for quite a while. It was time to finally read
+it’s manual. There’s more to it than <code class="highlighter-rouge">find . -iname "bla*"</code>.</p>
+
+<p><code class="highlighter-rouge">zcat</code>, <code class="highlighter-rouge">zgrep</code>, <code class="highlighter-rouge">zless</code>, and <code class="highlighter-rouge">zmore</code> are awesome! Did not know I could
+<code class="highlighter-rouge">cat</code>/<code class="highlighter-rouge">less</code>/<code class="highlighter-rouge">grep</code> gzip compressed files.</p>
+
+<h3 id="day-12">Day 12</h3>
+
+<p>Goal: copy stuff around.</p>
+
+<p>I like <code class="highlighter-rouge">rsync</code> to copy lots of small files (actually, also big and medium ones)
+as it can create a “stream” of data instead of one new connection for each
+file. It can also compress the files as it sends to the destination. This can
+save <em>a lot</em> of time. I normally use <code class="highlighter-rouge">rsync -azvP src dst</code> meaning <code class="highlighter-rouge">rsync
+--archive --compress --verbose --partial --progress src dst</code>. Sometimes the
+<code class="highlighter-rouge">-P</code> flag can be annoying, but YMMV.</p>
+
+<p>Something funny I found out is that <code class="highlighter-rouge">rsync</code> shows the SSH banner of the remote
+server:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rsync <span class="nt">-avz</span> linuxUpskill-gc:/var/www/html <span class="nb">.</span>
+ _________________________________________
+ / Be free and open and breezy! Enjoy!     <span class="se">\</span>
+ | Things won<span class="s1">'t get any better so get used |
+ \ to it.                                  /
+  -----------------------------------------
+          \   ^__^
+           \  (oo)\_______
+              (__)\       )\/\
+                  ||----w |
+                  ||     ||
+receiving incremental file list
+html/
+html/404.html
+html/index.html
+html/robots.txt
+
+sent 104 bytes  received 3,710 bytes  693.45 bytes/sec
+total size is 11,324  speedup is 2.97
+</span></code></pre></div></div>
+
+<h3 id="day-13">Day 13</h3>
+
+<p>Goal: familiarize with the Linux permission system.</p>
+
+<p>It is way simpler to use <code class="highlighter-rouge">u+w</code> or <code class="highlighter-rouge">o-rwx</code> than playing around with octal
+numbers for <code class="highlighter-rouge">chmod</code>. I didn’t know I could change the permission to more than
+one letter of <em>ugo</em>, as in <code class="highlighter-rouge">chmod go-wr [files]</code>, it never occurred to me to
+try that either.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo </span>bla, blabla <span class="o">&gt;</span> file.txt
+<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> file.txt
+<span class="nt">-rw-rw-r--</span> 1 user user 12 Oct 21 12:11 file.txt
+<span class="nv">$ </span><span class="nb">chmod </span>ug-w file.txt
+<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-la</span> file.txt
+<span class="nt">-r--r--r--</span> 1 user user 12 Oct 21 12:11 file.txt
+<span class="nv">$ </span><span class="nb">echo </span>hehe <span class="o">&gt;&gt;</span> file.txt
+<span class="nt">-bash</span>: file.txt: Permission denied
+</code></pre></div></div>
+
+<h3 id="day-14">Day 14</h3>
+
+<p>Goal: user management and permissions.</p>
+
+<p>I always confuse <code class="highlighter-rouge">useradd</code> and <code class="highlighter-rouge">adduser</code>, after all they are anagrams.
+<a href="https://serverfault.com/questions/218993/whats-the-difference-between-useradd-and-adduser">This ServerFault</a>
+question has a nice answer about it:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adduser is a friendlier interactive frontend to useradd
+</code></pre></div></div>
+
+<p>I found out it is possible to enable offensive messages when an user type an
+incorrect password when <code class="highlighter-rouge">sudo</code>ing. Just add <code class="highlighter-rouge">Defaults	insults</code> to
+<code class="highlighter-rouge">/etc/sudoers</code>, obviously using <code class="highlighter-rouge">visudo</code>.</p>
+
+<p>Nice to know that it is possible to enable specific commands for a user to run
+with <code class="highlighter-rouge">sudo</code> without granting full <code class="highlighter-rouge">sudo</code>, like:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fred    ALL <span class="o">=</span> NOPASSWD:/sbin/reboot
+fred    ALL <span class="o">=</span> NOPASSWD:/usr/bin/ls
+</code></pre></div></div>
+
+<p>This allows user <code class="highlighter-rouge">fred</code> to <code class="highlighter-rouge">sudo ls</code> and <code class="highlighter-rouge">sudo reboot</code>, without typing the
+password, but does not allow any other command with <code class="highlighter-rouge">sudo</code>.</p>
+
+<h3 id="day-15">Day 15</h3>
+
+<p>Goal: package management, with <code class="highlighter-rouge">apt</code>.</p>
+
+<p>I used a few different package managers before:</p>
+<ul>
+  <li><code class="highlighter-rouge">synaptic</code> (when I used Kurumin, back then)</li>
+  <li><code class="highlighter-rouge">apt-get</code> (when I switched to Ubuntu)</li>
+  <li><code class="highlighter-rouge">portage</code> (when I used Gentoo)</li>
+  <li><code class="highlighter-rouge">apt-get</code> (again, briefly, when I used Debian in 2011)</li>
+  <li><code class="highlighter-rouge">pacman</code> (when I switched to ArchLinux)</li>
+</ul>
+
+<p>I wish I remember the first time I tried Kurumin, but I don’t. I think I
+compiled Gentoo in 2008, I’m not sure. But I remember how fast my computer
+became. It was an AMD 32-bit single-core CPU, 1.2 GHz, 384 MiB RAM DDR, GeForce
+4 MM 440, with hand soldered electrolytic capacitors in the motherboard
+(because they overheated and needed to be replaced). This computer was bought
+in ~2000, and when I finally managed to have a working Kernel, it needed ~12
+seconds to fully boot! It had a very slow hard drive, slow RAM, slow CPU, and
+still was insanely fast! How I miss Gentoo…</p>
+
+<p>ArchWiki has a <a href="https://wiki.archlinux.org/index.php/Pacman/Rosetta">Rosetta</a>
+page, that “translates” commands from one package manager to other. It is a
+nice reference when dealing with different systems.</p>
+
+<h3 id="day-16">Day 16</h3>
+
+<p>Goal: managing tape archives, a.k.a <em>tarballs</em>.</p>
+
+<p>Vim is always surprising me. Today I learned you can open file archives in Vim.
+It is possible to open <code class="highlighter-rouge">.zip</code>, <code class="highlighter-rouge">.tar.gz</code>, <code class="highlighter-rouge">.tar.bz</code>, etc., and even modify its
+content on the fly. No need to extract, edit, archive again.</p>
+
+<p>I have a <code class="highlighter-rouge">targz</code> function in one of my dotfiles to create an archive of a bunch
+of files or a directory. It’s time to get rid of it and learn how to properly
+use <code class="highlighter-rouge">tar</code> and <code class="highlighter-rouge">gzip</code>/<code class="highlighter-rouge">bzip</code>.</p>
+
+<h3 id="day-17">Day 17</h3>
+
+<p>Goal: compiling stuff.</p>
+
+<p>I liked to <code class="highlighter-rouge">./configure</code> <code class="highlighter-rouge">nmap</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ CFLAGS</span><span class="o">=</span><span class="s2">"-O2 -march=native"</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">"-O2 -march=native"</span> ./configure
+<span class="c"># skipping lots of lines...</span>
+            <span class="nb">.</span>       <span class="nb">.</span>
+            <span class="se">\`</span>-<span class="s2">"'"</span>-<span class="s1">'/
+             } 6 6 {
+            ==. Y ,==
+              /^^^\  .
+             /     \  )  Ncat: A modern interpretation of classic Netcat
+            (  )-(  )/
+            -""---""---   /
+           /   Ncat    \_/
+          (     ____
+           \_.=|____E
+Configuration complete.
+   (  )   /\   _                 (
+    \ |  (  \ ( \.(               )                      _____
+  \  \ \  `  `   ) \             (  ___                 / _   \
+ (_`    \+   . x  ( .\            \/   \____-----------/ (o)   \_
+- .-               \+  ;          (  O                           \____
+(__                +- .( -'</span>.- &lt;<span class="nb">.</span>   <span class="se">\_</span>____________  <span class="sb">`</span>              <span class="se">\ </span> /
+<span class="o">(</span>_____            ._._: &lt;_ - &lt;- _- _  VVVVVVV VV V<span class="se">\ </span>               <span class="se">\/</span>
+  <span class="nb">.</span>    /./.+-  <span class="nb">.</span> .- /  +--  - <span class="nb">.</span>    <span class="o">(</span><span class="nt">--_AAAAAAA__A_</span>/                |
+  <span class="o">(</span>__ <span class="s1">' /x  / x _/ (                \______________//_              \_______
+ , x / ( '</span>  <span class="nb">.</span> / <span class="nb">.</span>  /                                  <span class="se">\_</span>__<span class="s1">'          \     /
+    /  /  _/ /    +                                       |           \   /
+   '</span>  <span class="o">(</span>__/                                               /              <span class="se">\/</span>
+                                                       /                  <span class="se">\</span>
+  NMAP IS A POWERFUL TOOL <span class="nt">--</span> USE CAREFULLY AND RESPONSIBLY
+</code></pre></div></div>
+
+<p>Cool ASCII art!</p>
+
+<h3 id="day-18">Day 18</h3>
+
+<p>Goal: cleaning-up old logs.</p>
+
+<p>Logs can save your system. If there’s a weird behaviour somewhere, the first
+thing to check is the logs. But logs can also flood your system. In fact, this
+was what crashed some servers I was responsible for at my job and it was not
+nice. I wrote about that incident and how to tame Docker logs
+<a href="/bla/2020/09/13/careful_with_docker_logs/">here</a>.</p>
+
+<p>In <code class="highlighter-rouge">/etc/cron.daily/logrotate</code> there’s a line that checks if there are any
+<code class="highlighter-rouge">systemd/timers</code>, if so, <code class="highlighter-rouge">cron</code> does nothing and let <code class="highlighter-rouge">systemd</code> do the job.
+That’s clever. The timer is configured in
+<code class="highlighter-rouge">/etc/systemd/system/timers.target.wants/logrotate.timer</code>.</p>
+
+<p><code class="highlighter-rouge">logrotate</code>’s log file is in a different path: <code class="highlighter-rouge">/var/lib/logrotate/status</code>.
+That’s funny!</p>
+
+<h3 id="day-19">Day 19</h3>
+
+<p>Goal: overview of the Linux Virtual File System.</p>
+
+<p>Inodes. Inodes everywhere. If I got it correctly, an inode is a bunch of
+information about the file/directory. It contains filename, file owner, file
+permissions, creation/modification times, where the file is on disk, and maybe
+more. So, it is metadata.</p>
+
+<p>To find a file by it’s inode number, you have to scan to entire filesystem. The
+inode number is per filesystem, so there might be more than one file with the
+same number. To locate a file by its inode number, without traversing to a
+different filesystem:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>find / <span class="nt">-mount</span> <span class="nt">-inum</span> 1
+/sys
+/boot/efi
+/proc
+
+<span class="nv">$ </span><span class="nb">stat</span> /sys /boot/efi /proc
+  File: /sys
+  Size: 0               Blocks: 0          IO Block: 4096   directory
+Device: 18h/24d Inode: 1           Links: 13
+Access: <span class="o">(</span>0555/dr-xr-xr-x<span class="o">)</span>  Uid: <span class="o">(</span>    0/    root<span class="o">)</span>   Gid: <span class="o">(</span>    0/    root<span class="o">)</span>
+Access: 2020-10-22 18:38:03.292000000 <span class="nt">-0300</span>
+Modify: 2020-10-22 18:38:03.292000000 <span class="nt">-0300</span>
+Change: 2020-10-22 18:38:03.292000000 <span class="nt">-0300</span>
+ Birth: -
+  File: /boot/efi
+  Size: 512             Blocks: 1          IO Block: 512    directory
+Device: 80fh/2063d      Inode: 1           Links: 4
+Access: <span class="o">(</span>0755/drwxr-xr-x<span class="o">)</span>  Uid: <span class="o">(</span>    0/    root<span class="o">)</span>   Gid: <span class="o">(</span>    0/    root<span class="o">)</span>
+Access: 1969-12-31 21:00:00.000000000 <span class="nt">-0300</span>
+Modify: 1969-12-31 21:00:00.000000000 <span class="nt">-0300</span>
+Change: 1969-12-31 21:00:00.000000000 <span class="nt">-0300</span>
+ Birth: -
+  File: /proc
+  Size: 0               Blocks: 0          IO Block: 1024   directory
+Device: 5h/5d   Inode: 1           Links: 120
+Access: <span class="o">(</span>0555/dr-xr-xr-x<span class="o">)</span>  Uid: <span class="o">(</span>    0/    root<span class="o">)</span>   Gid: <span class="o">(</span>    0/    root<span class="o">)</span>
+Access: 2020-10-22 18:38:01.390534452 <span class="nt">-0300</span>
+Modify: 2020-10-22 18:38:01.390534452 <span class="nt">-0300</span>
+Change: 2020-10-22 18:38:01.390534452 <span class="nt">-0300</span>
+ Birth: -
+</code></pre></div></div>
+
+<p>I just found out, empirically, that there’s no file with inode 0. This number
+is reserved.</p>
+
+<p>I think I finally got the difference between a <em>hard</em> and <em>soft</em> link. But I am
+definitely not sure about it. The following copy-pasta blob from a terminal
+might shred some light on it:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> <span class="o">&gt;</span> /tmp/bla.txt
+<span class="nv">$ </span><span class="nb">ln</span> /tmp/bla.txt link_hard
+<span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /tmp/bla.txt link_soft
+<span class="nv">$ </span><span class="nb">stat</span> /tmp/bla.txt link_hard link_soft
+  File: /tmp/bla.txt
+  Size: 82              Blocks: 8          IO Block: 4096   regular file
+Device: 801h/2049d      Inode: 3122        Links: 2
+Access: <span class="o">(</span>0664/-rw-rw-r--<span class="o">)</span>  Uid: <span class="o">(</span> 1001/       h<span class="o">)</span>   Gid: <span class="o">(</span> 1002/       h<span class="o">)</span>
+Access: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Modify: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Change: 2020-10-29 16:13:55.123855608 <span class="nt">-0300</span>
+ Birth: -
+  File: link_hard
+  Size: 82              Blocks: 8          IO Block: 4096   regular file
+Device: 801h/2049d      Inode: 3122        Links: 2
+Access: <span class="o">(</span>0664/-rw-rw-r--<span class="o">)</span>  Uid: <span class="o">(</span> 1001/       h<span class="o">)</span>   Gid: <span class="o">(</span> 1002/       h<span class="o">)</span>
+Access: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Modify: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Change: 2020-10-29 16:13:55.123855608 <span class="nt">-0300</span>
+ Birth: -
+  File: link_soft -&gt; /tmp/bla.txt
+  Size: 12              Blocks: 0          IO Block: 4096   symbolic <span class="nb">link
+</span>Device: 801h/2049d      Inode: 292697      Links: 1
+Access: <span class="o">(</span>0777/lrwxrwxrwx<span class="o">)</span>  Uid: <span class="o">(</span> 1001/       h<span class="o">)</span>   Gid: <span class="o">(</span> 1002/       h<span class="o">)</span>
+Access: 2020-10-29 16:14:14.681037964 <span class="nt">-0300</span>
+Modify: 2020-10-29 16:14:03.624369542 <span class="nt">-0300</span>
+Change: 2020-10-29 16:14:03.624369542 <span class="nt">-0300</span>
+ Birth: -
+
+<span class="nv">$ </span><span class="nb">mv</span> /tmp/bla.txt /tmp/bla2.txt
+<span class="nv">$ </span><span class="nb">stat</span> /tmp/bla2.txt link_hard link_soft
+  File: /tmp/bla2.txt
+  Size: 82              Blocks: 8          IO Block: 4096   regular file
+Device: 801h/2049d      Inode: 3122        Links: 2
+Access: <span class="o">(</span>0664/-rw-rw-r--<span class="o">)</span>  Uid: <span class="o">(</span> 1001/       h<span class="o">)</span>   Gid: <span class="o">(</span> 1002/       h<span class="o">)</span>
+Access: 2020-10-29 16:31:42.488385936 <span class="nt">-0300</span>
+Modify: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Change: 2020-10-29 16:31:39.232189075 <span class="nt">-0300</span>
+ Birth: -
+  File: link_hard
+  Size: 82              Blocks: 8          IO Block: 4096   regular file
+Device: 801h/2049d      Inode: 3122        Links: 2
+Access: <span class="o">(</span>0664/-rw-rw-r--<span class="o">)</span>  Uid: <span class="o">(</span> 1001/       h<span class="o">)</span>   Gid: <span class="o">(</span> 1002/       h<span class="o">)</span>
+Access: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Modify: 2020-10-29 16:13:43.003122821 <span class="nt">-0300</span>
+Change: 2020-10-29 16:14:38.554481313 <span class="nt">-0300</span>
+ Birth: -
+  File: link_soft -&gt; /tmp/bla.txt
+  Size: 12              Blocks: 0          IO Block: 4096   symbolic <span class="nb">link
+</span>Device: 801h/2049d      Inode: 292697      Links: 1
+Access: <span class="o">(</span>0777/lrwxrwxrwx<span class="o">)</span>  Uid: <span class="o">(</span> 1001/       h<span class="o">)</span>   Gid: <span class="o">(</span> 1002/       h<span class="o">)</span>
+Access: 2020-10-29 16:14:14.681037964 <span class="nt">-0300</span>
+Modify: 2020-10-29 16:14:03.624369542 <span class="nt">-0300</span>
+Change: 2020-10-29 16:14:03.624369542 <span class="nt">-0300</span>
+ Birth: -
+
+<span class="nv">$ </span>file link_<span class="k">*</span>
+link_hard: ASCII text
+link_soft: broken symbolic <span class="nb">link </span>to /tmp/bla.txt
+</code></pre></div></div>
+
+<h3 id="day-20">Day 20</h3>
+
+<p>Goal: ultimate laziness with scripts.</p>
+
+<p>This is the last lesson of the Linux Upskill Challenge.</p>
+
+<p>Scripting is an endless topic. As Bilbo would say, <em>You start with a shebang,
+and if you don’t keep your feet, there is no knowing where you might be swept
+off to.</em> This is a very powerful tool, but without paying attention to all
+details, a mistake can be the Destroyer of All Servers. Powerful, efficient,
+and simple.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>I joined this course hoping I’d learn more about managing a server, in
+particular to improve my backup strategy. I ended up learning a lot more than I
+expected, not only about a <abbr title="Virtual Private Server">VPS</abbr> but also general Linux-related stuff.</p>
+
+<p>It did not “consume” much time daily, it was very pleasant and time efficient.
+I liked how small, yet complete, each lecture was, and it was up to the learner
+to dig deeper as it pleased.</p>
+
+<p>This course was totally worth it.</p>
+
+<p>I have some final thoughts that don’t belong to any specific daily log, but are
+still relevant.</p>
+
+<p>Never get a <abbr title="Virtual Private Server">VPS</abbr> on the other side of the world, if possible. I decided to get
+one in Finland (because, why not?) and I can feel the latency to type any
+commands in the terminal. I can type normally, it is not that slow. But the
+typing latency is there. I can’t measure it, but I can feel it. The average
+<code class="highlighter-rouge">ping</code> to this server is 297 ms, versus 19 ms for a server in Brazil (same
+country as I am now). 300 ms is definitely something we can note, but it is not
+a problem for what I was doing.</p>
+
+<p>It doesn’t matter how long ago you started using Vim (or Neovim), take some
+time to go through <code class="highlighter-rouge">vim-tutor</code>. It takes about half an hour and it covers much
+more than the basic usage. There are some great small new things to learn
+there.</p>
+
+<p>I recommend this course for anyone that wants to learn more about Linux, even if
+you are not planning to be a sysadmin. The lessons are very well written and
+there are many good tips to help a casual Linux user.</p>
+
+<!-- text hints -->
+
+	</div>
+
+	<a class="u-url" href="/bla/2020/10/30/linuxupskill/" hidden></a>
+</article>
+				<br>
+			</main>
+
+				<footer class="mastfoot mt-auto text-center">
+		<div class="inner">
+			
+			<br />Heitor's log, 2018 - 2020
+			by <a href="/me.html">Heitor</a>
+			is licensed under a
+			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.
+		</div>
+	</footer>
+</div>
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		</div>
+	</body>
+</html>
