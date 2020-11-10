@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	<!-- custom css AFTER bootstrap -->
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&amp;subset=greek-ext,latin-ext" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/cover.css">
+	<link rel="stylesheet" href="/assets/css/solarized-dark.css">
+
+	<link rel="icon" type="image/png" href="/assets/favicon.png">
+	<title>My thoughts on PiHole</title>
+	<meta name="description" content="">
+
+	<!-- Facebook/Twitter/SEO -->
+	<meta property="og:title" content="My thoughts on PiHole"/>
+	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/11/10/pihole-dnsmasq/"/>
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Heitor's log"/>
+	<meta property="og:description" content="Yeaah"/>
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="">
+	<meta name="twitter:title" content="My thoughts on PiHole" />
+	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/11/10/pihole-dnsmasq/" />
+	<meta name="twitter:description" content="Yeaah" />
+
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="https://heitorpb.github.io/sitemap.xml" />
+	<link rel="alternate" type="application/rss+xml" href="https://heitorpb.github.io/feed.xml">
+</head>
+
+
+	<body>
+		<div id="wrapper">
+
+			<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+	<header class="masthead mb-auto">
+		<div class="inner">
+			<h3 class="masthead-brand">Heitor&#39;s log</h3>
+			<nav class="nav nav-masthead justify-content-center">
+				<a class="nav-link "    href="/"             >Home</a>
+				<a class="nav-link "       href="/me.html"      >Me</a>
+				<a class="nav-link " href="/projects.html">Projects</a>
+				<a class="nav-link active"     href="/bla/"         >Bla</a>
+			</nav>
+		</div>
+	</header>
+
+
+			<main role="main" class="inner cover">
+				<br>
+				<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+	<header class="post-header">
+		<h1 class="post-title p-name" itemprop="name headline">My thoughts on PiHole</h1>
+		<p class="post-meta">
+			<time class="dt-published" datetime="2020-11-10T00:00:00-03:00" itemprop="datePublished">Nov 10, 2020
+			</time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Heitor</span></span></p>
+	</header>
+
+	<br>
+
+	<div class="post-content e-content" itemprop="articleBody">
+		<p>About a month ago, I decided to try <a href="https://pi-hole.net/">PiHole</a> for whole
+network ad blocking, I documented how I set it up
+<a href="/bla/2020/10/13/rasp3-pihole/">here</a>, and now its time to document my
+thoughts about using it.</p>
+
+<p>I expected PiHole to block advertisement and trackers on every device connected
+to my local network, either through WiFi or cable, in a completely transparent
+way. And it does block. The problem is that it is not possible to bypass (or
+turn it off) temporarily for a specific website in a specific device. It is
+only possible to completely turn off PiHole, for the entire network, either for
+the next minutes or indefinitely.</p>
+
+<p>This was a problem for me in two situations:</p>
+
+<ol>
+  <li>
+    <p>A guest trying to check the prices of a product using my WiFi. It is very
+convenient to just Google the product and go to the <em>shopping</em> tab. It shows
+the prices different sellers/shops in one page, at the price of tracking
+you. With PiHole, Google Shopping was blocked. This is just an example, but
+the point is: guests get annoyed with the internet blocking their websites.</p>
+  </li>
+  <li>
+    <p>Sometimes a website, or part of its content, is blocked and I wanted to
+“debug” it, to find the reason that a particular content is blocked.  It is
+very complicated to debug it on a network level, specially after adding some
+extra lists of trackers. It is possible to allow a specific domain, but not
+everything from a specific web page, in this case you need to do it manually
+for every entry you find.</p>
+  </li>
+</ol>
+
+<p>Another inconvenience I found was in the response time. It was taking too long
+to start loading new websites. I did not measure the latency, but it was there
+and was annoying. It was specially horrible in my phone, it took seconds to
+start loading. Too long to be useful.</p>
+
+<p>So I returned to my previous solution:</p>
+
+<ul>
+  <li>use <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html"><code class="highlighter-rouge">dnsmasq</code></a> to cache DNS
+queries</li>
+  <li>use <a href="https://ublockorigin.com/">uBLock Origin</a> to block ads and trackers,
+also available for mobile browsers</li>
+  <li>do not install crapware in your phone</li>
+</ul>
+
+<p>Latency is significantly lower, easy to debug, easy to disable blocking in a
+single browser tab, and there’s no need to maintain a server.</p>
+
+<p>Now I need to find another use for my Raspberry…</p>
+
+	</div>
+
+	<a class="u-url" href="/bla/2020/11/10/pihole-dnsmasq/" hidden></a>
+</article>
+				<br>
+			</main>
+
+				<footer class="mastfoot mt-auto text-center">
+		<div class="inner">
+			
+			<br />Heitor's log, 2018 - 2020
+			by <a href="/me.html">Heitor</a>
+			is licensed under a
+			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.
+		</div>
+	</footer>
+</div>
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		</div>
+	</body>
+</html>

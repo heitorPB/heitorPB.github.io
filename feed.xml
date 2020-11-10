@@ -5,9 +5,82 @@
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 30 Oct 2020 17:57:46 -0300</pubDate>
-    <lastBuildDate>Fri, 30 Oct 2020 17:57:46 -0300</lastBuildDate>
+    <pubDate>Tue, 10 Nov 2020 17:26:52 -0300</pubDate>
+    <lastBuildDate>Tue, 10 Nov 2020 17:26:52 -0300</lastBuildDate>
     <generator>Jekyll v3.8.7</generator>
+    
+      <item>
+        <title>My thoughts on PiHole</title>
+        <description>&lt;p&gt;About a month ago, I decided to try &lt;a href=&quot;https://pi-hole.net/&quot;&gt;PiHole&lt;/a&gt; for whole
+network ad blocking, I documented how I set it up
+&lt;a href=&quot;/bla/2020/10/13/rasp3-pihole/&quot;&gt;here&lt;/a&gt;, and now its time to document my
+thoughts about using it.&lt;/p&gt;
+
+&lt;p&gt;I expected PiHole to block advertisement and trackers on every device connected
+to my local network, either through WiFi or cable, in a completely transparent
+way. And it does block. The problem is that it is not possible to bypass (or
+turn it off) temporarily for a specific website in a specific device. It is
+only possible to completely turn off PiHole, for the entire network, either for
+the next minutes or indefinitely.&lt;/p&gt;
+
+&lt;p&gt;This was a problem for me in two situations:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;A guest trying to check the prices of a product using my WiFi. It is very
+convenient to just Google the product and go to the &lt;em&gt;shopping&lt;/em&gt; tab. It shows
+the prices different sellers/shops in one page, at the price of tracking
+you. With PiHole, Google Shopping was blocked. This is just an example, but
+the point is: guests get annoyed with the internet blocking their websites.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sometimes a website, or part of its content, is blocked and I wanted to
+“debug” it, to find the reason that a particular content is blocked.  It is
+very complicated to debug it on a network level, specially after adding some
+extra lists of trackers. It is possible to allow a specific domain, but not
+everything from a specific web page, in this case you need to do it manually
+for every entry you find.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Another inconvenience I found was in the response time. It was taking too long
+to start loading new websites. I did not measure the latency, but it was there
+and was annoying. It was specially horrible in my phone, it took seconds to
+start loading. Too long to be useful.&lt;/p&gt;
+
+&lt;p&gt;So I returned to my previous solution:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;use &lt;a href=&quot;http://www.thekelleys.org.uk/dnsmasq/doc.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dnsmasq&lt;/code&gt;&lt;/a&gt; to cache DNS
+queries&lt;/li&gt;
+  &lt;li&gt;use &lt;a href=&quot;https://ublockorigin.com/&quot;&gt;uBLock Origin&lt;/a&gt; to block ads and trackers,
+also available for mobile browsers&lt;/li&gt;
+  &lt;li&gt;do not install crapware in your phone&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Latency is significantly lower, easy to debug, easy to disable blocking in a
+single browser tab, and there’s no need to maintain a server.&lt;/p&gt;
+
+&lt;p&gt;Now I need to find another use for my Raspberry…&lt;/p&gt;
+</description>
+        <pubDate>Tue, 10 Nov 2020 00:00:00 -0300</pubDate>
+        <link>https://heitorpb.github.io/bla/2020/11/10/pihole-dnsmasq/</link>
+        <guid isPermaLink="true">https://heitorpb.github.io/bla/2020/11/10/pihole-dnsmasq/</guid>
+        
+        <category>linux</category>
+        
+        <category>random</category>
+        
+        <category>raspberry pi</category>
+        
+        <category>sysadmin</category>
+        
+        <category>test</category>
+        
+        
+        <category>random</category>
+        
+      </item>
     
       <item>
         <title>Linux Upskill Challenge</title>
