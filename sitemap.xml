@@ -54,6 +54,12 @@
 
 	
 		<url>
+			<loc>https://heitorpb.github.io/bla/2021/01/03/std-adjacent-find/</loc>
+			<changefreq>monthly</changefreq>
+			<priority>1.0</priority>
+		</url>
+	
+		<url>
 			<loc>https://heitorpb.github.io/bla/2020/11/10/pihole-dnsmasq/</loc>
 			<changefreq>monthly</changefreq>
 			<priority>1.0</priority>
