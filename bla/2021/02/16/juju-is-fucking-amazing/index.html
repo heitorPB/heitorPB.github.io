@@ -73,15 +73,15 @@
 <p>After all, that’s why <em>easter eggs</em> have this name: they are secret features.</p>
 
 <p>Last Friday, just a few minutes before ending the week, my boss told me “<em>Do
-you know what <code class="highlighter-rouge">juju is</code>? Find out how this command works.</em>”. At first, I didn’t
-get the question. I’ve been working with <code class="highlighter-rouge">juju</code> for a few days, I have an idea
+you know what <code class="language-plaintext highlighter-rouge">juju is</code>? Find out how this command works.</em>”. At first, I didn’t
+get the question. I’ve been working with <code class="language-plaintext highlighter-rouge">juju</code> for a few days, I have an idea
 of what <em>it is</em>. Instead, I was supposed to type in the terminal:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>juju is
 fucking amazing
 </code></pre></div></div>
 
-<p>So, <code class="highlighter-rouge">juju</code> has a very high self-esteem. Now that I know <em>what <code class="highlighter-rouge">juju is</code></em>, I
+<p>So, <code class="language-plaintext highlighter-rouge">juju</code> has a very high self-esteem. Now that I know <em>what <code class="language-plaintext highlighter-rouge">juju is</code></em>, I
 need to find out <em>how</em> this command works. Let’s ask for help:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>juju is <span class="nt">--help</span>
@@ -101,13 +101,13 @@ around:</p>
 <span class="nv">$ </span><span class="nb">grep</span> <span class="nt">-iRn</span> <span class="nt">--exclude-dir</span><span class="o">=</span>.git fuck
 </code></pre></div></div>
 
-<p>Hmmm. The string <code class="highlighter-rouge">fuck</code> is not in the repository. So, it is not just “quite
+<p>Hmmm. The string <code class="language-plaintext highlighter-rouge">fuck</code> is not in the repository. So, it is not just “quite
 hidden”, they obscured it. I liked the challenge! Where to start searching, and
 what to search for? They probably wrote that string in binary, or in something
 weirder. There are too many files in this source code to go through everything,
 we need another strategy.</p>
 
-<p>Let’s start looking for that <code class="highlighter-rouge">is not a juju command</code> error-string:</p>
+<p>Let’s start looking for that <code class="language-plaintext highlighter-rouge">is not a juju command</code> error-string:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">grep</span> <span class="nt">-iRn</span> <span class="nt">--exclude-dir</span><span class="o">=</span>.git <span class="s2">"is not a juju command"</span>
 cmd/juju/commands/repl_test.go:207:ERROR juju: <span class="s2">"foo"</span> is not a juju command. Type <span class="s2">"help"</span> to see a list of commands.
@@ -118,7 +118,7 @@ cmd/juju/commands/plugin_test.go:183:   expectedHelp :<span class="o">=</span> <
 <span class="nb">grep</span>: testcharms/charm-repo/series/format2/hooks/symlink: No such file or directory
 </code></pre></div></div>
 
-<p>The file <code class="highlighter-rouge">cmd/juju/commands/main.go</code> appears to be an interesting starting
+<p>The file <code class="language-plaintext highlighter-rouge">cmd/juju/commands/main.go</code> appears to be an interesting starting
 point, after all it is the file that parses the command line arguments! Just in
 the beginning, there’s a very suspicious line (78):</p>
 
@@ -143,12 +143,12 @@ interesting on lines 126-138:</p>
 	<span class="p">}</span>
 </code></pre></div></div>
 
-<p>This variable is XORed with <code class="highlighter-rouge">255</code> and the CLI arguments are compared with parts
+<p>This variable is XORed with <code class="language-plaintext highlighter-rouge">255</code> and the CLI arguments are compared with parts
 of it, casted to string. That’s too suspicious. I made a quick C++ code to find
-out what that weird byte sequence XORed with <code class="highlighter-rouge">255</code> is:</p>
+out what that weird byte sequence XORed with <code class="language-plaintext highlighter-rouge">255</code> is:</p>
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;vector&gt;
-#include &lt;iostream&gt;
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -170,7 +170,7 @@ out what that weird byte sequence XORed with <code class="highlighter-rouge">255
 </code></pre></div></div>
 
 <p>It starts with some standard libraries, that weird byte sequence written the
-C++ way, prints the sequence, prints the sequence XORed with <code class="highlighter-rouge">255</code> as a char,
+C++ way, prints the sequence, prints the sequence XORed with <code class="language-plaintext highlighter-rouge">255</code> as a char,
 and returns:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>g++ weird.cpp
@@ -179,15 +179,15 @@ and returns:</p>
 isunleashfucking amazing
 </code></pre></div></div>
 
-<p>HA, that’s it! That weird byte sequence is <code class="highlighter-rouge">isunleashfucking amazing</code>. Lines
-130-133 of the <code class="highlighter-rouge">main.go</code> file compare the CLI argument with the first 2 chars
-of this string (<code class="highlighter-rouge">is</code>) and, if it matches, it prints the chars starting from
-index 9 until the end (<code class="highlighter-rouge">fucking amazing</code>). Nice!</p>
+<p>HA, that’s it! That weird byte sequence is <code class="language-plaintext highlighter-rouge">isunleashfucking amazing</code>. Lines
+130-133 of the <code class="language-plaintext highlighter-rouge">main.go</code> file compare the CLI argument with the first 2 chars
+of this string (<code class="language-plaintext highlighter-rouge">is</code>) and, if it matches, it prints the chars starting from
+index 9 until the end (<code class="language-plaintext highlighter-rouge">fucking amazing</code>). Nice!</p>
 
-<p>By XORing with <code class="highlighter-rouge">255</code> it is not possible to <code class="highlighter-rouge">grep</code> the source for that string,
+<p>By XORing with <code class="language-plaintext highlighter-rouge">255</code> it is not possible to <code class="language-plaintext highlighter-rouge">grep</code> the source for that string,
 so it keeps it as a secret.</p>
 
-<p>And there’s more. Lines 134-137 compare the input to <code class="highlighter-rouge">x[2:9]</code>: <code class="highlighter-rouge">unleash</code>. So
+<p>And there’s more. Lines 134-137 compare the input to <code class="language-plaintext highlighter-rouge">x[2:9]</code>: <code class="language-plaintext highlighter-rouge">unleash</code>. So
 there’s another easter egg!</p>
 
 <p><img src="cthulhu.png" alt="&quot;juju unleash&quot; command prints out Cthulhu ASCII art" title="Juju unleashes Cthulhu" /></p>
@@ -200,7 +200,7 @@ this way. This <em>something</em> can be anything: a cool programming trick, a n
 algorithm, a better way to structure our code, and even an easter egg! The sky
 is the limit.</p>
 
-<p>Btw, Cthulhu is in the file <code class="highlighter-rouge">cmd/juju/model/data.go</code>, XORed with <code class="highlighter-rouge">255</code> for
+<p>Btw, Cthulhu is in the file <code class="language-plaintext highlighter-rouge">cmd/juju/model/data.go</code>, XORed with <code class="language-plaintext highlighter-rouge">255</code> for
 safety.</p>
 
 	</div>
@@ -213,7 +213,7 @@ safety.</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

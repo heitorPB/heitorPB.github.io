@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Setting up Raspberry Pi 3 with PiHole"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/10/13/rasp3-pihole/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Setting up Raspberry Pi 3 with PiHole" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/10/13/rasp3-pihole/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -94,14 +94,14 @@ with the AArch64 <em>thingy</em>.</li>
   <li>update the system</li>
   <li>user configuration
     <ul>
-      <li>change <code class="highlighter-rouge">alarm</code> pass to something better</li>
-      <li>change <code class="highlighter-rouge">root</code> pass to something better</li>
-      <li>enable <code class="highlighter-rouge">alarm</code> user to <code class="highlighter-rouge">sudo</code> things</li>
+      <li>change <code class="language-plaintext highlighter-rouge">alarm</code> pass to something better</li>
+      <li>change <code class="language-plaintext highlighter-rouge">root</code> pass to something better</li>
+      <li>enable <code class="language-plaintext highlighter-rouge">alarm</code> user to <code class="language-plaintext highlighter-rouge">sudo</code> things</li>
     </ul>
   </li>
   <li>system configuration
     <ul>
-      <li>install <code class="highlighter-rouge">vim</code>, <code class="highlighter-rouge">tmux</code> and <code class="highlighter-rouge">base-devel</code></li>
+      <li>install <code class="language-plaintext highlighter-rouge">vim</code>, <code class="language-plaintext highlighter-rouge">tmux</code> and <code class="language-plaintext highlighter-rouge">base-devel</code></li>
       <li>set up ssh
         <ul>
           <li>allow only ssh keys</li>
@@ -113,14 +113,14 @@ with the AArch64 <em>thingy</em>.</li>
       <li>change GPU memory to 16 MB</li>
       <li>set up hardware RNG (I like randomness)
         <ul>
-          <li>remove <code class="highlighter-rouge">haveged</code></li>
-          <li>install <code class="highlighter-rouge">rng-tools</code> and configure it:
+          <li>remove <code class="language-plaintext highlighter-rouge">haveged</code></li>
+          <li>install <code class="language-plaintext highlighter-rouge">rng-tools</code> and configure it:
             <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span><span class="nb">cat</span> /etc/conf.d/rngd
   <span class="nv">RNGD_OPTS</span><span class="o">=</span><span class="s2">"-o /dev/random -r /dev/hwrng"</span>
 </code></pre></div>            </div>
           </li>
           <li>entropy increased from ~3700 to ~4000</li>
-          <li>can read from <code class="highlighter-rouge">/dev/random</code> at ~71 MB/s:
+          <li>can read from <code class="language-plaintext highlighter-rouge">/dev/random</code> at ~71 MB/s:
             <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/random <span class="nv">of</span><span class="o">=</span>/dev/null <span class="nv">bs</span><span class="o">=</span>1024 <span class="nv">count</span><span class="o">=</span>500000 <span class="nv">iflag</span><span class="o">=</span>fullblock
   500000+0 records <span class="k">in
   </span>500000+0 records out
@@ -131,17 +131,17 @@ with the AArch64 <em>thingy</em>.</li>
       </li>
       <li>set up time and timezone
         <ul>
-          <li><a href="https://wiki.archlinux.org/index.php/Systemd-timesyncd"><code class="highlighter-rouge">systemd-timesyncd.service</code></a>
+          <li><a href="https://wiki.archlinux.org/index.php/Systemd-timesyncd"><code class="language-plaintext highlighter-rouge">systemd-timesyncd.service</code></a>
 as an NTP client</li>
-          <li>time zone: <code class="highlighter-rouge">timedatectl set-timezone America/Sao_Paulo</code></li>
+          <li>time zone: <code class="language-plaintext highlighter-rouge">timedatectl set-timezone America/Sao_Paulo</code></li>
         </ul>
       </li>
       <li>move  to permanent location</li>
       <li>set up fixed IP address with
 <a href="https://wiki.archlinux.org/index.php/Systemd-networkd">systemd-networkd</a></li>
-      <li>set up <code class="highlighter-rouge">en_US.UTF-8</code> locale</li>
-      <li>install <code class="highlighter-rouge">yay</code>, configure <code class="highlighter-rouge">pacman</code></li>
-      <li>install <code class="highlighter-rouge">raspberrypi-userland-aarch64-git</code> (AUR)</li>
+      <li>set up <code class="language-plaintext highlighter-rouge">en_US.UTF-8</code> locale</li>
+      <li>install <code class="language-plaintext highlighter-rouge">yay</code>, configure <code class="language-plaintext highlighter-rouge">pacman</code></li>
+      <li>install <code class="language-plaintext highlighter-rouge">raspberrypi-userland-aarch64-git</code> (AUR)</li>
     </ul>
   </li>
 </ul>
@@ -197,24 +197,24 @@ graphical.target reached after 10.904s <span class="k">in </span>userspace
 <p>Following the instructions in
 <a href="https://wiki.archlinux.org/index.php/Pi-hole">ArchWiki</a>:</p>
 <ol>
-  <li>install pihole-server: <code class="highlighter-rouge">yay -S pi-hole-server</code></li>
-  <li>install php things: <code class="highlighter-rouge">pacman -S php-sqlite</code> and enable the necessary
+  <li>install pihole-server: <code class="language-plaintext highlighter-rouge">yay -S pi-hole-server</code></li>
+  <li>install php things: <code class="language-plaintext highlighter-rouge">pacman -S php-sqlite</code> and enable the necessary
 extensions</li>
-  <li>install <code class="highlighter-rouge">lighttpd</code> and <code class="highlighter-rouge">php-cgi</code> for the web interface</li>
-  <li>enable/start <code class="highlighter-rouge">pihole-FTL.service</code> and <code class="highlighter-rouge">lighttpd.service</code></li>
-  <li>configure <code class="highlighter-rouge">/etc/pihole/pihole-FTL.conf</code>:
+  <li>install <code class="language-plaintext highlighter-rouge">lighttpd</code> and <code class="language-plaintext highlighter-rouge">php-cgi</code> for the web interface</li>
+  <li>enable/start <code class="language-plaintext highlighter-rouge">pihole-FTL.service</code> and <code class="language-plaintext highlighter-rouge">lighttpd.service</code></li>
+  <li>configure <code class="language-plaintext highlighter-rouge">/etc/pihole/pihole-FTL.conf</code>:
     <ul>
-      <li>change <code class="highlighter-rouge">DBINTERVAL</code> to <code class="highlighter-rouge">60.0</code> to minimize writes to the SD card</li>
+      <li>change <code class="language-plaintext highlighter-rouge">DBINTERVAL</code> to <code class="language-plaintext highlighter-rouge">60.0</code> to minimize writes to the SD card</li>
     </ul>
   </li>
   <li>set up DoH for DNS over HTTPS:
     <ul>
-      <li><code class="highlighter-rouge">$ yay -S cloudflared</code></li>
-      <li>add some IPv6 entries in <code class="highlighter-rouge">/etc/cloudflared/cloudflared.yml</code></li>
-      <li>start/enable <code class="highlighter-rouge">cloudflared.service</code></li>
+      <li><code class="language-plaintext highlighter-rouge">$ yay -S cloudflared</code></li>
+      <li>add some IPv6 entries in <code class="language-plaintext highlighter-rouge">/etc/cloudflared/cloudflared.yml</code></li>
+      <li>start/enable <code class="language-plaintext highlighter-rouge">cloudflared.service</code></li>
       <li>in the <a href="http://pihole/admin/settings.php?tab=dns">web settings page</a>:
         <ul>
-          <li>disable all DNS servers and use <code class="highlighter-rouge">127.0.0.1#5300</code> only</li>
+          <li>disable all DNS servers and use <code class="language-plaintext highlighter-rouge">127.0.0.1#5300</code> only</li>
           <li>enable DNSSEC</li>
         </ul>
       </li>
@@ -268,7 +268,7 @@ buying a rasp for this.</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

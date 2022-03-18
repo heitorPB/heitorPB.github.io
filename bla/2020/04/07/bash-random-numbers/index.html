@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Random numbers from /dev/urandom in Bash"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/04/07/bash-random-numbers/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Random numbers from /dev/urandom in Bash" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/04/07/bash-random-numbers/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -68,24 +68,24 @@
 	<br>
 
 	<div class="post-content e-content" itemprop="articleBody">
-		<p>In a GNU/Linux distributions, there are special files (<code class="highlighter-rouge">/dev/random</code> and
-<code class="highlighter-rouge">/dev/urandom</code>) to access the kernel’s random number generator. But how
+		<p>In a GNU/Linux distributions, there are special files (<code class="language-plaintext highlighter-rouge">/dev/random</code> and
+<code class="language-plaintext highlighter-rouge">/dev/urandom</code>) to access the kernel’s random number generator. But how
 do we get random numbers from them in a bash script?</p>
 
-<p>If we try to <code class="highlighter-rouge">cat</code> them we get random things:</p>
+<p>If we try to <code class="language-plaintext highlighter-rouge">cat</code> them we get random things:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat</span> /dev/random
 XB&gt;7<span class="p">;</span>Mq<span class="s1">'\'</span><span class="nv">$,</span>dH՞ՈT<span class="o">=</span>H<span class="o">}</span>0]eS19Ѡ
 Hd9<span class="o">)</span>7ܢVO<span class="s1">'y.ۧMW^C
 </span></code></pre></div></div>
 
-<p>Something a bit weirder happens with <code class="highlighter-rouge">/dev/urandom</code>: it continues vomiting
-characters really fast at you until you stop it with <code class="highlighter-rouge">Ctrl + C</code>.</p>
+<p>Something a bit weirder happens with <code class="language-plaintext highlighter-rouge">/dev/urandom</code>: it continues vomiting
+characters really fast at you until you stop it with <code class="language-plaintext highlighter-rouge">Ctrl + C</code>.</p>
 
-<p>What’s the difference between <code class="highlighter-rouge">/dev/random</code> and <code class="highlighter-rouge">/dev/urandom</code>? Lets check the
-manpage for <code class="highlighter-rouge">random (4)</code>, as of Linux 5.6:</p>
+<p>What’s the difference between <code class="language-plaintext highlighter-rouge">/dev/random</code> and <code class="language-plaintext highlighter-rouge">/dev/urandom</code>? Lets check the
+manpage for <code class="language-plaintext highlighter-rouge">random (4)</code>, as of Linux 5.6:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   The  random number generator gathers environmental noise from device driv‐
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   The  random number generator gathers environmental noise from device driv‐
    ers and other sources into an entropy pool.  The generator also  keeps  an
    estimate  of  the  number of bits of noise in the entropy pool.  From this
    entropy pool, random numbers are created.
@@ -112,21 +112,21 @@ manpage for <code class="highlighter-rouge">random (4)</code>, as of Linux 5.6:<
   <li>the Kernel maintains a pool of entropy from random things that happens in the
 computer.</li>
   <li>both special files use this entropy pool to seed a <abbr title="pseudorandom number generator">PRNG</abbr>.</li>
-  <li><code class="highlighter-rouge">/dev/random</code> waits until there are enough randomness to output something.</li>
-  <li><code class="highlighter-rouge">/dev/urandom</code> is preferred.</li>
+  <li><code class="language-plaintext highlighter-rouge">/dev/random</code> waits until there are enough randomness to output something.</li>
+  <li><code class="language-plaintext highlighter-rouge">/dev/urandom</code> is preferred.</li>
   <li>both files gives us <em>bytes</em>.</li>
 </ul>
 
-<p>And from the Kernel’s source we get that <code class="highlighter-rouge">urandom</code> uses
+<p>And from the Kernel’s source we get that <code class="language-plaintext highlighter-rouge">urandom</code> uses
 <a href="https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant">ChaCha20</a> as <abbr title="cryptographiccally secure pseudorandom number generator">CSPRNG</abbr>.
-<sup id="fnref:kernel-source"><a href="#fn:kernel-source" class="footnote">1</a></sup></p>
+<sup id="fnref:kernel-source" role="doc-noteref"><a href="#fn:kernel-source" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>We now need a tool to read a specific number of bytes from those files and
-convert it to something human readable. And here comes <code class="highlighter-rouge">od</code>, a Unix
-command to display data in several formats.<sup id="fnref:od"><a href="#fn:od" class="footnote">2</a></sup> The default is octal, hence the
-name <code class="highlighter-rouge">od</code>: <em>octal dump</em>.</p>
+convert it to something human readable. And here comes <code class="language-plaintext highlighter-rouge">od</code>, a Unix
+command to display data in several formats.<sup id="fnref:od" role="doc-noteref"><a href="#fn:od" class="footnote" rel="footnote">2</a></sup> The default is octal, hence the
+name <code class="language-plaintext highlighter-rouge">od</code>: <em>octal dump</em>.</p>
 
-<p>With this utility we can read <code class="highlighter-rouge">N</code> bytes from a file and display it in a
+<p>With this utility we can read <code class="language-plaintext highlighter-rouge">N</code> bytes from a file and display it in a
 specified format. For example, here’s the dump of `Hello World”:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo </span>Hello World | <span class="nb">od
@@ -135,12 +135,12 @@ specified format. For example, here’s the dump of `Hello World”:</p>
 </code></pre></div></div>
 
 <p>The first column is the offset, and then the octal representation of that line.
-So, the second line of the output means: starting at the offset <code class="highlighter-rouge">0000014</code> we
+So, the second line of the output means: starting at the offset <code class="language-plaintext highlighter-rouge">0000014</code> we
 have nothing, i.g. there are 14 (in octal, or 12 in decimal) characters in that
 string.</p>
 
-<p>It looks like <code class="highlighter-rouge">od</code> does not know how to count. There are 11 chars in <code class="highlighter-rouge">Hello
-World</code>! Lets see each char individually (<code class="highlighter-rouge">-c</code>) in octal (<code class="highlighter-rouge">-b</code>):</p>
+<p>It looks like <code class="language-plaintext highlighter-rouge">od</code> does not know how to count. There are 11 chars in <code class="language-plaintext highlighter-rouge">Hello
+World</code>! Lets see each char individually (<code class="language-plaintext highlighter-rouge">-c</code>) in octal (<code class="language-plaintext highlighter-rouge">-b</code>):</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"Hello World"</span> | <span class="nb">od</span> <span class="nt">-cb</span>
 0000000   H   e   l   l   o       W   o   r   l   d  <span class="se">\n</span>
@@ -150,8 +150,8 @@ World</code>! Lets see each char individually (<code class="highlighter-rouge">-
 
 <p>Sweet, it counted the line ending as well.</p>
 
-<p><code class="highlighter-rouge">od</code> can also read <code class="highlighter-rouge">N</code> bytes from a source and display it in a specified
-format. So, to read 4 bytes from <code class="highlighter-rouge">/dev/urandom</code>, display it as an unsigned
+<p><code class="language-plaintext highlighter-rouge">od</code> can also read <code class="language-plaintext highlighter-rouge">N</code> bytes from a source and display it in a specified
+format. So, to read 4 bytes from <code class="language-plaintext highlighter-rouge">/dev/urandom</code>, display it as an unsigned
 integer without the offset column:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">od</span> <span class="nt">-vAn</span> <span class="nt">-N4</span> <span class="nt">-t</span> u4 &lt; /dev/urandom
@@ -167,17 +167,17 @@ integer without the offset column:</p>
 <span class="k">done</span>
 </code></pre></div></div>
 
-<p>With this code, those 32 bits (4 bytes) from <code class="highlighter-rouge">urandom</code> are interpreted as an
-integer. How do we get floats? If interested only in the range <code class="highlighter-rouge">[0, 1)</code>: simply
+<p>With this code, those 32 bits (4 bytes) from <code class="language-plaintext highlighter-rouge">urandom</code> are interpreted as an
+integer. How do we get floats? If interested only in the range <code class="language-plaintext highlighter-rouge">[0, 1)</code>: simply
 divide by the greatest possible value, \( 2^{32} - 1\).</p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:kernel-source">
-      <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0">file <code class="highlighter-rouge">drivers/char/random.c</code></a> <a href="#fnref:kernel-source" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:kernel-source" role="doc-endnote">
+      <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0">file <code class="language-plaintext highlighter-rouge">drivers/char/random.c</code></a> <a href="#fnref:kernel-source" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:od">
-      <p><a href="https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html">Gnu Coreutils</a> <a href="#fnref:od" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:od" role="doc-endnote">
+      <p><a href="https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html">Gnu Coreutils</a> <a href="#fnref:od" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -192,7 +192,7 @@ divide by the greatest possible value, \( 2^{32} - 1\).</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Be careful with your Docker logs"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/09/13/careful_with_docker_logs/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Be careful with your Docker logs" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/09/13/careful_with_docker_logs/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -113,12 +113,12 @@ disk, and it was not in any Docker container or volume.</p>
 </code></pre></div></div>
 
 <p>So it was Docker the whole time. But, what else Docker has, besides images,
-layers, containers, volumes and build cache, as reported by <code class="highlighter-rouge">docker system df</code>?</p>
+layers, containers, volumes and build cache, as reported by <code class="language-plaintext highlighter-rouge">docker system df</code>?</p>
 
 <p>Docker has logs.</p>
 
-<p>By default, Docker saves the output of each container in a <code class="highlighter-rouge">json</code> file in
-<code class="highlighter-rouge">/var/lib/docker/containers/&lt;container_ID&gt;/&lt;container_ID&gt;-json.log</code>:</p>
+<p>By default, Docker saves the output of each container in a <code class="language-plaintext highlighter-rouge">json</code> file in
+<code class="language-plaintext highlighter-rouge">/var/lib/docker/containers/&lt;container_ID&gt;/&lt;container_ID&gt;-json.log</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">du</span> <span class="nt">-h</span> /var/lib/docker/containers/<span class="k">*</span>/<span class="k">*</span>.log
 
@@ -134,9 +134,9 @@ layers, containers, volumes and build cache, as reported by <code class="highlig
 <p>By
 <a href="https://docs.docker.com/config/containers/logging/json-file/#options">default</a>:</p>
 <ul>
-  <li>Docker saves the output of each container in <code class="highlighter-rouge">json</code> format. That is the
-<code class="highlighter-rouge">json-file</code> log driver.</li>
-  <li>Each <code class="highlighter-rouge">*-json.log</code> can grow without any limits.</li>
+  <li>Docker saves the output of each container in <code class="language-plaintext highlighter-rouge">json</code> format. That is the
+<code class="language-plaintext highlighter-rouge">json-file</code> log driver.</li>
+  <li>Each <code class="language-plaintext highlighter-rouge">*-json.log</code> can grow without any limits.</li>
   <li>There can be any number of log files.</li>
 </ul>
 
@@ -144,7 +144,7 @@ layers, containers, volumes and build cache, as reported by <code class="highlig
 
 <p>There are some ways to solve this problem:</p>
 <ul>
-  <li>periodically remove/trim the logs, with a cron job or <code class="highlighter-rouge">logrotate</code>.</li>
+  <li>periodically remove/trim the logs, with a cron job or <code class="language-plaintext highlighter-rouge">logrotate</code>.</li>
   <li>use an external log aggregator like <a href="https://www.fluentd.org/">fluentd</a>.</li>
   <li>configure Docker to not flood the disk.</li>
 </ul>
@@ -156,7 +156,7 @@ third option is good enough.</p>
 <p>Let’s tell Docker to keep log files with a maximum of 1GB and to
 have a maximum of 3 log files per service. To do so, we need to configure the
 docker daemon. It is as simple as adding these lines to
-<code class="highlighter-rouge">/etc/docker/daemon.json</code>:</p>
+<code class="language-plaintext highlighter-rouge">/etc/docker/daemon.json</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>
         <span class="s2">"log-driver"</span>: <span class="s2">"json-file"</span>,
@@ -181,7 +181,7 @@ and the machine was usable again. Services were running smoothly and well.</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Convert files to UTF-8"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/05/12/utf-8-files/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Convert files to UTF-8" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/05/12/utf-8-files/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -73,7 +73,7 @@ their <a href="https://en.wikipedia.org/wiki/Character_encoding">encoding</a>. R
 file with the wrong encoding feeds obscure data to our code. This way, the
 result becomes unpredictable</p>
 
-<p>For example, saving the string <code class="highlighter-rouge">Kalsarikännit</code> as an UTF-8 text file and then
+<p>For example, saving the string <code class="language-plaintext highlighter-rouge">Kalsarikännit</code> as an UTF-8 text file and then
 reading it in Python as an ASCII file gives an error:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'k'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'ascii'</span><span class="p">)</span> <span class="k">as</span> <span class="n">afile</span><span class="p">:</span>
@@ -90,7 +90,7 @@ reading it in Python as an ASCII file gives an error:</p>
 <p>I’ve run into this problem last week, when I had to parse hundreds of <abbr title="comma-separated values are simple text files that represent a spreadsheet">csv</abbr> files.
 Most of them were fine, but I encountered weird problems, similar to the shown
 above, in some files. It turned out those problematic files were saved from a
-Windows machine, with <code class="highlighter-rouge">ISO-8859-1</code> encoding.</p>
+Windows machine, with <code class="language-plaintext highlighter-rouge">ISO-8859-1</code> encoding.</p>
 
 <p>One way to display the
 <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files">mime-type</a>
@@ -124,13 +124,13 @@ k.csv:   text/plain
 encoding.</p>
 
 <p>To convert a text file between encoding, we can use the
-<a href="https://en.wikipedia.org/wiki/Iconv"><code class="highlighter-rouge">iconv</code></a>. So, to convert <em>from</em>
-<code class="highlighter-rouge">ISO-8859-1</code> <em>to</em> <code class="highlighter-rouge">UTF-8</code>:</p>
+<a href="https://en.wikipedia.org/wiki/Iconv"><code class="language-plaintext highlighter-rouge">iconv</code></a>. So, to convert <em>from</em>
+<code class="language-plaintext highlighter-rouge">ISO-8859-1</code> <em>to</em> <code class="language-plaintext highlighter-rouge">UTF-8</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>iconv <span class="nt">-f</span> iso-8859-1 <span class="nt">-t</span> utf-8 infile <span class="nt">-o</span> outfile
 </code></pre></div></div>
 
-<p>To convert all files in current dir from a different encoding to <code class="highlighter-rouge">UTF-8</code>:</p>
+<p>To convert all files in current dir from a different encoding to <code class="language-plaintext highlighter-rouge">UTF-8</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for </span>f <span class="k">in</span> <span class="k">*</span>
 <span class="k">do
@@ -144,7 +144,7 @@ encoding.</p>
 done</span>
 </code></pre></div></div>
 
-<p>A small bash script with <code class="highlighter-rouge">sed</code>, <code class="highlighter-rouge">file</code> and <code class="highlighter-rouge">iconv</code> is very versatile to
+<p>A small bash script with <code class="language-plaintext highlighter-rouge">sed</code>, <code class="language-plaintext highlighter-rouge">file</code> and <code class="language-plaintext highlighter-rouge">iconv</code> is very versatile to
 uniformize the encoding of several text files. And it saves the day.</p>
 
 
@@ -158,7 +158,7 @@ uniformize the encoding of several text files. And it saves the day.</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

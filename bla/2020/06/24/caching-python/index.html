@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Caching computation in Python"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/06/24/caching-python/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Caching computation in Python" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/06/24/caching-python/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -198,7 +198,7 @@ used.</p>
 of when each entry was cached. On the other hand, it is already implemented in
 Python’s Standard Library :) The module
 <a href="https://docs.python.org/3/library/functools.html">functools</a> provides us the
-decorator <code class="highlighter-rouge">lru_cache</code>:</p>
+decorator <code class="language-plaintext highlighter-rouge">lru_cache</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 
@@ -211,7 +211,7 @@ decorator <code class="highlighter-rouge">lru_cache</code>:</p>
 </code></pre></div></div>
 
 <p>It is the same function from the first code, but with a decorator added. The
-default maximum size of the cache is <code class="highlighter-rouge">128</code>, I increased so we can compare
+default maximum size of the cache is <code class="language-plaintext highlighter-rouge">128</code>, I increased so we can compare
 the timings with our handmade version:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">27</span><span class="p">]:</span> <span class="o">%</span><span class="n">timeit</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -228,13 +228,13 @@ methods to see what happened with the cache:</p>
 
 <ul>
   <li>
-    <p>The <code class="highlighter-rouge">cache_info()</code> method displays some statistics about that cache: how many
+    <p>The <code class="language-plaintext highlighter-rouge">cache_info()</code> method displays some statistics about that cache: how many
 <em>hits</em> (the number of times the requested data was in the cache), <em>misses</em>
 (the number of times the requested data was not in the cache), the maximum
 number of entries in the cache and the current number of cached items.</p>
   </li>
   <li>
-    <p>The <code class="highlighter-rouge">cache_clear()</code> method empties the cache.</p>
+    <p>The <code class="language-plaintext highlighter-rouge">cache_clear()</code> method empties the cache.</p>
   </li>
 </ul>
 
@@ -284,7 +284,7 @@ recently used entries. It is available in Python as
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

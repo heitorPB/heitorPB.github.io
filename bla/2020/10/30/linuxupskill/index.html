@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Linux Upskill Challenge"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/10/30/linuxupskill/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Linux Upskill Challenge" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/10/30/linuxupskill/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -95,30 +95,30 @@ chaotic… The most difficult task of the day was setting up the SSH public key
 to log to my new <abbr title="Virtual Machine">VM</abbr>.</p>
 
 <p>SSH keys are awesome. I’ve been using them for a long time for remote access
-and they make life way easier. <code class="highlighter-rouge">ssh-copy-id</code> command is easier than
-<code class="highlighter-rouge">cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address "mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys"</code>,
+and they make life way easier. <code class="language-plaintext highlighter-rouge">ssh-copy-id</code> command is easier than
+<code class="language-plaintext highlighter-rouge">cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address "mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys"</code>,
 but for old servers is not an option. The machine I’m using at my university to
-run the simulations for my Master’s studies did not accept <code class="highlighter-rouge">ssh-copy-id</code>…</p>
+run the simulations for my Master’s studies did not accept <code class="language-plaintext highlighter-rouge">ssh-copy-id</code>…</p>
 
 <h3 id="day-2">Day 2</h3>
 
 <p>Goal: learn to navigate in the machine using only the terminal.</p>
 
 <p>I’ve been using GNU/Linux for more than 10 years, I’m pretty confident with the
-terminal. But there’s always something new to learn: <code class="highlighter-rouge">ls -ltra</code> is a nice
+terminal. But there’s always something new to learn: <code class="language-plaintext highlighter-rouge">ls -ltra</code> is a nice
 example to find the most recently altered files.</p>
 
 <h3 id="day-3">Day 3</h3>
 
-<p>Goal: get familiar with <code class="highlighter-rouge">root</code> things.</p>
+<p>Goal: get familiar with <code class="language-plaintext highlighter-rouge">root</code> things.</p>
 
 <p>Mind blow of the day: I saw lots of attempts to connect to this <abbr title="Virtual Machine">VM</abbr> in
-<code class="highlighter-rouge">/var/log/auth.log</code> file. Awesome. Bots everywhere.</p>
+<code class="language-plaintext highlighter-rouge">/var/log/auth.log</code> file. Awesome. Bots everywhere.</p>
 
-<p>I am running ArchLinux on my Raspberry Pi 3, it uses <code class="highlighter-rouge">journalctl</code> for the logs:
-<code class="highlighter-rouge">journalctl /usr/bin/sshd</code>.</p>
+<p>I am running ArchLinux on my Raspberry Pi 3, it uses <code class="language-plaintext highlighter-rouge">journalctl</code> for the logs:
+<code class="language-plaintext highlighter-rouge">journalctl /usr/bin/sshd</code>.</p>
 
-<p>It was nice to learn about <code class="highlighter-rouge">sudo -i</code>. I’ve been using <code class="highlighter-rouge">sudo su -</code> to become
+<p>It was nice to learn about <code class="language-plaintext highlighter-rouge">sudo -i</code>. I’ve been using <code class="language-plaintext highlighter-rouge">sudo su -</code> to become
 root and is good to know there are other ways to do it as well. The details
 about the differences and other comments are explained
 <a href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used">here</a>.</p>
@@ -128,28 +128,28 @@ about the differences and other comments are explained
 <p>Goal: install stuff, explore the file structure and get familiar with “walking”
 around.</p>
 
-<p><code class="highlighter-rouge">man hier</code> blew my mind. Oh, this is awesome. I googled about the filesystem
+<p><code class="language-plaintext highlighter-rouge">man hier</code> blew my mind. Oh, this is awesome. I googled about the filesystem
 hierarchy so many times and did not know I already had all the information in
 front of me.</p>
 
 <h3 id="day-5">Day 5</h3>
 
-<p>Goal: get familiar with <code class="highlighter-rouge">TAB</code>, <code class="highlighter-rouge">less</code>, <code class="highlighter-rouge">more</code>, and hidden/dot files.</p>
+<p>Goal: get familiar with <code class="language-plaintext highlighter-rouge">TAB</code>, <code class="language-plaintext highlighter-rouge">less</code>, <code class="language-plaintext highlighter-rouge">more</code>, and hidden/dot files.</p>
 
-<p>I was never a big fan of <code class="highlighter-rouge">more</code>. I normally use <code class="highlighter-rouge">less</code> as a pager, because it
+<p>I was never a big fan of <code class="language-plaintext highlighter-rouge">more</code>. I normally use <code class="language-plaintext highlighter-rouge">less</code> as a pager, because it
 allows me to scroll up and down easier, search for a string, jump to a
 position, and quite fast for huge files.</p>
 
-<p>The <code class="highlighter-rouge">history</code> command is nice. I know about it and never used directly. I
-prefer to <code class="highlighter-rouge">ctrl + r</code> and a trick to use the Up/Down arrows to use the text that
+<p>The <code class="language-plaintext highlighter-rouge">history</code> command is nice. I know about it and never used directly. I
+prefer to <code class="language-plaintext highlighter-rouge">ctrl + r</code> and a trick to use the Up/Down arrows to use the text that
 has already been typed as the prefix for searching commands. Only works with
-Bash, though. Check <code class="highlighter-rouge">readline</code> on
+Bash, though. Check <code class="language-plaintext highlighter-rouge">readline</code> on
 <a href="https://wiki.archlinux.org/index.php/Readline#History">ArchWiki</a> for more
 details.</p>
 
 <h3 id="day-6">Day 6</h3>
 
-<p>Goal: learn <code class="highlighter-rouge">Vim</code> and how to exit it.</p>
+<p>Goal: learn <code class="language-plaintext highlighter-rouge">Vim</code> and how to exit it.</p>
 
 <p>I’ve been using Vim for quite a long time. I use it for almost everything
 related to text: coding, writing my Master’s Thesis, writing TODO lists,
@@ -157,9 +157,9 @@ writing these notes, and probably other things I can’t remember now. And
 despite those years of usage, every week I learn something new about it.
 Learning Vim is a hard task, but definitely worth it.</p>
 
-<p>I started the <code class="highlighter-rouge">vimtutor</code> but never finished it. So many times. They say it
+<p>I started the <code class="language-plaintext highlighter-rouge">vimtutor</code> but never finished it. So many times. They say it
 takes about half an hour to go through it, I’ll try to do it (again). Actually,
-I’ll try <code class="highlighter-rouge">neovim</code>’s tutorial (<code class="highlighter-rouge">:Tutor&lt;Enter&gt;</code>).</p>
+I’ll try <code class="language-plaintext highlighter-rouge">neovim</code>’s tutorial (<code class="language-plaintext highlighter-rouge">:Tutor&lt;Enter&gt;</code>).</p>
 
 <p>The insane new thing about Vim that I learned today is that it has seven (!)
 basic modes:</p>
@@ -184,22 +184,22 @@ basic modes:</p>
   <li>Insert Select mode</li>
 </ul>
 
-<p>You can read more about them with the internal help: <code class="highlighter-rouge">:help vim-modes</code>.
-Curiously, <code class="highlighter-rouge">neovim</code> has one fewer additional mode (at least as of <code class="highlighter-rouge">nvim
+<p>You can read more about them with the internal help: <code class="language-plaintext highlighter-rouge">:help vim-modes</code>.
+Curiously, <code class="language-plaintext highlighter-rouge">neovim</code> has one fewer additional mode (at least as of <code class="language-plaintext highlighter-rouge">nvim
 0.4.4</code>).</p>
 
 <h3 id="day-7">Day 7</h3>
 
 <p>Goal: install a web server and use it to host a page.</p>
 
-<p>The instructions are for Apache2, a.k.a. <code class="highlighter-rouge">httpd</code>, but I decided to use Caddy
+<p>The instructions are for Apache2, a.k.a. <code class="language-plaintext highlighter-rouge">httpd</code>, but I decided to use Caddy
 instead. I’m curious about it’s automatic conversion from Markdown to HTML.</p>
 
 <p>I got the binary from the <a href="https://caddyserver.com/download">Download page</a> and
-followed the official documentation to install it, creating a <code class="highlighter-rouge">systemd</code> service
+followed the official documentation to install it, creating a <code class="language-plaintext highlighter-rouge">systemd</code> service
 file.</p>
 
-<p>I am using this <code class="highlighter-rouge">Caddyfile</code> to serve a static-website:</p>
+<p>I am using this <code class="language-plaintext highlighter-rouge">Caddyfile</code> to serve a static-website:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:80 {
 	root * /var/lib/caddy/www/
@@ -209,7 +209,7 @@ file.</p>
 }
 </code></pre></div></div>
 
-<p>And my <code class="highlighter-rouge">/var/lib/caddy/www/index.html</code> is a very complex one:</p>
+<p>And my <code class="language-plaintext highlighter-rouge">/var/lib/caddy/www/index.html</code> is a very complex one:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ { include "index.md" | markdown }}
 </code></pre></div></div>
@@ -233,7 +233,7 @@ bla
 
 <p>Goal: search for specific patterns in text files.</p>
 
-<p>The Apache2 logs are in <code class="highlighter-rouge">/var/log/apache2</code>. To get all IP addresses that
+<p>The Apache2 logs are in <code class="language-plaintext highlighter-rouge">/var/log/apache2</code>. To get all IP addresses that
 connected to Apache:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sed</span> <span class="nt">-E</span> <span class="s1">'s/ (.*)//g'</span> access.log | <span class="nb">sort</span> <span class="nt">-n</span> | <span class="nb">uniq
@@ -268,17 +268,17 @@ connected to Apache:</p>
 209.17.97.34
 </code></pre></div></div>
 
-<p>Grepping <code class="highlighter-rouge">/var/log/auth.log</code> I can see 72 different IPs trying to log as
-<code class="highlighter-rouge">root</code> and 10 other random users. Hahah, nice.</p>
+<p>Grepping <code class="language-plaintext highlighter-rouge">/var/log/auth.log</code> I can see 72 different IPs trying to log as
+<code class="language-plaintext highlighter-rouge">root</code> and 10 other random users. Hahah, nice.</p>
 
-<p>I like to know that <code class="highlighter-rouge">cut</code> can also remove words from a string, I finally got
-what the <code class="highlighter-rouge">--fields</code> option mean.</p>
+<p>I like to know that <code class="language-plaintext highlighter-rouge">cut</code> can also remove words from a string, I finally got
+what the <code class="language-plaintext highlighter-rouge">--fields</code> option mean.</p>
 
 <h3 id="day-9">Day 9</h3>
 
 <p>Goal: First look at network security.</p>
 
-<p>The first task is to find open ports. I’ve used <code class="highlighter-rouge">nmap</code> for that before and
+<p>The first task is to find open ports. I’ve used <code class="language-plaintext highlighter-rouge">nmap</code> for that before and
 let’s see what happens, when running it on the remote server:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap localhost
@@ -293,7 +293,7 @@ PORT   STATE SERVICE
 Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>0.07 seconds
 </code></pre></div></div>
 
-<p>Nice, it can see <code class="highlighter-rouge">ssh</code> and something for <code class="highlighter-rouge">http</code>, that is <code class="highlighter-rouge">apache2</code> on port <code class="highlighter-rouge">80</code>
+<p>Nice, it can see <code class="language-plaintext highlighter-rouge">ssh</code> and something for <code class="language-plaintext highlighter-rouge">http</code>, that is <code class="language-plaintext highlighter-rouge">apache2</code> on port <code class="language-plaintext highlighter-rouge">80</code>
 here. But it is interesting how different it is from my laptop:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nmap 35.228.166.73
@@ -311,9 +311,9 @@ PORT     STATE    SERVICE
 Nmap <span class="k">done</span>: 1 IP address <span class="o">(</span>1 host up<span class="o">)</span> scanned <span class="k">in </span>23.00 seconds
 </code></pre></div></div>
 
-<p>It finds three other <code class="highlighter-rouge">filtered</code> services. The manual says:</p>
+<p>It finds three other <code class="language-plaintext highlighter-rouge">filtered</code> services. The manual says:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The state is either open, filtered, closed, or unfiltered. Open means that
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The state is either open, filtered, closed, or unfiltered. Open means that
 an application on the target machine is listening for connections/packets
 on that port. Filtered means that a firewall, filter, or other network
 obstacle is blocking the port so that Nmap cannot tell whether it is open
@@ -328,22 +328,22 @@ do. I can use all other ports though.</p>
 
 <p>I’ve never used <a href="https://launchpad.net/ufw">ufw</a> before. It is time to learn
 how to properly use a firewall and this one is simple and powerful enough,
-although it uses <code class="highlighter-rouge">iptables</code> and not the “modern” <code class="highlighter-rouge">nftables</code>. I liked how simple
+although it uses <code class="language-plaintext highlighter-rouge">iptables</code> and not the “modern” <code class="language-plaintext highlighter-rouge">nftables</code>. I liked how simple
 it is to allow or deny traffic in a port. But I can’t compare with other tools.</p>
 
 <p>Changing my SSH port to a random number. I thought it was a bit pointless, but
 apparently it
 <a href="https://web.archive.org/web/20201013122112/https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity/">is not</a>.
-Using <code class="highlighter-rouge">nmap</code>, it shows the port open, but with <code class="highlighter-rouge">unknown</code> as the service. Sounds
+Using <code class="language-plaintext highlighter-rouge">nmap</code>, it shows the port open, but with <code class="language-plaintext highlighter-rouge">unknown</code> as the service. Sounds
 good.</p>
 
 <h3 id="day-10">Day 10</h3>
 
-<p>Goal: run stuff periodically with <code class="highlighter-rouge">cron</code> jobs.</p>
+<p>Goal: run stuff periodically with <code class="language-plaintext highlighter-rouge">cron</code> jobs.</p>
 
 <p>Lazy people automate stuff :)</p>
 
-<p><code class="highlighter-rouge">systemd</code> can also run jobs at specific times, using <code class="highlighter-rouge">systemd/timers</code>.</p>
+<p><code class="language-plaintext highlighter-rouge">systemd</code> can also run jobs at specific times, using <code class="language-plaintext highlighter-rouge">systemd/timers</code>.</p>
 
 <p>A fun cron job to add is to periodically change the SSH banner:</p>
 
@@ -357,24 +357,24 @@ good.</p>
 
 <p>Goal: searching for files and patterns.</p>
 
-<p>I’ve been using blindly <code class="highlighter-rouge">find</code> for quite a while. It was time to finally read
-it’s manual. There’s more to it than <code class="highlighter-rouge">find . -iname "bla*"</code>.</p>
+<p>I’ve been using blindly <code class="language-plaintext highlighter-rouge">find</code> for quite a while. It was time to finally read
+it’s manual. There’s more to it than <code class="language-plaintext highlighter-rouge">find . -iname "bla*"</code>.</p>
 
-<p><code class="highlighter-rouge">zcat</code>, <code class="highlighter-rouge">zgrep</code>, <code class="highlighter-rouge">zless</code>, and <code class="highlighter-rouge">zmore</code> are awesome! Did not know I could
-<code class="highlighter-rouge">cat</code>/<code class="highlighter-rouge">less</code>/<code class="highlighter-rouge">grep</code> gzip compressed files.</p>
+<p><code class="language-plaintext highlighter-rouge">zcat</code>, <code class="language-plaintext highlighter-rouge">zgrep</code>, <code class="language-plaintext highlighter-rouge">zless</code>, and <code class="language-plaintext highlighter-rouge">zmore</code> are awesome! Did not know I could
+<code class="language-plaintext highlighter-rouge">cat</code>/<code class="language-plaintext highlighter-rouge">less</code>/<code class="language-plaintext highlighter-rouge">grep</code> gzip compressed files.</p>
 
 <h3 id="day-12">Day 12</h3>
 
 <p>Goal: copy stuff around.</p>
 
-<p>I like <code class="highlighter-rouge">rsync</code> to copy lots of small files (actually, also big and medium ones)
+<p>I like <code class="language-plaintext highlighter-rouge">rsync</code> to copy lots of small files (actually, also big and medium ones)
 as it can create a “stream” of data instead of one new connection for each
 file. It can also compress the files as it sends to the destination. This can
-save <em>a lot</em> of time. I normally use <code class="highlighter-rouge">rsync -azvP src dst</code> meaning <code class="highlighter-rouge">rsync
+save <em>a lot</em> of time. I normally use <code class="language-plaintext highlighter-rouge">rsync -azvP src dst</code> meaning <code class="language-plaintext highlighter-rouge">rsync
 --archive --compress --verbose --partial --progress src dst</code>. Sometimes the
-<code class="highlighter-rouge">-P</code> flag can be annoying, but YMMV.</p>
+<code class="language-plaintext highlighter-rouge">-P</code> flag can be annoying, but YMMV.</p>
 
-<p>Something funny I found out is that <code class="highlighter-rouge">rsync</code> shows the SSH banner of the remote
+<p>Something funny I found out is that <code class="language-plaintext highlighter-rouge">rsync</code> shows the SSH banner of the remote
 server:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rsync <span class="nt">-avz</span> linuxUpskill-gc:/var/www/html <span class="nb">.</span>
@@ -402,9 +402,9 @@ total size is 11,324  speedup is 2.97
 
 <p>Goal: familiarize with the Linux permission system.</p>
 
-<p>It is way simpler to use <code class="highlighter-rouge">u+w</code> or <code class="highlighter-rouge">o-rwx</code> than playing around with octal
-numbers for <code class="highlighter-rouge">chmod</code>. I didn’t know I could change the permission to more than
-one letter of <em>ugo</em>, as in <code class="highlighter-rouge">chmod go-wr [files]</code>, it never occurred to me to
+<p>It is way simpler to use <code class="language-plaintext highlighter-rouge">u+w</code> or <code class="language-plaintext highlighter-rouge">o-rwx</code> than playing around with octal
+numbers for <code class="language-plaintext highlighter-rouge">chmod</code>. I didn’t know I could change the permission to more than
+one letter of <em>ugo</em>, as in <code class="language-plaintext highlighter-rouge">chmod go-wr [files]</code>, it never occurred to me to
 try that either.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo </span>bla, blabla <span class="o">&gt;</span> file.txt
@@ -421,38 +421,38 @@ try that either.</p>
 
 <p>Goal: user management and permissions.</p>
 
-<p>I always confuse <code class="highlighter-rouge">useradd</code> and <code class="highlighter-rouge">adduser</code>, after all they are anagrams.
+<p>I always confuse <code class="language-plaintext highlighter-rouge">useradd</code> and <code class="language-plaintext highlighter-rouge">adduser</code>, after all they are anagrams.
 <a href="https://serverfault.com/questions/218993/whats-the-difference-between-useradd-and-adduser">This ServerFault</a>
 question has a nice answer about it:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adduser is a friendlier interactive frontend to useradd
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adduser is a friendlier interactive frontend to useradd
 </code></pre></div></div>
 
 <p>I found out it is possible to enable offensive messages when an user type an
-incorrect password when <code class="highlighter-rouge">sudo</code>ing. Just add <code class="highlighter-rouge">Defaults	insults</code> to
-<code class="highlighter-rouge">/etc/sudoers</code>, obviously using <code class="highlighter-rouge">visudo</code>.</p>
+incorrect password when <code class="language-plaintext highlighter-rouge">sudo</code>ing. Just add <code class="language-plaintext highlighter-rouge">Defaults	insults</code> to
+<code class="language-plaintext highlighter-rouge">/etc/sudoers</code>, obviously using <code class="language-plaintext highlighter-rouge">visudo</code>.</p>
 
 <p>Nice to know that it is possible to enable specific commands for a user to run
-with <code class="highlighter-rouge">sudo</code> without granting full <code class="highlighter-rouge">sudo</code>, like:</p>
+with <code class="language-plaintext highlighter-rouge">sudo</code> without granting full <code class="language-plaintext highlighter-rouge">sudo</code>, like:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fred    ALL <span class="o">=</span> NOPASSWD:/sbin/reboot
 fred    ALL <span class="o">=</span> NOPASSWD:/usr/bin/ls
 </code></pre></div></div>
 
-<p>This allows user <code class="highlighter-rouge">fred</code> to <code class="highlighter-rouge">sudo ls</code> and <code class="highlighter-rouge">sudo reboot</code>, without typing the
-password, but does not allow any other command with <code class="highlighter-rouge">sudo</code>.</p>
+<p>This allows user <code class="language-plaintext highlighter-rouge">fred</code> to <code class="language-plaintext highlighter-rouge">sudo ls</code> and <code class="language-plaintext highlighter-rouge">sudo reboot</code>, without typing the
+password, but does not allow any other command with <code class="language-plaintext highlighter-rouge">sudo</code>.</p>
 
 <h3 id="day-15">Day 15</h3>
 
-<p>Goal: package management, with <code class="highlighter-rouge">apt</code>.</p>
+<p>Goal: package management, with <code class="language-plaintext highlighter-rouge">apt</code>.</p>
 
 <p>I used a few different package managers before:</p>
 <ul>
-  <li><code class="highlighter-rouge">synaptic</code> (when I used Kurumin, back then)</li>
-  <li><code class="highlighter-rouge">apt-get</code> (when I switched to Ubuntu)</li>
-  <li><code class="highlighter-rouge">portage</code> (when I used Gentoo)</li>
-  <li><code class="highlighter-rouge">apt-get</code> (again, briefly, when I used Debian in 2011)</li>
-  <li><code class="highlighter-rouge">pacman</code> (when I switched to ArchLinux)</li>
+  <li><code class="language-plaintext highlighter-rouge">synaptic</code> (when I used Kurumin, back then)</li>
+  <li><code class="language-plaintext highlighter-rouge">apt-get</code> (when I switched to Ubuntu)</li>
+  <li><code class="language-plaintext highlighter-rouge">portage</code> (when I used Gentoo)</li>
+  <li><code class="language-plaintext highlighter-rouge">apt-get</code> (again, briefly, when I used Debian in 2011)</li>
+  <li><code class="language-plaintext highlighter-rouge">pacman</code> (when I switched to ArchLinux)</li>
 </ul>
 
 <p>I wish I remember the first time I tried Kurumin, but I don’t. I think I
@@ -473,18 +473,18 @@ nice reference when dealing with different systems.</p>
 <p>Goal: managing tape archives, a.k.a <em>tarballs</em>.</p>
 
 <p>Vim is always surprising me. Today I learned you can open file archives in Vim.
-It is possible to open <code class="highlighter-rouge">.zip</code>, <code class="highlighter-rouge">.tar.gz</code>, <code class="highlighter-rouge">.tar.bz</code>, etc., and even modify its
+It is possible to open <code class="language-plaintext highlighter-rouge">.zip</code>, <code class="language-plaintext highlighter-rouge">.tar.gz</code>, <code class="language-plaintext highlighter-rouge">.tar.bz</code>, etc., and even modify its
 content on the fly. No need to extract, edit, archive again.</p>
 
-<p>I have a <code class="highlighter-rouge">targz</code> function in one of my dotfiles to create an archive of a bunch
+<p>I have a <code class="language-plaintext highlighter-rouge">targz</code> function in one of my dotfiles to create an archive of a bunch
 of files or a directory. It’s time to get rid of it and learn how to properly
-use <code class="highlighter-rouge">tar</code> and <code class="highlighter-rouge">gzip</code>/<code class="highlighter-rouge">bzip</code>.</p>
+use <code class="language-plaintext highlighter-rouge">tar</code> and <code class="language-plaintext highlighter-rouge">gzip</code>/<code class="language-plaintext highlighter-rouge">bzip</code>.</p>
 
 <h3 id="day-17">Day 17</h3>
 
 <p>Goal: compiling stuff.</p>
 
-<p>I liked to <code class="highlighter-rouge">./configure</code> <code class="highlighter-rouge">nmap</code>:</p>
+<p>I liked to <code class="language-plaintext highlighter-rouge">./configure</code> <code class="language-plaintext highlighter-rouge">nmap</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ CFLAGS</span><span class="o">=</span><span class="s2">"-O2 -march=native"</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">"-O2 -march=native"</span> ./configure
 <span class="c"># skipping lots of lines...</span>
@@ -528,12 +528,12 @@ was what crashed some servers I was responsible for at my job and it was not
 nice. I wrote about that incident and how to tame Docker logs
 <a href="/bla/2020/09/13/careful_with_docker_logs/">here</a>.</p>
 
-<p>In <code class="highlighter-rouge">/etc/cron.daily/logrotate</code> there’s a line that checks if there are any
-<code class="highlighter-rouge">systemd/timers</code>, if so, <code class="highlighter-rouge">cron</code> does nothing and let <code class="highlighter-rouge">systemd</code> do the job.
+<p>In <code class="language-plaintext highlighter-rouge">/etc/cron.daily/logrotate</code> there’s a line that checks if there are any
+<code class="language-plaintext highlighter-rouge">systemd/timers</code>, if so, <code class="language-plaintext highlighter-rouge">cron</code> does nothing and let <code class="language-plaintext highlighter-rouge">systemd</code> do the job.
 That’s clever. The timer is configured in
-<code class="highlighter-rouge">/etc/systemd/system/timers.target.wants/logrotate.timer</code>.</p>
+<code class="language-plaintext highlighter-rouge">/etc/systemd/system/timers.target.wants/logrotate.timer</code>.</p>
 
-<p><code class="highlighter-rouge">logrotate</code>’s log file is in a different path: <code class="highlighter-rouge">/var/lib/logrotate/status</code>.
+<p><code class="language-plaintext highlighter-rouge">logrotate</code>’s log file is in a different path: <code class="language-plaintext highlighter-rouge">/var/lib/logrotate/status</code>.
 That’s funny!</p>
 
 <h3 id="day-19">Day 19</h3>
@@ -681,12 +681,12 @@ still relevant.</p>
 one in Finland (because, why not?) and I can feel the latency to type any
 commands in the terminal. I can type normally, it is not that slow. But the
 typing latency is there. I can’t measure it, but I can feel it. The average
-<code class="highlighter-rouge">ping</code> to this server is 297 ms, versus 19 ms for a server in Brazil (same
+<code class="language-plaintext highlighter-rouge">ping</code> to this server is 297 ms, versus 19 ms for a server in Brazil (same
 country as I am now). 300 ms is definitely something we can note, but it is not
 a problem for what I was doing.</p>
 
 <p>It doesn’t matter how long ago you started using Vim (or Neovim), take some
-time to go through <code class="highlighter-rouge">vim-tutor</code>. It takes about half an hour and it covers much
+time to go through <code class="language-plaintext highlighter-rouge">vim-tutor</code>. It takes about half an hour and it covers much
 more than the basic usage. There are some great small new things to learn
 there.</p>
 
@@ -706,7 +706,7 @@ there are many good tips to help a casual Linux user.</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.

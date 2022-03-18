@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Heitor's log</title>
+    <title>Heitor&apos;s log</title>
     <description>Yeaah</description>
     <link>https://heitorpb.github.io/</link>
     <atom:link href="https://heitorpb.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 14 Mar 2021 00:17:30 -0300</pubDate>
-    <lastBuildDate>Sun, 14 Mar 2021 00:17:30 -0300</lastBuildDate>
-    <generator>Jekyll v3.8.7</generator>
+    <pubDate>Thu, 17 Mar 2022 21:05:49 -0300</pubDate>
+    <lastBuildDate>Thu, 17 Mar 2022 21:05:49 -0300</lastBuildDate>
+    <generator>Jekyll v4.2.2</generator>
     
       <item>
-        <title>I Just Finished my Master's in Physics</title>
+        <title>I Just Finished my Master&apos;s in Physics</title>
         <description>&lt;p&gt;Over the last years, I studied, traveled, worked hard, and I finally got the title of Master of Science in Physics!&lt;/p&gt;
 
 &lt;p&gt;It was not easy. I started in the field of radio-frequency electronics for
@@ -60,7 +60,7 @@ University’s computers. But still, I felt the impact of the restrictions.&lt;/
 
 &lt;p&gt;I managed to adapt, evolve, and handle life-work-studies in a way that in 2021
 I started a new job, as a Senior Python Engineer, and defended my Master’s
-Thesis: &lt;code class=&quot;highlighter-rouge&quot;&gt;Search strategies and phase transition in the Random Boolean
+Thesis: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Search strategies and phase transition in the Random Boolean
 satisfiability problem&lt;/code&gt;! In which I used some tools from &lt;a href=&quot;https://en.wikipedia.org/wiki/Statistical_physics&quot;&gt;Statistical
 Physics&lt;/a&gt; to analyze an
 NP-Complete problem.&lt;/p&gt;
@@ -108,15 +108,15 @@ charisma were essential to make this work happen.&lt;/p&gt;
 &lt;p&gt;After all, that’s why &lt;em&gt;easter eggs&lt;/em&gt; have this name: they are secret features.&lt;/p&gt;
 
 &lt;p&gt;Last Friday, just a few minutes before ending the week, my boss told me “&lt;em&gt;Do
-you know what &lt;code class=&quot;highlighter-rouge&quot;&gt;juju is&lt;/code&gt;? Find out how this command works.&lt;/em&gt;”. At first, I didn’t
-get the question. I’ve been working with &lt;code class=&quot;highlighter-rouge&quot;&gt;juju&lt;/code&gt; for a few days, I have an idea
+you know what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;juju is&lt;/code&gt;? Find out how this command works.&lt;/em&gt;”. At first, I didn’t
+get the question. I’ve been working with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;juju&lt;/code&gt; for a few days, I have an idea
 of what &lt;em&gt;it is&lt;/em&gt;. Instead, I was supposed to type in the terminal:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;juju is
 fucking amazing
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;So, &lt;code class=&quot;highlighter-rouge&quot;&gt;juju&lt;/code&gt; has a very high self-esteem. Now that I know &lt;em&gt;what &lt;code class=&quot;highlighter-rouge&quot;&gt;juju is&lt;/code&gt;&lt;/em&gt;, I
+&lt;p&gt;So, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;juju&lt;/code&gt; has a very high self-esteem. Now that I know &lt;em&gt;what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;juju is&lt;/code&gt;&lt;/em&gt;, I
 need to find out &lt;em&gt;how&lt;/em&gt; this command works. Let’s ask for help:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;juju is &lt;span class=&quot;nt&quot;&gt;--help&lt;/span&gt;
@@ -136,13 +136,13 @@ around:&lt;/p&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-iRn&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.git fuck
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Hmmm. The string &lt;code class=&quot;highlighter-rouge&quot;&gt;fuck&lt;/code&gt; is not in the repository. So, it is not just “quite
+&lt;p&gt;Hmmm. The string &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fuck&lt;/code&gt; is not in the repository. So, it is not just “quite
 hidden”, they obscured it. I liked the challenge! Where to start searching, and
 what to search for? They probably wrote that string in binary, or in something
 weirder. There are too many files in this source code to go through everything,
 we need another strategy.&lt;/p&gt;
 
-&lt;p&gt;Let’s start looking for that &lt;code class=&quot;highlighter-rouge&quot;&gt;is not a juju command&lt;/code&gt; error-string:&lt;/p&gt;
+&lt;p&gt;Let’s start looking for that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is not a juju command&lt;/code&gt; error-string:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-iRn&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.git &lt;span class=&quot;s2&quot;&gt;&quot;is not a juju command&quot;&lt;/span&gt;
 cmd/juju/commands/repl_test.go:207:ERROR juju: &lt;span class=&quot;s2&quot;&gt;&quot;foo&quot;&lt;/span&gt; is not a juju command. Type &lt;span class=&quot;s2&quot;&gt;&quot;help&quot;&lt;/span&gt; to see a list of commands.
@@ -153,7 +153,7 @@ cmd/juju/commands/plugin_test.go:183:   expectedHelp :&lt;span class=&quot;o&quo
 &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt;: testcharms/charm-repo/series/format2/hooks/symlink: No such file or directory
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The file &lt;code class=&quot;highlighter-rouge&quot;&gt;cmd/juju/commands/main.go&lt;/code&gt; appears to be an interesting starting
+&lt;p&gt;The file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cmd/juju/commands/main.go&lt;/code&gt; appears to be an interesting starting
 point, after all it is the file that parses the command line arguments! Just in
 the beginning, there’s a very suspicious line (78):&lt;/p&gt;
 
@@ -178,12 +178,12 @@ interesting on lines 126-138:&lt;/p&gt;
 	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This variable is XORed with &lt;code class=&quot;highlighter-rouge&quot;&gt;255&lt;/code&gt; and the CLI arguments are compared with parts
+&lt;p&gt;This variable is XORed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;255&lt;/code&gt; and the CLI arguments are compared with parts
 of it, casted to string. That’s too suspicious. I made a quick C++ code to find
-out what that weird byte sequence XORed with &lt;code class=&quot;highlighter-rouge&quot;&gt;255&lt;/code&gt; is:&lt;/p&gt;
+out what that weird byte sequence XORed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;255&lt;/code&gt; is:&lt;/p&gt;
 
-&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;vector&amp;gt;
-#include &amp;lt;iostream&amp;gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
 &lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -205,7 +205,7 @@ out what that weird byte sequence XORed with &lt;code class=&quot;highlighter-ro
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;It starts with some standard libraries, that weird byte sequence written the
-C++ way, prints the sequence, prints the sequence XORed with &lt;code class=&quot;highlighter-rouge&quot;&gt;255&lt;/code&gt; as a char,
+C++ way, prints the sequence, prints the sequence XORed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;255&lt;/code&gt; as a char,
 and returns:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;g++ weird.cpp
@@ -214,15 +214,15 @@ and returns:&lt;/p&gt;
 isunleashfucking amazing
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;HA, that’s it! That weird byte sequence is &lt;code class=&quot;highlighter-rouge&quot;&gt;isunleashfucking amazing&lt;/code&gt;. Lines
-130-133 of the &lt;code class=&quot;highlighter-rouge&quot;&gt;main.go&lt;/code&gt; file compare the CLI argument with the first 2 chars
-of this string (&lt;code class=&quot;highlighter-rouge&quot;&gt;is&lt;/code&gt;) and, if it matches, it prints the chars starting from
-index 9 until the end (&lt;code class=&quot;highlighter-rouge&quot;&gt;fucking amazing&lt;/code&gt;). Nice!&lt;/p&gt;
+&lt;p&gt;HA, that’s it! That weird byte sequence is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isunleashfucking amazing&lt;/code&gt;. Lines
+130-133 of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main.go&lt;/code&gt; file compare the CLI argument with the first 2 chars
+of this string (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;is&lt;/code&gt;) and, if it matches, it prints the chars starting from
+index 9 until the end (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fucking amazing&lt;/code&gt;). Nice!&lt;/p&gt;
 
-&lt;p&gt;By XORing with &lt;code class=&quot;highlighter-rouge&quot;&gt;255&lt;/code&gt; it is not possible to &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; the source for that string,
+&lt;p&gt;By XORing with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;255&lt;/code&gt; it is not possible to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grep&lt;/code&gt; the source for that string,
 so it keeps it as a secret.&lt;/p&gt;
 
-&lt;p&gt;And there’s more. Lines 134-137 compare the input to &lt;code class=&quot;highlighter-rouge&quot;&gt;x[2:9]&lt;/code&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;unleash&lt;/code&gt;. So
+&lt;p&gt;And there’s more. Lines 134-137 compare the input to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;x[2:9]&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unleash&lt;/code&gt;. So
 there’s another easter egg!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;cthulhu.png&quot; alt=&quot;&amp;quot;juju unleash&amp;quot; command prints out Cthulhu ASCII art&quot; title=&quot;Juju unleashes Cthulhu&quot; /&gt;&lt;/p&gt;
@@ -235,7 +235,7 @@ this way. This &lt;em&gt;something&lt;/em&gt; can be anything: a cool programmin
 algorithm, a better way to structure our code, and even an easter egg! The sky
 is the limit.&lt;/p&gt;
 
-&lt;p&gt;Btw, Cthulhu is in the file &lt;code class=&quot;highlighter-rouge&quot;&gt;cmd/juju/model/data.go&lt;/code&gt;, XORed with &lt;code class=&quot;highlighter-rouge&quot;&gt;255&lt;/code&gt; for
+&lt;p&gt;Btw, Cthulhu is in the file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cmd/juju/model/data.go&lt;/code&gt;, XORed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;255&lt;/code&gt; for
 safety.&lt;/p&gt;
 </description>
         <pubDate>Tue, 16 Feb 2021 00:00:00 -0300</pubDate>
@@ -271,14 +271,14 @@ there’s a good chance that someone already made it. And if someone already mad
 it, there’s a good chance someone submitted a proposal to add it to the C++
 standard library.&lt;/p&gt;
 
-&lt;p&gt;Today I want to talk about &lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt;, from the &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/code&gt; library.
+&lt;p&gt;Today I want to talk about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt;, from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/code&gt; library.
 It returns an iterator to the first repeated element. So, if you have a list of
-numbers &lt;code class=&quot;highlighter-rouge&quot;&gt;{1, 2, 2, 3, 3}&lt;/code&gt;, this function would return an iterator to the first
-&lt;code class=&quot;highlighter-rouge&quot;&gt;2&lt;/code&gt;. Let’s see it in practice:&lt;/p&gt;
+numbers &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{1, 2, 2, 3, 3}&lt;/code&gt;, this function would return an iterator to the first
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt;. Let’s see it in practice:&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;algorithm&amp;gt;
-#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;vector&amp;gt;
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
 &lt;/span&gt;
 
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -292,11 +292,11 @@ numbers &lt;code class=&quot;highlighter-rouge&quot;&gt;{1, 2, 2, 3, 3}&lt;/code
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;I’m using &lt;code class=&quot;highlighter-rouge&quot;&gt;ranges&lt;/code&gt; in there, so you need a C++20 compatible compiler. To
-compile it with &lt;code class=&quot;highlighter-rouge&quot;&gt;gcc&lt;/code&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;g++ -Wall -Wextra -std=c++20 adj.cpp&lt;/code&gt;. I tested with
-&lt;code class=&quot;highlighter-rouge&quot;&gt;g++&lt;/code&gt; 10.2.0 and &lt;code class=&quot;highlighter-rouge&quot;&gt;clang++&lt;/code&gt; 11.0.0, and both have support for it &lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;.
+&lt;p&gt;I’m using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ranges&lt;/code&gt; in there, so you need a C++20 compatible compiler. To
+compile it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gcc&lt;/code&gt;: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g++ -Wall -Wextra -std=c++20 adj.cpp&lt;/code&gt;. I tested with
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g++&lt;/code&gt; 10.2.0 and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clang++&lt;/code&gt; 11.0.0, and both have support for it &lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;.
 But if you can’t (or don’t want to) use C++20, change the code to
-&lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find(numbers.begin(), numbers.end());&lt;/code&gt;&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find(numbers.begin(), numbers.end());&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;This code finds the repeated elements and return an iterator to the first one.
 It then prints it and the next:&lt;/p&gt;
@@ -305,16 +305,16 @@ It then prints it and the next:&lt;/p&gt;
 2 2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;But we can also hack &lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; with different &lt;em&gt;predicates&lt;/em&gt;, and
-change how we compare equality between consecutive elements. The &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;functional&amp;gt;&lt;/code&gt;
+&lt;p&gt;But we can also hack &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; with different &lt;em&gt;predicates&lt;/em&gt;, and
+change how we compare equality between consecutive elements. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;functional&amp;gt;&lt;/code&gt;
 header contains some common arithmetic comparison operators, like &lt;em&gt;equal&lt;/em&gt;, &lt;em&gt;not
 equal&lt;/em&gt;, &lt;em&gt;less&lt;/em&gt;, &lt;em&gt;less equal&lt;/em&gt;, etc. Using the same numbers from before, we can
 find the first number that is less or equal the next one:&lt;/p&gt;
 
-&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;algorithm&amp;gt;
-#include &amp;lt;functional&amp;gt;
-#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;vector&amp;gt;
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;functional&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
+#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;
 &lt;/span&gt;
 
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -328,7 +328,7 @@ find the first number that is less or equal the next one:&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This code returns &lt;code class=&quot;highlighter-rouge&quot;&gt;1 2&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This code returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1 2&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Let’s see some more examples. From now on, I’ll omit the headers for brevity.&lt;/p&gt;
 
@@ -349,8 +349,8 @@ find the first number that is less or equal the next one:&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This code returns &lt;code class=&quot;highlighter-rouge&quot;&gt;Found nothing&lt;/code&gt;, because no two consecutive numbers in &lt;code class=&quot;highlighter-rouge&quot;&gt;{1,
-2, 2, 3, 3, 4, 5}&lt;/code&gt; satisfies \( a &amp;gt; b \). When &lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; does not
+&lt;p&gt;This code returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Found nothing&lt;/code&gt;, because no two consecutive numbers in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{1,
+2, 2, 3, 3, 4, 5}&lt;/code&gt; satisfies \( a &amp;gt; b \). When &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; does not
 find anything, it returns an iterator to the end of the range.&lt;/p&gt;
 
 &lt;p&gt;Now you want to find the first number that does not follow the pattern
@@ -374,14 +374,14 @@ find anything, it returns an iterator to the end of the range.&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This returns, as expected, &lt;code class=&quot;highlighter-rouge&quot;&gt;2 2&lt;/code&gt;. This happens because &lt;code class=&quot;highlighter-rouge&quot;&gt;2 != 2-1&lt;/code&gt;, so the
-lambda returns &lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt; and the function returns the iterator to this number. By
-&lt;em&gt;this number&lt;/em&gt; I mean, &lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; loops over the objects and compares
-&lt;em&gt;this&lt;/em&gt; object with the &lt;em&gt;next&lt;/em&gt; one. If the sequence was &lt;code class=&quot;highlighter-rouge&quot;&gt;{1, 2, 3, 4, 5}&lt;/code&gt;,
-&lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; would return an iterator to the element after the last one
-in there, that is, &lt;code class=&quot;highlighter-rouge&quot;&gt;numbers.end())&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This returns, as expected, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2 2&lt;/code&gt;. This happens because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2 != 2-1&lt;/code&gt;, so the
+lambda returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; and the function returns the iterator to this number. By
+&lt;em&gt;this number&lt;/em&gt; I mean, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; loops over the objects and compares
+&lt;em&gt;this&lt;/em&gt; object with the &lt;em&gt;next&lt;/em&gt; one. If the sequence was &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{1, 2, 3, 4, 5}&lt;/code&gt;,
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; would return an iterator to the element after the last one
+in there, that is, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;numbers.end())&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Can you find the first pair &lt;code class=&quot;highlighter-rouge&quot;&gt;(a, b)&lt;/code&gt; of numbers such that
+&lt;p&gt;Can you find the first pair &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(a, b)&lt;/code&gt; of numbers such that
 \(0.78 &amp;lt; a/b &amp;lt; 1 \)? Of course you can:&lt;/p&gt;
 
 &lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -402,12 +402,12 @@ in there, that is, &lt;code class=&quot;highlighter-rouge&quot;&gt;numbers.end()
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This code returns &lt;code class=&quot;highlighter-rouge&quot;&gt;4 5&lt;/code&gt;, because \(0.78 &amp;lt; 4/5 = 0.8 &amp;lt; 1\).&lt;/p&gt;
+&lt;p&gt;This code returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;4 5&lt;/code&gt;, because \(0.78 &amp;lt; 4/5 = 0.8 &amp;lt; 1\).&lt;/p&gt;
 
 &lt;p&gt;What I like about this function is that it gives to you an iterator to the
 first object matching &lt;em&gt;any rule&lt;/em&gt;. If have a vector/list/range of objects, and
 you need to find the first one that has some relation to the next,
-&lt;code class=&quot;highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; is the way to go.&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;std::adjacent_find&lt;/code&gt; is the way to go.&lt;/p&gt;
 </description>
         <pubDate>Sun, 03 Jan 2021 00:00:00 -0300</pubDate>
         <link>https://heitorpb.github.io/bla/2021/01/03/std-adjacent-find/</link>
@@ -466,7 +466,7 @@ start loading. Too long to be useful.&lt;/p&gt;
 &lt;p&gt;So I returned to my previous solution:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;use &lt;a href=&quot;http://www.thekelleys.org.uk/dnsmasq/doc.html&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dnsmasq&lt;/code&gt;&lt;/a&gt; to cache DNS
+  &lt;li&gt;use &lt;a href=&quot;http://www.thekelleys.org.uk/dnsmasq/doc.html&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dnsmasq&lt;/code&gt;&lt;/a&gt; to cache DNS
 queries&lt;/li&gt;
   &lt;li&gt;use &lt;a href=&quot;https://ublockorigin.com/&quot;&gt;uBLock Origin&lt;/a&gt; to block ads and trackers,
 also available for mobile browsers&lt;/li&gt;
@@ -526,30 +526,30 @@ chaotic… The most difficult task of the day was setting up the SSH public key
 to log to my new &lt;abbr title=&quot;Virtual Machine&quot;&gt;VM&lt;/abbr&gt;.&lt;/p&gt;
 
 &lt;p&gt;SSH keys are awesome. I’ve been using them for a long time for remote access
-and they make life way easier. &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh-copy-id&lt;/code&gt; command is easier than
-&lt;code class=&quot;highlighter-rouge&quot;&gt;cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &quot;mkdir -p ~/.ssh &amp;amp;&amp;amp; chmod 700 ~/.ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; ~/.ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 ~/.ssh/authorized_keys&quot;&lt;/code&gt;,
+and they make life way easier. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh-copy-id&lt;/code&gt; command is easier than
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &quot;mkdir -p ~/.ssh &amp;amp;&amp;amp; chmod 700 ~/.ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; ~/.ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 ~/.ssh/authorized_keys&quot;&lt;/code&gt;,
 but for old servers is not an option. The machine I’m using at my university to
-run the simulations for my Master’s studies did not accept &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh-copy-id&lt;/code&gt;…&lt;/p&gt;
+run the simulations for my Master’s studies did not accept &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh-copy-id&lt;/code&gt;…&lt;/p&gt;
 
 &lt;h3 id=&quot;day-2&quot;&gt;Day 2&lt;/h3&gt;
 
 &lt;p&gt;Goal: learn to navigate in the machine using only the terminal.&lt;/p&gt;
 
 &lt;p&gt;I’ve been using GNU/Linux for more than 10 years, I’m pretty confident with the
-terminal. But there’s always something new to learn: &lt;code class=&quot;highlighter-rouge&quot;&gt;ls -ltra&lt;/code&gt; is a nice
+terminal. But there’s always something new to learn: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ls -ltra&lt;/code&gt; is a nice
 example to find the most recently altered files.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-3&quot;&gt;Day 3&lt;/h3&gt;
 
-&lt;p&gt;Goal: get familiar with &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; things.&lt;/p&gt;
+&lt;p&gt;Goal: get familiar with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; things.&lt;/p&gt;
 
 &lt;p&gt;Mind blow of the day: I saw lots of attempts to connect to this &lt;abbr title=&quot;Virtual Machine&quot;&gt;VM&lt;/abbr&gt; in
-&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/log/auth.log&lt;/code&gt; file. Awesome. Bots everywhere.&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/log/auth.log&lt;/code&gt; file. Awesome. Bots everywhere.&lt;/p&gt;
 
-&lt;p&gt;I am running ArchLinux on my Raspberry Pi 3, it uses &lt;code class=&quot;highlighter-rouge&quot;&gt;journalctl&lt;/code&gt; for the logs:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;journalctl /usr/bin/sshd&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I am running ArchLinux on my Raspberry Pi 3, it uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;journalctl&lt;/code&gt; for the logs:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;journalctl /usr/bin/sshd&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;It was nice to learn about &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo -i&lt;/code&gt;. I’ve been using &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo su -&lt;/code&gt; to become
+&lt;p&gt;It was nice to learn about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo -i&lt;/code&gt;. I’ve been using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo su -&lt;/code&gt; to become
 root and is good to know there are other ways to do it as well. The details
 about the differences and other comments are explained
 &lt;a href=&quot;https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -559,28 +559,28 @@ about the differences and other comments are explained
 &lt;p&gt;Goal: install stuff, explore the file structure and get familiar with “walking”
 around.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;man hier&lt;/code&gt; blew my mind. Oh, this is awesome. I googled about the filesystem
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;man hier&lt;/code&gt; blew my mind. Oh, this is awesome. I googled about the filesystem
 hierarchy so many times and did not know I already had all the information in
 front of me.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-5&quot;&gt;Day 5&lt;/h3&gt;
 
-&lt;p&gt;Goal: get familiar with &lt;code class=&quot;highlighter-rouge&quot;&gt;TAB&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;less&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;more&lt;/code&gt;, and hidden/dot files.&lt;/p&gt;
+&lt;p&gt;Goal: get familiar with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TAB&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;less&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;more&lt;/code&gt;, and hidden/dot files.&lt;/p&gt;
 
-&lt;p&gt;I was never a big fan of &lt;code class=&quot;highlighter-rouge&quot;&gt;more&lt;/code&gt;. I normally use &lt;code class=&quot;highlighter-rouge&quot;&gt;less&lt;/code&gt; as a pager, because it
+&lt;p&gt;I was never a big fan of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;more&lt;/code&gt;. I normally use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;less&lt;/code&gt; as a pager, because it
 allows me to scroll up and down easier, search for a string, jump to a
 position, and quite fast for huge files.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;history&lt;/code&gt; command is nice. I know about it and never used directly. I
-prefer to &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl + r&lt;/code&gt; and a trick to use the Up/Down arrows to use the text that
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;history&lt;/code&gt; command is nice. I know about it and never used directly. I
+prefer to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ctrl + r&lt;/code&gt; and a trick to use the Up/Down arrows to use the text that
 has already been typed as the prefix for searching commands. Only works with
-Bash, though. Check &lt;code class=&quot;highlighter-rouge&quot;&gt;readline&lt;/code&gt; on
+Bash, though. Check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readline&lt;/code&gt; on
 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Readline#History&quot;&gt;ArchWiki&lt;/a&gt; for more
 details.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-6&quot;&gt;Day 6&lt;/h3&gt;
 
-&lt;p&gt;Goal: learn &lt;code class=&quot;highlighter-rouge&quot;&gt;Vim&lt;/code&gt; and how to exit it.&lt;/p&gt;
+&lt;p&gt;Goal: learn &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Vim&lt;/code&gt; and how to exit it.&lt;/p&gt;
 
 &lt;p&gt;I’ve been using Vim for quite a long time. I use it for almost everything
 related to text: coding, writing my Master’s Thesis, writing TODO lists,
@@ -588,9 +588,9 @@ writing these notes, and probably other things I can’t remember now. And
 despite those years of usage, every week I learn something new about it.
 Learning Vim is a hard task, but definitely worth it.&lt;/p&gt;
 
-&lt;p&gt;I started the &lt;code class=&quot;highlighter-rouge&quot;&gt;vimtutor&lt;/code&gt; but never finished it. So many times. They say it
+&lt;p&gt;I started the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vimtutor&lt;/code&gt; but never finished it. So many times. They say it
 takes about half an hour to go through it, I’ll try to do it (again). Actually,
-I’ll try &lt;code class=&quot;highlighter-rouge&quot;&gt;neovim&lt;/code&gt;’s tutorial (&lt;code class=&quot;highlighter-rouge&quot;&gt;:Tutor&amp;lt;Enter&amp;gt;&lt;/code&gt;).&lt;/p&gt;
+I’ll try &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;neovim&lt;/code&gt;’s tutorial (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:Tutor&amp;lt;Enter&amp;gt;&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;The insane new thing about Vim that I learned today is that it has seven (!)
 basic modes:&lt;/p&gt;
@@ -615,22 +615,22 @@ basic modes:&lt;/p&gt;
   &lt;li&gt;Insert Select mode&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;You can read more about them with the internal help: &lt;code class=&quot;highlighter-rouge&quot;&gt;:help vim-modes&lt;/code&gt;.
-Curiously, &lt;code class=&quot;highlighter-rouge&quot;&gt;neovim&lt;/code&gt; has one fewer additional mode (at least as of &lt;code class=&quot;highlighter-rouge&quot;&gt;nvim
+&lt;p&gt;You can read more about them with the internal help: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:help vim-modes&lt;/code&gt;.
+Curiously, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;neovim&lt;/code&gt; has one fewer additional mode (at least as of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nvim
 0.4.4&lt;/code&gt;).&lt;/p&gt;
 
 &lt;h3 id=&quot;day-7&quot;&gt;Day 7&lt;/h3&gt;
 
 &lt;p&gt;Goal: install a web server and use it to host a page.&lt;/p&gt;
 
-&lt;p&gt;The instructions are for Apache2, a.k.a. &lt;code class=&quot;highlighter-rouge&quot;&gt;httpd&lt;/code&gt;, but I decided to use Caddy
+&lt;p&gt;The instructions are for Apache2, a.k.a. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;httpd&lt;/code&gt;, but I decided to use Caddy
 instead. I’m curious about it’s automatic conversion from Markdown to HTML.&lt;/p&gt;
 
 &lt;p&gt;I got the binary from the &lt;a href=&quot;https://caddyserver.com/download&quot;&gt;Download page&lt;/a&gt; and
-followed the official documentation to install it, creating a &lt;code class=&quot;highlighter-rouge&quot;&gt;systemd&lt;/code&gt; service
+followed the official documentation to install it, creating a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemd&lt;/code&gt; service
 file.&lt;/p&gt;
 
-&lt;p&gt;I am using this &lt;code class=&quot;highlighter-rouge&quot;&gt;Caddyfile&lt;/code&gt; to serve a static-website:&lt;/p&gt;
+&lt;p&gt;I am using this &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Caddyfile&lt;/code&gt; to serve a static-website:&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:80 {
 	root * /var/lib/caddy/www/
@@ -640,7 +640,7 @@ file.&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;And my &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/lib/caddy/www/index.html&lt;/code&gt; is a very complex one:&lt;/p&gt;
+&lt;p&gt;And my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/lib/caddy/www/index.html&lt;/code&gt; is a very complex one:&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{ { include &quot;index.md&quot; | markdown }}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -664,10 +664,10 @@ bla
 
 &lt;p&gt;Goal: search for specific patterns in text files.&lt;/p&gt;
 
-&lt;p&gt;The Apache2 logs are in &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/log/apache2&lt;/code&gt;. To get all IP addresses that
+&lt;p&gt;The Apache2 logs are in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/log/apache2&lt;/code&gt;. To get all IP addresses that
 connected to Apache:&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/ (.*)//g'&lt;/span&gt; access.log | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;s/ (.*)//g&apos;&lt;/span&gt; access.log | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq
 &lt;/span&gt;27.123.241.20
 45.148.121.28
 45.148.121.85
@@ -699,17 +699,17 @@ connected to Apache:&lt;/p&gt;
 209.17.97.34
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Grepping &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/log/auth.log&lt;/code&gt; I can see 72 different IPs trying to log as
-&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; and 10 other random users. Hahah, nice.&lt;/p&gt;
+&lt;p&gt;Grepping &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/log/auth.log&lt;/code&gt; I can see 72 different IPs trying to log as
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; and 10 other random users. Hahah, nice.&lt;/p&gt;
 
-&lt;p&gt;I like to know that &lt;code class=&quot;highlighter-rouge&quot;&gt;cut&lt;/code&gt; can also remove words from a string, I finally got
-what the &lt;code class=&quot;highlighter-rouge&quot;&gt;--fields&lt;/code&gt; option mean.&lt;/p&gt;
+&lt;p&gt;I like to know that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cut&lt;/code&gt; can also remove words from a string, I finally got
+what the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--fields&lt;/code&gt; option mean.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-9&quot;&gt;Day 9&lt;/h3&gt;
 
 &lt;p&gt;Goal: First look at network security.&lt;/p&gt;
 
-&lt;p&gt;The first task is to find open ports. I’ve used &lt;code class=&quot;highlighter-rouge&quot;&gt;nmap&lt;/code&gt; for that before and
+&lt;p&gt;The first task is to find open ports. I’ve used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt; for that before and
 let’s see what happens, when running it on the remote server:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmap localhost
@@ -724,7 +724,7 @@ PORT   STATE SERVICE
 Nmap &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;: 1 IP address &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 host up&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; scanned &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;0.07 seconds
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Nice, it can see &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; and something for &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt;, that is &lt;code class=&quot;highlighter-rouge&quot;&gt;apache2&lt;/code&gt; on port &lt;code class=&quot;highlighter-rouge&quot;&gt;80&lt;/code&gt;
+&lt;p&gt;Nice, it can see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ssh&lt;/code&gt; and something for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http&lt;/code&gt;, that is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apache2&lt;/code&gt; on port &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;80&lt;/code&gt;
 here. But it is interesting how different it is from my laptop:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;nmap 35.228.166.73
@@ -742,9 +742,9 @@ PORT     STATE    SERVICE
 Nmap &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;: 1 IP address &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1 host up&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; scanned &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;23.00 seconds
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It finds three other &lt;code class=&quot;highlighter-rouge&quot;&gt;filtered&lt;/code&gt; services. The manual says:&lt;/p&gt;
+&lt;p&gt;It finds three other &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filtered&lt;/code&gt; services. The manual says:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The state is either open, filtered, closed, or unfiltered. Open means that
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The state is either open, filtered, closed, or unfiltered. Open means that
 an application on the target machine is listening for connections/packets
 on that port. Filtered means that a firewall, filter, or other network
 obstacle is blocking the port so that Nmap cannot tell whether it is open
@@ -759,22 +759,22 @@ do. I can use all other ports though.&lt;/p&gt;
 
 &lt;p&gt;I’ve never used &lt;a href=&quot;https://launchpad.net/ufw&quot;&gt;ufw&lt;/a&gt; before. It is time to learn
 how to properly use a firewall and this one is simple and powerful enough,
-although it uses &lt;code class=&quot;highlighter-rouge&quot;&gt;iptables&lt;/code&gt; and not the “modern” &lt;code class=&quot;highlighter-rouge&quot;&gt;nftables&lt;/code&gt;. I liked how simple
+although it uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iptables&lt;/code&gt; and not the “modern” &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nftables&lt;/code&gt;. I liked how simple
 it is to allow or deny traffic in a port. But I can’t compare with other tools.&lt;/p&gt;
 
 &lt;p&gt;Changing my SSH port to a random number. I thought it was a bit pointless, but
 apparently it
 &lt;a href=&quot;https://web.archive.org/web/20201013122112/https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity/&quot;&gt;is not&lt;/a&gt;.
-Using &lt;code class=&quot;highlighter-rouge&quot;&gt;nmap&lt;/code&gt;, it shows the port open, but with &lt;code class=&quot;highlighter-rouge&quot;&gt;unknown&lt;/code&gt; as the service. Sounds
+Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt;, it shows the port open, but with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unknown&lt;/code&gt; as the service. Sounds
 good.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-10&quot;&gt;Day 10&lt;/h3&gt;
 
-&lt;p&gt;Goal: run stuff periodically with &lt;code class=&quot;highlighter-rouge&quot;&gt;cron&lt;/code&gt; jobs.&lt;/p&gt;
+&lt;p&gt;Goal: run stuff periodically with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cron&lt;/code&gt; jobs.&lt;/p&gt;
 
 &lt;p&gt;Lazy people automate stuff :)&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;systemd&lt;/code&gt; can also run jobs at specific times, using &lt;code class=&quot;highlighter-rouge&quot;&gt;systemd/timers&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemd&lt;/code&gt; can also run jobs at specific times, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemd/timers&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;A fun cron job to add is to periodically change the SSH banner:&lt;/p&gt;
 
@@ -788,30 +788,30 @@ good.&lt;/p&gt;
 
 &lt;p&gt;Goal: searching for files and patterns.&lt;/p&gt;
 
-&lt;p&gt;I’ve been using blindly &lt;code class=&quot;highlighter-rouge&quot;&gt;find&lt;/code&gt; for quite a while. It was time to finally read
-it’s manual. There’s more to it than &lt;code class=&quot;highlighter-rouge&quot;&gt;find . -iname &quot;bla*&quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I’ve been using blindly &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find&lt;/code&gt; for quite a while. It was time to finally read
+it’s manual. There’s more to it than &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find . -iname &quot;bla*&quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;zcat&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;zgrep&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;zless&lt;/code&gt;, and &lt;code class=&quot;highlighter-rouge&quot;&gt;zmore&lt;/code&gt; are awesome! Did not know I could
-&lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;less&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; gzip compressed files.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zcat&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zgrep&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zless&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;zmore&lt;/code&gt; are awesome! Did not know I could
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;less&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grep&lt;/code&gt; gzip compressed files.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-12&quot;&gt;Day 12&lt;/h3&gt;
 
 &lt;p&gt;Goal: copy stuff around.&lt;/p&gt;
 
-&lt;p&gt;I like &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt; to copy lots of small files (actually, also big and medium ones)
+&lt;p&gt;I like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rsync&lt;/code&gt; to copy lots of small files (actually, also big and medium ones)
 as it can create a “stream” of data instead of one new connection for each
 file. It can also compress the files as it sends to the destination. This can
-save &lt;em&gt;a lot&lt;/em&gt; of time. I normally use &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync -azvP src dst&lt;/code&gt; meaning &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync
+save &lt;em&gt;a lot&lt;/em&gt; of time. I normally use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rsync -azvP src dst&lt;/code&gt; meaning &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rsync
 --archive --compress --verbose --partial --progress src dst&lt;/code&gt;. Sometimes the
-&lt;code class=&quot;highlighter-rouge&quot;&gt;-P&lt;/code&gt; flag can be annoying, but YMMV.&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-P&lt;/code&gt; flag can be annoying, but YMMV.&lt;/p&gt;
 
-&lt;p&gt;Something funny I found out is that &lt;code class=&quot;highlighter-rouge&quot;&gt;rsync&lt;/code&gt; shows the SSH banner of the remote
+&lt;p&gt;Something funny I found out is that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rsync&lt;/code&gt; shows the SSH banner of the remote
 server:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rsync &lt;span class=&quot;nt&quot;&gt;-avz&lt;/span&gt; linuxUpskill-gc:/var/www/html &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
  _________________________________________
  / Be free and open and breezy! Enjoy!     &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
- | Things won&lt;span class=&quot;s1&quot;&gt;'t get any better so get used |
+ | Things won&lt;span class=&quot;s1&quot;&gt;&apos;t get any better so get used |
  \ to it.                                  /
   -----------------------------------------
           \   ^__^
@@ -833,9 +833,9 @@ total size is 11,324  speedup is 2.97
 
 &lt;p&gt;Goal: familiarize with the Linux permission system.&lt;/p&gt;
 
-&lt;p&gt;It is way simpler to use &lt;code class=&quot;highlighter-rouge&quot;&gt;u+w&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;o-rwx&lt;/code&gt; than playing around with octal
-numbers for &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod&lt;/code&gt;. I didn’t know I could change the permission to more than
-one letter of &lt;em&gt;ugo&lt;/em&gt;, as in &lt;code class=&quot;highlighter-rouge&quot;&gt;chmod go-wr [files]&lt;/code&gt;, it never occurred to me to
+&lt;p&gt;It is way simpler to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;u+w&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;o-rwx&lt;/code&gt; than playing around with octal
+numbers for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chmod&lt;/code&gt;. I didn’t know I could change the permission to more than
+one letter of &lt;em&gt;ugo&lt;/em&gt;, as in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chmod go-wr [files]&lt;/code&gt;, it never occurred to me to
 try that either.&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;bla, blabla &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; file.txt
@@ -852,38 +852,38 @@ try that either.&lt;/p&gt;
 
 &lt;p&gt;Goal: user management and permissions.&lt;/p&gt;
 
-&lt;p&gt;I always confuse &lt;code class=&quot;highlighter-rouge&quot;&gt;useradd&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;adduser&lt;/code&gt;, after all they are anagrams.
+&lt;p&gt;I always confuse &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useradd&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adduser&lt;/code&gt;, after all they are anagrams.
 &lt;a href=&quot;https://serverfault.com/questions/218993/whats-the-difference-between-useradd-and-adduser&quot;&gt;This ServerFault&lt;/a&gt;
 question has a nice answer about it:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adduser is a friendlier interactive frontend to useradd
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adduser is a friendlier interactive frontend to useradd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;I found out it is possible to enable offensive messages when an user type an
-incorrect password when &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;ing. Just add &lt;code class=&quot;highlighter-rouge&quot;&gt;Defaults	insults&lt;/code&gt; to
-&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/sudoers&lt;/code&gt;, obviously using &lt;code class=&quot;highlighter-rouge&quot;&gt;visudo&lt;/code&gt;.&lt;/p&gt;
+incorrect password when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;ing. Just add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Defaults	insults&lt;/code&gt; to
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/sudoers&lt;/code&gt;, obviously using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;visudo&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Nice to know that it is possible to enable specific commands for a user to run
-with &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; without granting full &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;, like:&lt;/p&gt;
+with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt; without granting full &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;, like:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fred    ALL &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; NOPASSWD:/sbin/reboot
 fred    ALL &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; NOPASSWD:/usr/bin/ls
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This allows user &lt;code class=&quot;highlighter-rouge&quot;&gt;fred&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo ls&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;, without typing the
-password, but does not allow any other command with &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This allows user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fred&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo ls&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo reboot&lt;/code&gt;, without typing the
+password, but does not allow any other command with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-15&quot;&gt;Day 15&lt;/h3&gt;
 
-&lt;p&gt;Goal: package management, with &lt;code class=&quot;highlighter-rouge&quot;&gt;apt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Goal: package management, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;I used a few different package managers before:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;synaptic&lt;/code&gt; (when I used Kurumin, back then)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get&lt;/code&gt; (when I switched to Ubuntu)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;portage&lt;/code&gt; (when I used Gentoo)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get&lt;/code&gt; (again, briefly, when I used Debian in 2011)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pacman&lt;/code&gt; (when I switched to ArchLinux)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;synaptic&lt;/code&gt; (when I used Kurumin, back then)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt-get&lt;/code&gt; (when I switched to Ubuntu)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;portage&lt;/code&gt; (when I used Gentoo)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apt-get&lt;/code&gt; (again, briefly, when I used Debian in 2011)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacman&lt;/code&gt; (when I switched to ArchLinux)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I wish I remember the first time I tried Kurumin, but I don’t. I think I
@@ -904,23 +904,23 @@ nice reference when dealing with different systems.&lt;/p&gt;
 &lt;p&gt;Goal: managing tape archives, a.k.a &lt;em&gt;tarballs&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;Vim is always surprising me. Today I learned you can open file archives in Vim.
-It is possible to open &lt;code class=&quot;highlighter-rouge&quot;&gt;.zip&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.tar.gz&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;.tar.bz&lt;/code&gt;, etc., and even modify its
+It is possible to open &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.zip&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.tar.gz&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.tar.bz&lt;/code&gt;, etc., and even modify its
 content on the fly. No need to extract, edit, archive again.&lt;/p&gt;
 
-&lt;p&gt;I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;targz&lt;/code&gt; function in one of my dotfiles to create an archive of a bunch
+&lt;p&gt;I have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;targz&lt;/code&gt; function in one of my dotfiles to create an archive of a bunch
 of files or a directory. It’s time to get rid of it and learn how to properly
-use &lt;code class=&quot;highlighter-rouge&quot;&gt;tar&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;gzip&lt;/code&gt;/&lt;code class=&quot;highlighter-rouge&quot;&gt;bzip&lt;/code&gt;.&lt;/p&gt;
+use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tar&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gzip&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bzip&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;day-17&quot;&gt;Day 17&lt;/h3&gt;
 
 &lt;p&gt;Goal: compiling stuff.&lt;/p&gt;
 
-&lt;p&gt;I liked to &lt;code class=&quot;highlighter-rouge&quot;&gt;./configure&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;nmap&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;I liked to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;./configure&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nmap&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ CFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-O2 -march=native&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;CXXFLAGS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-O2 -march=native&quot;&lt;/span&gt; ./configure
 &lt;span class=&quot;c&quot;&gt;# skipping lots of lines...&lt;/span&gt;
             &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;       &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-            &lt;span class=&quot;se&quot;&gt;\`&lt;/span&gt;-&lt;span class=&quot;s2&quot;&gt;&quot;'&quot;&lt;/span&gt;-&lt;span class=&quot;s1&quot;&gt;'/
+            &lt;span class=&quot;se&quot;&gt;\`&lt;/span&gt;-&lt;span class=&quot;s2&quot;&gt;&quot;&apos;&quot;&lt;/span&gt;-&lt;span class=&quot;s1&quot;&gt;&apos;/
              } 6 6 {
             ==. Y ,==
               /^^^\  .
@@ -936,13 +936,13 @@ Configuration complete.
   \  \ \  `  `   ) \             (  ___                 / _   \
  (_`    \+   . x  ( .\            \/   \____-----------/ (o)   \_
 - .-               \+  ;          (  O                           \____
-(__                +- .( -'&lt;/span&gt;.- &amp;lt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;   &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;____________  &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;              &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; /
+(__                +- .( -&apos;&lt;/span&gt;.- &amp;lt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;   &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;____________  &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;              &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt; /
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;_____            ._._: &amp;lt;_ - &amp;lt;- _- _  VVVVVVV VV V&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;               &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;    /./.+-  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; .- /  +--  - &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--_AAAAAAA__A_&lt;/span&gt;/                |
-  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;__ &lt;span class=&quot;s1&quot;&gt;' /x  / x _/ (                \______________//_              \_______
- , x / ( '&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; / &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;  /                                  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__&lt;span class=&quot;s1&quot;&gt;'          \     /
+  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;__ &lt;span class=&quot;s1&quot;&gt;&apos; /x  / x _/ (                \______________//_              \_______
+ , x / ( &apos;&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; / &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;  /                                  &lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;__&lt;span class=&quot;s1&quot;&gt;&apos;          \     /
     /  /  _/ /    +                                       |           \   /
-   '&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;__/                                               /              &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;
+   &apos;&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;__/                                               /              &lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;
                                                        /                  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
   NMAP IS A POWERFUL TOOL &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; USE CAREFULLY AND RESPONSIBLY
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -959,12 +959,12 @@ was what crashed some servers I was responsible for at my job and it was not
 nice. I wrote about that incident and how to tame Docker logs
 &lt;a href=&quot;/bla/2020/09/13/careful_with_docker_logs/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;In &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/cron.daily/logrotate&lt;/code&gt; there’s a line that checks if there are any
-&lt;code class=&quot;highlighter-rouge&quot;&gt;systemd/timers&lt;/code&gt;, if so, &lt;code class=&quot;highlighter-rouge&quot;&gt;cron&lt;/code&gt; does nothing and let &lt;code class=&quot;highlighter-rouge&quot;&gt;systemd&lt;/code&gt; do the job.
+&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/cron.daily/logrotate&lt;/code&gt; there’s a line that checks if there are any
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemd/timers&lt;/code&gt;, if so, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cron&lt;/code&gt; does nothing and let &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemd&lt;/code&gt; do the job.
 That’s clever. The timer is configured in
-&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/systemd/system/timers.target.wants/logrotate.timer&lt;/code&gt;.&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/systemd/system/timers.target.wants/logrotate.timer&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;logrotate&lt;/code&gt;’s log file is in a different path: &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/lib/logrotate/status&lt;/code&gt;.
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logrotate&lt;/code&gt;’s log file is in a different path: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/lib/logrotate/status&lt;/code&gt;.
 That’s funny!&lt;/p&gt;
 
 &lt;h3 id=&quot;day-19&quot;&gt;Day 19&lt;/h3&gt;
@@ -1112,12 +1112,12 @@ still relevant.&lt;/p&gt;
 one in Finland (because, why not?) and I can feel the latency to type any
 commands in the terminal. I can type normally, it is not that slow. But the
 typing latency is there. I can’t measure it, but I can feel it. The average
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ping&lt;/code&gt; to this server is 297 ms, versus 19 ms for a server in Brazil (same
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ping&lt;/code&gt; to this server is 297 ms, versus 19 ms for a server in Brazil (same
 country as I am now). 300 ms is definitely something we can note, but it is not
 a problem for what I was doing.&lt;/p&gt;
 
 &lt;p&gt;It doesn’t matter how long ago you started using Vim (or Neovim), take some
-time to go through &lt;code class=&quot;highlighter-rouge&quot;&gt;vim-tutor&lt;/code&gt;. It takes about half an hour and it covers much
+time to go through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vim-tutor&lt;/code&gt;. It takes about half an hour and it covers much
 more than the basic usage. There are some great small new things to learn
 there.&lt;/p&gt;
 
@@ -1172,14 +1172,14 @@ with the AArch64 &lt;em&gt;thingy&lt;/em&gt;.&lt;/li&gt;
   &lt;li&gt;update the system&lt;/li&gt;
   &lt;li&gt;user configuration
     &lt;ul&gt;
-      &lt;li&gt;change &lt;code class=&quot;highlighter-rouge&quot;&gt;alarm&lt;/code&gt; pass to something better&lt;/li&gt;
-      &lt;li&gt;change &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; pass to something better&lt;/li&gt;
-      &lt;li&gt;enable &lt;code class=&quot;highlighter-rouge&quot;&gt;alarm&lt;/code&gt; user to &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; things&lt;/li&gt;
+      &lt;li&gt;change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alarm&lt;/code&gt; pass to something better&lt;/li&gt;
+      &lt;li&gt;change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; pass to something better&lt;/li&gt;
+      &lt;li&gt;enable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;alarm&lt;/code&gt; user to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt; things&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;system configuration
     &lt;ul&gt;
-      &lt;li&gt;install &lt;code class=&quot;highlighter-rouge&quot;&gt;vim&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;tmux&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;base-devel&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vim&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tmux&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;base-devel&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;set up ssh
         &lt;ul&gt;
           &lt;li&gt;allow only ssh keys&lt;/li&gt;
@@ -1191,14 +1191,14 @@ with the AArch64 &lt;em&gt;thingy&lt;/em&gt;.&lt;/li&gt;
       &lt;li&gt;change GPU memory to 16 MB&lt;/li&gt;
       &lt;li&gt;set up hardware RNG (I like randomness)
         &lt;ul&gt;
-          &lt;li&gt;remove &lt;code class=&quot;highlighter-rouge&quot;&gt;haveged&lt;/code&gt;&lt;/li&gt;
-          &lt;li&gt;install &lt;code class=&quot;highlighter-rouge&quot;&gt;rng-tools&lt;/code&gt; and configure it:
+          &lt;li&gt;remove &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;haveged&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rng-tools&lt;/code&gt; and configure it:
             &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/conf.d/rngd
   &lt;span class=&quot;nv&quot;&gt;RNGD_OPTS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;-o /dev/random -r /dev/hwrng&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;            &lt;/div&gt;
           &lt;/li&gt;
           &lt;li&gt;entropy increased from ~3700 to ~4000&lt;/li&gt;
-          &lt;li&gt;can read from &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; at ~71 MB/s:
+          &lt;li&gt;can read from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; at ~71 MB/s:
             &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dd &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/random &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/null &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1024 &lt;span class=&quot;nv&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;500000 &lt;span class=&quot;nv&quot;&gt;iflag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;fullblock
   500000+0 records &lt;span class=&quot;k&quot;&gt;in
   &lt;/span&gt;500000+0 records out
@@ -1209,17 +1209,17 @@ with the AArch64 &lt;em&gt;thingy&lt;/em&gt;.&lt;/li&gt;
       &lt;/li&gt;
       &lt;li&gt;set up time and timezone
         &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Systemd-timesyncd&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;systemd-timesyncd.service&lt;/code&gt;&lt;/a&gt;
+          &lt;li&gt;&lt;a href=&quot;https://wiki.archlinux.org/index.php/Systemd-timesyncd&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;systemd-timesyncd.service&lt;/code&gt;&lt;/a&gt;
 as an NTP client&lt;/li&gt;
-          &lt;li&gt;time zone: &lt;code class=&quot;highlighter-rouge&quot;&gt;timedatectl set-timezone America/Sao_Paulo&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;time zone: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;timedatectl set-timezone America/Sao_Paulo&lt;/code&gt;&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
       &lt;li&gt;move  to permanent location&lt;/li&gt;
       &lt;li&gt;set up fixed IP address with
 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Systemd-networkd&quot;&gt;systemd-networkd&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;set up &lt;code class=&quot;highlighter-rouge&quot;&gt;en_US.UTF-8&lt;/code&gt; locale&lt;/li&gt;
-      &lt;li&gt;install &lt;code class=&quot;highlighter-rouge&quot;&gt;yay&lt;/code&gt;, configure &lt;code class=&quot;highlighter-rouge&quot;&gt;pacman&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;install &lt;code class=&quot;highlighter-rouge&quot;&gt;raspberrypi-userland-aarch64-git&lt;/code&gt; (AUR)&lt;/li&gt;
+      &lt;li&gt;set up &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;en_US.UTF-8&lt;/code&gt; locale&lt;/li&gt;
+      &lt;li&gt;install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yay&lt;/code&gt;, configure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacman&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;raspberrypi-userland-aarch64-git&lt;/code&gt; (AUR)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -1275,24 +1275,24 @@ graphical.target reached after 10.904s &lt;span class=&quot;k&quot;&gt;in &lt;/s
 &lt;p&gt;Following the instructions in
 &lt;a href=&quot;https://wiki.archlinux.org/index.php/Pi-hole&quot;&gt;ArchWiki&lt;/a&gt;:&lt;/p&gt;
 &lt;ol&gt;
-  &lt;li&gt;install pihole-server: &lt;code class=&quot;highlighter-rouge&quot;&gt;yay -S pi-hole-server&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;install php things: &lt;code class=&quot;highlighter-rouge&quot;&gt;pacman -S php-sqlite&lt;/code&gt; and enable the necessary
+  &lt;li&gt;install pihole-server: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yay -S pi-hole-server&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;install php things: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pacman -S php-sqlite&lt;/code&gt; and enable the necessary
 extensions&lt;/li&gt;
-  &lt;li&gt;install &lt;code class=&quot;highlighter-rouge&quot;&gt;lighttpd&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;php-cgi&lt;/code&gt; for the web interface&lt;/li&gt;
-  &lt;li&gt;enable/start &lt;code class=&quot;highlighter-rouge&quot;&gt;pihole-FTL.service&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;lighttpd.service&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;configure &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/pihole/pihole-FTL.conf&lt;/code&gt;:
+  &lt;li&gt;install &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lighttpd&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;php-cgi&lt;/code&gt; for the web interface&lt;/li&gt;
+  &lt;li&gt;enable/start &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pihole-FTL.service&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lighttpd.service&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;configure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/pihole/pihole-FTL.conf&lt;/code&gt;:
     &lt;ul&gt;
-      &lt;li&gt;change &lt;code class=&quot;highlighter-rouge&quot;&gt;DBINTERVAL&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;60.0&lt;/code&gt; to minimize writes to the SD card&lt;/li&gt;
+      &lt;li&gt;change &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DBINTERVAL&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;60.0&lt;/code&gt; to minimize writes to the SD card&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;set up DoH for DNS over HTTPS:
     &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ yay -S cloudflared&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;add some IPv6 entries in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/cloudflared/cloudflared.yml&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;start/enable &lt;code class=&quot;highlighter-rouge&quot;&gt;cloudflared.service&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ yay -S cloudflared&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;add some IPv6 entries in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/cloudflared/cloudflared.yml&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;start/enable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cloudflared.service&lt;/code&gt;&lt;/li&gt;
       &lt;li&gt;in the &lt;a href=&quot;http://pihole/admin/settings.php?tab=dns&quot;&gt;web settings page&lt;/a&gt;:
         &lt;ul&gt;
-          &lt;li&gt;disable all DNS servers and use &lt;code class=&quot;highlighter-rouge&quot;&gt;127.0.0.1#5300&lt;/code&gt; only&lt;/li&gt;
+          &lt;li&gt;disable all DNS servers and use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;127.0.0.1#5300&lt;/code&gt; only&lt;/li&gt;
           &lt;li&gt;enable DNSSEC&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
@@ -1402,12 +1402,12 @@ disk, and it was not in any Docker container or volume.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;So it was Docker the whole time. But, what else Docker has, besides images,
-layers, containers, volumes and build cache, as reported by &lt;code class=&quot;highlighter-rouge&quot;&gt;docker system df&lt;/code&gt;?&lt;/p&gt;
+layers, containers, volumes and build cache, as reported by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker system df&lt;/code&gt;?&lt;/p&gt;
 
 &lt;p&gt;Docker has logs.&lt;/p&gt;
 
-&lt;p&gt;By default, Docker saves the output of each container in a &lt;code class=&quot;highlighter-rouge&quot;&gt;json&lt;/code&gt; file in
-&lt;code class=&quot;highlighter-rouge&quot;&gt;/var/lib/docker/containers/&amp;lt;container_ID&amp;gt;/&amp;lt;container_ID&amp;gt;-json.log&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;By default, Docker saves the output of each container in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json&lt;/code&gt; file in
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/var/lib/docker/containers/&amp;lt;container_ID&amp;gt;/&amp;lt;container_ID&amp;gt;-json.log&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-h&lt;/span&gt; /var/lib/docker/containers/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.log
 
@@ -1423,9 +1423,9 @@ layers, containers, volumes and build cache, as reported by &lt;code class=&quot
 &lt;p&gt;By
 &lt;a href=&quot;https://docs.docker.com/config/containers/logging/json-file/#options&quot;&gt;default&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Docker saves the output of each container in &lt;code class=&quot;highlighter-rouge&quot;&gt;json&lt;/code&gt; format. That is the
-&lt;code class=&quot;highlighter-rouge&quot;&gt;json-file&lt;/code&gt; log driver.&lt;/li&gt;
-  &lt;li&gt;Each &lt;code class=&quot;highlighter-rouge&quot;&gt;*-json.log&lt;/code&gt; can grow without any limits.&lt;/li&gt;
+  &lt;li&gt;Docker saves the output of each container in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json&lt;/code&gt; format. That is the
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;json-file&lt;/code&gt; log driver.&lt;/li&gt;
+  &lt;li&gt;Each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*-json.log&lt;/code&gt; can grow without any limits.&lt;/li&gt;
   &lt;li&gt;There can be any number of log files.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1433,7 +1433,7 @@ layers, containers, volumes and build cache, as reported by &lt;code class=&quot
 
 &lt;p&gt;There are some ways to solve this problem:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;periodically remove/trim the logs, with a cron job or &lt;code class=&quot;highlighter-rouge&quot;&gt;logrotate&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;periodically remove/trim the logs, with a cron job or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logrotate&lt;/code&gt;.&lt;/li&gt;
   &lt;li&gt;use an external log aggregator like &lt;a href=&quot;https://www.fluentd.org/&quot;&gt;fluentd&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;configure Docker to not flood the disk.&lt;/li&gt;
 &lt;/ul&gt;
@@ -1445,7 +1445,7 @@ third option is good enough.&lt;/p&gt;
 &lt;p&gt;Let’s tell Docker to keep log files with a maximum of 1GB and to
 have a maximum of 3 log files per service. To do so, we need to configure the
 docker daemon. It is as simple as adding these lines to
-&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/docker/daemon.json&lt;/code&gt;:&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/docker/daemon.json&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;s2&quot;&gt;&quot;log-driver&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;json-file&quot;&lt;/span&gt;,
@@ -1487,9 +1487,9 @@ and the machine was usable again. Services were running smoothly and well.&lt;/p
 
 &lt;p&gt;There is a simple way to set up git to use multiple push URLs for a single
 remote. This way you can easily mirror any git repository into any hosting
-provider when &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;ing.&lt;/p&gt;
+provider when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt;ing.&lt;/p&gt;
 
-&lt;p&gt;Let’s say your GitHub’s user is &lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt; and you want to mirror your &lt;code class=&quot;highlighter-rouge&quot;&gt;repo&lt;/code&gt; into
+&lt;p&gt;Let’s say your GitHub’s user is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;user&lt;/code&gt; and you want to mirror your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repo&lt;/code&gt; into
 GitLab. Your local clone is initially:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
@@ -1497,7 +1497,7 @@ origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&
 origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;push&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Now we need to configure the &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt; remote to have two URLs:&lt;/p&gt;
+&lt;p&gt;Now we need to configure the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;origin&lt;/code&gt; remote to have two URLs:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote set-url &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--push&lt;/span&gt; origin git@github.com:user/repo.git
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote set-url &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--push&lt;/span&gt; origin git@gitlab.com:user/repo.git
@@ -1511,10 +1511,10 @@ origin  git@github.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&
 origin  git@gitlab.com:user/repo.git &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;push&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;This makes every &lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; send the changes to both GitHub and GitLab,
+&lt;p&gt;This makes every &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git push&lt;/code&gt; send the changes to both GitHub and GitLab,
 creating an automatic backup.&lt;/p&gt;
 
-&lt;p&gt;But note that &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt; is still from GitHub. It is not possible to pull
+&lt;p&gt;But note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git pull&lt;/code&gt; is still from GitHub. It is not possible to pull
 changes from two different repositories.&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Aug 2020 00:00:00 -0300</pubDate>
@@ -1662,7 +1662,7 @@ used.&lt;/p&gt;
 of when each entry was cached. On the other hand, it is already implemented in
 Python’s Standard Library :) The module
 &lt;a href=&quot;https://docs.python.org/3/library/functools.html&quot;&gt;functools&lt;/a&gt; provides us the
-decorator &lt;code class=&quot;highlighter-rouge&quot;&gt;lru_cache&lt;/code&gt;:&lt;/p&gt;
+decorator &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lru_cache&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;functools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lru_cache&lt;/span&gt;
 
@@ -1675,7 +1675,7 @@ decorator &lt;code class=&quot;highlighter-rouge&quot;&gt;lru_cache&lt;/code&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;It is the same function from the first code, but with a decorator added. The
-default maximum size of the cache is &lt;code class=&quot;highlighter-rouge&quot;&gt;128&lt;/code&gt;, I increased so we can compare
+default maximum size of the cache is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;128&lt;/code&gt;, I increased so we can compare
 the timings with our handmade version:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;In&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timeit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -1692,13 +1692,13 @@ methods to see what happened with the cache:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;cache_info()&lt;/code&gt; method displays some statistics about that cache: how many
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cache_info()&lt;/code&gt; method displays some statistics about that cache: how many
 &lt;em&gt;hits&lt;/em&gt; (the number of times the requested data was in the cache), &lt;em&gt;misses&lt;/em&gt;
 (the number of times the requested data was not in the cache), the maximum
 number of entries in the cache and the current number of cached items.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;cache_clear()&lt;/code&gt; method empties the cache.&lt;/p&gt;
+    &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cache_clear()&lt;/code&gt; method empties the cache.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1760,24 +1760,24 @@ their &lt;a href=&quot;https://en.wikipedia.org/wiki/Character_encoding&quot;&gt
 file with the wrong encoding feeds obscure data to our code. This way, the
 result becomes unpredictable&lt;/p&gt;
 
-&lt;p&gt;For example, saving the string &lt;code class=&quot;highlighter-rouge&quot;&gt;Kalsarikännit&lt;/code&gt; as an UTF-8 text file and then
+&lt;p&gt;For example, saving the string &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Kalsarikännit&lt;/code&gt; as an UTF-8 text file and then
 reading it in Python as an ASCII file gives an error:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'k'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ascii'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;afile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;k&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;r&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;ascii&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;afile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;afile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Traceback&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;most&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&amp;lt;stdin&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/usr/lib/python3.8/encoding/ascii.py&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;codecs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ascii_decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;UnicodeDecodeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ascii'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;codec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;can&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'t decode byte 0xc3 in position 8:
+        &lt;span class=&quot;nb&quot;&gt;UnicodeDecodeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;ascii&apos;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;codec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;can&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;t decode byte 0xc3 in position 8:
         ordinal not in range(128)
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;I’ve run into this problem last week, when I had to parse hundreds of &lt;abbr title=&quot;comma-separated values are simple text files that represent a spreadsheet&quot;&gt;csv&lt;/abbr&gt; files.
 Most of them were fine, but I encountered weird problems, similar to the shown
 above, in some files. It turned out those problematic files were saved from a
-Windows machine, with &lt;code class=&quot;highlighter-rouge&quot;&gt;ISO-8859-1&lt;/code&gt; encoding.&lt;/p&gt;
+Windows machine, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISO-8859-1&lt;/code&gt; encoding.&lt;/p&gt;
 
 &lt;p&gt;One way to display the
 &lt;a href=&quot;https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files&quot;&gt;mime-type&lt;/a&gt;
@@ -1811,17 +1811,17 @@ k.csv:   text/plain
 encoding.&lt;/p&gt;
 
 &lt;p&gt;To convert a text file between encoding, we can use the
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Iconv&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;iconv&lt;/code&gt;&lt;/a&gt;. So, to convert &lt;em&gt;from&lt;/em&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ISO-8859-1&lt;/code&gt; &lt;em&gt;to&lt;/em&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;UTF-8&lt;/code&gt;:&lt;/p&gt;
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Iconv&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iconv&lt;/code&gt;&lt;/a&gt;. So, to convert &lt;em&gt;from&lt;/em&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISO-8859-1&lt;/code&gt; &lt;em&gt;to&lt;/em&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UTF-8&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;iconv &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; iso-8859-1 &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; utf-8 infile &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; outfile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;To convert all files in current dir from a different encoding to &lt;code class=&quot;highlighter-rouge&quot;&gt;UTF-8&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;To convert all files in current dir from a different encoding to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UTF-8&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;f &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;do
-	&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;file &lt;span class=&quot;nt&quot;&gt;--mime-encoding&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$f&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/.*: //g'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+	&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;enc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;file &lt;span class=&quot;nt&quot;&gt;--mime-encoding&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$f&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;s/.*: //g&apos;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$enc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;utf-8&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;then
 		&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;Converting from &lt;span class=&quot;nv&quot;&gt;$enc&lt;/span&gt; to UTF-8: &lt;span class=&quot;nv&quot;&gt;$f&lt;/span&gt;
@@ -1831,7 +1831,7 @@ encoding.&lt;/p&gt;
 done&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;A small bash script with &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;iconv&lt;/code&gt; is very versatile to
+&lt;p&gt;A small bash script with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sed&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iconv&lt;/code&gt; is very versatile to
 uniformize the encoding of several text files. And it saves the day.&lt;/p&gt;
 
 </description>
@@ -1856,24 +1856,24 @@ uniformize the encoding of several text files. And it saves the day.&lt;/p&gt;
     
       <item>
         <title>Random numbers from /dev/urandom in Bash</title>
-        <description>&lt;p&gt;In a GNU/Linux distributions, there are special files (&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; and
-&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;) to access the kernel’s random number generator. But how
+        <description>&lt;p&gt;In a GNU/Linux distributions, there are special files (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; and
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;) to access the kernel’s random number generator. But how
 do we get random numbers from them in a bash script?&lt;/p&gt;
 
-&lt;p&gt;If we try to &lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt; them we get random things:&lt;/p&gt;
+&lt;p&gt;If we try to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cat&lt;/code&gt; them we get random things:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /dev/random
-XB&amp;gt;7&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;Mq&lt;span class=&quot;s1&quot;&gt;'\'&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$,&lt;/span&gt;dH՞ՈT&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;H&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;0]eS19Ѡ
-Hd9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;7ܢVO&lt;span class=&quot;s1&quot;&gt;'y.ۧMW^C
+XB&amp;gt;7&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;Mq&lt;span class=&quot;s1&quot;&gt;&apos;\&apos;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$,&lt;/span&gt;dH՞ՈT&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;H&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;0]eS19Ѡ
+Hd9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;7ܢVO&lt;span class=&quot;s1&quot;&gt;&apos;y.ۧMW^C
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Something a bit weirder happens with &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;: it continues vomiting
-characters really fast at you until you stop it with &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + C&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Something a bit weirder happens with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;: it continues vomiting
+characters really fast at you until you stop it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl + C&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;What’s the difference between &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;? Lets check the
-manpage for &lt;code class=&quot;highlighter-rouge&quot;&gt;random (4)&lt;/code&gt;, as of Linux 5.6:&lt;/p&gt;
+&lt;p&gt;What’s the difference between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;? Lets check the
+manpage for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;random (4)&lt;/code&gt;, as of Linux 5.6:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   The  random number generator gathers environmental noise from device driv‐
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   The  random number generator gathers environmental noise from device driv‐
    ers and other sources into an entropy pool.  The generator also  keeps  an
    estimate  of  the  number of bits of noise in the entropy pool.  From this
    entropy pool, random numbers are created.
@@ -1900,21 +1900,21 @@ manpage for &lt;code class=&quot;highlighter-rouge&quot;&gt;random (4)&lt;/code&
   &lt;li&gt;the Kernel maintains a pool of entropy from random things that happens in the
 computer.&lt;/li&gt;
   &lt;li&gt;both special files use this entropy pool to seed a &lt;abbr title=&quot;pseudorandom number generator&quot;&gt;PRNG&lt;/abbr&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; waits until there are enough randomness to output something.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt; is preferred.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/random&lt;/code&gt; waits until there are enough randomness to output something.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt; is preferred.&lt;/li&gt;
   &lt;li&gt;both files gives us &lt;em&gt;bytes&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;And from the Kernel’s source we get that &lt;code class=&quot;highlighter-rouge&quot;&gt;urandom&lt;/code&gt; uses
+&lt;p&gt;And from the Kernel’s source we get that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urandom&lt;/code&gt; uses
 &lt;a href=&quot;https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant&quot;&gt;ChaCha20&lt;/a&gt; as &lt;abbr title=&quot;cryptographiccally secure pseudorandom number generator&quot;&gt;CSPRNG&lt;/abbr&gt;.
-&lt;sup id=&quot;fnref:kernel-source&quot;&gt;&lt;a href=&quot;#fn:kernel-source&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;sup id=&quot;fnref:kernel-source&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:kernel-source&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;We now need a tool to read a specific number of bytes from those files and
-convert it to something human readable. And here comes &lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt;, a Unix
-command to display data in several formats.&lt;sup id=&quot;fnref:od&quot;&gt;&lt;a href=&quot;#fn:od&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; The default is octal, hence the
-name &lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt;: &lt;em&gt;octal dump&lt;/em&gt;.&lt;/p&gt;
+convert it to something human readable. And here comes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;od&lt;/code&gt;, a Unix
+command to display data in several formats.&lt;sup id=&quot;fnref:od&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:od&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; The default is octal, hence the
+name &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;od&lt;/code&gt;: &lt;em&gt;octal dump&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;With this utility we can read &lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt; bytes from a file and display it in a
+&lt;p&gt;With this utility we can read &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;N&lt;/code&gt; bytes from a file and display it in a
 specified format. For example, here’s the dump of `Hello World”:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;Hello World | &lt;span class=&quot;nb&quot;&gt;od
@@ -1923,12 +1923,12 @@ specified format. For example, here’s the dump of `Hello World”:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The first column is the offset, and then the octal representation of that line.
-So, the second line of the output means: starting at the offset &lt;code class=&quot;highlighter-rouge&quot;&gt;0000014&lt;/code&gt; we
+So, the second line of the output means: starting at the offset &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0000014&lt;/code&gt; we
 have nothing, i.g. there are 14 (in octal, or 12 in decimal) characters in that
 string.&lt;/p&gt;
 
-&lt;p&gt;It looks like &lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt; does not know how to count. There are 11 chars in &lt;code class=&quot;highlighter-rouge&quot;&gt;Hello
-World&lt;/code&gt;! Lets see each char individually (&lt;code class=&quot;highlighter-rouge&quot;&gt;-c&lt;/code&gt;) in octal (&lt;code class=&quot;highlighter-rouge&quot;&gt;-b&lt;/code&gt;):&lt;/p&gt;
+&lt;p&gt;It looks like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;od&lt;/code&gt; does not know how to count. There are 11 chars in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hello
+World&lt;/code&gt;! Lets see each char individually (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-c&lt;/code&gt;) in octal (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-b&lt;/code&gt;):&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello World&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;od&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-cb&lt;/span&gt;
 0000000   H   e   l   l   o       W   o   r   l   d  &lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;
@@ -1938,8 +1938,8 @@ World&lt;/code&gt;! Lets see each char individually (&lt;code class=&quot;highli
 
 &lt;p&gt;Sweet, it counted the line ending as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;od&lt;/code&gt; can also read &lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt; bytes from a source and display it in a specified
-format. So, to read 4 bytes from &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;, display it as an unsigned
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;od&lt;/code&gt; can also read &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;N&lt;/code&gt; bytes from a source and display it in a specified
+format. So, to read 4 bytes from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/dev/urandom&lt;/code&gt;, display it as an unsigned
 integer without the offset column:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;od&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vAn&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-N4&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; u4 &amp;lt; /dev/urandom
@@ -1955,17 +1955,17 @@ integer without the offset column:&lt;/p&gt;
 &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;With this code, those 32 bits (4 bytes) from &lt;code class=&quot;highlighter-rouge&quot;&gt;urandom&lt;/code&gt; are interpreted as an
-integer. How do we get floats? If interested only in the range &lt;code class=&quot;highlighter-rouge&quot;&gt;[0, 1)&lt;/code&gt;: simply
+&lt;p&gt;With this code, those 32 bits (4 bytes) from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;urandom&lt;/code&gt; are interpreted as an
+integer. How do we get floats? If interested only in the range &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[0, 1)&lt;/code&gt;: simply
 divide by the greatest possible value, \( 2^{32} - 1\).&lt;/p&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:kernel-source&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0&quot;&gt;file &lt;code class=&quot;highlighter-rouge&quot;&gt;drivers/char/random.c&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:kernel-source&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:kernel-source&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0&quot;&gt;file &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drivers/char/random.c&lt;/code&gt;&lt;/a&gt; &lt;a href=&quot;#fnref:kernel-source&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:od&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html&quot;&gt;Gnu Coreutils&lt;/a&gt; &lt;a href=&quot;#fnref:od&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:od&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html&quot;&gt;Gnu Coreutils&lt;/a&gt; &lt;a href=&quot;#fnref:od&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -2029,9 +2029,9 @@ figures.&lt;/p&gt;
     &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;o&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;#plt.show()
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;f'plots/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;plots/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;.png&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
@@ -2040,7 +2040,7 @@ figures.&lt;/p&gt;
     &lt;span class=&quot;n&quot;&gt;plot_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;If I run this code, It will create 50 png’s in the folder &lt;code class=&quot;highlighter-rouge&quot;&gt;plots/&lt;/code&gt;, similar to
+&lt;p&gt;If I run this code, It will create 50 png’s in the folder &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plots/&lt;/code&gt;, similar to
 this one:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;plots/0.png&quot; alt=&quot;random data in a plot&quot; /&gt;&lt;/p&gt;
@@ -2056,7 +2056,7 @@ this one:&lt;/p&gt;
 
 &lt;p&gt;This warning appears several times. And it is a &lt;em&gt;warning&lt;/em&gt;, not an error: the
 code will &lt;em&gt;probably&lt;/em&gt; work fine.
-It says &lt;code class=&quot;highlighter-rouge&quot;&gt;and may consume too much memory&lt;/code&gt;. But how much is too much?
+It says &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;and may consume too much memory&lt;/code&gt;. But how much is too much?
 Let’s use the &lt;a href=&quot;https://www.gnu.org/software/time/&quot;&gt;GNU time&lt;/a&gt; command to
 discover the amount of memory used:&lt;/p&gt;
 
@@ -2079,7 +2079,7 @@ discover the amount of memory used:&lt;/p&gt;
 kbytes.&lt;/p&gt;
 
 &lt;p&gt;Now, let’s fix the warning. The problem is that we have too many figures
-opened: we need to close them. The simplest way is to call &lt;code class=&quot;highlighter-rouge&quot;&gt;plt.close(fig)&lt;/code&gt;
+opened: we need to close them. The simplest way is to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plt.close(fig)&lt;/code&gt;
 when the figure is not needed anymore:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
@@ -2106,9 +2106,9 @@ when the figure is not needed anymore:&lt;/p&gt;
     &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;o&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;#plt.show()
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;f'plots/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;plots/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fname&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;.png&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 
@@ -2150,42 +2150,42 @@ when the figure is not needed anymore:&lt;/p&gt;
       <item>
         <title>Python.format</title>
         <description>&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
-with &lt;code class=&quot;highlighter-rouge&quot;&gt;{}&lt;/code&gt; and then tell python to change that to something. For example:&lt;/p&gt;
+with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{}&lt;/code&gt; and then tell python to change that to something. For example:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;'3'&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&apos;3&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;And you can also format that to a string:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'$£@æȩ'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;'$£@æȩ'&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;$£@æȩ&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&apos;$£@æȩ&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The next obvious step is to format a string to itself:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Note that the result is a &lt;em&gt;string&lt;/em&gt;:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&amp;gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&amp;gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;And we can &lt;em&gt;evaluate&lt;/em&gt; that string to turn it into a code:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;dict&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&amp;gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;dict&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&amp;gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now, some ultra advanced python code to rule them all:&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}.format({})'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}))).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&quot;{}&quot;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
-&lt;span class=&quot;s&quot;&gt;'{}'&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}.format({})&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}))).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&quot;{}&quot;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})).&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&apos;{}&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;&lt;/p&gt;
@@ -2210,7 +2210,7 @@ TV series. Some real humans hid real treasures around the world. And of course
 they created real maps with instructions. This way other people can find those
 treasures!&lt;/p&gt;
 
-&lt;p&gt;They&lt;sup id=&quot;fnref:whom&quot;&gt;&lt;a href=&quot;#fn:whom&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; named this ‘sport’ &lt;em&gt;Geocaching&lt;/em&gt;. It’s quite a fancy name, but
+&lt;p&gt;They&lt;sup id=&quot;fnref:whom&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:whom&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; named this ‘sport’ &lt;em&gt;Geocaching&lt;/em&gt;. It’s quite a fancy name, but
 &lt;em&gt;treasure hunting&lt;/em&gt; sounds much cooler. The concept it simple: an adventurous
 person hides a small treasure somewhere. They then create the &lt;em&gt;treasure map&lt;/em&gt;.&lt;/p&gt;
 
@@ -2220,7 +2220,7 @@ something else for trade, like an used sock or foreign money. The treasures
 have an ethereal value, not a financial one. The reward is &lt;em&gt;locating&lt;/em&gt; it, not
 selling gold. It’s in a container that should be waterproof and able to
 survive the local weather and police. The police just loves exploding
-them&lt;sup id=&quot;fnref:bomb1&quot;&gt;&lt;a href=&quot;#fn:bomb1&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb2&quot;&gt;&lt;a href=&quot;#fn:bomb2&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb3&quot;&gt;&lt;a href=&quot;#fn:bomb3&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb4&quot;&gt;&lt;a href=&quot;#fn:bomb4&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb5&quot;&gt;&lt;a href=&quot;#fn:bomb5&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb6&quot;&gt;&lt;a href=&quot;#fn:bomb6&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb7&quot;&gt;&lt;a href=&quot;#fn:bomb7&quot; class=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;!&lt;/p&gt;
+them&lt;sup id=&quot;fnref:bomb1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb5&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb5&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb6&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb6&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&quot;fnref:bomb7&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bomb7&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;8&lt;/a&gt;&lt;/sup&gt;!&lt;/p&gt;
 
 &lt;p&gt;We are in the 21st century, it doesn’t make any sense to make maps using
 papyrus and quill pens. That is really cool but not compatible with today’s
@@ -2245,7 +2245,7 @@ quest.&lt;/p&gt;
 
 &lt;p&gt;We then decided to go for our first treasure. Near the Saint-Pierre de Pouilly
 Church. This church was build in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Roman_Era&quot;&gt;Roman Era&lt;/a&gt;,
-in the 13th century or earlier&lt;sup id=&quot;fnref:church&quot;&gt;&lt;a href=&quot;#fn:church&quot; class=&quot;footnote&quot;&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+in the 13th century or earlier&lt;sup id=&quot;fnref:church&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:church&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;9&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;church_small.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -2282,34 +2282,34 @@ awesome!&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:whom&quot;&gt;
-      &lt;p&gt;The guys in &lt;a href=&quot;https://groups.yahoo.com/neo/groups/gpsstash/conversations/topics/62&quot;&gt;this mailing list&lt;/a&gt;. &lt;a href=&quot;#fnref:whom&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:whom&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;The guys in &lt;a href=&quot;https://groups.yahoo.com/neo/groups/gpsstash/conversations/topics/62&quot;&gt;this mailing list&lt;/a&gt;. &lt;a href=&quot;#fnref:whom&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://archive.is/20120904171554/http://www.mywesttexas.com/articles/2010/01/08/news/top_stories/pipe_bomb_geochaching_geocache_midland_academy_sports.txt&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://archive.is/20120904171554/http://www.mywesttexas.com/articles/2010/01/08/news/top_stories/pipe_bomb_geochaching_geocache_midland_academy_sports.txt&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb2&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.gcdailyworld.com/story/1890701.html&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.gcdailyworld.com/story/1890701.html&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb3&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.deseretnews.com/article/635160668/Detonated-bomb-turns-out-to-be-box-of-toys.html&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.deseretnews.com/article/635160668/Detonated-bomb-turns-out-to-be-box-of-toys.html&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb4&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://web.archive.org/web/20081202115708/http://www.canada.com/ottawacitizen/news/story.html?id=c7628126-a0f6-4a9e-a396-a40fa1948eab&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://web.archive.org/web/20081202115708/http://www.canada.com/ottawacitizen/news/story.html?id=c7628126-a0f6-4a9e-a396-a40fa1948eab&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb5&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;http://articles.glendalenewspress.com/2013-01-14/news/tn-818-0114-authorities-determine-suspicious-object-found-on-glendale-power-pole-to-be-safe_1_power-pole-suspicious-object-bomb-squad&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb5&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://articles.glendalenewspress.com/2013-01-14/news/tn-818-0114-authorities-determine-suspicious-object-found-on-glendale-power-pole-to-be-safe_1_power-pole-suspicious-object-bomb-squad&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb5&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb6&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.bbc.com/news/uk-england-leeds-14039229&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb6&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.bbc.com/news/uk-england-leeds-14039229&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb6&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:bomb7&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.ibtimes.com/geocaching-awesome-scavenger-hunt-or-bomb-threat-waiting-happen-296371&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bomb7&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.ibtimes.com/geocaching-awesome-scavenger-hunt-or-bomb-threat-waiting-happen-296371&quot;&gt;link&lt;/a&gt; &lt;a href=&quot;#fnref:bomb7&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:church&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Saint-Genis-Pouilly&quot;&gt;Saint-Genis-Pouilly - Wikipedia&lt;/a&gt; &lt;a href=&quot;#fnref:church&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:church&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Saint-Genis-Pouilly&quot;&gt;Saint-Genis-Pouilly - Wikipedia&lt;/a&gt; &lt;a href=&quot;#fnref:church&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -2338,8 +2338,8 @@ beautiful buildings, small roads and wineries.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/heitorpb/30468016197/in/album-72157702559519395/&quot;&gt;&lt;img src=&quot;imgs/DSC_3333.JPG&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Essertines belongs to the municipality of Dardagny. 1 861 people live in
-there&lt;sup id=&quot;fnref:wtf&quot;&gt;&lt;a href=&quot;#fn:wtf&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. There are 16 winemakers&lt;sup id=&quot;fnref:winemakers&quot;&gt;&lt;a href=&quot;#fn:winemakers&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. The vast majority of
-apartments there have 3 rooms&lt;sup id=&quot;fnref:wtf:1&quot;&gt;&lt;a href=&quot;#fn:wtf&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+there&lt;sup id=&quot;fnref:wtf&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:wtf&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. There are 16 winemakers&lt;sup id=&quot;fnref:winemakers&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:winemakers&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;. The vast majority of
+apartments there have 3 rooms&lt;sup id=&quot;fnref:wtf:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:wtf&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/heitorpb/44493621755/in/album-72157702559519395/&quot;&gt;&lt;img src=&quot;imgs/DSC_3371.JPG&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2350,8 +2350,8 @@ the liberty of being the guide:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/heitorpb/30468018287/in/album-72157702559519395/&quot;&gt;&lt;img src=&quot;imgs/DSC_3342.JPG&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;There are some caves in that region, made in the second half of the 19th
-century, to extract &lt;em&gt;bitumen&lt;/em&gt;&lt;sup id=&quot;fnref:oil&quot;&gt;&lt;a href=&quot;#fn:oil&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. It is a black, gooey, icky sticky form of
-petroleum. It’s main use is to make asphalt and to waterproof things&lt;sup id=&quot;fnref:wikiOil&quot;&gt;&lt;a href=&quot;#fn:wikiOil&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.
+century, to extract &lt;em&gt;bitumen&lt;/em&gt;&lt;sup id=&quot;fnref:oil&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:oil&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. It is a black, gooey, icky sticky form of
+petroleum. It’s main use is to make asphalt and to waterproof things&lt;sup id=&quot;fnref:wikiOil&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:wikiOil&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.
 I never imagined that it would be easy to get some petroleum for myself. But in
 this region, you can literally stick your fingers in the rock and get that
 goofy stuff for you &lt;img draggable=&quot;false&quot; title=&quot;:sunglasses:&quot; alt=&quot;😎&quot; src=&quot;https://twemoji.maxcdn.com/2/svg/1f60e.svg&quot; class=&quot;emoji&quot; /&gt;&lt;/p&gt;
@@ -2416,7 +2416,7 @@ flower well.&lt;/p&gt;
 &lt;p&gt;That was the end of our meeting. A very productive one, if you ask. Everyone
 was actively involved! No one falling asleep or leaving for a coffee and never
 returning. Our hike was ~3.6 km long at an average speed of 1.25
-m/s&lt;sup id=&quot;fnref:analysis&quot;&gt;&lt;a href=&quot;#fn:analysis&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;. I burned ~185 kcal&lt;sup id=&quot;fnref:endomondo&quot;&gt;&lt;a href=&quot;#fn:endomondo&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+m/s&lt;sup id=&quot;fnref:analysis&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:analysis&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;. I burned ~185 kcal&lt;sup id=&quot;fnref:endomondo&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:endomondo&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;imgs/map.png&quot;&gt;&lt;img src=&quot;imgs/map.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2426,25 +2426,25 @@ m/s&lt;sup id=&quot;fnref:analysis&quot;&gt;&lt;a href=&quot;#fn:analysis&quot; 
 
 &lt;hr /&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:wtf&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://fr.wikipedia.org/wiki/Dardagny&quot;&gt;Dardagny - Wikipedia&lt;/a&gt; (Page consultée le juin 13, 2018). &lt;a href=&quot;#fnref:wtf&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:wtf:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:wtf&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://fr.wikipedia.org/wiki/Dardagny&quot;&gt;Dardagny - Wikipedia&lt;/a&gt; (Page consultée le juin 13, 2018). &lt;a href=&quot;#fnref:wtf&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:wtf:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:winemakers&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;http://www.dardagny.ch/index.php/vie-economique/vignerons-viticulteurs&quot;&gt;Dardagny - Vignerons - Viticulteurs&lt;/a&gt; &lt;a href=&quot;#fnref:winemakers&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:winemakers&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://www.dardagny.ch/index.php/vie-economique/vignerons-viticulteurs&quot;&gt;Dardagny - Vignerons - Viticulteurs&lt;/a&gt; &lt;a href=&quot;#fnref:winemakers&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:oil&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.unige.ch/forel/files/5114/8949/5654/Guide_Geneve.pdf&quot;&gt;Guidebook: geology and archaeology of Geneva - Société de physique et d’histoire naturelle de Genève&lt;/a&gt; &lt;a href=&quot;#fnref:oil&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:oil&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.unige.ch/forel/files/5114/8949/5654/Guide_Geneve.pdf&quot;&gt;Guidebook: geology and archaeology of Geneva - Société de physique et d’histoire naturelle de Genève&lt;/a&gt; &lt;a href=&quot;#fnref:oil&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:wikiOil&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Asphalt&quot;&gt;Asphalt - Wikipedia&lt;/a&gt; &lt;a href=&quot;#fnref:wikiOil&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:wikiOil&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Asphalt&quot;&gt;Asphalt - Wikipedia&lt;/a&gt; &lt;a href=&quot;#fnref:wikiOil&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:analysis&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://github.com/heitorPB/HikingAnalysis&quot;&gt;Hiking Analysis&lt;/a&gt; &lt;a href=&quot;#fnref:analysis&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:analysis&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://github.com/heitorPB/HikingAnalysis&quot;&gt;Hiking Analysis&lt;/a&gt; &lt;a href=&quot;#fnref:analysis&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
-    &lt;li id=&quot;fn:endomondo&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.endomondo.com/users/25410601/workouts/1215399714&quot;&gt;Endomondo&lt;/a&gt; &lt;a href=&quot;#fnref:endomondo&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:endomondo&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.endomondo.com/users/25410601/workouts/1215399714&quot;&gt;Endomondo&lt;/a&gt; &lt;a href=&quot;#fnref:endomondo&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -2469,7 +2469,7 @@ m/s&lt;sup id=&quot;fnref:analysis&quot;&gt;&lt;a href=&quot;#fn:analysis&quot; 
         <description>&lt;p&gt;Yesterday my supervisor and I went to a hike to the &lt;em&gt;Swiss Far West&lt;/em&gt;, the westernmost
 part of Switzerland. Unfortunately, we couldn’t go to the precise westernmost point
 of the border with France, because that’s in the &lt;abbr title=&quot;Latitude: 46.1323565, Longitude: 5.9559113&quot;&gt;middle&lt;/abbr&gt; of the river &lt;em&gt;Le
-Rhône&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and we didn’t want to get inside the water.&lt;/p&gt;
+Rhône&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and we didn’t want to get inside the water.&lt;/p&gt;
 
 &lt;p&gt;I recorded our hike using &lt;a href=&quot;https://osmand.net/&quot;&gt;OsmAnd&lt;/a&gt;, a very nice app for
 maps and location and finding out how to go from one place to another. And all
@@ -2497,9 +2497,9 @@ information. You can read more about the format on
 &lt;span class=&quot;n&quot;&gt;gps_elevation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'3d'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;3d&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpx_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpx_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;r&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;gpx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gpxpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;track&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gpx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tracks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;segment&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;track&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;segments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
@@ -2530,7 +2530,7 @@ information. You can read more about the format on
 
 &lt;span class=&quot;n&quot;&gt;anim&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FuncAnimation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init_func&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                &lt;span class=&quot;n&quot;&gt;frames&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;360&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;anim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'hike.mp4'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extra_args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'-vcodec'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'libx264'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;anim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;hike.mp4&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extra_args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;-vcodec&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;libx264&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -2605,8 +2605,8 @@ to work. Here’s the code:&lt;/p&gt;
 
 &lt;span class=&quot;n&quot;&gt;myMap&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Basemap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;llcrnrlon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;llcrnrlat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
                 &lt;span class=&quot;n&quot;&gt;urcrnrlon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urcrnrlat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'merc'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;myMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interpolation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'lanczos'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'upper'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;merc&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;myMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;imshow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interpolation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;lanczos&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;upper&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# plot hike
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;points&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gpx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_points_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -2615,37 +2615,37 @@ to work. Here’s the code:&lt;/p&gt;
 &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;point_no&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# to color sequentially each point
 &lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# map (long, lat) to (x,y) coordinates in plot
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'brg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;brg&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;# add some texts and arrows with style
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'France'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xycoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes fraction'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'left'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'bottom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'monospace'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Switzerland'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xycoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes fraction'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'right'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'bottom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'monospace'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;France&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xycoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;axes fraction&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;left&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;bottom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;monospace&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Switzerland&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;99&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xycoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;axes fraction&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;right&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;bottom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;monospace&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;el&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Ellipse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;t3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Border'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xycoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes fraction'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;xytext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textcoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes fraction'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'center'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'bottom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'monospace'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;t3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Border&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;61&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xycoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;axes fraction&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;xytext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;96&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textcoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;axes fraction&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;center&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;bottom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;monospace&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                  &lt;span class=&quot;n&quot;&gt;arrowprops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arrowstyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;simple&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                  &lt;span class=&quot;n&quot;&gt;fc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;none&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                  &lt;span class=&quot;n&quot;&gt;patchB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                  &lt;span class=&quot;n&quot;&gt;connectionstyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;arc3,rad=0.3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;t4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Switzerland's&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;westest point&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.9559555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;46.1323555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;xytext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textcoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'axes fraction'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'center'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'bottom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'monospace'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;t4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Switzerland&apos;s&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;westest point&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.9559555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;46.1323555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;xytext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textcoords&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;axes fraction&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;horizontalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;center&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;verticalalignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;bottom&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontname&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;monospace&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                  &lt;span class=&quot;n&quot;&gt;arrowprops&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arrowstyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;simple&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                  &lt;span class=&quot;n&quot;&gt;fc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;black&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;none&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                  &lt;span class=&quot;n&quot;&gt;patchB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                                  &lt;span class=&quot;n&quot;&gt;connectionstyle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;arc3,rad=0.3&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_path_effects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PathEffects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withStroke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linewidth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foreground&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.666&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_path_effects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PathEffects&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;withStroke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linewidth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foreground&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;w&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.666&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
 
 
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'map.png'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quality&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bbox_inches&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'tight'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;map.png&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;quality&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bbox_inches&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;tight&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -2660,10 +2660,10 @@ can see, we got pretty close to the westernmost Swiss point! For
 some reason, my phone lost GPS connection in the beginning, that’s why it’s
 missing some blue points.&lt;/p&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://osm.org/go/0CFL8Bq5?m=&quot;&gt;Latitude: 46.1323565, Longitude: 5.9559113&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://osm.org/go/0CFL8Bq5?m=&quot;&gt;Latitude: 46.1323565, Longitude: 5.9559113&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -2706,7 +2706,7 @@ missing some blue points.&lt;/p&gt;
     
       <item>
         <title>test</title>
-        <description>&lt;p&gt;this is a &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; entry&lt;sup id=&quot;fnref:bla&quot;&gt;&lt;a href=&quot;#fn:bla&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; for testing tests&lt;/p&gt;
+        <description>&lt;p&gt;this is a &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; entry&lt;sup id=&quot;fnref:bla&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:bla&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; for testing tests&lt;/p&gt;
 
 &lt;p&gt;This is a python &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; code:&lt;/p&gt;
 
@@ -2720,13 +2720,13 @@ missing some blue points.&lt;/p&gt;
 &lt;a href=&quot;https://en.wikipedia.org/wiki/Higgs_boson#Technical_aspects_and_mathematical_formulation&quot;&gt;Higgs Lagrangian&lt;/a&gt;
 for testing \( \LaTeX \) :&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{L}_H = \left|\left(\partial_\mu -i g W_\mu^a \tau^a -i\frac{1}{2} g' B_\mu\right)\phi\right|^2 + \mu^2 \phi^\dagger\phi-\lambda (\phi^\dagger\phi)^2&lt;/script&gt;
+\[\mathcal{L}_H = \left|\left(\partial_\mu -i g W_\mu^a \tau^a -i\frac{1}{2} g&apos; B_\mu\right)\phi\right|^2 + \mu^2 \phi^\dagger\phi-\lambda (\phi^\dagger\phi)^2\]
 
 &lt;p&gt;A pen &lt;abbr title=&quot;test!&quot;&gt;test&lt;/abbr&gt; for testing a post-it photo:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;test.png&quot; alt=&quot;img test&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Just &lt;code class=&quot;highlighter-rouge&quot;&gt;some Markdown tests&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Just &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;some Markdown tests&lt;/code&gt;:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;bold&lt;/strong&gt;&lt;/li&gt;
@@ -2780,15 +2780,15 @@ for testing \( \LaTeX \) :&lt;/p&gt;
 &lt;div class=&quot;alert alert-dark&quot;&gt;
 &lt;blockquote class=&quot;blockquote&quot;&gt;
 &lt;p&gt;This is a reminder for me in the future: &lt;em&gt;it &lt;strong&gt;is possible&lt;/strong&gt; to have&lt;/em&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown&lt;/code&gt; inside &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; code blocks!!&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;markdown&lt;/code&gt; inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HTML&lt;/code&gt; code blocks!!&lt;/p&gt;
 &lt;footer class=&quot;blockquote-footer&quot;&gt;Me, in the past.&lt;/footer&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;footnotes&quot;&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:bla&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://lmgtfy.com/?q=bla&quot;&gt;blablabla&lt;/a&gt; &lt;a href=&quot;#fnref:bla&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:bla&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://lmgtfy.com/?q=bla&quot;&gt;blablabla&lt;/a&gt; &lt;a href=&quot;#fnref:bla&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;

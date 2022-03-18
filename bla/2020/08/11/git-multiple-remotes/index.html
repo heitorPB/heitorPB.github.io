@@ -20,7 +20,7 @@
 
 	<!-- Facebook/Twitter/SEO -->
 	<meta property="og:title" content="Multiple urls for a git remote"/>
-	<meta property="og:image" content="https://heitorpb.github.io/assets/imgs/me.jpg"/>
+	
 	<meta property="og:url" content="https://heitorpb.github.io/bla/2020/08/11/git-multiple-remotes/"/>
 	<meta property="og:type" content="article">
 	<meta property="og:site_name" content="Heitor's log"/>
@@ -29,7 +29,7 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="">
 	<meta name="twitter:title" content="Multiple urls for a git remote" />
-	<meta name="twitter:image" content="https://heitorpb.github.io/assets/imgs/me.jpg" />
+	
 	<meta name="twitter:url" content="https://heitorpb.github.io/bla/2020/08/11/git-multiple-remotes/" />
 	<meta name="twitter:description" content="Yeaah" />
 
@@ -72,9 +72,9 @@
 
 <p>There is a simple way to set up git to use multiple push URLs for a single
 remote. This way you can easily mirror any git repository into any hosting
-provider when <code class="highlighter-rouge">git push</code>ing.</p>
+provider when <code class="language-plaintext highlighter-rouge">git push</code>ing.</p>
 
-<p>Let’s say your GitHub’s user is <code class="highlighter-rouge">user</code> and you want to mirror your <code class="highlighter-rouge">repo</code> into
+<p>Let’s say your GitHub’s user is <code class="language-plaintext highlighter-rouge">user</code> and you want to mirror your <code class="language-plaintext highlighter-rouge">repo</code> into
 GitLab. Your local clone is initially:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote <span class="nt">-v</span>
@@ -82,7 +82,7 @@ origin  git@github.com:user/repo.git <span class="o">(</span>fetch<span class="o
 origin  git@github.com:user/repo.git <span class="o">(</span>push<span class="o">)</span>
 </code></pre></div></div>
 
-<p>Now we need to configure the <code class="highlighter-rouge">origin</code> remote to have two URLs:</p>
+<p>Now we need to configure the <code class="language-plaintext highlighter-rouge">origin</code> remote to have two URLs:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote set-url <span class="nt">--add</span> <span class="nt">--push</span> origin git@github.com:user/repo.git
 <span class="nv">$ </span>git remote set-url <span class="nt">--add</span> <span class="nt">--push</span> origin git@gitlab.com:user/repo.git
@@ -96,10 +96,10 @@ origin  git@github.com:user/repo.git <span class="o">(</span>push<span class="o"
 origin  git@gitlab.com:user/repo.git <span class="o">(</span>push<span class="o">)</span>
 </code></pre></div></div>
 
-<p>This makes every <code class="highlighter-rouge">git push</code> send the changes to both GitHub and GitLab,
+<p>This makes every <code class="language-plaintext highlighter-rouge">git push</code> send the changes to both GitHub and GitLab,
 creating an automatic backup.</p>
 
-<p>But note that <code class="highlighter-rouge">git pull</code> is still from GitHub. It is not possible to pull
+<p>But note that <code class="language-plaintext highlighter-rouge">git pull</code> is still from GitHub. It is not possible to pull
 changes from two different repositories.</p>
 
 	</div>
@@ -112,7 +112,7 @@ changes from two different repositories.</p>
 				<footer class="mastfoot mt-auto text-center">
 		<div class="inner">
 			
-			<br />Heitor's log, 2018 - 2021
+			<br />Heitor's log, 2018 - 2022
 			by <a href="/me.html">Heitor</a>
 			is licensed under a
 			<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 International License</a>.
