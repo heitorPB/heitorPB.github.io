@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Python.format | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/python-format/">Python.format</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Nov 29, 2018
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/python/">#python</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/random/">#random</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>The python way of formatting strings is very interesting. You just need a string
+with <code>{}</code> and then tell python to change that to something. For example:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; &#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(</span><span style="color:#d08770;">3</span><span>)
+</span><span>&#39;</span><span style="color:#a3be8c;">3</span><span>&#39;
+</span></code></pre>
+<p>And you can also format that to a string:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; &#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#a3be8c;">$£@æȩ</span><span>&#39;)
+</span><span>&#39;</span><span style="color:#a3be8c;">$£@æȩ</span><span>&#39;
+</span></code></pre>
+<p>The next obvious step is to format a string to itself:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; &#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;)
+</span><span>&#39;</span><span style="color:#d08770;">{}</span><span>&#39;
+</span></code></pre>
+<p>Note that the result is a <em>string</em>:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; </span><span style="color:#96b5b4;">type</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;))
+</span><span>&lt;</span><span style="background-color:#bf616a;color:#2b303b;">class</span><span> &#39;</span><span style="color:#a3be8c;">str</span><span>&#39;&gt;
+</span></code></pre>
+<p>And we can <em>evaluate</em> that string to turn it into a code:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; </span><span style="color:#96b5b4;">eval</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;))
+</span><span>{}
+</span><span>&gt;&gt;&gt; </span><span style="color:#96b5b4;">type</span><span>(</span><span style="color:#96b5b4;">eval</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;)))
+</span><span>&lt;</span><span style="background-color:#bf616a;color:#2b303b;">class</span><span> &#39;</span><span style="color:#a3be8c;">dict</span><span>&#39;&gt;
+</span></code></pre>
+<p>Now, some ultra advanced python code to rule them all:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; </span><span style="color:#bf616a;">str</span><span>(</span><span style="color:#96b5b4;">eval</span><span>(</span><span style="color:#96b5b4;">eval</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">.format(</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">)</span><span>&#39;).</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;, {}))).</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#a3be8c;">&quot;</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">&quot;</span><span>&#39;, {})).</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(&#39;</span><span style="color:#d08770;">{}</span><span>&#39;))))
+</span><span>&#39;</span><span style="color:#d08770;">{}</span><span>&#39;
+</span></code></pre>
+<p>😎</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/geocaching/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Treasure Hunt</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/close-matplotlib-figures/">
+                            <span class="button__text">Always close your Matplotlib figures</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

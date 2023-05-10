@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My thoughts on PiHole | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/pihole-dnsmasq/">My thoughts on PiHole</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Nov 10, 2020
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/pihole/">#PiHole</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/raspberry-pi/">#Raspberry Pi</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/networking/">#networking</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>About a month ago, I decided to try <a href="https://pi-hole.net/">PiHole</a> for whole
+network advertisement blocking, I documented how I set it up
+<a href="https://heitorpb.github.io/bla/rasp3-pihole/">here</a>, and now its time to document my thoughts
+about using it.</p>
+<p>I expected PiHole to block advertisement and trackers on every device connected
+to my local network, either through WiFi or cable, in a completely transparent
+way. And it does block. The problem is that it is not possible to bypass (or
+turn it off) temporarily for a specific website in a specific device. It is
+only possible to completely turn off PiHole, for the entire network, either for
+the next minutes or indefinitely.</p>
+<p>This was a problem for me in two situations:</p>
+<ol>
+<li>
+<p>A guest trying to check the prices of a product using my WiFi. It is very
+convenient to just Google the product and go to the <em>shopping</em> tab. It shows
+the prices different sellers/shops in one page, at the price of tracking
+you. With PiHole, Google Shopping was blocked. This is just an example, but
+the point is: guests get annoyed with the internet blocking their websites.</p>
+</li>
+<li>
+<p>Sometimes a website, or part of its content, is blocked and I wanted to
+“debug” it, to find the reason that a particular content is blocked.  It is
+very complicated to debug it on a network level, specially after adding some
+extra lists of trackers. It is possible to allow a specific domain, but not
+everything from a specific web page, in this case you need to do it manually
+for every entry you find.</p>
+</li>
+</ol>
+<p>Another inconvenience I found was in the response time. It was taking too long
+to start loading new websites. I did not measure the latency, but it was there
+and was annoying. It was specially horrible in my phone, it took seconds to
+start loading. Too long to be useful.</p>
+<p>So I returned to my previous solution:</p>
+<ul>
+<li>use <a href="http://www.thekelleys.org.uk/dnsmasq/doc.html"><code>dnsmasq</code></a> to cache DNS
+queries</li>
+<li>use <a href="https://ublockorigin.com/">uBLock Origin</a> to block ads and trackers,
+also available for mobile browsers</li>
+<li>do not install crapware in your phone</li>
+</ul>
+<p>Latency is significantly lower, easy to debug, easy to disable blocking in a
+single browser tab, and there’s no need to maintain a server.</p>
+<p>Now I need to find another use for my Raspberry…</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/linuxupskill/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Linux Upskill Challenge</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/std-adjacent-find/">
+                            <span class="button__text">std::adjacent_find</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

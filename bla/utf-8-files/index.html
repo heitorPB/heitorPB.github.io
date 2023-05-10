@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Convert files to UTF-8 | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/utf-8-files/">Convert files to UTF-8</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            May 12, 2020
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/analysis/">#analysis</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/encoding/">#encoding</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>Whenever we are working with lots of text files we might have to deal with
+their <a href="https://en.wikipedia.org/wiki/Character_encoding">encoding</a>. Reading a
+file with the wrong encoding feeds obscure data to our code. This way, the
+result becomes unpredictable</p>
+<p>For example, saving the string <code>Kalsarikännit</code> as an UTF-8 text file and then
+reading it in Python as an ASCII file gives an error:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; </span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(&#39;</span><span style="color:#a3be8c;">k</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">r</span><span>&#39;, </span><span style="color:#bf616a;">encoding</span><span>=&#39;</span><span style="color:#a3be8c;">ascii</span><span>&#39;) </span><span style="color:#b48ead;">as </span><span>afile:
+</span><span style="color:#d08770;">...     </span><span>afile.</span><span style="color:#bf616a;">read</span><span>()
+</span><span style="color:#d08770;">...
+</span><span style="color:#bf616a;">Traceback </span><span>(most recent call last):
+</span><span>  File &quot;</span><span style="color:#a3be8c;">&lt;stdin&gt;</span><span>&quot;, line </span><span style="color:#d08770;">2</span><span>, in &lt;module&gt;
+</span><span>    File &quot;</span><span style="color:#a3be8c;">/usr/lib/python3.8/encoding/ascii.py</span><span>&quot;, line </span><span style="color:#d08770;">26</span><span>, in decode
+</span><span>        </span><span style="color:#b48ead;">return </span><span>codecs.</span><span style="color:#bf616a;">ascii_decode</span><span>(</span><span style="color:#96b5b4;">input</span><span>, </span><span style="color:#bf616a;">self</span><span>.errors)[</span><span style="color:#d08770;">0</span><span>]
+</span><span>        UnicodeDecodeError: &#39;</span><span style="color:#a3be8c;">ascii</span><span>&#39; codec can&#39;</span><span style="color:#a3be8c;">t decode byte 0xc3 in position 8:</span><span style="background-color:#bf616a;color:#2b303b;">
+</span><span>        ordinal not in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">128</span><span>)
+</span></code></pre>
+<p>I’ve run into this problem last week, when I had to parse hundreds of
+<abbr title="comma-separated values are simple text files that represent a spreadsheet">CSV</abbr>
+files. Most of them were fine, but I encountered weird problems, similar to the shown
+above, in some files. It turned out those problematic files were saved from a
+Windows machine, with <code>ISO-8859-1</code> encoding.</p>
+<p>One way to display the
+<a href="https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files">mime-type</a>
+of a file and its encoding is by using the
+<a href="https://www.darwinsys.com/file/"><code>file</code></a> command, that comes with most free
+operating systems (Linux, BSD, etc):</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file</span><span style="color:#bf616a;"> --mime </span><span>*
+</span><span style="color:#bf616a;">bla.txt:</span><span> text/plain; </span><span style="color:#bf616a;">charset</span><span>=</span><span style="color:#a3be8c;">us-ascii
+</span><span style="color:#bf616a;">bla.txt:</span><span> text/plain; </span><span style="color:#bf616a;">charset</span><span>=</span><span style="color:#a3be8c;">iso-8859-1
+</span><span style="color:#bf616a;">k.csv:</span><span>   text/plain; </span><span style="color:#bf616a;">charset</span><span>=</span><span style="color:#a3be8c;">utf-8
+</span></code></pre>
+<p>Or display only the encoding:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file</span><span style="color:#bf616a;"> --mime-encoding </span><span>*
+</span><span style="color:#bf616a;">bla.txt:</span><span> us-ascii
+</span><span style="color:#bf616a;">bla.txt:</span><span> iso-8859-1
+</span><span style="color:#bf616a;">k.csv:</span><span>   utf-8
+</span></code></pre>
+<p>Or only the mime-type:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file</span><span style="color:#bf616a;"> --mime-type </span><span>*
+</span><span style="color:#bf616a;">bla.txt:</span><span> text/plain
+</span><span style="color:#bf616a;">ble.txt:</span><span> text/plain
+</span><span style="color:#bf616a;">k.csv:</span><span>   text/plain
+</span></code></pre>
+<p>In these examples, we can see 3 plain-text files, each one with a different
+encoding.</p>
+<p>To convert a text file between encoding, we can use the
+<a href="https://en.wikipedia.org/wiki/Iconv"><code>iconv</code></a>. So, to convert <em>from</em>
+<code>ISO-8859-1</code> <em>to</em> <code>UTF-8</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> iconv</span><span style="color:#bf616a;"> -f</span><span> iso-8859-1</span><span style="color:#bf616a;"> -t</span><span> utf-8 infile</span><span style="color:#bf616a;"> -o</span><span> outfile
+</span></code></pre>
+<p>To convert all files in current directory from a different encoding to <code>UTF-8</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for</span><span> f </span><span style="color:#b48ead;">in </span><span>*
+</span><span style="color:#b48ead;">do
+</span><span>	</span><span style="color:#bf616a;">enc</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">file --mime-encoding </span><span>&quot;$</span><span style="color:#bf616a;">f</span><span>&quot; | </span><span style="color:#bf616a;">sed -E </span><span>&#39;</span><span style="color:#a3be8c;">s/.*: //g</span><span>&#39;</span><span style="color:#a3be8c;">)
+</span><span>	</span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">[ </span><span>$</span><span style="color:#bf616a;">enc </span><span>!= &quot;</span><span style="color:#a3be8c;">utf-8</span><span>&quot; </span><span style="color:#96b5b4;">]
+</span><span>	</span><span style="color:#b48ead;">then
+</span><span>		</span><span style="color:#96b5b4;">echo</span><span> Converting from $</span><span style="color:#bf616a;">enc</span><span> to UTF-8: $</span><span style="color:#bf616a;">f
+</span><span>		</span><span style="color:#bf616a;">iconv -f </span><span>$</span><span style="color:#bf616a;">enc -t</span><span> utf-8 &quot;$</span><span style="color:#bf616a;">f</span><span>&quot;</span><span style="color:#bf616a;"> -o </span><span>&quot;$</span><span style="color:#bf616a;">f</span><span>&quot;.utf
+</span><span>		</span><span style="color:#bf616a;">mv </span><span>&quot;$</span><span style="color:#bf616a;">f</span><span>&quot;.utf &quot;$</span><span style="color:#bf616a;">f</span><span>&quot;
+</span><span>	</span><span style="color:#b48ead;">fi
+</span><span style="color:#b48ead;">done
+</span></code></pre>
+<p>A small bash script with <code>sed</code>, <code>file</code> and <code>iconv</code> is very versatile to
+uniformize the encoding of several text files. And it saves the day.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/bash-random-numbers/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Random numbers from &#x2F;dev&#x2F;urandom in Bash</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/caching-python/">
+                            <span class="button__text">Caching computation in Python</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

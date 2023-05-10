@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Multiple urls for a git remote | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/git-multiple-remotes/">Multiple urls for a git remote</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Aug 11, 2020
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/git/">#git</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>AKA automagic mirroring of your GitHub into GitLab.</p>
+<p>There is a simple way to set up Git to use multiple push URLs for a single
+remote. This way you can easily mirror any Git repository into any hosting
+provider when <code>git push</code>ing.</p>
+<p>Let’s say your GitHub’s user is <code>user</code> and you want to mirror your <code>repo</code> into
+GitLab. Your local clone is initially:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote</span><span style="color:#bf616a;"> -v
+</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (fetch)
+</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (push)
+</span></code></pre>
+<p>Now we need to configure the <code>origin</code> remote to have two URLs:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote set-url</span><span style="color:#bf616a;"> --add --push</span><span> origin git@github.com:user/repo.git
+</span><span style="color:#bf616a;">$</span><span> git remote set-url</span><span style="color:#bf616a;"> --add --push</span><span> origin git@gitlab.com:user/repo.git
+</span></code></pre>
+<p>And the magical result:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote</span><span style="color:#bf616a;"> -v
+</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (fetch)
+</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (push)
+</span><span style="color:#bf616a;">origin</span><span>  git@gitlab.com:user/repo.git (push)
+</span></code></pre>
+<p>This makes every <code>git push</code> send the changes to both GitHub and GitLab,
+creating an automatic backup.</p>
+<p>But note that <code>git pull</code> is still from GitHub. It is not possible to pull
+changes from two different repositories.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/caching-python/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Caching computation in Python</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/careful-with-docker-logs/">
+                            <span class="button__text">Be careful with your Docker logs</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

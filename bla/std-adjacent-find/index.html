@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>std::adjacent_find | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/std-adjacent-find/">std::adjacent_find</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Jan 03, 2021
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/c/">#C++</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/algorithm/">#algorithm</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>C++ standard library is insane. There are more data structures and algorithms
+and utilities than someone can possible remember. If you need to something,
+there’s a good chance that someone already made it. And if someone already made
+it, there’s a good chance someone submitted a proposal to add it to the C++
+standard library.</p>
+<p>Today I want to talk about <code>std::adjacent_find</code>, from the <code>&lt;algorithm&gt;</code> library.
+It returns an iterator to the first repeated element. So, if you have a list of
+numbers <code>{1, 2, 2, 3, 3}</code>, this function would return an iterator to the first
+<code>2</code>. Let’s see it in practice:</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">algorithm</span><span>&gt;
+</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">iostream</span><span>&gt;
+</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">vector</span><span>&gt;
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
+</span><span>{
+</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers);
+</span><span>	std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>I’m using <code>ranges</code> in there, so you need a C++20 compatible compiler. To
+compile it with <code>gcc</code>: <code>g++ -Wall -Wextra -std=c++20 adj.cpp</code>. I tested with
+<code>g++</code> 10.2.0 and <code>clang++</code> 11.0.0, and both have support for it 😎.
+But if you can’t (or don’t want to) use C++20, change the code to
+<code>std::adjacent_find(numbers.begin(), numbers.end());</code></p>
+<p>This code finds the repeated elements and return an iterator to the first one.
+It then prints it and the next:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ./a.out
+</span><span style="color:#bf616a;">2</span><span> 2
+</span></code></pre>
+<p>But we can also hack <code>std::adjacent_find</code> with different <em>predicates</em>, and
+change how we compare equality between consecutive elements. The <code>&lt;functional&gt;</code>
+header contains some common arithmetic comparison operators, like <em>equal</em>, <em>not
+equal</em>, <em>less</em>, <em>less equal</em>, etc. Using the same numbers from before, we can
+find the first number that is less or equal the next one:</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">algorithm</span><span>&gt;
+</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">functional</span><span>&gt;
+</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">iostream</span><span>&gt;
+</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">vector</span><span>&gt;
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
+</span><span>{
+</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers, std::ranges::</span><span style="color:#bf616a;">less_equal</span><span>());
+</span><span>	std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>This code returns <code>1 2</code>.</p>
+<p>Let’s see some more examples. From now on, I’ll omit the headers for brevity.</p>
+<p>You want to find the first number that is greater the next one:</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
+</span><span>{
+</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers, std::ranges::</span><span style="color:#bf616a;">greater</span><span>());
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">if </span><span>(it != numbers.</span><span style="color:#bf616a;">end</span><span>())
+</span><span>		std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
+</span><span>	</span><span style="color:#b48ead;">else
+</span><span>		std::cout &lt;&lt; &quot;</span><span style="color:#a3be8c;">Found nothing</span><span>&quot; &lt;&lt; std::endl;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>This code returns <code>Found nothing</code>, because no two consecutive numbers in <code>{1, 2, 2, 3, 3, 4, 5}</code> satisfies \( a &gt; b \). When <code>std::adjacent_find</code> does not
+find anything, it returns an iterator to the end of the range.</p>
+<p>Now you want to find the first number that does not follow the pattern
+\( x_{i+1} = x_i + 1 \):</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
+</span><span>{
+</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers,
+</span><span>	                                     [](</span><span style="color:#b48ead;">int</span><span> a, </span><span style="color:#b48ead;">int</span><span> b){
+</span><span>	                                             </span><span style="color:#b48ead;">return</span><span> a != b - </span><span style="color:#d08770;">1 </span><span>;
+</span><span>	                                     });
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">if </span><span>(it != numbers.</span><span style="color:#bf616a;">end</span><span>())
+</span><span>		std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
+</span><span>	</span><span style="color:#b48ead;">else
+</span><span>		std::cout &lt;&lt; &quot;</span><span style="color:#a3be8c;">Found nothing</span><span>&quot; &lt;&lt; std::endl;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>This returns, as expected, <code>2 2</code>. This happens because <code>2 != 2-1</code>, so the
+lambda returns <code>true</code> and the function returns the iterator to this number. By
+<em>this number</em> I mean, <code>std::adjacent_find</code> loops over the objects and compares
+<em>this</em> object with the <em>next</em> one. If the sequence was <code>{1, 2, 3, 4, 5}</code>,
+<code>std::adjacent_find</code> would return an iterator to the element after the last one
+in there, that is, <code>numbers.end())</code>.</p>
+<p>Can you find the first pair <code>(a, b)</code> of numbers such that
+\(0.78 &lt; a/b &lt; 1 \)? Of course you can:</p>
+<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
+</span><span>{
+</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers,
+</span><span>	                                     [](</span><span style="color:#b48ead;">float</span><span> a, </span><span style="color:#b48ead;">float</span><span> b) {
+</span><span>	                                             </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#d08770;">0.78 </span><span>&lt; a/b) &amp;&amp; (a/b &lt; </span><span style="color:#d08770;">1</span><span>);
+</span><span>	                                     });
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">if </span><span>(it != numbers.</span><span style="color:#bf616a;">end</span><span>())
+</span><span>		std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
+</span><span>	</span><span style="color:#b48ead;">else
+</span><span>		std::cout &lt;&lt; &quot;</span><span style="color:#a3be8c;">Found nothing</span><span>&quot; &lt;&lt; std::endl;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>This code returns <code>4 5</code>, because \(0.78 &lt; 4/5 = 0.8 &lt; 1\).</p>
+<p>What I like about this function is that it gives to you an iterator to the
+first object matching <em>any rule</em>. If have a vector/list/range of objects, and
+you need to find the first one that has some relation to the next,
+<code>std::adjacent_find</code> is the way to go.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/pihole-dnsmasq/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">My thoughts on PiHole</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/juju-is-fucking-amazing/">
+                            <span class="button__text">Juju is Fucking Amazing</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Setting up Raspberry Pi 3 with PiHole | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/rasp3-pihole/">Setting up Raspberry Pi 3 with PiHole</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Oct 13, 2020
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/pihole/">#PiHole</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/raspberry-pi/">#Raspberry Pi</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/networking/">#networking</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>I decided to try <a href="https://pi-hole.net/">PiHole</a> as a <a href="https://en.wikipedia.org/wiki/DNS_sinkhole">DNS sinkhole</a>. Here I logged how I set up my Raspberry Pi 3 with ArchLinux to run it.</p>
+<p>The idea is to have a way to block advertisement and trackers on my entire
+network. <a href="https://ublockorigin.com/">uBlock Origin</a> is a great browser plugin
+that blocks those things on webpages, but I am lazy and want a solution that
+works for my laptop, phone, and guest’s devices as well. And that’s what PiHole
+tries to do.</p>
+<center>
+<a data-flickr-embed="true"
+href="https://www.flickr.com/photos/heitorpb/50469705936/in/dateposted/"
+title="Raspberry Pi"><img
+src="https://live.staticflickr.com/65535/50469705936_a068726cc1.jpg"
+width="500" height="333" alt="Raspberry Pi 3"></a><script async
+src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>I have an old
+<a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/">Raspberry Pi 3 B+</a>
+that is now unused. Here is how I set it up to use PiHole.</p>
+<h2 id="system-set-up">System set up</h2>
+<h3 id="raspberry">Raspberry</h3>
+<p>This part is setting up a new computer, not much to discuss here:</p>
+<ul>
+<li>follow the <a href="https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3">installation
+instructions</a>,
+with the AArch64 <em>thingy</em>.</li>
+<li>update the system</li>
+<li>user configuration
+<ul>
+<li>change <code>alarm</code> pass to something better</li>
+<li>change <code>root</code> pass to something better</li>
+<li>enable <code>alarm</code> user to <code>sudo</code> things</li>
+</ul>
+</li>
+<li>system configuration
+<ul>
+<li>install <code>vim</code>, <code>tmux</code> and <code>base-devel</code></li>
+<li>set up ssh
+<ul>
+<li>allow only ssh keys</li>
+<li>disable root login</li>
+<li>generate and enable a new
+<a href="https://wiki.archlinux.org/index.php/SSH_keys">ssh key</a></li>
+</ul>
+</li>
+<li>change GPU memory to 16 MB</li>
+<li>set up hardware RNG (I like randomness)
+<ul>
+<li>remove <code>haveged</code></li>
+<li>install <code>rng-tools</code> and configure it:</li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> cat /etc/conf.d/rngd
+</span><span style="color:#bf616a;">RNGD_OPTS</span><span>=&quot;</span><span style="color:#a3be8c;">-o /dev/random -r /dev/hwrng</span><span>&quot;
+</span></code></pre>
+<ul>
+<li>entropy increased from ~3700 to ~4000</li>
+<li>can read from <code>/dev/random</code> at ~71 MB/s:</li>
+</ul>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> dd if=/dev/random of=/dev/null bs=1024 count=500000 iflag=fullblock
+</span><span style="color:#bf616a;">500000+0</span><span> records in
+</span><span style="color:#bf616a;">500000+0</span><span> records out
+</span><span style="color:#bf616a;">512000000</span><span> bytes (512 MB, 488 MiB) </span><span style="color:#bf616a;">copied,</span><span> 7.19274 s, 71.2 MB/s
+</span></code></pre>
+</li>
+<li>set up time and timezone
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Systemd-timesyncd"><code>systemd-timesyncd.service</code></a>
+as an NTP client</li>
+<li>time zone: <code>timedatectl set-timezone America/Sao_Paulo</code></li>
+</ul>
+</li>
+<li>move  to permanent location</li>
+<li>set up fixed IP address with
+<a href="https://wiki.archlinux.org/index.php/Systemd-networkd">systemd-networkd</a></li>
+<li>set up <code>en_US.UTF-8</code> locale</li>
+<li>install <code>yay</code>, configure <code>pacman</code></li>
+<li>install <code>raspberrypi-userland-aarch64-git</code> (AUR)</li>
+</ul>
+</li>
+</ul>
+<p>Some nice commands to run after everything is in place, just because:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> uname</span><span style="color:#bf616a;"> -a
+</span><span style="color:#bf616a;">Linux</span><span> alarm 5.8.0-1-ARCH </span><span style="color:#65737e;">#1 SMP Sun Aug 9 00:03:44 UTC 2020 aarch64 GNU/Linux
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> lscpu
+</span><span style="color:#bf616a;">Architecture:</span><span>                    aarch64
+</span><span style="color:#bf616a;">CPU</span><span> op-mode(s)</span><span style="color:#96b5b4;">:</span><span>                  32-bit, 64-bit
+</span><span style="color:#bf616a;">Byte</span><span> Order:                      Little Endian
+</span><span style="color:#bf616a;">CPU</span><span>(s)</span><span style="color:#96b5b4;">:</span><span>                          4
+</span><span style="color:#bf616a;">On-line</span><span> CPU(s) </span><span style="color:#bf616a;">list:</span><span>             0-3
+</span><span style="color:#bf616a;">Thread</span><span>(s) </span><span style="color:#bf616a;">per</span><span> core:              1
+</span><span style="color:#bf616a;">Core</span><span>(s) </span><span style="color:#bf616a;">per</span><span> socket:              4
+</span><span style="color:#bf616a;">Socket</span><span>(s)</span><span style="color:#96b5b4;">:</span><span>                       1
+</span><span style="color:#bf616a;">Vendor</span><span> ID:                       ARM
+</span><span style="color:#bf616a;">Model:</span><span>                           4
+</span><span style="color:#bf616a;">Model</span><span> name:                      Cortex-A53
+</span><span style="color:#bf616a;">Stepping:</span><span>                        r0p4
+</span><span style="color:#bf616a;">CPU</span><span> max MHz:                     1200.0000
+</span><span style="color:#bf616a;">CPU</span><span> min MHz:                     600.0000
+</span><span style="color:#bf616a;">BogoMIPS:</span><span>                        38.40
+</span><span style="color:#bf616a;">Vulnerability</span><span> Itlb multihit:     Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> L1tf:              Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> Mds:               Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> Meltdown:          Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> Spec store bypass: Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> Spectre v1:        Mitigation; </span><span style="color:#bf616a;">__user</span><span> pointer sanitization
+</span><span style="color:#bf616a;">Vulnerability</span><span> Spectre v2:        Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> Srbds:             Not affected
+</span><span style="color:#bf616a;">Vulnerability</span><span> Tsx async abort:   Not affected
+</span><span style="color:#bf616a;">Flags:</span><span>                           fp asimd evtstrm crc32 cpuid
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> free</span><span style="color:#bf616a;"> -h
+</span><span>          </span><span style="color:#bf616a;">total</span><span>      used      free      shared  buff/cache   available
+</span><span style="color:#bf616a;">Mem:</span><span>      899Mi      76Mi      41Mi       0.0Ki  781Mi        808Mi
+</span></code></pre>
+<p>And this system needs almost 19 seconds to boot:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> systemd-analyze
+</span><span style="color:#bf616a;">Startup</span><span> finished in 7.670s (kernel) </span><span style="color:#bf616a;">+</span><span> 10.919s (userspace) = </span><span style="color:#bf616a;">18.590s
+</span><span style="color:#bf616a;">graphical.target</span><span> reached after 10.904s in userspace
+</span></code></pre>
+<p>It takes roughly 3 times longer than my 5-year old x86_64 laptop.</p>
+<h3 id="pihole">PiHole</h3>
+<p>Following the instructions in
+<a href="https://wiki.archlinux.org/index.php/Pi-hole">ArchWiki</a>:</p>
+<ol>
+<li>install pihole-server: <code>yay -S pi-hole-server</code></li>
+<li>install php things: <code>pacman -S php-sqlite</code> and enable the necessary
+extensions</li>
+<li>install <code>lighttpd</code> and <code>php-cgi</code> for the web interface</li>
+<li>enable/start <code>pihole-FTL.service</code> and <code>lighttpd.service</code></li>
+<li>configure <code>/etc/pihole/pihole-FTL.conf</code>:
+<ul>
+<li>change <code>DBINTERVAL</code> to <code>60.0</code> to minimize writes to the SD card</li>
+</ul>
+</li>
+<li>set up DoH for DNS over HTTPS:
+<ul>
+<li><code>$ yay -S cloudflared</code></li>
+<li>add some IPv6 entries in <code>/etc/cloudflared/cloudflared.yml</code></li>
+<li>start/enable <code>cloudflared.service</code></li>
+<li>in the <a href="http://pihole/admin/settings.php?tab=dns">web settings page</a>:
+<ul>
+<li>disable all DNS servers and use <code>127.0.0.1#5300</code> only</li>
+<li>enable DNSSEC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="router">Router</h3>
+<p>I have a very low quality modem/router from my ISP. It randomly resets the
+admin password, hopefully it will retain my custom DNS/DHCP configuration.
+The only configuration needed is to set the Raspberry Pi as the only DNS
+server in the DHCP settings. This was the most “complicated”/boring part of
+the setup, mainly because I had to reset the modem to log in.</p>
+<h2 id="my-thoughts-so-far">My thoughts so far</h2>
+<p>My SD card is slow as hell. It takes forever to update something and/or move
+data in it. Maybe I got used to my laptop with a good SSD and everything
+slower became a headache? Or maybe the combination of a medium quality, old
+SD card plus a Raspberry Pi is indeed slow.</p>
+<p>The fan I added to the rasp is very noisy. That is annoying and I will
+probably turn it off. I should monitor the temperature under high load to see
+if it needs active cooling. It shouldn’t need, but I have a 3D printed case, so
+air circulation is limited.</p>
+<p>AArch64 support is still crappy. This is the most disappointing thing I
+noticed. Years of product in the market and yet no decent support. I expected
+more from the Raspberry Foundation.</p>
+<p>PiHole is more efficient than I previously thought. Usually I have two or three
+devices connected to my network, and the Pi shows the total RAM usage is about
+150 MiB (~15% of the total).
+The load average is below 0.1.
+I’m impressed.</p>
+<p>It took me about two days to set this thing up. Well, not exactly whole days: a
+more precise description would be around 2.5 evenings, with some breaks. Was it
+worth it? Using a Raspberry for something is better than using a Raspberry to
+collect dust in a shelf. So, probably worth it, although I wouldn’t recommend
+buying a rasp for this.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/careful-with-docker-logs/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Be careful with your Docker logs</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/linuxupskill/">
+                            <span class="button__text">Linux Upskill Challenge</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

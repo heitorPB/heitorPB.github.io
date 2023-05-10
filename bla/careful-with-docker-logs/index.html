@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Be careful with your Docker logs | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/careful-with-docker-logs/">Be careful with your Docker logs</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Sep 13, 2020
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/docker/">#Docker</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/optimization/">#optimization</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>This week, one of our testing servers got clogged and stopped responding: the
+disk was full and it crashed some services. This machine is used only for
+running Docker containers, so it must be a Docker problem, right?</p>
+<p>Kind of.</p>
+<h3 id="the-problem">The Problem</h3>
+<p>This test server has 100 GiB of disk, and it was full. As it is a “Docker only”
+server, the first obvious thing to check is how much space Docker used:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> docker system df
+</span><span style="color:#bf616a;">TYPE</span><span>             TOTAL    ACTIVE    SIZE       RECLAIMABLE
+</span><span style="color:#bf616a;">Images</span><span>           21       18        16GB       10.07GB (60%)
+</span><span style="color:#bf616a;">Containers</span><span>       18       17        812.8MB    15.24MB (1%)
+</span><span style="color:#bf616a;">Local</span><span> Volumes    69       14        6.428GB    395.9MB (6%)
+</span><span style="color:#bf616a;">Build</span><span> Cache      0        0         0B         0B
+</span></code></pre>
+<p>So, Docker is using about 23 GB. And the volumes are not to blame, they are
+using only 6.4 GB. Pruning it would free some space and in fact saved the
+machine. But a few hours later, the disk was full again. Something flooded the
+disk, and it was not in any Docker container or volume.</p>
+<p>I checked the machine logs, and they were small:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/log
+</span><span style="color:#bf616a;">1.6G</span><span>    /var/log
+</span></code></pre>
+<p>I dug deeper and saw something weird:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/
+</span><span style="color:#bf616a;">99G</span><span>     var/
+</span></code></pre>
+<p>And then, the guilty service appeared:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/lib/
+</span><span style="color:#bf616a;">97.6G</span><span>   /var/lib
+</span><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/lib/docker
+</span><span style="color:#bf616a;">96.7G</span><span>   /var/lib/docer
+</span></code></pre>
+<p>So it was Docker the whole time. But, what else Docker has, besides images,
+layers, containers, volumes and build cache, as reported by <code>docker system df</code>?</p>
+<p>Docker has logs.</p>
+<p>By default, Docker saves the output of each container in a <code>json</code> file in
+<code>/var/lib/docker/containers/&lt;container_ID&gt;/&lt;container_ID&gt;-json.log</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h</span><span> /var/lib/docker/containers/*/*.log
+</span><span>
+</span><span style="color:#bf616a;">315M</span><span>    /var/lib/docker/containers/016.../016...-json.log
+</span><span style="color:#bf616a;">164K</span><span>    /var/lib/docker/containers/0d1.../0d1...-json.log
+</span><span style="color:#bf616a;">51G</span><span>     /var/lib/docker/containers/0f7.../0f7...-json.log
+</span><span style="color:#bf616a;">6G</span><span>      /var/lib/docker/containers/0f8.../0f8...-json.log
+</span><span style="color:#bf616a;">...
+</span></code></pre>
+<p>Yeah, there were huge log files…</p>
+<p>By
+<a href="https://docs.docker.com/config/containers/logging/json-file/#options">default</a>:</p>
+<ul>
+<li>Docker saves the output of each container in <code>json</code> format. That is the
+<code>json-file</code> log driver.</li>
+<li>Each <code>*-json.log</code> can grow without any limits.</li>
+<li>There can be any number of log files.</li>
+</ul>
+<h3 id="possible-solutions">Possible solutions</h3>
+<p>There are some ways to solve this problem:</p>
+<ul>
+<li>periodically remove/trim the logs, with a cron job or <code>logrotate</code>.</li>
+<li>use an external log aggregator like <a href="https://www.fluentd.org/">fluentd</a>.</li>
+<li>configure Docker to not flood the disk.</li>
+</ul>
+<p>First option is nice and generic. Second option is the most robust, but
+involves setting up another server and configure things. For this server, the
+third option is good enough.</p>
+<p>Let’s tell Docker to keep log files with a maximum of 1GB and to
+have a maximum of 3 log files per service. To do so, we need to configure the
+docker daemon. It is as simple as adding these lines to
+<code>/etc/docker/daemon.json</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span>{
+</span><span>        &quot;</span><span style="color:#a3be8c;">log-driver</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">json-file</span><span>&quot;,
+</span><span>        &quot;</span><span style="color:#a3be8c;">log-opts</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>{&quot;</span><span style="color:#a3be8c;">max-size</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">1g</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">max-file</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">3</span><span>&quot;}
+</span><span>}
+</span></code></pre>
+<p>Now it is time to restart docker. This automagically trimmed all the logs
+and the machine was usable again. Services were running smoothly and well.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Always rotate your logs.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/git-multiple-remotes/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Multiple urls for a git remote</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/rasp3-pihole/">
+                            <span class="button__text">Setting up Raspberry Pi 3 with PiHole</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

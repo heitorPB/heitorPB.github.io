@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Always close your Matplotlib figures | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/close-matplotlib-figures/">Always close your Matplotlib figures</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Mar 18, 2020
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/analysis/">#analysis</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/matplotlib/">#matplotlib</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/python/">#python</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>I’m working on a simulation that generates gigabytes of raw data. But I am a
+Physicist: I <em>need plots</em>, not tables! So I made a set of scripts in Python
+that parses all this data and generates about 50 plots.</p>
+<p>It’s not a problem to generate lots of pdf’s with the plots. It’s not a problem
+to write the Python code to parse the data and generate the plots.
+<a href="https://pandas.pydata.org/">Pandas</a> makes our life easy to read data and
+<a href="https://matplotlib.org/">Matplotlib</a> has a nice interface to turn data in
+figures.</p>
+<p>I have a code with a structure like this:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>For every parameter alpha:
+</span><span>   Read the relevant Data
+</span><span>   Process the data
+</span><span>   Make and save the plot
+</span></code></pre>
+<p>In Python words:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>matplotlib.pyplot </span><span style="color:#b48ead;">as </span><span>plt
+</span><span style="color:#b48ead;">import </span><span>numpy </span><span style="color:#b48ead;">as </span><span>np
+</span><span>
+</span><span>
+</span><span style="color:#65737e;"># Fixing random state for reproducibility
+</span><span>np.random.</span><span style="color:#bf616a;">seed</span><span>(</span><span style="color:#d08770;">19680801</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">read_data</span><span>():
+</span><span>    </span><span style="color:#65737e;">&quot;&quot;&quot;Generate fake data&quot;&quot;&quot;
+</span><span>    x = np.random.</span><span style="color:#bf616a;">random</span><span>(</span><span style="color:#d08770;">1000</span><span>)
+</span><span>    y = np.random.</span><span style="color:#bf616a;">random</span><span>(</span><span style="color:#d08770;">1000</span><span>)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return </span><span>x, y
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">process_data</span><span>(</span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">y</span><span>):
+</span><span>    </span><span style="color:#65737e;"># pretend to do something with it
+</span><span>    </span><span style="color:#b48ead;">return </span><span>x, y
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">plot_data</span><span>(</span><span style="color:#bf616a;">x</span><span>: list, </span><span style="color:#bf616a;">y</span><span>: list, </span><span style="color:#bf616a;">fname</span><span>: str):
+</span><span>    fig = plt.</span><span style="color:#bf616a;">figure</span><span>()
+</span><span>    ax = fig.</span><span style="color:#bf616a;">add_subplot</span><span>(</span><span style="color:#d08770;">111</span><span>)
+</span><span>
+</span><span>    ax.</span><span style="color:#bf616a;">plot</span><span>(x, y, &#39;</span><span style="color:#a3be8c;">o</span><span>&#39;)
+</span><span>    </span><span style="color:#65737e;">#plt.show()
+</span><span>    fig.</span><span style="color:#bf616a;">savefig</span><span>(</span><span style="color:#b48ead;">f</span><span>&#39;</span><span style="color:#a3be8c;">plots/</span><span>{fname}</span><span style="color:#a3be8c;">.png</span><span>&#39;)
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">for </span><span>alpha </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">50</span><span>):
+</span><span>    x, y = </span><span style="color:#bf616a;">read_data</span><span>()
+</span><span>    x, y = </span><span style="color:#bf616a;">process_data</span><span>(x, y)
+</span><span>    </span><span style="color:#bf616a;">plot_data</span><span>(x, y, </span><span style="color:#bf616a;">str</span><span>(alpha))
+</span></code></pre>
+<p>If I run this code, It will create 50 png’s in the folder <code>plots/</code>, similar to
+this one:</p>
+<p><img src="https://heitorpb.github.io/bla/close-matplotlib-figures/plots/0.png" alt="random data in a plot" /></p>
+<p>So, what’s the problem here?</p>
+<p>Try running the code!</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>$ python plot.py
+</span><span>plot.py:</span><span style="color:#d08770;">22</span><span>: RuntimeWarning: More than </span><span style="color:#d08770;">20 </span><span>figures have been opened. Figures created through the pyplot </span><span style="color:#bf616a;">interface </span><span>(`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+</span><span>  fig = plt.</span><span style="color:#bf616a;">figure</span><span>()
+</span></code></pre>
+<p>This warning appears several times. And it is a <em>warning</em>, not an error: the
+code will <em>probably</em> work fine.
+It says <code>and may consume too much memory</code>. But how much is too much?
+Let’s use the <a href="https://www.gnu.org/software/time/">GNU time</a> command to
+discover the amount of memory used:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> /usr/bin/time</span><span style="color:#bf616a;"> -f </span><span>&quot;</span><span style="color:#a3be8c;">%M</span><span>&quot; python bad-example.py
+</span><span style="color:#bf616a;">bad-example.py:22:</span><span> RuntimeWarning: More than 20 figures have been opened.
+</span><span style="color:#bf616a;">Figures</span><span> created through the pyplot interface (`</span><span style="color:#bf616a;">matplotlib.pyplot.figure</span><span>`) </span><span style="color:#bf616a;">are
+</span><span style="color:#bf616a;">retained</span><span> until explicitly closed and may consume too much memory. (To control
+</span><span style="color:#bf616a;">this</span><span> warning, see the rcParam `</span><span style="color:#bf616a;">figure.max_open_warning</span><span>`)</span><span style="color:#96b5b4;">.
+</span><span>  </span><span style="color:#bf616a;">fig</span><span> = plt.figure()
+</span><span> </span><span style="color:#bf616a;">...</span><span> ommiting several repeated messages here
+</span><span style="color:#bf616a;">bad-example.py:22:</span><span> RuntimeWarning: More than 20 figures have been opened.
+</span><span style="color:#bf616a;">Figures</span><span> created through the pyplot interface (`</span><span style="color:#bf616a;">matplotlib.pyplot.figure</span><span>`) </span><span style="color:#bf616a;">are
+</span><span style="color:#bf616a;">retained</span><span> until explicitly closed and may consume too much memory. (To control
+</span><span style="color:#bf616a;">this</span><span> warning, see the rcParam `</span><span style="color:#bf616a;">figure.max_open_warning</span><span>`)</span><span style="color:#96b5b4;">.
+</span><span>  </span><span style="color:#bf616a;">fig</span><span> = plt.figure()
+</span><span>  </span><span style="color:#bf616a;">182032
+</span></code></pre>
+<p>The last number is the peak memory usage, in kbytes. In this case: <code>182032 kbytes</code>.</p>
+<p>Now, let’s fix the warning. The problem is that we have too many figures
+opened: we need to close them. The simplest way is to call <code>plt.close(fig)</code>
+when the figure is not needed anymore:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>matplotlib.pyplot </span><span style="color:#b48ead;">as </span><span>plt
+</span><span style="color:#b48ead;">import </span><span>numpy </span><span style="color:#b48ead;">as </span><span>np
+</span><span>
+</span><span>
+</span><span style="color:#65737e;"># Fixing random state for reproducibility
+</span><span>np.random.</span><span style="color:#bf616a;">seed</span><span>(</span><span style="color:#d08770;">19680801</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">read_data</span><span>():
+</span><span>    </span><span style="color:#65737e;">&quot;&quot;&quot;Generate fake data&quot;&quot;&quot;
+</span><span>    x = np.random.</span><span style="color:#bf616a;">random</span><span>(</span><span style="color:#d08770;">1000</span><span>)
+</span><span>    y = np.random.</span><span style="color:#bf616a;">random</span><span>(</span><span style="color:#d08770;">1000</span><span>)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">return </span><span>x, y
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">process_data</span><span>(</span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">y</span><span>):
+</span><span>    </span><span style="color:#65737e;"># pretend to do something with it
+</span><span>    </span><span style="color:#b48ead;">return </span><span>x, y
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">plot_data</span><span>(</span><span style="color:#bf616a;">x</span><span>: list, </span><span style="color:#bf616a;">y</span><span>: list, </span><span style="color:#bf616a;">fname</span><span>: str):
+</span><span>    fig = plt.</span><span style="color:#bf616a;">figure</span><span>()
+</span><span>    ax = fig.</span><span style="color:#bf616a;">add_subplot</span><span>(</span><span style="color:#d08770;">111</span><span>)
+</span><span>
+</span><span>    ax.</span><span style="color:#bf616a;">plot</span><span>(x, y, &#39;</span><span style="color:#a3be8c;">o</span><span>&#39;)
+</span><span>    </span><span style="color:#65737e;">#plt.show()
+</span><span>    fig.</span><span style="color:#bf616a;">savefig</span><span>(</span><span style="color:#b48ead;">f</span><span>&#39;</span><span style="color:#a3be8c;">plots/</span><span>{fname}</span><span style="color:#a3be8c;">.png</span><span>&#39;)
+</span><span>    plt.</span><span style="color:#bf616a;">close</span><span>(fig)
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">for </span><span>alpha </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">50</span><span>):
+</span><span>    x, y = </span><span style="color:#bf616a;">read_data</span><span>()
+</span><span>    x, y = </span><span style="color:#bf616a;">process_data</span><span>(x, y)
+</span><span>    </span><span style="color:#bf616a;">plot_data</span><span>(x, y, </span><span style="color:#bf616a;">str</span><span>(alpha))
+</span></code></pre>
+<p>Now, let’s see how much memory it uses:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> /usr/bin/time</span><span style="color:#bf616a;"> -f </span><span>&quot;</span><span style="color:#a3be8c;">%M</span><span>&quot; python good-example.py
+</span><span style="color:#bf616a;">106652
+</span></code></pre>
+<p>😎</p>
+<p>About <code>75000 kbytes</code> saved!</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/python-format/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Python.format</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/bash-random-numbers/">
+                            <span class="button__text">Random numbers from &#x2F;dev&#x2F;urandom in Bash</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

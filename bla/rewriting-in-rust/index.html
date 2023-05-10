@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My website v5: rewrite in Rust | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/rewriting-in-rust/">My website v5: rewrite in Rust</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Apr 25, 2023
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/website/">#website</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/zola/">#zola</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>So I decided to rewrite my website. Again. This time because the previous
+version kind of died: I’m struggling to run Jekyll to build a new version and
+some of the assets I used via a CDN moved to a new path. So I decided to
+rewrite it. <del>In Rust of course, to follow the trend</del>.</p>
+<h2 id="a-bit-of-history">A bit of history</h2>
+<p>I’ve been building websites for me since my childhood, a looooong time ago.
+But, unfortunately, I did not keep the original files, nor even screenshots. I
+also did not keep a log of them either. I’m not sure when I had my first
+website online :/</p>
+<p>I made my first website in Adobe Flash. Back in the 2000s that was what the
+cool kids used. Of course there was an HTML file, but only to display the SWF.
+I remember some rotating spheres in the right upper corner, simulating a 3D
+effect. I also made some [bad] platform games to download. This was hosted for
+free on some host/provider I don’t recall and I also had a childish <code>.go.there</code>
+domain (yeah, I was a kid). And no HTTPS, this was ~two decades ago. I don’t
+have an exact time in mind, but it was around \( 2006 \pm 1 \).</p>
+<p>The second version was a combination of Flash <em>and</em> custom HTML. I remember
+using Macromedia (!) Dreamweaver to make <em>multiple pages</em>. What a progress!
+This time I used a different host, also for free. I have an e-mail from April
+11th 2008 when I signed up for FreeWebs.com to host this version. It went live
+on that date and lasted until the next iteration.</p>
+<p>The third version was a Wordpress on Blogger/Blogspot. Also for free. Way less
+cool stuff, like the animated rotating spheres from the first version. But this
+time it was not static! It had an admin page, a content editor and people could
+comment on my glorious posts. All of that made possible by Wordpress.</p>
+<p>The <a href="https://web.archive.org/web/20220720184059/https://heitorpb.github.io/">fourth
+version</a>
+went live on September 8th, 2018. I decided to fall back to a static website,
+hosted for free on GitHub Pages. I built this version using
+<a href="https://jekyllrb.com">Jekyll</a>. All the HTML and CSS were hand made by me :)
+This is the version I am retiring now and looked like this:</p>
+<p><img src="https://heitorpb.github.io/bla/rewriting-in-rust/v4-home.png" alt="" title="Home page of my previous personal website." /></p>
+<h2 id="the-new-version">The new version</h2>
+<p>For my newer website, I wanted something that could last longer. I don’t want
+to go through all the hassle of searching for a new tool or platform, migrating
+all the pages, making sure images/links/formatting are correct, fixing links to
+external resources, writing/modifying website themes to suit my taste, etc, all
+over again.</p>
+<p>I also want my pages to load fast, have as minimum of JavaScript as possible,
+display correctly on most browsers and devices, be easy to add new content,
+and, of course, look good.</p>
+<p>With these requirements in mind, I decided to go with
+<a href="https://getzola.org">Zola</a>: an open-source static website generator. Zola is
+simple enough to set up, doesn’t suffer from feature creep, has an active forum
+to ask for help, with an active and welcoming community, has many themes
+published, is actively maintained, is super fast and is written in Rust 🦀</p>
+<p>Zola alone does not solve all my problems. I learned from my mistakes and past
+experiences, so:</p>
+<ul>
+<li>I wrote how to get Zola, the version I am using and the commands to
+update/add/publish new content. Of course, most steps are in a script that I
+run. I am too lazy to type stuff all the time.</li>
+<li>As with the previous version, I generate my own HTMLs and keep them in a
+repository that I control. I could use a CI/CD system here, for the sake of
+“automation”. But I prefer to run <code>zola build</code> myself, double check the
+resulting HTML files and only then <code>git add &amp;&amp; git push</code>. This is not hard
+and adds some peace of mind over mistakes.</li>
+<li>Choose a theme that contains no external resources, pretty much all styling
+is self contained. And no JavaScript!
+<ul>
+<li>I chose <a href="https://github.com/pawroman/zola-theme-terminimal">Terminimal</a>
+theme. Not bare bones though, I made a few modifications here and there
+to suit my taste.</li>
+</ul>
+</li>
+<li>I like equations and I am not aware of a way to use \( \LaTeX \) without
+JavaScript. So I added <a href="https://katex.org">KaTeX</a> to render my precious
+maths. Having <em>some</em> JavaScript because it is useful, not because it is a
+trending buzzword in some online social network, doesn’t hurt (much).</li>
+</ul>
+<p>All of that is good. But Zola, like any tool, is not perfect. I had a few
+challenges with the migration from Jekyll to Zola:</p>
+<ul>
+<li>Zola does not support abbreviations via Markdown/CommonMark. I’m talking
+about the <code>abbr</code> HTML tag that looks like
+<abbr title="Hello, this is an abbreviation in HTML world">this</abbr> (hover
+your mouse there). I like this functionality, but I had to replace all the
+markup I had with HTML tags in my files. Annoying, but doable.</li>
+<li>Footnotes work, but are a bit rudimentary: I need to manually create the list
+with footnotes and the anchor links do not work. Not sure if this is an issue
+with the theme I chose or with Zola itself.</li>
+<li>Zola’s internal sorting algorithm is case sensitive. This can be annoying in
+some cases. One of them is to sort my tags: <code>C++</code> comes before <code>analysis</code> for
+example, when it should be the opposite.</li>
+<li>No lazy loading of images. Again, not a critical issue, but lazy loading
+images can benefit loading pages on limited internet connections. There might
+be downsides from lazy loading, but I am not aware of them. There’s an open
+feature request at the time of writing, so it is a question of time until
+this arrives :)</li>
+</ul>
+<p>Apart from these hiccups, “converting” my website from Jekyll to Zola was
+straightforward. After all, it’s all Markdown files.</p>
+<h2 id="the-future">The future</h2>
+<p>What’s next? I have a new website, what do I do with it?</p>
+<p>Something ancient on my TODO list is to get a nice domain name. I’m not
+creative enough to think of one and my interactions with chatGPT were
+“inconclusive”. Having yet another new website can be an excuse to finally get
+my own domain?</p>
+<p>I want to write more and publish what I write. I have been collecting notes for
+a while and could turn some of those into interesting articles. I invested many
+evenings into this rewrite, I can’t let this new website collect dust.</p>
+<p>I also have many drafts of posts/articles I started and never finished. And I
+have a <em>“list of ideas to blag about”</em> that only grows. Some of those items
+<em>should</em> materialize.</p>
+<p>Maybe I will write something soon™️. Or make a new website. What will happen
+first?</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/i-finished-my-masters/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">I Just Finished my Master&#x27;s in Physics</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Juju is Fucking Amazing | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/juju-is-fucking-amazing/">Juju is Fucking Amazing</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Feb 16, 2021
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/c/">#C++</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/juju/">#Juju</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/analysis/">#analysis</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/easter-egg/">#easter-egg</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/golang/">#golang</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/random/">#random</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>I’m working with <a href="https://juju.is">juju</a> to manage High Performance Computing clusters. It is an interesting software, but with horrible documentation. And of course, easter eggs are not documented.</p>
+<p>After all, that’s why <em>easter eggs</em> have this name: they are secret features.</p>
+<p>Last Friday, just a few minutes before ending the week, my boss told me “<em>Do
+you know what <code>juju is</code>? Find out how this command works.</em>” At first, I didn’t
+get the question. I’ve been working with <code>juju</code> for a few days, I have an idea
+of what <em>it is</em>. Instead, I was supposed to type in the terminal:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> juju is
+</span><span style="color:#bf616a;">fucking</span><span> amazing
+</span></code></pre>
+<p>So, <code>juju</code> has a very high self-esteem. Now that I know <em>what <code>juju is</code></em>, I
+need to find out <em>how</em> this command works. Let’s ask for help:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> juju is</span><span style="color:#bf616a;"> --help
+</span><span style="color:#bf616a;">ERROR</span><span> juju: &quot;</span><span style="color:#a3be8c;">is</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
+</span><span>
+</span><span style="color:#bf616a;">Did</span><span> you mean:
+</span><span>        </span><span style="color:#bf616a;">ssh
+</span><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">?
+</span><span style="color:#bf616a;">1
+</span></code></pre>
+<p>Hmmm, looks like this command is quite hidden. Time to get the source and look
+around:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git clone git@github.com:juju/juju.git
+</span><span style="color:#bf616a;">$</span><span> cd juju
+</span><span style="color:#bf616a;">$</span><span> grep</span><span style="color:#bf616a;"> -iRn --exclude-dir</span><span>=.git fuck
+</span></code></pre>
+<p>Hmmm. The string <code>fuck</code> is not in the repository. So, it is not just “quite
+hidden”, they obscured it. I liked the challenge! Where to start searching, and
+what to search for? They probably wrote that string in binary, or in something
+weirder. There are too many files in this source code to go through everything,
+we need another strategy.</p>
+<p>Let’s start looking for that <code>is not a juju command</code> error-string:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> grep</span><span style="color:#bf616a;"> -iRn --exclude-dir</span><span>=.git &quot;</span><span style="color:#a3be8c;">is not a juju command</span><span>&quot;
+</span><span style="color:#bf616a;">cmd/juju/commands/repl_test.go:207:ERROR</span><span> juju: &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot; is not a juju command. Type &quot;</span><span style="color:#a3be8c;">help</span><span>&quot; to see a list of commands.
+</span><span style="color:#bf616a;">cmd/juju/commands/main.go:236:const</span><span> notFoundCommandMessage = `</span><span style="color:#bf616a;">juju: </span><span>%</span><span style="color:#bf616a;">q</span><span> is not a juju command. %</span><span style="color:#bf616a;">s</span><span>.
+</span><span style="color:#bf616a;">cmd/juju/commands/plugin_test.go:163:</span><span>   expectedHelp := `ERROR juju: &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
+</span><span style="color:#bf616a;">cmd/juju/commands/plugin_test.go:173:</span><span>   expectedHelp := `</span><span style="color:#bf616a;">ERROR</span><span> juju: &quot;</span><span style="color:#a3be8c;">/foo</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
+</span><span style="color:#bf616a;">cmd/juju/commands/plugin_test.go:183:</span><span>   expectedHelp := `ERROR juju: &quot;</span><span style="color:#a3be8c;">.foo</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
+</span><span style="color:#bf616a;">grep:</span><span> testcharms/charm-repo/series/format2/hooks/symlink: No such file or directory
+</span></code></pre>
+<p>The file <code>cmd/juju/commands/main.go</code> appears to be an interesting starting
+point, after all it is the file that parses the command line arguments! Just in
+the beginning, there’s a very suspicious line (78):</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#c0c5ce;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#b48ead;">var </span><span style="color:#bf616a;">x </span><span>= []</span><span style="color:#b48ead;">byte</span><span>(&quot;</span><span style="color:#96b5b4;">\x96\x8c\x8a\x91\x93\x9a\x9e\x8c\x97\x99\x8a\x9c\x94\x96\x91\x98\xdf\x9e\x92\x9e\x85\x96\x91\x98\xf5</span><span>&quot;)
+</span></code></pre>
+<p>What the hell? Looking for this variable in the file shows something
+interesting on lines 126-138:</p>
+<pre data-lang="go" style="background-color:#2b303b;color:#c0c5ce;" class="language-go "><code class="language-go" data-lang="go"><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">i </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">x </span><span>{
+</span><span>		</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#bf616a;">i</span><span>] ^= </span><span style="color:#d08770;">255
+</span><span>	}
+</span><span>	</span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">len</span><span>(</span><span style="color:#bf616a;">args</span><span>) == </span><span style="color:#d08770;">2 </span><span>{
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">args</span><span>[</span><span style="color:#d08770;">1</span><span>] == </span><span style="color:#bf616a;">string</span><span>(</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">0</span><span>:</span><span style="color:#d08770;">2</span><span>]) {
+</span><span>			</span><span style="color:#bf616a;">os</span><span>.</span><span style="color:#bf616a;">Stdout</span><span>.</span><span style="color:#bf616a;">Write</span><span>(</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">9</span><span>:])
+</span><span>			</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0
+</span><span>		}
+</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">args</span><span>[</span><span style="color:#d08770;">1</span><span>] == </span><span style="color:#bf616a;">string</span><span>(</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">2</span><span>:</span><span style="color:#d08770;">9</span><span>]) {
+</span><span>			</span><span style="color:#bf616a;">os</span><span>.</span><span style="color:#bf616a;">Stdout</span><span>.</span><span style="color:#bf616a;">Write</span><span>(</span><span style="color:#bf616a;">model</span><span>.</span><span style="color:#bf616a;">ExtractCert</span><span>())
+</span><span>			</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0
+</span><span>		}
+</span><span>	}
+</span></code></pre>
+<p>This variable is XORed with <code>255</code> and the CLI arguments are compared with parts
+of it, casted to string. That’s too suspicious. I made a quick C++ code to find
+out what that weird byte sequence XORed with <code>255</code> is:</p>
+<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">vector</span><span>&gt;
+</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">iostream</span><span>&gt;
+</span><span>
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
+</span><span>{
+</span><span>	</span><span style="color:#b48ead;">const</span><span> std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">x </span><span>{</span><span style="color:#d08770;">0x96</span><span>, </span><span style="color:#d08770;">0x8c</span><span>, </span><span style="color:#d08770;">0x8a</span><span>, </span><span style="color:#d08770;">0x91</span><span>, </span><span style="color:#d08770;">0x93</span><span>, </span><span style="color:#d08770;">0x9a</span><span>, </span><span style="color:#d08770;">0x9e</span><span>,
+</span><span>	                          </span><span style="color:#d08770;">0x8c</span><span>, </span><span style="color:#d08770;">0x97</span><span>, </span><span style="color:#d08770;">0x99</span><span>, </span><span style="color:#d08770;">0x8a</span><span>, </span><span style="color:#d08770;">0x9c</span><span>, </span><span style="color:#d08770;">0x94</span><span>, </span><span style="color:#d08770;">0x96</span><span>,
+</span><span>	                          </span><span style="color:#d08770;">0x91</span><span>, </span><span style="color:#d08770;">0x98</span><span>, </span><span style="color:#d08770;">0xdf</span><span>, </span><span style="color:#d08770;">0x9e</span><span>, </span><span style="color:#d08770;">0x92</span><span>, </span><span style="color:#d08770;">0x9e</span><span>, </span><span style="color:#d08770;">0x85</span><span>,
+</span><span>	                          </span><span style="color:#d08770;">0x96</span><span>, </span><span style="color:#d08770;">0x91</span><span>, </span><span style="color:#d08770;">0x98</span><span>, </span><span style="color:#d08770;">0xf5</span><span>};
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const auto</span><span> i: x)
+</span><span>		std::cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+</span><span>	std::cout &lt;&lt; &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const auto</span><span> i: x)
+</span><span>		std::cout &lt;&lt; static_cast&lt;</span><span style="color:#b48ead;">char</span><span>&gt;(i^</span><span style="color:#d08770;">255</span><span>);
+</span><span>	std::cout &lt;&lt; &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;;
+</span><span>
+</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
+</span><span>}
+</span></code></pre>
+<p>It starts with some standard libraries, that weird byte sequence written the
+C++ way, prints the sequence, prints the sequence XORed with <code>255</code> as a char,
+and returns:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> g++ weird.cpp
+</span><span style="color:#bf616a;">$</span><span> ./a.out
+</span><span style="color:#bf616a;">150</span><span> 140 138 145 147 154 158 140 151 153 138 156 148 150 145 152 223 158 146 158 133 150 145 152 245
+</span><span style="color:#bf616a;">isunleashfucking</span><span> amazing
+</span></code></pre>
+<p>HA, that’s it! That weird byte sequence is <code>isunleashfucking amazing</code>. Lines
+130-133 of the <code>main.go</code> file compare the CLI argument with the first 2 chars
+of this string (<code>is</code>) and, if it matches, it prints the chars starting from
+index 9 until the end (<code>fucking amazing</code>). Nice!</p>
+<p>By XORing with <code>255</code> it is not possible to <code>grep</code> the source for that string,
+so it keeps it as a secret.</p>
+<p>And there’s more. Lines 134-137 compare the input to <code>x[2:9]</code>: <code>unleash</code>. So
+there’s another easter egg!</p>
+<center>
+<p><img src="https://heitorpb.github.io/bla/juju-is-fucking-amazing/cthulhu.png" alt="“juju unleash” command prints out Cthulhu ASCII art" title="Juju unleashes Cthulhu" /></p>
+</center>
+<p>And <em>this</em> was amazing! You can manage HPC clusters and unleash Cthulhu at the
+same time!</p>
+<p>I like to try to understand <em>how</em> stuff works. We always learn something new
+this way. This <em>something</em> can be anything: a cool programming trick, a new
+algorithm, a better way to structure our code, and even an easter egg! The sky
+is the limit.</p>
+<p>Btw, Cthulhu is in the file <code>cmd/juju/model/data.go</code>, XORed with <code>255</code> for
+safety.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/std-adjacent-find/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">std::adjacent_find</span>
+                        </a>
+                    </span>
+                
+                
+                    <span class="button next">
+                        <a href="https://heitorpb.github.io/bla/i-finished-my-masters/">
+                            <span class="button__text">I Just Finished my Master&#x27;s in Physics</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
