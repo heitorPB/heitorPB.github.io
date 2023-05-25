@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Multiple urls for a git remote | Heitor&#x27;s log</title>
+    <title>ip route add blackhole | Heitor&#x27;s log</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -79,11 +79,11 @@
         
     <div class="post">
         
-    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/git-multiple-remotes/">Multiple urls for a git remote</a></h1>
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/ip-route-add-blackhole/">ip route add blackhole</a></h1>
     <div class="post-meta-inline">
         
     <span class="post-date">
-            Aug 11, 2020
+            May 25, 2023
         </span>
 
     </div>
@@ -91,35 +91,45 @@
     
         <span class="post-tags-inline">
                 :: tags:&nbsp;
-                <a class="post-tag" href="https://heitorpb.github.io/tags/git/">#git</a></span>
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/networking/">#networking</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
     
 
         
         <div class="post-content">
-            <p>AKA automagic mirroring of your GitHub into GitLab.</p>
-<p>There is a simple way to set up Git to use multiple push URLs for a single
-remote. This way you can easily mirror any Git repository into any hosting
-provider when <code>git push</code>ing.</p>
-<p>Let’s say your GitHub’s user is <code>user</code> and you want to mirror your <code>repo</code> into
-GitLab. Your local clone is initially:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote</span><span style="color:#bf616a;"> -v
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (fetch)
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (push)
+            <p>Today I found out you can have your own local black hole. And it can eat away
+all your network packets, so be careful with that.</p>
+<p>To create a black hole, we need to add a new entry to the <a href="https://en.wikipedia.org/wiki/Routing_table">routing
+table</a>. On modern Linux
+distributions, this is done with the <code>iproute2</code> package:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo ip route add blackhole 10.0.0.0/24
 </span></code></pre>
-<p>Now we need to configure the <code>origin</code> remote to have two URLs:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote set-url</span><span style="color:#bf616a;"> --add --push</span><span> origin git@github.com:user/repo.git
-</span><span style="color:#bf616a;">$</span><span> git remote set-url</span><span style="color:#bf616a;"> --add --push</span><span> origin git@gitlab.com:user/repo.git
+<p>Now, let me tell you a joke: 3 ICMP packets entered a <del>bar</del> black hole:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ping</span><span style="color:#bf616a;"> -c</span><span> 3 10.0.0.1
+</span><span style="color:#bf616a;">ping:</span><span> connect: Invalid argument
 </span></code></pre>
-<p>And the magical result:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote</span><span style="color:#bf616a;"> -v
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (fetch)
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (push)
-</span><span style="color:#bf616a;">origin</span><span>  git@gitlab.com:user/repo.git (push)
+<p><code>ssh</code> also shows some interesting messages:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ssh 10.0.0.1
+</span><span style="color:#bf616a;">ssh:</span><span> connect to host 10.0.0.1 port 22: Invalid argument
 </span></code></pre>
-<p>This makes every <code>git push</code> send the changes to both GitHub and GitLab,
-creating an automatic backup.</p>
-<p>But note that <code>git pull</code> is still from GitHub. It is not possible to pull
-changes from two different repositories.</p>
+<p>And if we try any address that is far away from the black hole’s event horizon:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ssh 10.0.10.1
+</span><span style="color:#bf616a;">ssh:</span><span> connect to host 10.0.10.1 port 22: Connection timed out
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> ping</span><span style="color:#bf616a;"> -c</span><span> 3 10.0.10.1
+</span><span style="color:#bf616a;">PING</span><span> 10.0.10.1 (10.0.10.1) </span><span style="color:#bf616a;">56</span><span>(84) </span><span style="color:#bf616a;">bytes</span><span> of data.
+</span><span>
+</span><span style="color:#bf616a;">---</span><span> 10.0.10.1 ping statistics ---
+</span><span style="color:#bf616a;">3</span><span> packets transmitted, 0 received, 100% packet loss, time 2043ms
+</span></code></pre>
+<p>According to the <code>ip-route(8)</code> manual, black hole routes are unreachable and
+the requesters get an <code>EINVAL</code> (error, invalid) error. There are other two
+types of routes that block connection: <code>unreachable</code> and <code>prohibit</code>. But those
+don’t sound as cool as black hole 😎</p>
+<p>Black holes are useful to deny connections to some IP addresses, similar to
+what firewalls do.</p>
 
         </div>
 
@@ -131,19 +141,12 @@ changes from two different repositories.</p>
             </div>
             <div class="pagination__buttons">
                     <span class="button previous">
-                        <a href="https://heitorpb.github.io/bla/caching-python/">
+                        <a href="https://heitorpb.github.io/bla/rewriting-in-rust/">
                             <span class="button__icon">←</span>&nbsp;
-                            <span class="button__text">Caching computation in Python</span>
+                            <span class="button__text">My website v5: rewrite in Rust</span>
                         </a>
                     </span>
                 
-                
-                    <span class="button next">
-                        <a href="https://heitorpb.github.io/bla/careful-with-docker-logs/">
-                            <span class="button__text">Be careful with your Docker logs</span>&nbsp;
-                            <span class="button__icon">→</span>
-                        </a>
-                    </span>
                 </div>
         </div>
     

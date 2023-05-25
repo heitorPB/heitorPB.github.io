@@ -5,8 +5,52 @@
     <link href="https://heitorpb.github.io/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-04-25T00:00:00+00:00</updated>
+    <updated>2023-05-25T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>ip route add blackhole</title>
+        <published>2023-05-25T00:00:00+00:00</published>
+        <updated>2023-05-25T00:00:00+00:00</updated>
+        <author>
+          <name>Heitor de Bittencourt</name>
+        </author>
+        <link rel="alternate" href="https://heitorpb.github.io/bla/ip-route-add-blackhole/" type="text/html"/>
+        <id>https://heitorpb.github.io/bla/ip-route-add-blackhole/</id>
+        
+        <content type="html">&lt;p&gt;Today I found out you can have your own local black hole. And it can eat away
+all your network packets, so be careful with that.&lt;&#x2F;p&gt;
+&lt;p&gt;To create a black hole, we need to add a new entry to the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Routing_table&quot;&gt;routing
+table&lt;&#x2F;a&gt;. On modern Linux
+distributions, this is done with the &lt;code&gt;iproute2&lt;&#x2F;code&gt; package:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; sudo ip route add blackhole 10.0.0.0&#x2F;24
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, let me tell you a joke: 3 ICMP packets entered a &lt;del&gt;bar&lt;&#x2F;del&gt; black hole:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; ping&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -c&lt;&#x2F;span&gt;&lt;span&gt; 3 10.0.0.1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ping:&lt;&#x2F;span&gt;&lt;span&gt; connect: Invalid argument
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;ssh&lt;&#x2F;code&gt; also shows some interesting messages:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; ssh 10.0.0.1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ssh:&lt;&#x2F;span&gt;&lt;span&gt; connect to host 10.0.0.1 port 22: Invalid argument
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And if we try any address that is far away from the black hole’s event horizon:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; ssh 10.0.10.1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ssh:&lt;&#x2F;span&gt;&lt;span&gt; connect to host 10.0.10.1 port 22: Connection timed out
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; ping&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -c&lt;&#x2F;span&gt;&lt;span&gt; 3 10.0.10.1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;PING&lt;&#x2F;span&gt;&lt;span&gt; 10.0.10.1 (10.0.10.1) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;56&lt;&#x2F;span&gt;&lt;span&gt;(84) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bytes&lt;&#x2F;span&gt;&lt;span&gt; of data.
+&lt;&#x2F;span&gt;&lt;span&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;---&lt;&#x2F;span&gt;&lt;span&gt; 10.0.10.1 ping statistics ---
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span&gt; packets transmitted, 0 received, 100% packet loss, time 2043ms
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;According to the &lt;code&gt;ip-route(8)&lt;&#x2F;code&gt; manual, black hole routes are unreachable and
+the requesters get an &lt;code&gt;EINVAL&lt;&#x2F;code&gt; (error, invalid) error. There are other two
+types of routes that block connection: &lt;code&gt;unreachable&lt;&#x2F;code&gt; and &lt;code&gt;prohibit&lt;&#x2F;code&gt;. But those
+don’t sound as cool as black hole 😎&lt;&#x2F;p&gt;
+&lt;p&gt;Black holes are useful to deny connections to some IP addresses, similar to
+what firewalls do.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>My website v5: rewrite in Rust</title>
         <published>2023-04-25T00:00:00+00:00</published>
