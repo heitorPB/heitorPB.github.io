@@ -5,8 +5,73 @@
     <link href="https://heitorpb.github.io/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-05-25T00:00:00+00:00</updated>
+    <updated>2023-07-16T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Copying files to privileged locations with rsync</title>
+        <published>2023-07-16T00:00:00+00:00</published>
+        <updated>2023-07-16T00:00:00+00:00</updated>
+        <author>
+          <name>Heitor de Bittencourt</name>
+        </author>
+        <link rel="alternate" href="https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/" type="text/html"/>
+        <id>https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/</id>
+        
+        <content type="html">&lt;center&gt;
+&lt;a data-flickr-embed=&quot;true&quot; data-header=&quot;false&quot; data-footer=&quot;true&quot; href=&quot;https:&#x2F;&#x2F;www.flickr.com&#x2F;photos&#x2F;heitorpb&#x2F;53043992196&#x2F;&quot; title=&quot;Baudet et Roire&quot;&gt;&lt;img src=&quot;https:&#x2F;&#x2F;live.staticflickr.com&#x2F;65535&#x2F;53043992196_658f295a38_z.jpg&quot; width=&quot;640&quot; height=&quot;426&quot; alt=&quot;Baudet et Roire&quot;&#x2F;&gt;&lt;&#x2F;a&gt;&lt;script async src=&quot;&#x2F;&#x2F;embedr.flickr.com&#x2F;assets&#x2F;client-code.js&quot; charset=&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;
+&lt;&#x2F;center&gt;
+&lt;p&gt;I work with many remote servers and eventually I need to copy a file (or a
+bunch of them) to a directory that requires administrative privileges. My
+normal user does not have permissions for that, but I can get it via &lt;code&gt;sudo&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Copying files to other servers is simple and I usually use
+&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Rsync&quot;&gt;&lt;code&gt;rsync&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; for that. After copying the
+files to a temporary location, I can use &lt;code&gt;ssh&lt;&#x2F;code&gt; to move files around.&lt;&#x2F;p&gt;
+&lt;p&gt;If the remote server is set up to not ask for passwords when using &lt;code&gt;sudo&lt;&#x2F;code&gt;, this
+task can be done easily:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; scp afile user@host.com:&#x2F;tmp&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; ssh user@host.com sudo mv&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -v&lt;&#x2F;span&gt;&lt;span&gt; &#x2F;tmp&#x2F;afile &#x2F;etc&#x2F;default&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;renamed &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;tmp&#x2F;afile&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39; -&amp;gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&#x2F;etc&#x2F;default&#x2F;afile&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;scp&lt;&#x2F;code&gt; command copies a file to a temporary directory on the remote server
+and then we execute &lt;code&gt;sudo mv -v &#x2F;tmp&#x2F;afile &#x2F;etc&#x2F;default&#x2F;&lt;&#x2F;code&gt; via &lt;code&gt;ssh&lt;&#x2F;code&gt; on the
+server to move the file to the final destination.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: I used &lt;code&gt;scp&lt;&#x2F;code&gt; in this example as it is simpler to type, but &lt;a href=&quot;https:&#x2F;&#x2F;lwn.net&#x2F;Articles&#x2F;835962&#x2F;&quot;&gt;scp was
+deprecated&lt;&#x2F;a&gt;. I use &lt;code&gt;rsync&lt;&#x2F;code&gt; instead.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I really like the &lt;code&gt;-v&lt;&#x2F;code&gt; flag for &lt;code&gt;mv&lt;&#x2F;code&gt; in this command, it serves as a
+confirmation that the file was indeed copied. &lt;code&gt;-v&lt;&#x2F;code&gt; is short for &lt;code&gt;--verbose&lt;&#x2F;code&gt;
+and, when used, &lt;code&gt;mv&lt;&#x2F;code&gt; tells you what file is being moved.&lt;&#x2F;p&gt;
+&lt;p&gt;But this approach requires typing two commands, while we could use only one
+&lt;code&gt;rsync&lt;&#x2F;code&gt; command:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; rsync&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; -avzP --rsync-path&lt;&#x2F;span&gt;&lt;span&gt;=&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;sudo rsync&lt;&#x2F;span&gt;&lt;span&gt;&amp;quot; afile user@host.com:&#x2F;etc&#x2F;default&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sending&lt;&#x2F;span&gt;&lt;span&gt; incremental file list
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;afile
+&lt;&#x2F;span&gt;&lt;span&gt;              &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span&gt; 100%    0.00kB&#x2F;s    0:00:00 (xfr#1, to-chk=0&#x2F;1)
+&lt;&#x2F;span&gt;&lt;span&gt;                                                                          
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;sent&lt;&#x2F;span&gt;&lt;span&gt; 107 bytes  received 35 bytes  31.56 bytes&#x2F;sec
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;total&lt;&#x2F;span&gt;&lt;span&gt; size is 3  speedup is 0.02
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The magic words here are &lt;code&gt;--rsync-path=&amp;quot;sudo rsync&amp;quot;&lt;&#x2F;code&gt;. This flag specifies the
+path for the &lt;code&gt;rsync&lt;&#x2F;code&gt; executable on the remote machine. By using &lt;code&gt;sudo rsync&lt;&#x2F;code&gt;
+remotely, we can access the directory we want!&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, this approach also requires the remote user to be able to &lt;code&gt;sudo&lt;&#x2F;code&gt;
+without typing the password.&lt;&#x2F;p&gt;
+&lt;p&gt;The other command line flags are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-a&lt;&#x2F;code&gt; (short for &lt;code&gt;--archive&lt;&#x2F;code&gt;): does quite a lot, but in summary is to be
+recursive and preserve almost all file attributes.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-v&lt;&#x2F;code&gt; (short for &lt;code&gt;--verbose&lt;&#x2F;code&gt;): to see what is going on with more details.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-z&lt;&#x2F;code&gt; (short for &lt;code&gt;--compress&lt;&#x2F;code&gt;): to compress the data when transferring files.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;-P&lt;&#x2F;code&gt; (short for &lt;code&gt;--partial --progress&lt;&#x2F;code&gt;): to show transfer progress and keep
+partial files in case of connection loss.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;code&gt;--rsync-path=&amp;quot;sudo rsync&amp;quot;&lt;&#x2F;code&gt; is the magical flag to be &lt;code&gt;sudo&lt;&#x2F;code&gt; on a remote
+machine, when the server is configured with passwordless &lt;code&gt;sudo&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>ip route add blackhole</title>
         <published>2023-05-25T00:00:00+00:00</published>
