@@ -1609,13 +1609,13 @@ of a file and its encoding is by using the
 operating systems (Linux, BSD, etc):&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --mime &lt;&#x2F;span&gt;&lt;span&gt;*
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bla.txt:&lt;&#x2F;span&gt;&lt;span&gt; text&#x2F;plain; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;charset&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;us-ascii
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bla.txt:&lt;&#x2F;span&gt;&lt;span&gt; text&#x2F;plain; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;charset&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;iso-8859-1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ble.txt:&lt;&#x2F;span&gt;&lt;span&gt; text&#x2F;plain; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;charset&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;iso-8859-1
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;k.csv:&lt;&#x2F;span&gt;&lt;span&gt;   text&#x2F;plain; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;charset&lt;&#x2F;span&gt;&lt;span&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;utf-8
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Or display only the encoding:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;$&lt;&#x2F;span&gt;&lt;span&gt; file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt; --mime-encoding &lt;&#x2F;span&gt;&lt;span&gt;*
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bla.txt:&lt;&#x2F;span&gt;&lt;span&gt; us-ascii
-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bla.txt:&lt;&#x2F;span&gt;&lt;span&gt; iso-8859-1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ble.txt:&lt;&#x2F;span&gt;&lt;span&gt; iso-8859-1
 &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;k.csv:&lt;&#x2F;span&gt;&lt;span&gt;   utf-8
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Or only the mime-type:&lt;&#x2F;p&gt;
