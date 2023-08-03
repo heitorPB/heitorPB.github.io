@@ -2,22 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>Heitor&#x27;s log</title>
     <subtitle>My corner of the web.</subtitle>
-    <link href="https://heitorpb.github.io/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://heitorpb.github.io"/>
+    <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-08-04T00:00:00+00:00</updated>
+    <updated>2023-08-03T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
     <entry xml:lang="en">
         <title>Repairing an RGB LED controller</title>
-        <published>2023-08-04T00:00:00+00:00</published>
-        <updated>2023-08-04T00:00:00+00:00</updated>
+        <published>2023-08-03T00:00:00+00:00</published>
+        <updated>2023-08-03T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/repairing-led-rgb-controller/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/repairing-led-rgb-controller/"/>
         <id>https://heitorpb.github.io/bla/repairing-led-rgb-controller/</id>
         
-        <content type="html">&lt;p&gt;We have a remote controlled LED lighting in our living room. It is an LED strip
+        <content type="html" xml:base="https://heitorpb.github.io/bla/repairing-led-rgb-controller/">&lt;p&gt;We have a remote controlled LED lighting in our living room. It is an LED strip
 glued under the sofa, with a small controller box and a remote control to turn
 it on&#x2F;off and control the colors. These effects make our living room cozier and
 the visits impressed :)&lt;&#x2F;p&gt;
@@ -101,18 +107,29 @@ cat-proofing, maybe.&lt;&#x2F;p&gt;
 &lt;p&gt;It works! 🎉 What a crappy video…&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="Electronics"/>
+        
+        <category term="troubleshooting"/>
+        
+        <category term="DIY"/>
+        </entry>
     <entry xml:lang="en">
         <title>Copying files to privileged locations with rsync</title>
         <published>2023-07-16T00:00:00+00:00</published>
         <updated>2023-07-16T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/"/>
         <id>https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/</id>
         
-        <content type="html">&lt;center&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/">&lt;center&gt;
 &lt;a data-flickr-embed=&quot;true&quot; data-header=&quot;false&quot; data-footer=&quot;true&quot; href=&quot;https:&#x2F;&#x2F;www.flickr.com&#x2F;photos&#x2F;heitorpb&#x2F;53043992196&#x2F;&quot; title=&quot;Baudet et Roire&quot;&gt;&lt;img src=&quot;https:&#x2F;&#x2F;live.staticflickr.com&#x2F;65535&#x2F;53043992196_658f295a38_z.jpg&quot; width=&quot;640&quot; height=&quot;426&quot; alt=&quot;Baudet et Roire&quot;&#x2F;&gt;&lt;&#x2F;a&gt;&lt;script async src=&quot;&#x2F;&#x2F;embedr.flickr.com&#x2F;assets&#x2F;client-code.js&quot; charset=&quot;utf-8&quot;&gt;&lt;&#x2F;script&gt;
 &lt;&#x2F;center&gt;
 &lt;p&gt;I work with many remote servers and eventually I need to copy a file (or a
@@ -166,18 +183,31 @@ partial files in case of connection loss.&lt;&#x2F;li&gt;
 machine, when the server is configured with passwordless &lt;code&gt;sudo&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="linux"/>
+        
+        <category term="rsync"/>
+        
+        <category term="TIL"/>
+        
+        <category term="sysadmin"/>
+        </entry>
     <entry xml:lang="en">
         <title>ip route add blackhole</title>
         <published>2023-05-25T00:00:00+00:00</published>
         <updated>2023-05-25T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/ip-route-add-blackhole/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/ip-route-add-blackhole/"/>
         <id>https://heitorpb.github.io/bla/ip-route-add-blackhole/</id>
         
-        <content type="html">&lt;p&gt;Today I found out you can have your own local black hole. And it can eat away
+        <content type="html" xml:base="https://heitorpb.github.io/bla/ip-route-add-blackhole/">&lt;p&gt;Today I found out you can have your own local black hole. And it can eat away
 all your network packets, so be careful with that.&lt;&#x2F;p&gt;
 &lt;p&gt;To create a black hole, we need to add a new entry to the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Routing_table&quot;&gt;routing
 table&lt;&#x2F;a&gt;. On modern Linux
@@ -210,18 +240,31 @@ don’t sound as cool as black hole 😎&lt;&#x2F;p&gt;
 what firewalls do.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="linux"/>
+        
+        <category term="sysadmin"/>
+        
+        <category term="networking"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title>My website v5: rewrite in Rust</title>
         <published>2023-04-25T00:00:00+00:00</published>
         <updated>2023-04-25T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/rewriting-in-rust/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/rewriting-in-rust/"/>
         <id>https://heitorpb.github.io/bla/rewriting-in-rust/</id>
         
-        <content type="html">&lt;p&gt;So I decided to rewrite my website. Again. This time because the previous
+        <content type="html" xml:base="https://heitorpb.github.io/bla/rewriting-in-rust/">&lt;p&gt;So I decided to rewrite my website. Again. This time because the previous
 version kind of died: I’m struggling to run Jekyll to build a new version and
 some of the assets I used via a CDN moved to a new path. So I decided to
 rewrite it. &lt;del&gt;In Rust of course, to follow the trend&lt;&#x2F;del&gt;.&lt;&#x2F;p&gt;
@@ -329,18 +372,27 @@ have a &lt;em&gt;“list of ideas to blag about”&lt;&#x2F;em&gt; that only gro
 first?&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="website"/>
+        
+        <category term="zola"/>
+        </entry>
     <entry xml:lang="en">
         <title>I Just Finished my Master&#x27;s in Physics</title>
         <published>2021-03-14T00:00:00+00:00</published>
         <updated>2021-03-14T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/i-finished-my-masters/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/i-finished-my-masters/"/>
         <id>https://heitorpb.github.io/bla/i-finished-my-masters/</id>
         
-        <content type="html">&lt;p&gt;Over the last years, I studied, traveled, worked hard, and I finally got the
+        <content type="html" xml:base="https://heitorpb.github.io/bla/i-finished-my-masters/">&lt;p&gt;Over the last years, I studied, traveled, worked hard, and I finally got the
 title of Master of Science in Physics!&lt;&#x2F;p&gt;
 &lt;p&gt;It was not easy. I started in the field of radio-frequency electronics for
 Nuclear Magnetic Resonance Spectroscopy. The goal was to build a local
@@ -405,18 +457,31 @@ charisma were essential to make this work happen.&lt;&#x2F;p&gt;
 &lt;p&gt;Thank you.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="analysis"/>
+        
+        <category term="electronics"/>
+        
+        <category term="Physics"/>
+        
+        <category term="SAT"/>
+        </entry>
     <entry xml:lang="en">
         <title>Juju is Fucking Amazing</title>
         <published>2021-02-16T00:00:00+00:00</published>
         <updated>2021-02-16T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/juju-is-fucking-amazing/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/juju-is-fucking-amazing/"/>
         <id>https://heitorpb.github.io/bla/juju-is-fucking-amazing/</id>
         
-        <content type="html">&lt;p&gt;I’m working with &lt;a href=&quot;https:&#x2F;&#x2F;juju.is&quot;&gt;juju&lt;&#x2F;a&gt; to manage High Performance Computing clusters. It is an interesting software, but with horrible documentation. And of course, easter eggs are not documented.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/juju-is-fucking-amazing/">&lt;p&gt;I’m working with &lt;a href=&quot;https:&#x2F;&#x2F;juju.is&quot;&gt;juju&lt;&#x2F;a&gt; to manage High Performance Computing clusters. It is an interesting software, but with horrible documentation. And of course, easter eggs are not documented.&lt;&#x2F;p&gt;
 &lt;p&gt;After all, that’s why &lt;em&gt;easter eggs&lt;&#x2F;em&gt; have this name: they are secret features.&lt;&#x2F;p&gt;
 &lt;p&gt;Last Friday, just a few minutes before ending the week, my boss told me “&lt;em&gt;Do
 you know what &lt;code&gt;juju is&lt;&#x2F;code&gt;? Find out how this command works.&lt;&#x2F;em&gt;” At first, I didn’t
@@ -529,18 +594,35 @@ is the limit.&lt;&#x2F;p&gt;
 safety.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="analysis"/>
+        
+        <category term="Juju"/>
+        
+        <category term="easter-egg"/>
+        
+        <category term="golang"/>
+        
+        <category term="C++"/>
+        
+        <category term="random"/>
+        </entry>
     <entry xml:lang="en">
         <title>std::adjacent_find</title>
         <published>2021-01-03T00:00:00+00:00</published>
         <updated>2021-01-03T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/std-adjacent-find/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/std-adjacent-find/"/>
         <id>https://heitorpb.github.io/bla/std-adjacent-find/</id>
         
-        <content type="html">&lt;p&gt;C++ standard library is insane. There are more data structures and algorithms
+        <content type="html" xml:base="https://heitorpb.github.io/bla/std-adjacent-find/">&lt;p&gt;C++ standard library is insane. There are more data structures and algorithms
 and utilities than someone can possible remember. If you need to something,
 there’s a good chance that someone already made it. And if someone already made
 it, there’s a good chance someone submitted a proposal to add it to the C++
@@ -665,18 +747,27 @@ you need to find the first one that has some relation to the next,
 &lt;code&gt;std::adjacent_find&lt;&#x2F;code&gt; is the way to go.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="algorithm"/>
+        
+        <category term="C++"/>
+        </entry>
     <entry xml:lang="en">
         <title>My thoughts on PiHole</title>
         <published>2020-11-10T00:00:00+00:00</published>
         <updated>2020-11-10T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/pihole-dnsmasq/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/pihole-dnsmasq/"/>
         <id>https://heitorpb.github.io/bla/pihole-dnsmasq/</id>
         
-        <content type="html">&lt;p&gt;About a month ago, I decided to try &lt;a href=&quot;https:&#x2F;&#x2F;pi-hole.net&#x2F;&quot;&gt;PiHole&lt;&#x2F;a&gt; for whole
+        <content type="html" xml:base="https://heitorpb.github.io/bla/pihole-dnsmasq/">&lt;p&gt;About a month ago, I decided to try &lt;a href=&quot;https:&#x2F;&#x2F;pi-hole.net&#x2F;&quot;&gt;PiHole&lt;&#x2F;a&gt; for whole
 network advertisement blocking, I documented how I set it up
 &lt;a href=&quot;https:&#x2F;&#x2F;heitorpb.github.io&#x2F;bla&#x2F;rasp3-pihole&#x2F;&quot;&gt;here&lt;&#x2F;a&gt;, and now its time to document my thoughts
 about using it.&lt;&#x2F;p&gt;
@@ -721,18 +812,33 @@ single browser tab, and there’s no need to maintain a server.&lt;&#x2F;p&gt;
 &lt;p&gt;Now I need to find another use for my Raspberry…&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="linux"/>
+        
+        <category term="networking"/>
+        
+        <category term="PiHole"/>
+        
+        <category term="Raspberry Pi"/>
+        
+        <category term="sysadmin"/>
+        </entry>
     <entry xml:lang="en">
         <title>Linux Upskill Challenge</title>
         <published>2020-10-30T00:00:00+00:00</published>
         <updated>2020-10-30T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/linuxupskill/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/linuxupskill/"/>
         <id>https://heitorpb.github.io/bla/linuxupskill/</id>
         
-        <content type="html">&lt;p&gt;The Linux Upskill Challenge is a month-long course on Reddit (&lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;linuxupskillchallenge&quot;&gt;r&#x2F;linuxupskillchallenge&lt;&#x2F;a&gt;), about Linux Server Administration.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/linuxupskill/">&lt;p&gt;The Linux Upskill Challenge is a month-long course on Reddit (&lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;linuxupskillchallenge&quot;&gt;r&#x2F;linuxupskillchallenge&lt;&#x2F;a&gt;), about Linux Server Administration.&lt;&#x2F;p&gt;
 &lt;p&gt;It is not a formal course, neither gives a certificate to share on social
 media. I think this makes the course more valuable, because the people taking
 it are doing to learn, and not to brag online.&lt;&#x2F;p&gt;
@@ -1234,18 +1340,27 @@ you are not planning to be a sysadmin. The lessons are very well written and
 there are many good tips to help a casual Linux user.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="linux"/>
+        
+        <category term="sysadmin"/>
+        </entry>
     <entry xml:lang="en">
         <title>Setting up Raspberry Pi 3 with PiHole</title>
         <published>2020-10-13T00:00:00+00:00</published>
         <updated>2020-10-13T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/rasp3-pihole/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/rasp3-pihole/"/>
         <id>https://heitorpb.github.io/bla/rasp3-pihole/</id>
         
-        <content type="html">&lt;p&gt;I decided to try &lt;a href=&quot;https:&#x2F;&#x2F;pi-hole.net&#x2F;&quot;&gt;PiHole&lt;&#x2F;a&gt; as a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;DNS_sinkhole&quot;&gt;DNS sinkhole&lt;&#x2F;a&gt;. Here I logged how I set up my Raspberry Pi 3 with ArchLinux to run it.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/rasp3-pihole/">&lt;p&gt;I decided to try &lt;a href=&quot;https:&#x2F;&#x2F;pi-hole.net&#x2F;&quot;&gt;PiHole&lt;&#x2F;a&gt; as a &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;DNS_sinkhole&quot;&gt;DNS sinkhole&lt;&#x2F;a&gt;. Here I logged how I set up my Raspberry Pi 3 with ArchLinux to run it.&lt;&#x2F;p&gt;
 &lt;p&gt;The idea is to have a way to block advertisement and trackers on my entire
 network. &lt;a href=&quot;https:&#x2F;&#x2F;ublockorigin.com&#x2F;&quot;&gt;uBlock Origin&lt;&#x2F;a&gt; is a great browser plugin
 that blocks those things on webpages, but I am lazy and want a solution that
@@ -1422,18 +1537,33 @@ collect dust in a shelf. So, probably worth it, although I wouldn’t recommend
 buying a rasp for this.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="linux"/>
+        
+        <category term="networking"/>
+        
+        <category term="PiHole"/>
+        
+        <category term="Raspberry Pi"/>
+        
+        <category term="sysadmin"/>
+        </entry>
     <entry xml:lang="en">
         <title>Be careful with your Docker logs</title>
         <published>2020-09-13T00:00:00+00:00</published>
         <updated>2020-09-13T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/careful-with-docker-logs/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/careful-with-docker-logs/"/>
         <id>https://heitorpb.github.io/bla/careful-with-docker-logs/</id>
         
-        <content type="html">&lt;p&gt;This week, one of our testing servers got clogged and stopped responding: the
+        <content type="html" xml:base="https://heitorpb.github.io/bla/careful-with-docker-logs/">&lt;p&gt;This week, one of our testing servers got clogged and stopped responding: the
 disk was full and it crashed some services. This machine is used only for
 running Docker containers, so it must be a Docker problem, right?&lt;&#x2F;p&gt;
 &lt;p&gt;Kind of.&lt;&#x2F;p&gt;
@@ -1512,18 +1642,31 @@ and the machine was usable again. Services were running smoothly and well.&lt;&#
 &lt;p&gt;Always rotate your logs.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="Docker"/>
+        
+        <category term="linux"/>
+        
+        <category term="optimization"/>
+        
+        <category term="sysadmin"/>
+        </entry>
     <entry xml:lang="en">
         <title>Multiple urls for a git remote</title>
         <published>2020-08-11T00:00:00+00:00</published>
         <updated>2020-08-11T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/git-multiple-remotes/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/git-multiple-remotes/"/>
         <id>https://heitorpb.github.io/bla/git-multiple-remotes/</id>
         
-        <content type="html">&lt;p&gt;AKA automagic mirroring of your GitHub into GitLab.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/git-multiple-remotes/">&lt;p&gt;AKA automagic mirroring of your GitHub into GitLab.&lt;&#x2F;p&gt;
 &lt;p&gt;There is a simple way to set up Git to use multiple push URLs for a single
 remote. This way you can easily mirror any Git repository into any hosting
 provider when &lt;code&gt;git push&lt;&#x2F;code&gt;ing.&lt;&#x2F;p&gt;
@@ -1549,18 +1692,27 @@ creating an automatic backup.&lt;&#x2F;p&gt;
 changes from two different repositories.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="git"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title>Caching computation in Python</title>
         <published>2020-06-24T00:00:00+00:00</published>
         <updated>2020-06-24T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/caching-python/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/caching-python/"/>
         <id>https://heitorpb.github.io/bla/caching-python/</id>
         
-        <content type="html">&lt;p&gt;Caching is an optimization strategy that stores data in some memory, instead of
+        <content type="html" xml:base="https://heitorpb.github.io/bla/caching-python/">&lt;p&gt;Caching is an optimization strategy that stores data in some memory, instead of
 using and discarding it. The idea is to store data to serve if faster in the
 future. This might save CPU time at the cost of increased memory usage.&lt;&#x2F;p&gt;
 &lt;p&gt;There are many types of cache (hardware caches, network caches, software
@@ -1730,18 +1882,29 @@ recently used entries. It is available in Python as
 &lt;a href=&quot;https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;functools.html#functools.lru_cache&quot;&gt;&lt;code&gt;functools.lru_cache&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="python"/>
+        
+        <category term="optimization"/>
+        
+        <category term="cache"/>
+        </entry>
     <entry xml:lang="en">
         <title>Convert files to UTF-8</title>
         <published>2020-05-12T00:00:00+00:00</published>
         <updated>2020-05-12T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/utf-8-files/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/utf-8-files/"/>
         <id>https://heitorpb.github.io/bla/utf-8-files/</id>
         
-        <content type="html">&lt;p&gt;Whenever we are working with lots of text files we might have to deal with
+        <content type="html" xml:base="https://heitorpb.github.io/bla/utf-8-files/">&lt;p&gt;Whenever we are working with lots of text files we might have to deal with
 their &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Character_encoding&quot;&gt;encoding&lt;&#x2F;a&gt;. Reading a
 file with the wrong encoding feeds obscure data to our code. This way, the
 result becomes unpredictable&lt;&#x2F;p&gt;
@@ -1807,18 +1970,31 @@ encoding.&lt;&#x2F;p&gt;
 uniformize the encoding of several text files. And it saves the day.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="analysis"/>
+        
+        <category term="encoding"/>
+        
+        <category term="linux"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title>Random numbers from &#x2F;dev&#x2F;urandom in Bash</title>
         <published>2020-04-07T00:00:00+00:00</published>
         <updated>2020-04-07T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/bash-random-numbers/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/bash-random-numbers/"/>
         <id>https://heitorpb.github.io/bla/bash-random-numbers/</id>
         
-        <content type="html">&lt;p&gt;In a GNU&#x2F;Linux distributions, there are special files (&lt;code&gt;&#x2F;dev&#x2F;random&lt;&#x2F;code&gt; and
+        <content type="html" xml:base="https://heitorpb.github.io/bla/bash-random-numbers/">&lt;p&gt;In a GNU&#x2F;Linux distributions, there are special files (&lt;code&gt;&#x2F;dev&#x2F;random&lt;&#x2F;code&gt; and
 &lt;code&gt;&#x2F;dev&#x2F;urandom&lt;&#x2F;code&gt;) to access the kernel’s random number generator. But how
 do we get random numbers from them in a bash script?&lt;&#x2F;p&gt;
 &lt;p&gt;If we try to &lt;code&gt;cat&lt;&#x2F;code&gt; them we get random things:&lt;&#x2F;p&gt;
@@ -1909,18 +2085,29 @@ divide by the greatest possible value, \( 2^{32} - 1\).&lt;&#x2F;p&gt;
 &lt;&#x2F;ul&gt;
 </content>
         
-    </entry>
+        <category term="linux"/>
+        
+        <category term="random"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title>Always close your Matplotlib figures</title>
         <published>2020-03-18T00:00:00+00:00</published>
         <updated>2020-03-18T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/close-matplotlib-figures/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/close-matplotlib-figures/"/>
         <id>https://heitorpb.github.io/bla/close-matplotlib-figures/</id>
         
-        <content type="html">&lt;p&gt;I’m working on a simulation that generates gigabytes of raw data. But I am a
+        <content type="html" xml:base="https://heitorpb.github.io/bla/close-matplotlib-figures/">&lt;p&gt;I’m working on a simulation that generates gigabytes of raw data. But I am a
 Physicist: I &lt;em&gt;need plots&lt;&#x2F;em&gt;, not tables! So I made a set of scripts in Python
 that parses all this data and generates about 50 plots.&lt;&#x2F;p&gt;
 &lt;p&gt;It’s not a problem to generate lots of pdf’s with the plots. It’s not a problem
@@ -2044,18 +2231,29 @@ when the figure is not needed anymore:&lt;&#x2F;p&gt;
 &lt;p&gt;About &lt;code&gt;75000 kbytes&lt;&#x2F;code&gt; saved!&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="python"/>
+        
+        <category term="matplotlib"/>
+        
+        <category term="analysis"/>
+        </entry>
     <entry xml:lang="en">
         <title>Python.format</title>
         <published>2018-11-29T00:00:00+00:00</published>
         <updated>2018-11-29T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/python-format/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/python-format/"/>
         <id>https://heitorpb.github.io/bla/python-format/</id>
         
-        <content type="html">&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
+        <content type="html" xml:base="https://heitorpb.github.io/bla/python-format/">&lt;p&gt;The python way of formatting strings is very interesting. You just need a string
 with &lt;code&gt;{}&lt;&#x2F;code&gt; and then tell python to change that to something. For example:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span&gt;&amp;gt;&amp;gt;&amp;gt; &amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;{}&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;format&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span&gt;)
 &lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span&gt;&amp;#39;
@@ -2085,18 +2283,29 @@ with &lt;code&gt;{}&lt;&#x2F;code&gt; and then tell python to change that to som
 &lt;p&gt;😎&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="python"/>
+        
+        <category term="random"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title>Treasure Hunt</title>
         <published>2018-10-20T00:00:00+00:00</published>
         <updated>2018-10-20T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/geocaching/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/geocaching/"/>
         <id>https://heitorpb.github.io/bla/geocaching/</id>
         
-        <content type="html">&lt;p&gt;So, I decided to hunt treasures 😎 Real treasures, not the ones from movies or
+        <content type="html" xml:base="https://heitorpb.github.io/bla/geocaching/">&lt;p&gt;So, I decided to hunt treasures 😎 Real treasures, not the ones from movies or
 TV series. Some real humans hid real treasures around the world. And of course
 they created real maps with instructions. This way other people can find those
 treasures!&lt;&#x2F;p&gt;
@@ -2166,18 +2375,27 @@ awesome!&lt;&#x2F;p&gt;
 &lt;&#x2F;ul&gt;
 </content>
         
-    </entry>
+        <category term="hiking"/>
+        
+        <category term="geocache"/>
+        </entry>
     <entry xml:lang="en">
         <title>Hiking in Essertines - Switzerland</title>
         <published>2018-10-16T00:00:00+00:00</published>
         <updated>2018-10-16T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/essertineshiking/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/essertineshiking/"/>
         <id>https://heitorpb.github.io/bla/essertineshiking/</id>
         
-        <content type="html">&lt;p&gt;Last week we had another &lt;em&gt;walking meeting&lt;&#x2F;em&gt;! This time, we went to the village
+        <content type="html" xml:base="https://heitorpb.github.io/bla/essertineshiking/">&lt;p&gt;Last week we had another &lt;em&gt;walking meeting&lt;&#x2F;em&gt;! This time, we went to the village
 of Essertines, near Geneva, Switzerland. It’s a very lovely place, with old
 beautiful buildings, small roads and wineries.&lt;&#x2F;p&gt;
 &lt;p&gt;Click the images to see them bigger and to comment them.&lt;&#x2F;p&gt;
@@ -2246,18 +2464,29 @@ m&#x2F;s&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#analys
 &lt;&#x2F;ul&gt;
 </content>
         
-    </entry>
+        <category term="photography"/>
+        
+        <category term="hiking"/>
+        
+        <category term="analysis"/>
+        </entry>
     <entry xml:lang="en">
         <title>The Swiss Far West and GPX fun</title>
         <published>2018-09-25T00:00:00+00:00</published>
         <updated>2018-09-25T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/swissfarwest/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/swissfarwest/"/>
         <id>https://heitorpb.github.io/bla/swissfarwest/</id>
         
-        <content type="html">&lt;p&gt;Yesterday my supervisor and I went to a hike to the &lt;em&gt;Swiss Far West&lt;&#x2F;em&gt;, the westernmost
+        <content type="html" xml:base="https://heitorpb.github.io/bla/swissfarwest/">&lt;p&gt;Yesterday my supervisor and I went to a hike to the &lt;em&gt;Swiss Far West&lt;&#x2F;em&gt;, the westernmost
 part of Switzerland. Unfortunately, we couldn’t go to the precise westernmost point
 of the border with France, because that’s in the
 &lt;abbr title=&quot;Latitude: 46.1323565, Longitude: 5.9559113&quot;&gt;middle&lt;&#x2F;abbr&gt; of the
@@ -2446,36 +2675,66 @@ missing some blue points.&lt;&#x2F;p&gt;
 &lt;&#x2F;ul&gt;
 </content>
         
-    </entry>
+        <category term="hiking"/>
+        
+        <category term="analysis"/>
+        
+        <category term="python"/>
+        </entry>
     <entry xml:lang="en">
         <title>Mussum Ipsum</title>
         <published>2018-09-06T00:00:00+00:00</published>
         <updated>2018-09-06T00:00:00+00:00</updated>
+        
         <author>
-          <name>Diego Esteves</name>
+          <name>
+            Diego Esteves
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/lorem/" type="text/html"/>
+        
+        <author>
+          <name>
+            Cicero
+          </name>
+        </author>
+        
+        <author>
+          <name>
+            Mussum
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/lorem/"/>
         <id>https://heitorpb.github.io/bla/lorem/</id>
         
-        <content type="html">&lt;p&gt;Mussum Ipsum, cacilds vidis litro abertis. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Cevadis im ampola pa arma uma pindureta. Suco de cevadiss deixa as pessoas mais interessantis. Paisis, filhis, espiritis santis.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/lorem/">&lt;p&gt;Mussum Ipsum, cacilds vidis litro abertis. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Cevadis im ampola pa arma uma pindureta. Suco de cevadiss deixa as pessoas mais interessantis. Paisis, filhis, espiritis santis.&lt;&#x2F;p&gt;
 &lt;p&gt;A ordem dos tratores não altera o pão duris. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Atirei o pau no gatis, per gatis num morreus. Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.&lt;&#x2F;p&gt;
 &lt;p&gt;Viva Forevis aptent taciti sociosqu ad litora torquent. Sapien in monti palavris qui num significa nadis i pareci latim. Delegadis gente finis, bibendum egestas augue arcu ut est. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.&lt;&#x2F;p&gt;
 &lt;p&gt;Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Diuretics paradis num copo é motivis de denguis. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo!&lt;&#x2F;p&gt;
 &lt;p&gt;Interagi no mé, cursus quis, vehicula ac nisi. In elementis mé pra quem é amistosis quis leo. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Leite de capivaris, leite de mula manquis sem cabeça.&lt;&#x2F;p&gt;
 </content>
         
-    </entry>
+        <category term="test"/>
+        
+        <category term="random"/>
+        </entry>
     <entry xml:lang="en">
         <title>test</title>
         <published>2018-09-05T00:00:00+00:00</published>
         <updated>2018-09-05T00:00:00+00:00</updated>
+        
         <author>
-          <name>Heitor de Bittencourt</name>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
         </author>
-        <link rel="alternate" href="https://heitorpb.github.io/bla/test/" type="text/html"/>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/test/"/>
         <id>https://heitorpb.github.io/bla/test/</id>
         
-        <content type="html">&lt;p&gt;this is a &lt;abbr title=&quot;test!&quot;&gt;test&lt;&#x2F;abbr&gt; entry&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#bla&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; for testing tests&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://heitorpb.github.io/bla/test/">&lt;p&gt;this is a &lt;abbr title=&quot;test!&quot;&gt;test&lt;&#x2F;abbr&gt; entry&lt;sup class=&quot;footnote-reference&quot;&gt;&lt;a href=&quot;#bla&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; for testing tests&lt;&#x2F;p&gt;
 &lt;p&gt;This is a python &lt;abbr title=&quot;test!&quot;&gt;test&lt;&#x2F;abbr&gt; code:&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;numpy &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;as &lt;&#x2F;span&gt;&lt;span&gt;np
 &lt;&#x2F;span&gt;&lt;span&gt;
@@ -2544,5 +2803,8 @@ $$ \mathcal{L}_H = \left|\left(\partial_\mu -i g W_\mu^a \tau^a -i\frac{1}{2} g&
 &lt;&#x2F;ul&gt;
 </content>
         
-    </entry>
+        <category term="test"/>
+        
+        <category term="random"/>
+        </entry>
 </feed>
