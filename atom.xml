@@ -5,8 +5,103 @@
     <link href="https://heitorpb.github.io/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-07-16T00:00:00+00:00</updated>
+    <updated>2023-08-04T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Repairing an RGB LED controller</title>
+        <published>2023-08-04T00:00:00+00:00</published>
+        <updated>2023-08-04T00:00:00+00:00</updated>
+        <author>
+          <name>Heitor de Bittencourt</name>
+        </author>
+        <link rel="alternate" href="https://heitorpb.github.io/bla/repairing-led-rgb-controller/" type="text/html"/>
+        <id>https://heitorpb.github.io/bla/repairing-led-rgb-controller/</id>
+        
+        <content type="html">&lt;p&gt;We have a remote controlled LED lighting in our living room. It is an LED strip
+glued under the sofa, with a small controller box and a remote control to turn
+it on&#x2F;off and control the colors. These effects make our living room cozier and
+the visits impressed :)&lt;&#x2F;p&gt;
+&lt;p&gt;But a couple of days ago the remote controller stopped working: no more turning
+on or off, changing colors or effects. The battery was relatively new and with
+enough juice to make the control work.&lt;&#x2F;p&gt;
+&lt;p&gt;So I started poking at the electronic box. This is the box:&lt;&#x2F;p&gt;
+
+  &lt;figure class=&quot;center&quot; &gt;
+    &lt;img src=&quot;controller-box.jpg&quot; alt=&quot;LED controller box&quot; style=&quot;width: 80%&quot; &#x2F;&gt;
+    
+      &lt;figcaption class=&quot;center&quot;&gt;&lt;p&gt;The LED controller box has a power connector (not seen), an
+IR sensor (the black square on the end of the white cable)
+and the LED output power (the colored cable).&lt;&#x2F;p&gt;
+&lt;&#x2F;figcaption&gt;
+    
+  &lt;&#x2F;figure&gt;
+
+&lt;p&gt;Opening the box was harder than I thought. The lid has one of those locking
+mechanisms that are not accessible from the outside. A small screwdriver did
+the job and almost broke it. With the lid open, I can remove and inspect the
+circuit board.&lt;&#x2F;p&gt;
+&lt;p&gt;The circuit is quite simple: three transistors, each one driving each LED
+color, an unnamed microcontroller, an infrared sensor and a power connector. I
+wonder what microcontroller is that, an ATtiny maybe?&lt;&#x2F;p&gt;
+&lt;p&gt;The PCB seemed fine to me. I thought the cats would have pulled the sensor and
+I’d need to resolder it to the PCB. But it didn’t seem to be the case. The
+sensor, on the other hand, did not seem to be on its best days:&lt;&#x2F;p&gt;
+
+  &lt;figure class=&quot;center&quot; &gt;
+    &lt;img src=&quot;covered-sensor.jpg&quot; alt=&quot;The IR sensor, connected to the cable and the electrical
+               connection covered in plastic for electrical protection. The
+               thermoplastic has many bite marks.&quot; style=&quot;width: 80%&quot; &#x2F;&gt;
+    
+      &lt;figcaption class=&quot;center&quot;&gt;&lt;p&gt;The IR sensor (black thingy), connected to the cable and the
+electrical connection covered in thermoplastic for
+protection.&lt;&#x2F;p&gt;
+&lt;&#x2F;figcaption&gt;
+    
+  &lt;&#x2F;figure&gt;
+
+&lt;p&gt;There are many marks in the thermoplastic that covers the sensor connection.
+Yeah, the cat ate the sensor. Or at least took a few bites. After removing that
+weird white cover, the issue appears:&lt;&#x2F;p&gt;
+
+  &lt;figure class=&quot;center&quot; &gt;
+    &lt;img src=&quot;broken-solder.jpg&quot; alt=&quot;The IR sensor after removing the thermoplastic, we can see the
+               IR sensor has three connections, but only two are soldered. The
+               middle connection was bitten away.&quot; style=&quot;width: 80%&quot; &#x2F;&gt;
+    
+      &lt;figcaption class=&quot;center&quot;&gt;&lt;p&gt;After removing the thermoplastic, we can see the IR sensor
+has three connections, but only two are soldered. The middle
+connection was bitten away.&lt;&#x2F;p&gt;
+&lt;&#x2F;figcaption&gt;
+    
+  &lt;&#x2F;figure&gt;
+
+&lt;p&gt;One of the solders was broken. Hopefully the sensor still works and the problem
+is that broken solder. Well, I have some [rudimentary] soldering skills and a
+soldering iron, re-soldering was quick. Time to close it and put back into its
+place to test:&lt;&#x2F;p&gt;
+
+  &lt;figure class=&quot;center&quot; &gt;
+    &lt;img src=&quot;production-ready.jpg&quot; alt=&quot;LED controller glued under the sofa, connected to power and
+               LEDs, with repaired IR sensor visible.&quot; style=&quot;width: 80%&quot; &#x2F;&gt;
+    
+      &lt;figcaption class=&quot;center&quot;&gt;&lt;p&gt;LED controller deployed &lt;del&gt;to production&lt;&#x2F;del&gt; under the sofa,
+connected to power and the repaired IR sensor glued for
+cat-proofing, maybe.&lt;&#x2F;p&gt;
+&lt;&#x2F;figcaption&gt;
+    
+  &lt;&#x2F;figure&gt;
+
+&lt;p&gt;Now that everything is in place, it should work, right?&lt;&#x2F;p&gt;
+&lt;video width=&quot;100%&quot; height=&quot;100%&quot; loop=&quot;True&quot; controls&gt;
+    &lt;source src=&quot;IR-remote.mp4&quot; type=&quot;video&#x2F;mp4&quot;&gt;
+    Your browser does not support the HTML5 video tag :(
+    click &lt;a href=&quot;IR-remote.mp4&quot;&gt;here&lt;&#x2F;a&gt; to view the remote control changing
+    the colors of the LEDs.
+&lt;&#x2F;video&gt;&lt;br&gt;
+&lt;p&gt;It works! 🎉 What a crappy video…&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
     <entry xml:lang="en">
         <title>Copying files to privileged locations with rsync</title>
         <published>2023-07-16T00:00:00+00:00</published>

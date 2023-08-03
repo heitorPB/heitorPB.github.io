@@ -71,6 +71,10 @@
         <lastmod>2020-10-13</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/repairing-led-rgb-controller/</loc>
+        <lastmod>2023-08-04</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/rewriting-in-rust/</loc>
         <lastmod>2023-04-25</lastmod>
     </url>
@@ -107,6 +111,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/cache/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/diy/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/docker/</loc>
@@ -179,6 +186,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/til/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/troubleshooting/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/website/</loc>
