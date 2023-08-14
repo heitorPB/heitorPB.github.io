@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Symbolic links in Python are easier | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Bla</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/symbolic-links-in-python-are-easier/">Symbolic links in Python are easier</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Aug 14, 2023
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/python/">#python</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/symlink/">#symlink</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+
+        
+        <div class="post-content">
+            <p>Every now and then we need to create symbolic links, or <abbr
+title="or soft links"><em>symlinks</em></abbr> for the intimate. This way we can have
+a link, or pointer, to another file: the link looks like a regular file (or
+directory) but refers to a file (or directory) in another place (assuming the
+link is not broken, of course).</p>
+<p>We usually open the terminal and <code>ln -s foo bar</code> around to create these links.
+This command creates a symbolic link (hence the <code>-s</code> flag) named <code>bar</code> that
+points to the file <code>foo</code>. Or is it the other way around: a link named <code>foo</code>
+pointing to <code>bar</code>? Damn it. I’ve done this a million times, what’s the order
+again?</p>
+<p>Every time I create a symlink I need to stop for a moment and remember the
+mantra: <code>ln &lt;target&gt; &lt;link-name&gt;</code>. And then I get it wrong 42.137% of the
+times, approximately. Yeah, I have the manual right in front of me, some ~100
+columns to the side. But still, I flip the arguments… my brain is weird, what
+can I do?</p>
+<p>Well, I can open a Python interpreter.</p>
+<p>Python has an amazing module to work with filesystem paths called
+<a href="https://docs.python.org/3/library/pathlib.html">Pathlib</a>, since Python 3.4.
+This module allows you to create <code>Path</code> objects and with a <code>Path</code> object you
+can do file operations like: create/delete a file/directory, check if it is a
+directory/block device/socket, list contents of a path, change file permissions
+like <code>chmod</code>, and many other really cool stuff.</p>
+<p>Among those other really cool stuff is: create a <code>Path</code> and turn it into a real
+symbolic link! Like this:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>pathlib </span><span style="color:#b48ead;">import </span><span>Path
+</span><span>
+</span><span style="color:#bf616a;">Path</span><span>(&quot;</span><span style="color:#a3be8c;">/tmp/my_link_to_fstab</span><span>&quot;).</span><span style="color:#bf616a;">symlink_to</span><span>(&quot;</span><span style="color:#a3be8c;">/etc/fstab</span><span>&quot;)
+</span></code></pre>
+<p>And voilà! Mind blowing, isn’t it? We now have a new symbolic link at
+<code>/tmp/my_link_to_fstab</code> that points to <code>/etc/fstab</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file /tmp/my_link_to_fstab
+</span><span style="color:#bf616a;">/tmp/my_link_to_fstab:</span><span> symbolic link to /etc/fstab
+</span></code></pre>
+<p>This is way easier to remember: create a <code>Path</code> representing where you want the
+link to exist and then write where to point it to. There’s no need anymore to
+think about the order of <code>ln</code> arguments.</p>
+<p>Python is nice, use it. 🐍</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/repairing-led-rgb-controller/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Repairing an RGB LED controller</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
