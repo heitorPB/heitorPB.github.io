@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Finding out your public IP address via curl | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/ip-rs/">Finding out your public IP address via curl</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Sep 01, 2023
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/fly-io/">#Fly.io</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/rest/">#REST</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/reinventingthewheel/">#ReinventingThewheel</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/rust/">#Rust</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/curl/">#curl</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/networking/">#networking</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p><a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/46026710405/" title="Road to the Bastille"><img src="https://live.staticflickr.com/4833/46026710405_8c361ae6bc_c.jpg" width="800" height="532" alt="Road to the Bastille"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script></p>
+<p>Sometimes all we want is to figure out our public IP address. Sometimes life is
+just that simple: grab the IP and move on. But when you are in a sea of servers
+after navigating through a maze of SSH tunnels, where are you? What server is
+this?</p>
+<p>Sure, you can <em>just open the browser</em>, go to the AWS console, search for that
+particular instance (probably takes two or three attempts until getting the
+correct instance name, assuming you know the right region to search for), and
+then figure out it only has internal addresses…</p>
+<p>I’m too lazy to go that route again. So I made a little web server to answer
+that question for me: <a href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>.</p>
+<p>Usage is straightforward: make a GET request to my hosted server at
+<a href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>. For example, using <code>curl</code>:</p>
+<pre data-lang="shell" style="background-color:#2b303b;color:#c0c5ce;" class="language-shell "><code class="language-shell" data-lang="shell"><span>$ curl -L iprs.fly.dev
+</span><span>2804:431:c00f:feee:bee:2572:573d:c00f
+</span></code></pre>
+<p>😎</p>
+<p>And if you <del>still care about</del> want your IPv4 instead, you can also check it
+out:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ curl -L -4 iprs.fly.dev
+</span><span>200.232.29.121
+</span></code></pre>
+<p>Way easier and faster than navigating the cloud provider’s console :)</p>
+<p>You can always force <code>curl</code> to use a specific IP version with <code>-4</code>/<code>--ipv4</code> or
+<code>-6</code>/<code>--ipv6</code>. Whether your connection uses IPv4 or IPv6 by default depends on
+your local network setup and ISP, you might not even have IPv6.</p>
+<p>The source code for this project is available at
+<a href="https://github.com/heitorPB/ip.rs">GitHub:heitorPB/ip.rs</a>. I coded it in Rust,
+using <a href="https://crates.io/crates/axum">Axum</a> for the web server, built the
+Docker image via Nix and hosted it in a <a href="https://fly.io">Flying Cloud</a>.</p>
+<p>And this is totally reinventing the wheel. There are plenty of other services
+online that also show your IP. And now there’s one more
+<abbr title="Mandatory xkcd: xkcd.com/927/">🙃</abbr> So, why
+make it? For fun, to practice Rust, learn Axum and to have something to blog
+about here.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/symbolic-links-in-python-are-easier/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Symbolic links in Python are easier</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

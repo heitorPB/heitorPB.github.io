@@ -47,6 +47,10 @@
         <lastmod>2023-05-25</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/ip-rs/</loc>
+        <lastmod>2023-09-01</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/juju-is-fucking-amazing/</loc>
         <lastmod>2021-02-16</lastmod>
     </url>
@@ -117,6 +121,9 @@
         <loc>https://heitorpb.github.io/tags/cache/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/curl/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/diy/</loc>
     </url>
     <url>
@@ -130,6 +137,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/encoding/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/fly-io/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/geocache/</loc>
@@ -177,7 +187,16 @@
         <loc>https://heitorpb.github.io/tags/raspberry-pi/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/reinventingthewheel/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/rest/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/rsync/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/rust/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/sat/</loc>
