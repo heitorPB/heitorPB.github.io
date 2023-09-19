@@ -63,6 +63,10 @@
         <lastmod>2018-09-06</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/multiplexing-stdout/</loc>
+        <lastmod>2023-09-19</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/pihole-dnsmasq/</loc>
         <lastmod>2020-11-10</lastmod>
     </url>
@@ -113,6 +117,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/analysis/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/bash/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/c/</loc>
@@ -178,6 +185,9 @@
         <loc>https://heitorpb.github.io/tags/pihole/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/process-substitution/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/python/</loc>
     </url>
     <url>
@@ -206,6 +216,12 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/sysadmin/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/tee/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/terminal/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/test/</loc>
