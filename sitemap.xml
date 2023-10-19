@@ -67,6 +67,10 @@
         <lastmod>2023-09-19</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/nomad-on-nixos/</loc>
+        <lastmod>2023-10-19</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/pihole-dnsmasq/</loc>
         <lastmod>2020-11-10</lastmod>
     </url>
@@ -173,6 +177,12 @@
         <loc>https://heitorpb.github.io/tags/networking/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/nixos/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/nomad/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/optimization/</loc>
     </url>
     <url>
@@ -183,6 +193,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/pihole/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/podman/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/process-substitution/</loc>

@@ -5,8 +5,38 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-09-19T00:00:00+00:00</updated>
+    <updated>2023-10-19T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Deploying Nomad on NixOs</title>
+        <published>2023-10-19T00:00:00+00:00</published>
+        <updated>2023-10-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/nomad-on-nixos/"/>
+        <id>https://heitorpb.github.io/bla/nomad-on-nixos/</id>
+        
+        <summary type="html">How to get Nomad running on NixOs for local development, with Podman and Docker task drivers.</summary>
+        
+        <category term="NixOs"/>
+        
+        <category term="Nomad"/>
+        
+        <category term="sysadmin"/>
+        
+        <category term="linux"/>
+        
+        <category term="Docker"/>
+        
+        <category term="Podman"/>
+        </entry>
     <entry xml:lang="en">
         <title>Multiplexing the output of a process to multiple processes</title>
         <published>2023-09-19T00:00:00+00:00</published>

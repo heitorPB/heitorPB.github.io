@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Deploying Nomad on NixOs | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/nomad-on-nixos/">Deploying Nomad on NixOs</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Oct 19, 2023
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/docker/">#Docker</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nixos/">#NixOs</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nomad/">#Nomad</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/podman/">#Podman</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 5 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I decided to run <a href="https://www.nomadproject.io">HashiCorp’s Nomad</a> on my dev
+server, that runs NixOs. The process was <em>almost</em> straightforward and here’s
+how I went from “I’ve never used Nomad before” to “it works for me”.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/31958126887/" title="Wanderer of Science"><img src="https://live.staticflickr.com/7815/31958126887_e24b1f6246_k.jpg" width="640" height="426" alt="Wanderer of Science"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>This is what I want:
+<abbr title="The last version before the license drama, although I'm not sure if it really matters">
+Nomad 1.6</abbr>, Docker and Podman task drivers. I also want a separate ZFS
+dataset for Nomad’s data. Firecracker and Singularity support is also of my
+interest, but not for now.</p>
+<p>Installing Nomad on NixOs is neat, as is with other services/packages in
+this operating system. This Nix does everything I need, installation and
+configuration:</p>
+<pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#8fa1b3;">{ </span><span>lib, pkgs, ... </span><span style="color:#8fa1b3;">}</span><span>:
+</span><span>{
+</span><span>  </span><span style="color:#d08770;">services</span><span>.</span><span style="color:#d08770;">nomad </span><span>= {
+</span><span>    </span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>    </span><span style="color:#d08770;">package </span><span>= </span><span style="color:#bf616a;">pkgs</span><span>.</span><span style="color:#bf616a;">nomad_1_6</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;"># Add extra plugins to Nomads plugin directory.
+</span><span>    </span><span style="color:#d08770;">extraSettingsPlugins </span><span>= [ </span><span style="color:#bf616a;">pkgs</span><span>.</span><span style="color:#bf616a;">nomad-driver-podman </span><span>];
+</span><span>    </span><span style="color:#65737e;"># Add Docker driver.
+</span><span>    </span><span style="color:#d08770;">enableDocker </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;"># Nomad as Root to access Docker/Podman sockets.
+</span><span>    </span><span style="color:#d08770;">dropPrivileges </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#65737e;"># Nomad configuration, as Nix attribute set.
+</span><span>    </span><span style="color:#d08770;">settings </span><span>= {
+</span><span>      </span><span style="color:#d08770;">client</span><span>.</span><span style="color:#d08770;">enabled </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>      </span><span style="color:#d08770;">server </span><span>= {
+</span><span>        </span><span style="color:#d08770;">enabled </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>        </span><span style="color:#d08770;">bootstrap_expect </span><span>= </span><span style="color:#d08770;">1</span><span>;
+</span><span>      };
+</span><span>      </span><span style="color:#d08770;">plugin </span><span>= [{
+</span><span>        </span><span style="color:#d08770;">nomad-driver-podman </span><span>= {
+</span><span>          </span><span style="color:#d08770;">config </span><span>= { };
+</span><span>        };
+</span><span>      }];
+</span><span>    };
+</span><span>  };
+</span><span>
+</span><span>  </span><span style="color:#65737e;"># I don&#39;t Nomad starting when the system boots.
+</span><span>  </span><span style="color:#d08770;">systemd</span><span>.</span><span style="color:#d08770;">services</span><span>.</span><span style="color:#d08770;">nomad</span><span>.</span><span style="color:#d08770;">wantedBy </span><span>= </span><span style="color:#bf616a;">lib</span><span>.</span><span style="color:#bf616a;">mkForce </span><span>[ ];
+</span><span>
+</span><span>  </span><span style="color:#65737e;"># Handy packages
+</span><span>  </span><span style="color:#d08770;">environment</span><span>.</span><span style="color:#d08770;">systemPackages </span><span>= </span><span style="color:#b48ead;">with </span><span style="color:#bf616a;">pkgs</span><span>; [
+</span><span>    </span><span style="color:#bf616a;">nomad-driver-podman </span><span style="color:#65737e;"># Podman driver plugin.
+</span><span>
+</span><span>    </span><span style="color:#bf616a;">damon </span><span style="color:#65737e;"># TUI for Nomad.
+</span><span>  ];
+</span><span>}
+</span></code></pre>
+<p>The tricky part is figuring out how to write the Nomad’s configuration (the
+<code>settings</code> attribute) using Nix. The official documentation suggests HCL for the
+configuration and all examples use it. But NixOs uses JSON instead, which is
+also valid. I used an online HCL to JSON converters to translate the examples
+in the documentation.</p>
+<p>I already had Podman (in rootless mode 🙂) installed and
+now I also want Docker. This is what I use to have them:</p>
+<pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#8fa1b3;">{ </span><span>pkgs, ... </span><span style="color:#8fa1b3;">}</span><span>:
+</span><span>{
+</span><span>  </span><span style="color:#d08770;">virtualisation </span><span>= {
+</span><span>    </span><span style="color:#d08770;">docker</span><span>.</span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>    </span><span style="color:#d08770;">podman </span><span>= {
+</span><span>      </span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>      </span><span style="color:#d08770;">dockerCompat </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span><span>      </span><span style="color:#d08770;">dockerSocket</span><span>.</span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">false</span><span>;
+</span><span>      </span><span style="color:#d08770;">defaultNetwork</span><span>.</span><span style="color:#d08770;">settings</span><span>.</span><span style="color:#d08770;">dns_enabled </span><span>= </span><span style="color:#d08770;">true</span><span>;
+</span><span>    };
+</span><span>
+</span><span>  </span><span style="color:#65737e;"># Extra handy packages
+</span><span>  </span><span style="color:#d08770;">environment</span><span>.</span><span style="color:#d08770;">systemPackages </span><span>= </span><span style="color:#b48ead;">with </span><span style="color:#bf616a;">pkgs</span><span>; [
+</span><span>    </span><span style="color:#bf616a;">docker-compose
+</span><span>    </span><span style="color:#bf616a;">podman-compose
+</span><span>    </span><span style="color:#bf616a;">podman-tui
+</span><span>  ];
+</span><span>}
+</span></code></pre>
+<p>I keep these bits on separate files (<code>nomad.nix</code>, <code>podman.nix</code>, <code>docker.nix</code>)
+and add them to the machines I want. I like this composability aspect of NixOs,
+helps me remember how I did things in the past.</p>
+<p>Now I need a ZFS dataset for my Nomad data:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo zfs create</span><span style="color:#bf616a;"> -o</span><span> mountpoint=legacy</span><span style="color:#bf616a;"> -o</span><span> compression=lz4 zroot/nomad
+</span></code></pre>
+<p>Creating a new dataset (or partition) doesn’t help much if I don’t <code>mount</code> it
+😛 Nomad stores its data in <code>/var/lib/nomad</code>, where my
+new partition should be. I added an entry to my <code>hardware-configuration.nix</code>
+to mount the partition on boot, while on other OSes you should hack
+<code>/etc/fstab</code>.</p>
+<p>After adding the new <code>nomad.nix</code> snippet on my <a href="https://github.com/heitorPB/dotfiles-supimpas/tree/nix">dotfiles
+repository</a> I rebuilt
+the system with: <code>sudo nixos-rebuild switch --flake .</code> Now we wait for a Nomad
+to visit our server.</p>
+<p>Nomad UI will be listening on port <code>4646</code>, accessible from any browser. This is
+what I see in the Nomad’s web UI for my “client”:</p>
+
+  <figure class="center" >
+    <img src="nomad-client.png" alt="Screenshot of the Nomad Web UI showing the supported task drivers." style="width: 80%" />
+    
+      <figcaption class="center"><p>Screenshot of the Nomad Web UI showing the supported task
+drivers. Nomad detected Docker and Podman :)</p>
+</figcaption>
+    
+  </figure>
+
+<p>We have Nomad running. Does it work? Let’s try an example job (Redis),
+created with <code>nomad job init --short</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> nomad job init</span><span style="color:#bf616a;"> --short
+</span><span style="color:#bf616a;">Example</span><span> job file written to example.nomad.hcl
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> grep driver example.nomad.hcl
+</span><span>      </span><span style="color:#bf616a;">driver</span><span> = &quot;</span><span style="color:#a3be8c;">docker</span><span>&quot;
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> nomad job run example.nomad.hcl
+</span><span>=</span><span style="color:#a3be8c;">=</span><span>&gt; </span><span style="color:#d08770;">2023</span><span style="color:#bf616a;">-10-17T16:00:36-03:00:</span><span> Monitoring evaluation &quot;</span><span style="color:#a3be8c;">59a89060</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:36-03:00:</span><span> Evaluation triggered by job &quot;</span><span style="color:#a3be8c;">example</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:37-03:00:</span><span> Evaluation within deployment: &quot;</span><span style="color:#a3be8c;">8d3abb2b</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:37-03:00:</span><span> Allocation &quot;</span><span style="color:#a3be8c;">3514215c</span><span>&quot; created: node &quot;</span><span style="color:#a3be8c;">c0379200</span><span>&quot;, group &quot;</span><span style="color:#a3be8c;">cache</span><span>&quot;
+</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:37-03:00:</span><span> Evaluation status changed: &quot;</span><span style="color:#a3be8c;">pending</span><span>&quot; -&gt; &quot;</span><span style="color:#a3be8c;">complete</span><span>&quot;
+</span><span>=</span><span style="color:#a3be8c;">=</span><span>&gt; </span><span style="color:#d08770;">2023</span><span style="color:#bf616a;">-10-17T16:00:37-03:00:</span><span> Evaluation &quot;</span><span style="color:#a3be8c;">59a89060</span><span>&quot; finished with status &quot;</span><span style="color:#a3be8c;">complete</span><span>&quot;
+</span><span>=</span><span style="color:#a3be8c;">=</span><span>&gt; </span><span style="color:#d08770;">2023</span><span style="color:#bf616a;">-10-17T16:00:37-03:00:</span><span> Monitoring deployment &quot;</span><span style="color:#a3be8c;">8d3abb2b</span><span>&quot;
+</span><span>  </span><span style="color:#bf616a;">✓</span><span> Deployment &quot;</span><span style="color:#a3be8c;">8d3abb2b</span><span>&quot; successful
+</span><span>
+</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:01:00-03:00
+</span><span>    </span><span style="color:#bf616a;">ID</span><span>          = 8d3abb2b
+</span><span>    </span><span style="color:#bf616a;">Job</span><span> ID      = example
+</span><span>    </span><span style="color:#bf616a;">Job</span><span> Version = 0
+</span><span>    </span><span style="color:#bf616a;">Status</span><span>      = successful
+</span><span>    </span><span style="color:#bf616a;">Description</span><span> = Deployment completed successfully
+</span><span>
+</span><span>    </span><span style="color:#bf616a;">Deployed
+</span><span>    </span><span style="color:#bf616a;">Task</span><span> Group  Desired  Placed  Healthy  Unhealthy  Progress Deadline
+</span><span>    </span><span style="color:#bf616a;">cache</span><span>       1        1       1        0          2023-10-17T16:10:58-03:00
+</span></code></pre>
+<p>Sweet, we can submit a job using the Docker driver! As this job uses dynamic
+port mapping, we get a “random” port to connect to the container. In this case,
+Nomad mapped the default Redis port 6379 to the host port 24825. You can get
+the host port in the Web UI or via <code>nomad alloc status &lt;allocation-ID&gt;</code>. I got
+the Allocation ID from <code>nomad job status example</code>.</p>
+<p>I used <code>redis-cli</code> to check if this job is working:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> nix shell nixpkgs#redis
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> redis-cli</span><span style="color:#bf616a;"> -p</span><span> 24825</span><span style="color:#bf616a;"> -h</span><span> 192.168.1.13
+</span><span style="color:#bf616a;">192.168.1.13:24825</span><span>&gt; ping
+</span><span style="color:#bf616a;">PONG
+</span><span style="color:#bf616a;">192.168.1.13:24825</span><span>&gt;
+</span></code></pre>
+<p>😎</p>
+<p>For my next steps, I want to understand the different types of jobs and how to
+manage a “production” Nomad cluster. I wanted to play with Nomad for a while and
+now I’ll go deep into it. Or at least until I find the next toy (Incus?)</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/multiplexing-stdout/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Multiplexing the output of a process to multiple processes</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
