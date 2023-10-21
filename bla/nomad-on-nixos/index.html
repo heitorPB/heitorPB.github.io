@@ -118,8 +118,8 @@ Nomad 1.6</abbr>, Docker and Podman task drivers. I also want a separate ZFS
 dataset for Nomad’s data. Firecracker and Singularity support is also of my
 interest, but not for now.</p>
 <p>Installing Nomad on NixOs is neat, as is with other services/packages in
-this operating system. This Nix does everything I need, installation and
-configuration:</p>
+this operating system. This Nix snippet does everything I need, installation
+and configuration:</p>
 <pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#8fa1b3;">{ </span><span>lib, pkgs, ... </span><span style="color:#8fa1b3;">}</span><span>:
 </span><span>{
 </span><span>  </span><span style="color:#d08770;">services</span><span>.</span><span style="color:#d08770;">nomad </span><span>= {
@@ -163,7 +163,7 @@ configuration:</p>
 <p>The tricky part is figuring out how to write the Nomad’s configuration (the
 <code>settings</code> attribute) using Nix. The official documentation suggests HCL for the
 configuration and all examples use it. But NixOs uses JSON instead, which is
-also valid. I used an online HCL to JSON converters to translate the examples
+also valid. I used an online HCL to JSON converter to translate the examples
 in the documentation.</p>
 <p>I already had Podman (in rootless mode 🙂) installed and
 now I also want Docker. This is what I use to have them:</p>
