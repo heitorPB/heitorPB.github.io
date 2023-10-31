@@ -31,6 +31,10 @@
         <lastmod>2018-10-16</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/format-tables-in-vim/</loc>
+        <lastmod>2023-10-31</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/geocaching/</loc>
         <lastmod>2018-10-20</lastmod>
     </url>
@@ -171,6 +175,9 @@
         <loc>https://heitorpb.github.io/tags/linux/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/markdown/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/matplotlib/</loc>
     </url>
     <url>
@@ -181,6 +188,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/nomad/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/nvim/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/optimization/</loc>
@@ -231,6 +241,9 @@
         <loc>https://heitorpb.github.io/tags/sysadmin/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/table/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/tee/</loc>
     </url>
     <url>
@@ -244,6 +257,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/troubleshooting/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/vim/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/website/</loc>
