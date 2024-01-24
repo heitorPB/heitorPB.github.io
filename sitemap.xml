@@ -115,6 +115,10 @@
         <lastmod>2020-05-12</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/</loc>
+        <lastmod>2024-01-24</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/me/</loc>
     </url>
     <url>
@@ -137,6 +141,12 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/curl/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/distributed-builds/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/distributed-systems/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/diy/</loc>
@@ -185,6 +195,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/networking/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/nix/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/nixos/</loc>

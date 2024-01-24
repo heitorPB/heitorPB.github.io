@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>The wonders of Nix remote builders | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.
+                 ">
+
+    <meta property="og:description" content="The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.
+                 ">
+    <meta property="og:title" content="The wonders of Nix remote builders | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/under-pressure.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/under-pressure.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.
+                 ">
+    <meta name="twitter:title" content="The wonders of Nix remote builders | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/">The wonders of Nix remote builders</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Jan 24, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/distributed-builds/">#Distributed Builds</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/distributed-systems/">#Distributed Systems</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nix/">#Nix</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nixos/">#NixOs</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 3 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>The more I use <a href="https://nixos.org">NixOs</a> the more interesting it gets. I now
+found out about <em>remote builders</em> and those are just awesome.</p>
+<center>
+<!-- !https://www.flickr.com/photos/heitorpb/52702401256 -->
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/52702401256" title="Under pressure"><img src="https://live.staticflickr.com/65535/52702401256_b0b2c890fc_z.jpg" width="640" height="426" alt="Under pressure"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>The idea is to offload build steps to a remote machine
+instead of using the local one. The build process might require compiling
+packages, so a machine with more resources can speed-up the process.</p>
+<p>That’s handy. I can use my laptop without the fans spinning like a jet turbine,
+while my dev server does all the job. And in less time: laptops don’t have a
+cooling system as powerful as a desktop, due to the limited dimensions. When
+the CPU gets too hot, the thermal throttling kicks in to down-clock the CPU to
+prevent damage. The strategy to reduce the heat generated is to reduce it’s speed.
+And thermal throttling also happens in desktops, but those have room for large
+heatsinks and better cooling, this way desktops can sustain higher clock
+frequencies for longer time.</p>
+<p>When updating my laptop using the remote machine as builder, my laptop’s
+CPU load was around 1.5 with a clock frequency of 1.6GHz. While my dev server
+was at warp speed: I saw a load of 79, 72, 45, 100% CPU usage clocked at
+4.6GHz and around 35 GiB of RAM usage (!). And I didn’t hear any loud fans
+(desktop is far away).</p>
+<p>When using remote builders, the local machine doesn’t build anything.</p>
+<p>Setting up remote builders requires these steps:</p>
+<ul>
+<li>on the remote builder:
+<ul>
+<li>Configure a trusted user: <code>nix.config.trusted-users = [&quot;root&quot; &quot;myuser&quot;];</code></li>
+<li>Add the public SSH key of the machine that will use that builder</li>
+</ul>
+</li>
+<li>on the laptop:
+<ul>
+<li>Add a CLI flag to <code>nixos-reuild</code> to use the remote builder:
+<code>sudo nixos-rebuild switch --flake . --builders &quot;ssh://myuser@builder &lt;other builder specification&gt;&quot;</code></li>
+<li>Or add <code>nix.buildMachines</code> to your NixOs configuration to not have to use
+<code>--builders</code> flag. Don’t forget to set <code>nix.distributedBuilds = true</code>, to
+enable using the <code>buildMachines</code>.</li>
+</ul>
+</li>
+</ul>
+<p>That’s all. Really.</p>
+<p>The builder specification has eight components:</p>
+<ul>
+<li>Host to connect to.</li>
+<li>Platform architecture the builder can build to e.g. <code>x86_64-linux</code>,
+<code>x86_64-darwin</code>, etc.</li>
+<li>Path to the private SSH key for authentication e.g.
+<code>/home/me/.ssh/id_ed25519</code></li>
+<li>Maximum number of simultaneous build jobs.</li>
+<li>Relative speed of the builder.</li>
+<li>List of builder supported features e.g. <code>benchmark</code>, <code>big-parallel</code>,
+<code>nixos-test</code>, <code>kvm</code>.</li>
+<li>Public key of the builder.</li>
+</ul>
+<p>More details on the builder options and configuration in the <a href="https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html">NixOs
+documentation</a>
+and in the <a href="https://nixos.wiki/wiki/Distributed_build">NixOs Wiki</a>.</p>
+<p>Happy building.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/format-tables-in-vim/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Formatting tables in Vim&#x2F;NeoVim</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

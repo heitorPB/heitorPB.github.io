@@ -5,8 +5,36 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2023-10-31T00:00:00+00:00</updated>
+    <updated>2024-01-24T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>The wonders of Nix remote builders</title>
+        <published>2024-01-24T00:00:00+00:00</published>
+        <updated>2024-01-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/"/>
+        <id>https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/</id>
+        
+        <summary type="html">The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.</summary>
+        
+        <category term="Linux"/>
+        
+        <category term="Nix"/>
+        
+        <category term="NixOs"/>
+        
+        <category term="Distributed Systems"/>
+        
+        <category term="Distributed Builds"/>
+        </entry>
     <entry xml:lang="en">
         <title>Formatting tables in Vim&#x2F;NeoVim</title>
         <published>2023-10-31T00:00:00+00:00</published>
@@ -64,6 +92,8 @@
         <category term="Docker"/>
         
         <category term="Podman"/>
+        
+        <category term="Nix"/>
         </entry>
     <entry xml:lang="en">
         <title>Multiplexing the output of a process to multiple processes</title>
