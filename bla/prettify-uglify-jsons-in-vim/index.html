@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Prettify and uglify JSONs in Vim | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to turn ugly JSONs into pretty JSONs inside Vim. And vice versa.">
+
+    <meta property="og:description" content="How to turn ugly JSONs into pretty JSONs inside Vim. And vice versa.">
+    <meta property="og:title" content="Prettify and uglify JSONs in Vim | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/prettify-uglify-jsons-in-vim/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/prettify-uglify-jsons-in-vim/ruins.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/prettify-uglify-jsons-in-vim/ruins.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to turn ugly JSONs into pretty JSONs inside Vim. And vice versa.">
+    <meta name="twitter:title" content="Prettify and uglify JSONs in Vim | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/prettify-uglify-jsons-in-vim/">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/prettify-uglify-jsons-in-vim/">Prettify and uglify JSONs in Vim</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Mar 27, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/json/">#JSON</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/jq/">#jq</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nvim/">#nvim</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/vim/">#vim</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I was working with some JSONs to configure a system and, for reasons, the app
+did not accept pretty formatted JSON, they had to be compact (or minimized).</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/52816662927/" title="Ruins in the forest"><img src="https://live.staticflickr.com/65535/52816662927_7c35026394_z.jpg" width="640" height="426" alt="Ruins in the forest"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>So, instead of having this pretty JSON in a file:</p>
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>    &quot;</span><span style="color:#a3be8c;">user</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">L. Skywalker</span><span>&quot;,
+</span><span>    &quot;</span><span style="color:#a3be8c;">species</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">human</span><span>&quot;,
+</span><span>    &quot;</span><span style="color:#a3be8c;">color</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;
+</span><span>}
+</span></code></pre>
+<p>I had to use this ugly and barely readable JSON instead:</p>
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{&quot;</span><span style="color:#a3be8c;">user</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">L. Skywalker</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">species</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">human</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">color</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">green</span><span>&quot;}
+</span></code></pre>
+<p>The JSON I needed was way longer with a few nested objects inside, but you got
+the idea. The problem I had was that one of the nested objects was
+missing or incomplete and the program crashed on startup.</p>
+<p>Modifying the ugly JSON by hand is tedious and error-prone so I ended up
+uglifying and prettifying those JSONs many times, in multiple ways. One way is
+to pipe the JSON to <code>jq</code> to get it pretty, or to <code>jq -c</code> to get it ugly. Just
+pipe everything every time and create a bunch of files.</p>
+<p>Or use Vim.</p>
+<p>This is my favorite way. One of its many powerful built-in features is to
+modify selected text with filters. And the filters can be <em>any</em> command,
+including external programs like <code>jq</code>.</p>
+<p>This way:</p>
+<ul>
+<li>to prettify a JSON: select the ugly JSON (with <code>shift + V</code>) and <code>:! jq</code></li>
+<li>to uglify a JSON: select the pretty JSON (with <code>shift + V</code>) and <code>:! jq -c</code>.</li>
+</ul>
+<p>As simple as that.</p>
+<p>These magical commands are:</p>
+<ul>
+<li><code>shift + V</code>: switches to Visual Mode linewise, to select lines of the text.
+See <code>:help visual-mode</code> for details.</li>
+<li><code>:</code> switches to Command Line mode, to execute commands. See <code>:help Cmdline</code>
+for details.</li>
+<li><code>!</code>: specifies the filter command to use. Vim feeds this command with the
+selected text and replaces it with the output of the filter command.</li>
+<li><code>jq</code>/<code>jq -c</code>: the commands (filters) to modify the selected text. <code>jq</code> prints
+a pretty JSON, while <code>jq -c</code> uglifies the JSON into a compact output.</li>
+</ul>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">The wonders of Nix remote builders</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
