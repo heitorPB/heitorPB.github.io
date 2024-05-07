@@ -115,7 +115,7 @@
     
     
     <br><div class="post-meta-inline"><small>
-        Reading time: 2 minutes
+        Reading time: 3 minutes
     </small></div>
     
 
@@ -169,6 +169,36 @@ is whitespace). And the <code>-o</code> flag is to specify the output delimiter 
 (we need that because the default is <em>two</em> whitespaces).</li>
 </ul>
 <p>🎃 🧙</p>
+<h2 id="edit">Edit</h2>
+<p>2024-04-07</p>
+<p>There may be an issue with this filter: if there are consecutive spaces at the
+beginning or end of any element in the cell, the columns in the pretty table
+get too long. For example:</p>
+<pre data-lang="Markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-Markdown "><code class="language-Markdown" data-lang="Markdown"><span>| Foo | Bar | Detailed comment | Bla |
+</span><span>| --- | --- | -------- ------- | --- |
+</span><span>|    First | Second | This is the first row of the table, ignoring the headers | % |
+</span><span>| O | O | Some very long sentence for this entry | :emoji: |
+</span><span>| Bla | bleeeeeeeeeeeeeeeeeeee                   | blii | x |
+</span></code></pre>
+<p>Becomes:</p>
+<pre data-lang="Markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-Markdown "><code class="language-Markdown" data-lang="Markdown"><span>| Foo      | Bar                                      | Detailed comment                                         | Bla     |
+</span><span>| ---      | ---                                      | -------- -------                                         | ---     |
+</span><span>|    First | Second                                   | This is the first row of the table, ignoring the headers | %       |
+</span><span>| O        | O                                        | Some very long sentence for this entry                   | :emoji: |
+</span><span>| Bla      | bleeeeeeeeeeeeeeeeeeee                   | blii                                                     | x       |
+</span></code></pre>
+<p>Thanks to <a href="https://github.com/phil0x2e">Phill</a>, I got the tip of first
+filtering with <code>tr -s ' '</code>. This neat command gets rid of all consecutive
+spaces and replace with only one. Like this:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;</span><span style="color:#a3be8c;">     a    a   !</span><span>&quot; | </span><span style="color:#bf616a;">tr -s </span><span>&#39; &#39;
+</span><span> </span><span style="color:#bf616a;">a</span><span> a !
+</span></code></pre>
+<p>So, the neatest filter is actually <code>:! tr -s &quot; &quot; | column -t -s '|' -o '|'</code>.
+This way we first apply <code>tr</code> to get rid of repeated spaces and pipe that to the
+<code>column</code> command.</p>
+<p>But note: any internal sequence of spaces is replaced with only one. Careful if
+you need those spaces.</p>
+<p>Danke schön, Phill!</p>
 
         </div>
 
