@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>`jq` trickery | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="`jq` tricks that I learned over the years to parse JSONs.">
+
+    <meta property="og:description" content="`jq` tricks that I learned over the years to parse JSONs.">
+    <meta property="og:title" content="`jq` trickery | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/jq-trickery/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/jq-trickery/phMeter.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/jq-trickery/phMeter.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="`jq` tricks that I learned over the years to parse JSONs.">
+    <meta name="twitter:title" content="`jq` trickery | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/jq-trickery/">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/jq-trickery/">`jq` trickery</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            May 10, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/cli/">#CLI</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/json/">#JSON</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/python/">#Python</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/jq/">#jq</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/magic/">#magic</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/tricks/">#tricks</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 6 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>Here are some <code>jq</code> tricks that I learned over the years to parse JSONs. By
+“learned” I mean that I know my way around, not that I fully understand them
+all, this stuff is magical.</p>
+<p><a data-flickr-embed="true" data-footer="false" href="https://www.flickr.com/photos/heitorpb/53238742306/in/photolist-2piEW1V-2p7XvYT-2jTQreJ-2py1HCW-2paLTtq-2p7wth7-2pjcS5s" title="Cambridge pH Meter"><img src="https://live.staticflickr.com/65535/53238742306_5cffdda47f_c.jpg" width="800" height="532" alt="Cambridge pH Meter"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script></p>
+<p>TOC:</p>
+<ul>
+<li><a href="https://heitorpb.github.io/bla/jq-trickery/#jq-commands"><code>Jq</code> commands</a>
+<ul>
+<li><a href="https://heitorpb.github.io/bla/jq-trickery/#pretty-print">Pretty print</a></li>
+<li><a href="https://heitorpb.github.io/bla/jq-trickery/#individual-object-operations">Individual object operations</a></li>
+<li><a href="https://heitorpb.github.io/bla/jq-trickery/#array-operations">Arrays operations</a></li>
+</ul>
+</li>
+<li><a href="https://heitorpb.github.io/bla/jq-trickery/#conclusion">Conclusion</a></li>
+</ul>
+<br>
+<h2 id="jq-commands"><code>Jq</code> commands</h2>
+<p>I’ll use the JSON below in all examples below, but wont type it all the time:</p>
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;: [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;: </span><span style="color:#d08770;">1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;: </span><span style="color:#d08770;">2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    }
+</span><span>  ]
+</span><span>}
+</span></code></pre>
+<p>Export the JSON if you want to copy-pasta the examples:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> export my_json_above=&#39;</span><span style="color:#a3be8c;">{&quot;foo&quot;: &quot;bar&quot;, &quot;numbers&quot;: [{&quot;one&quot;: 1}, {&quot;two&quot;: 2}, {&quot;tree&quot;: &quot;NaN&quot;}, {&quot;foo&quot;: &quot;NaN&quot;}]}</span><span>&#39;
+</span></code></pre>
+<p>Now the trickeryfoo.</p>
+<h3 id="pretty-print">Pretty Print</h3>
+<p>Maybe the most used feature of <code>jq</code> is to pretty-print a JSON. By pretty-print,
+<code>jq</code> mean: split the input into multiple lines and align them vertically in a
+meaningful and colorful way. For example:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &#39;</span><span style="color:#a3be8c;">{&quot;foo&quot;: &quot;bar&quot;, &quot;numbers&quot;: [{&quot;one&quot;: 1}, {&quot;two&quot;: 2}, {&quot;tree&quot;: &quot;NaN&quot;}, {&quot;foo&quot;: &quot;NaN&quot;}]}</span><span>&#39; | </span><span style="color:#bf616a;">jq
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+<p>In this example, <code>jq</code> operates on the entire JSON. <code>jq</code> can also operate on
+“parts”, or internal/nested objects, of the input JSON. <code>jq</code> uses “filters” to
+parse/modify its input.</p>
+<p>In this example, the filter used is the identity: <code>.</code>. This filter doesn’t
+modify the JSON instead, it returns the input. The identity filter is like
+multiplying a number by 1. <code>jq .</code> is equivalent to <code>jq</code>.</p>
+<h3 id="individual-object-operations">Individual object operations</h3>
+<p>To work with an internal object or value:</p>
+<ul>
+<li>
+<p>to get value of key <code>foo</code>, the filter is <code>.foo</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq</span><span> .foo
+</span><span style="color:#bf616a;">bar
+</span></code></pre>
+<p>In this case, <code>.</code> in <code>.foo</code> is <em>not</em> the identity operator. <code>.foo</code> is the
+syntax to select the <code>foo</code> object.</p>
+</li>
+<li>
+<p>to get all keys, the filter is <code>keys[]</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">keys[]</span><span>&#39;
+</span><span>&quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;
+</span></code></pre>
+</li>
+<li>
+<p>to get all elements of an array, the filter is <code>[]</code>, so to get all elements
+of the <code>numbers</code> array we first select <code>numbers</code> and then <code>[]</code> it:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq</span><span> .numbers</span><span style="color:#b48ead;">[]
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>}
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>}
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span></code></pre>
+<p>Note: without the square brackets (<code>.numbers</code> instead of <code>.numbers[]</code>) you
+get the <code>numbers</code> sub object: the array. With the square brackets, you get
+<em>the elements of the array</em>.</p>
+</li>
+<li>
+<p>to get all keys of an internal array, you combine the filters with a <code>|</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers[] | keys[]</span><span>&#39;
+</span><span>&quot;</span><span style="color:#a3be8c;">one</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">two</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;
+</span></code></pre>
+</li>
+<li>
+<p>to get all values, the filter is <code>values[]</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers[] | values[]</span><span>&#39;
+</span><span style="color:#bf616a;">1
+</span><span style="color:#bf616a;">2
+</span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span></code></pre>
+</li>
+<li>
+<p>to get all keys and their values, the magic is <code>'keys[] as $k | &quot;\($k), \(.[$k])&quot;'</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">keys[] as $k | &quot;key: _\($k)_   value: \(.[$k])&quot;</span><span>&#39;
+</span><span>&quot;</span><span style="color:#a3be8c;">key: _foo_   value: bar</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">key: _numbers_   value: [{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">one</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:1},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">two</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:2},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">tree</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">NaN</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">foo</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">NaN</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">}]</span><span>&quot;
+</span></code></pre>
+<p>In this case, this is similar as the identity operator, but with some extra
+formatting text. It is more interesting to get the keys and their values of
+<em>internal</em> objects:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers.[] | keys[] as $k | &quot;\($k): \(.[$k])&quot;</span><span>&#39;
+</span><span>&quot;</span><span style="color:#a3be8c;">one: 1</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">two: 2</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">tree: NaN</span><span>&quot;
+</span><span>&quot;</span><span style="color:#a3be8c;">foo: NaN</span><span>&quot;
+</span></code></pre>
+<p>Note: this creates a variable <code>k</code>. We can reference its value with <code>$k</code>.</p>
+</li>
+<li>
+<p>to get the value of a key or a default one in case the key does not exist,
+the filter is <code>.key // &quot;value&quot;</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#96b5b4;">echo </span><span>&quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.foos // &quot;bars&quot;</span><span>&#39;
+</span><span>&quot;</span><span style="color:#a3be8c;">bars</span><span>&quot;
+</span></code></pre>
+</li>
+<li>
+<p>to add/update key/value, the filter is <code>. * {&quot;key&quot;: &quot;value&quot;}</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">. * {&quot;foo&quot;: &quot;FOO&quot;, &quot;bar&quot;: &quot;baz&quot;}</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">FOO</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">],
+</span><span>  &quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">baz</span><span>&quot;
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>to delete key/value, the filter is <code>del(.key)</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#96b5b4;">echo </span><span>&quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">del(.numbers)</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>to delete all keys that contain a specific value, the filter is
+<code>del(.[] | select . == &quot;value&quot;)</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">del(.[] | select(. == &quot;bar&quot;))</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+</li>
+</ul>
+<h3 id="array-operations">Array operations</h3>
+<p>Array:</p>
+<ul>
+<li>
+<p>the array operator is square brackets, to “extract” all objects from an
+array, the filter is <code>[]</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">❯</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq</span><span> .numbers</span><span style="color:#b48ead;">[]
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>}
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>}
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span></code></pre>
+<p>This first “selects” the <code>numbers</code> sub object and then all its elements.</p>
+</li>
+<li>
+<p>the first element is zero: <code>jq .[0]</code></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq</span><span> .numbers</span><span style="color:#b48ead;">[</span><span>0</span><span style="color:#b48ead;">]
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>}
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq</span><span> .numbers</span><span style="color:#b48ead;">[</span><span>2</span><span style="color:#b48ead;">]
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>to get the last element of the array, check the <code>-1</code> position:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq</span><span> .numbers</span><span style="color:#b48ead;">[</span><span>-1</span><span style="color:#b48ead;">]
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;"># To get the second last:
+</span><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq</span><span> .numbers</span><span style="color:#b48ead;">[</span><span>-2</span><span style="color:#b48ead;">]
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>}
+</span><span>
+</span><span style="color:#65737e;"># You got the idea
+</span></code></pre>
+</li>
+<li>
+<p>the filter to get the length of an object is <code>length</code>. In this case, we want
+the input for the <code>length</code> filter to be the array. Here comes the Pipe <code>|</code> to
+feed the output of one filter to the input of the next:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers | length</span><span>&#39;
+</span><span style="color:#bf616a;">4
+</span></code></pre>
+</li>
+<li>
+<p>the filter to append to an array is <code>+=</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers += [{&quot;three&quot;: 3}]</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">three</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 3
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+<p>Another approach is with the update <code>|=</code> operator:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span>% echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers |= . + [{&quot;three&quot;: 3}]</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">three</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 3
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>add element as first position of the array: add an element and “sum” the
+entire object. Pretty much the same as the previous example, but with the
+position of the “summed” elements swapped:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#96b5b4;">echo </span><span>$</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.numbers |= [{&quot;zero&quot;: 0}] + .</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">zero</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 0
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+<p>The order matters.</p>
+</li>
+<li>
+<p>to delete second element from array is similar to deleting any element:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">. |= del(.numbers[1])</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">tree</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+</li>
+<li>
+<p>to delete all elements matching a criteria you pass the selected elements to
+<code>del()</code> filter.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">del(.numbers[] | select(.[] == &quot;NaN&quot;))</span><span>&#39;
+</span><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">bar</span><span>&quot;,
+</span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">one</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">two</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> 2
+</span><span>    }
+</span><span>  </span><span style="color:#bf616a;">]
+</span><span>}
+</span></code></pre>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p><code>jq</code> is handy to get some values in an interactive way, piping from other
+commands or operating on files (like <code>jq . data.json</code> instead of <code>cat data.json | jq .</code>). <code>jq</code> is handy, but not straightforward. At least to me.</p>
+<p>When you need to parse complex JSONs, modify them, use them as <code>--data</code> for
+<code>curl</code>, etc, use Python instead 🐍</p>
+<p>Really. Python is more understandable for “complex” operations. Don’t get me
+wrong, <code>jq</code> is great to visualize JSONs in the terminal. But the moment that
+you need to do some nasty actions to nested JSON thingies, Bash will hit you
+with a big stick.</p>
+<p>Look at this Python code:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>json
+</span><span>json_str=&#39;&#39;&#39;
+</span><span style="color:#a3be8c;">{
+</span><span style="color:#a3be8c;">  &quot;foo&quot;: &quot;bar&quot;,
+</span><span style="color:#a3be8c;">  &quot;numbers&quot;: [{&quot;one&quot;: 1}, {&quot;two&quot;: 2}, {&quot;tree&quot;: &quot;NaN&quot;}, {&quot;foo&quot;: &quot;NaN&quot;}]
+</span><span style="color:#a3be8c;">}
+</span><span>&#39;&#39;&#39;
+</span><span>
+</span><span style="color:#65737e;"># Turn the string into a &quot;JSON&quot; object
+</span><span>my_json = json.</span><span style="color:#bf616a;">loads</span><span>(json_str) </span><span style="color:#65737e;"># The JSON object is actually a Python dict
+</span><span>
+</span><span style="color:#65737e;"># Get the value of a key
+</span><span>foo = my_json[&#39;</span><span style="color:#a3be8c;">foo</span><span>&#39;]
+</span><span>numbers = my_json[&#39;</span><span style="color:#a3be8c;">numbers</span><span>&#39;]
+</span><span>
+</span><span style="color:#65737e;"># Get value of a key or a default one if the key doesn&#39;t exist
+</span><span>non_existent_key = my_json.</span><span style="color:#bf616a;">get</span><span>(&#39;</span><span style="color:#a3be8c;">blarg</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">default_value</span><span>&#39;) 
+</span><span>
+</span><span style="color:#65737e;"># Add new key
+</span><span>my_json[&#39;</span><span style="color:#a3be8c;">bla</span><span>&#39;] = &quot;</span><span style="color:#a3be8c;">bla</span><span>&quot;
+</span><span>
+</span><span style="color:#65737e;"># Update key
+</span><span>my_json[&#39;</span><span style="color:#a3be8c;">bla</span><span>&#39;] = &quot;</span><span style="color:#a3be8c;">bleb</span><span>&quot;
+</span><span>
+</span><span style="color:#65737e;"># Delete a key
+</span><span>my_json.</span><span style="color:#bf616a;">pop</span><span>(&#39;</span><span style="color:#a3be8c;">foo</span><span>&#39;)
+</span><span>
+</span><span style="color:#65737e;"># Append to `numbers`
+</span><span>my_json[&quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;].</span><span style="color:#bf616a;">append</span><span>({&quot;</span><span style="color:#a3be8c;">xablau</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;})
+</span><span>
+</span><span style="color:#65737e;"># Get all non &quot;NaN&quot;s from `numbers`
+</span><span>non_nans = []
+</span><span style="color:#b48ead;">for </span><span>number_dict </span><span style="color:#b48ead;">in </span><span>my_json[&quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;]:
+</span><span>    </span><span style="color:#b48ead;">for </span><span>value </span><span style="color:#b48ead;">in </span><span>number_dict.</span><span style="color:#bf616a;">values</span><span>():
+</span><span>        </span><span style="color:#b48ead;">if </span><span>value != &quot;</span><span style="color:#a3be8c;">NaN</span><span>&quot;:
+</span><span>            non_nans.</span><span style="color:#bf616a;">append</span><span>(number_dict)
+</span><span>
+</span><span style="color:#65737e;"># Convert JSON dict to a valid JSON string
+</span><span>json_str_final = json.</span><span style="color:#bf616a;">dumps</span><span>(my_json)
+</span><span>
+</span></code></pre>
+<p>Is it more readable? As a bonus, you get all Pythonic power at your fingertips.
+No magic needed.</p>
+<h2 id="todo">TODO</h2>
+<p>Later on:</p>
+<ul>
+<li>review text</li>
+<li>review image</li>
+<li>review date in metadata</li>
+<li>set open graph image</li>
+</ul>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/prettify-uglify-jsons-in-vim/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Prettify and uglify JSONs in Vim</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

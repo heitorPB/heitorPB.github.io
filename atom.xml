@@ -5,8 +5,38 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-04-07T00:00:00+00:00</updated>
+    <updated>2024-05-10T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>`jq` trickery</title>
+        <published>2024-05-10T00:00:00+00:00</published>
+        <updated>2024-05-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/jq-trickery/"/>
+        <id>https://heitorpb.github.io/bla/jq-trickery/</id>
+        
+        <summary type="html">`jq` tricks that I learned over the years to parse JSONs.</summary>
+        
+        <category term="CLI"/>
+        
+        <category term="jq"/>
+        
+        <category term="JSON"/>
+        
+        <category term="Python"/>
+        
+        <category term="tricks"/>
+        
+        <category term="magic"/>
+        </entry>
     <entry xml:lang="en">
         <title>Prettify and uglify JSONs in Vim</title>
         <published>2024-03-27T00:00:00+00:00</published>
