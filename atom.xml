@@ -8,7 +8,7 @@
     <updated>2024-05-10T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
     <entry xml:lang="en">
-        <title>`jq` trickery</title>
+        <title>jq trickery</title>
         <published>2024-05-10T00:00:00+00:00</published>
         <updated>2024-05-10T00:00:00+00:00</updated>
         
@@ -36,6 +36,8 @@
         <category term="tricks"/>
         
         <category term="magic"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>Prettify and uglify JSONs in Vim</title>
@@ -171,6 +173,8 @@
         
         <summary type="html">How to feed the output of one process to multiple other processes simultaneously, using tee and Bash&#x27;s process substitution.</summary>
         
+        <category term="CLI"/>
+        
         <category term="terminal"/>
         
         <category term="TIL"/>
@@ -210,6 +214,10 @@
         <category term="networking"/>
         
         <category term="Fly.io"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>Symbolic links in Python are easier</title>
@@ -238,6 +246,10 @@
         <category term="symlink"/>
         
         <category term="TIL"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>Repairing an RGB LED controller</title>
@@ -288,6 +300,10 @@
         <category term="TIL"/>
         
         <category term="sysadmin"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>ip route add blackhole</title>
@@ -314,6 +330,10 @@
         <category term="networking"/>
         
         <category term="TIL"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>My website v5: rewrite in Rust</title>
@@ -383,17 +403,17 @@
         
         <summary type="html">How I found an Easter egg after being challenged by my boss.</summary>
         
-        <category term="analysis"/>
-        
         <category term="Juju"/>
         
         <category term="easter-egg"/>
         
         <category term="golang"/>
         
-        <category term="C++"/>
-        
         <category term="random"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>std::adjacent_find</title>
@@ -585,13 +605,15 @@
         
         <summary type="html">How to convert file encodings in the terminal.</summary>
         
-        <category term="analysis"/>
-        
         <category term="encoding"/>
         
         <category term="linux"/>
         
         <category term="TIL"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
         </entry>
     <entry xml:lang="en">
         <title>Random numbers from &#x2F;dev&#x2F;urandom in Bash</title>
@@ -616,6 +638,14 @@
         <category term="random"/>
         
         <category term="TIL"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
+        
+        <category term="&#x2F;dev&#x2F;random"/>
+        
+        <category term="&#x2F;dev&#x2F;urandom"/>
         </entry>
     <entry xml:lang="en">
         <title>Always close your Matplotlib figures</title>
