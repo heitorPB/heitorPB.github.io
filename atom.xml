@@ -147,7 +147,7 @@
         
         <category term="sysadmin"/>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="Docker"/>
         
@@ -293,7 +293,7 @@
         
         <summary type="html">How to copy files to remote servers that require sudo.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="rsync"/>
         
@@ -323,7 +323,7 @@
         
         <summary type="html">What is a blackhole route and how to create one on Linux.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="sysadmin"/>
         
@@ -455,7 +455,7 @@
         
         <summary type="html">My experience with PiHole after one month.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="networking"/>
         
@@ -483,7 +483,7 @@
         
         <summary type="html">My notes about the Linux Upskill Challenge.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="sysadmin"/>
         </entry>
@@ -505,7 +505,7 @@
         
         <summary type="html">How to setup PiHole on a Raspberry Pi.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="networking"/>
         
@@ -535,7 +535,7 @@
         
         <category term="Docker"/>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="optimization"/>
         
@@ -607,7 +607,7 @@
         
         <category term="encoding"/>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="TIL"/>
         
@@ -633,7 +633,7 @@
         
         <summary type="html">How to get random integers from &#x2F;dev&#x2F;random in Bash.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
         <category term="random"/>
         
