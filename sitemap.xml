@@ -71,6 +71,10 @@
         <lastmod>2018-09-06</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/lspci-device-classes/</loc>
+        <lastmod>2024-06-06</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/multiplexing-stdout/</loc>
         <lastmod>2023-09-19</lastmod>
     </url>
@@ -209,6 +213,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/linux/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/lspci/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/magic/</loc>

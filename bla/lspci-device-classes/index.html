@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIL: Listing PCI devices by their vendor or class | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="Listing PCI devices by manufacturer and/or device type/class.">
+
+    <meta property="og:description" content="Listing PCI devices by manufacturer and/or device type/class.">
+    <meta property="og:title" content="TIL: Listing PCI devices by their vendor or class | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/lspci-device-classes/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/lspci-device-classes/storage.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/lspci-device-classes/storage.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Listing PCI devices by manufacturer and/or device type/class.">
+    <meta name="twitter:title" content="TIL: Listing PCI devices by their vendor or class | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/lspci-device-classes/">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/lspci-device-classes/">TIL: Listing PCI devices by their vendor or class</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Jun 06, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/lspci/">#lspci</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p><code>lspci</code> lists all PCI devices on the machine. This command can also show only devices
+from a given vendor and/or specific class.
+Vendor in this context is the manufacturer of that device and class is what
+<em>kind</em> of hardware it is (Ethernet controller, graphics card, SD card reader,
+etc).</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/45601349304/in/album-72157704652716634/" title="Mass Storage Cartdriges"><img src="https://live.staticflickr.com/4810/45601349304_91e81d71a9_z.jpg" width="640" height="426" alt="Mass Storage Cartdriges"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>That’s what the <code>-d</code> flag is for. The syntax is
+<code>lspci -d [&lt;vendor&gt;]:[&lt;device&gt;][:&lt;class&gt;[:&lt;prog-if&gt;]]</code>. Each block separated by
+colons must be in hexadecimal format. You can omit a block and that means
+<em>any</em> device in that category.</p>
+<p>For example, to list all devices by AMD/ATI, use the vendor ID <code>1002</code>. The
+examples below are from my laptop:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lspci</span><span style="color:#bf616a;"> -d</span><span> 1002:: </span><span style="color:#65737e;"># AMD/ATI vendor, any class
+</span><span style="color:#bf616a;">07:00.0</span><span> VGA compatible controller: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD/ATI</span><span style="color:#b48ead;">]</span><span> Barcelo (rev d1)
+</span><span style="color:#bf616a;">07:00.1</span><span> Audio device: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD/ATI</span><span style="color:#b48ead;">]</span><span> Renoir Radeon High Definition Audio Controller
+</span></code></pre>
+<p>To list all wireless devices, the class is <code>0280</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lspci</span><span style="color:#bf616a;"> -d</span><span> ::0280 </span><span style="color:#65737e;"># Any vendor, Wireless class
+</span><span style="color:#bf616a;">06:00.0</span><span> Network controller: MEDIATEK Corp. MT7922 802.11ax PCI Express Wireless Network Adapter
+</span></code></pre>
+<p>My laptop is powered by an AMD CPU, so listing all AMD devices (vendor <code>1022</code>)
+shows a lot of information. To filter all USB controllers (class <code>c03</code>) by AMD,
+we combine the vendor and class:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lspci</span><span style="color:#bf616a;"> -d</span><span> 1022::0c03 </span><span style="color:#65737e;"># AMD vendor, USB controller class
+</span><span style="color:#bf616a;">07:00.3</span><span> USB controller: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD</span><span style="color:#b48ead;">]</span><span> Renoir/Cezanne USB 3.1
+</span><span style="color:#bf616a;">07:00.4</span><span> USB controller: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD</span><span style="color:#b48ead;">]</span><span> Renoir/Cezanne USB 3.1
+</span></code></pre>
+<p>Note: AMD (<code>1022</code>) is not AMD/ATI (<code>1002</code>).</p>
+<p>You can check a list of device vendors and classes at the
+<a href="http://pci-ids.ucw.cz/">PCI ID Repository</a>.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/jq-trickery/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">jq trickery</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
