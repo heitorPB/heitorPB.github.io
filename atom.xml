@@ -237,9 +237,9 @@
         
         <summary type="html">How to create symbolic links in Python. Easier than using ln.</summary>
         
-        <category term="linux"/>
+        <category term="Linux"/>
         
-        <category term="python"/>
+        <category term="Python"/>
         
         <category term="sysadmin"/>
         
@@ -581,7 +581,7 @@
         
         <summary type="html">What is memoization and how to use it to cache the output of functions in Python.</summary>
         
-        <category term="python"/>
+        <category term="Python"/>
         
         <category term="optimization"/>
         
@@ -665,7 +665,7 @@
         
         <summary type="html">Close your matplotlib figures for faster image generation.</summary>
         
-        <category term="python"/>
+        <category term="Python"/>
         
         <category term="matplotlib"/>
         
@@ -689,7 +689,7 @@
         
         <summary type="html">Fun with Python format().</summary>
         
-        <category term="python"/>
+        <category term="Python"/>
         
         <category term="random"/>
         
@@ -763,7 +763,7 @@
         
         <category term="analysis"/>
         
-        <category term="python"/>
+        <category term="Python"/>
         </entry>
     <entry xml:lang="en">
         <title>Mussum Ipsum</title>
