@@ -659,6 +659,8 @@
         
         <category term="Linux"/>
         
+        <category term="bash"/>
+        
         <category term="random"/>
         
         <category term="TIL"/>
