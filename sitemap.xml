@@ -67,6 +67,10 @@
         <lastmod>2020-10-30</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/</loc>
+        <lastmod>2024-06-13</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/lorem/</loc>
         <lastmod>2018-09-06</lastmod>
     </url>
@@ -195,6 +199,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/golang/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/hexadecimal/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/hiking/</loc>

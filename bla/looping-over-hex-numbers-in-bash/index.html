@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIL: looping over hex numbers in Bash | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="TIL: looping over hexadecimal numbers in Bash just takes one line.">
+
+    <meta property="og:description" content="TIL: looping over hexadecimal numbers in Bash just takes one line.">
+    <meta property="og:title" content="TIL: looping over hex numbers in Bash | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/el-camino.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/el-camino.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="TIL: looping over hexadecimal numbers in Bash just takes one line.">
+    <meta name="twitter:title" content="TIL: looping over hex numbers in Bash | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/">
+
+            
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
+    
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/">TIL: looping over hex numbers in Bash</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Jun 13, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/bash/">#Bash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/python/">#Python</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/hexadecimal/">#hexadecimal</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/terminal/">#terminal</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>Sometimes we need hexadecimal numbers. Sometimes we need to loop over them.
+And sometimes we need to do that in Bash.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/53671856349/" title="Chevrolet El Camino?"><img src="https://live.staticflickr.com/65535/53671856349_47a684817e_c.jpg" width="800" height="450" alt="Chevrolet El Camino?"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>We are talking about Bash, so it only takes one line to do it. For example, to
+go from <code>8</code> to <code>0xe</code> (not inclusive), and print the decimal value and their hex
+number:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for </span><span>((i = </span><span style="color:#d08770;">8</span><span>; i &lt; $(</span><span style="color:#96b5b4;">printf </span><span>%</span><span style="color:#bf616a;">d</span><span> 0xe); ++i)); </span><span style="color:#b48ead;">do </span><span style="color:#bf616a;">j</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%x</span><span>&quot; $</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">)</span><span>; </span><span style="color:#96b5b4;">echo </span><span style="color:#bf616a;">-e </span><span>&quot;$</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">:\t </span><span>$</span><span style="color:#bf616a;">j</span><span>&quot;; </span><span style="color:#b48ead;">done
+</span><span style="color:#bf616a;">8:</span><span>       8
+</span><span style="color:#bf616a;">9:</span><span>       9
+</span><span style="color:#bf616a;">10:</span><span>      a
+</span><span style="color:#bf616a;">11:</span><span>      b
+</span><span style="color:#bf616a;">12:</span><span>      c
+</span><span style="color:#bf616a;">13:</span><span>      d
+</span></code></pre>
+<p>Now, let’s see bit by bit what is this one-liner. The same code, in multiple
+lines, for educational purposes only:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for </span><span>((i = </span><span style="color:#d08770;">8</span><span>; i &lt; $(</span><span style="color:#96b5b4;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%d</span><span>&quot; 0xe); ++i)); </span><span style="color:#b48ead;">do 
+</span><span>	</span><span style="color:#bf616a;">j</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%x</span><span>&quot; $</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">)
+</span><span>	</span><span style="color:#96b5b4;">echo </span><span style="color:#bf616a;">-e </span><span>&quot;$</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">:\t </span><span>$</span><span style="color:#bf616a;">j</span><span>&quot;
+</span><span style="color:#b48ead;">done
+</span></code></pre>
+<p>The first line is a C-style <code>for</code> loop. The loop variable, <code>i</code>, starts from <code>8</code>
+and the loop goes on while <code>i &lt; $(printf &quot;%d&quot; 0xe)</code> is true. The loop variable
+is incremented (<code>++i</code>, C-style pre-increment) at the end of each iteration.</p>
+<p>The <code>printf &quot;%d&quot; 0xe</code> is the cool trick: it takes the string <code>0xe</code> and
+generates another string using the formatter <code>%d</code>. This means: print <em>0xe</em> as
+an integer. This way the loop starts at <em>8</em> and ends at <em>14</em> (<em>0xe</em>), not
+inclusive. The <code>printf</code> is executed using
+<a href="https://www.gnu.org/software/bash/manual/bash.html#Command-Substitution-1">command substitution</a>,
+so its value “replaces” the command. This is what “tricks” the for loop into
+starting from <em>0</em> and ending at <em>13</em>.</p>
+<p>As the loop is not inclusive (the condition is <code>i &lt; 14</code>), the last iteration
+happens with <code>i=13</code>.</p>
+<p>The second <code>printf</code> does the opposite: takes the variable <code>i</code>, prints as
+hexadecimal (formatter <code>%x</code> is for hexadecimal numbers) and “saves” it as the
+variable <code>j</code>. The <code>echo</code> statement prints <code>i</code>, the decimal value, and <code>j</code>, the
+corresponding hexadecimal.</p>
+<p>All one needs when coding in Bash is one line.</p>
+<p>And just for fun, here’s the equivalent Python code: </p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0xE</span><span>):
+</span><span>    </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;{i}</span><span style="color:#a3be8c;">:   </span><span>{i</span><span style="color:#d08770;">:x</span><span>}&quot;)
+</span></code></pre>
+<p>But why use Python when we can suffer with Bash?</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/lspci-device-classes/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">TIL: Listing PCI devices by their vendor or class</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
