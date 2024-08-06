@@ -386,6 +386,10 @@
         <category term="CLI"/>
         
         <category term="terminal"/>
+        
+        <category term="iproute2"/>
+        
+        <category term="blackhole"/>
         </entry>
     <entry xml:lang="en">
         <title>My website v5: rewrite in Rust</title>
