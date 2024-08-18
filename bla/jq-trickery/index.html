@@ -31,9 +31,7 @@
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/jq-trickery/">
 
-            
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
-    
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
 <!-- KaTeX css and JS -->
 <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
@@ -250,7 +248,7 @@ get the <code>numbers</code> sub object: the array. With the square brackets, yo
 </span></code></pre>
 </li>
 <li>
-<p>to get all keys and their values, the magic is <code>'keys[] as $k | &quot;\($k), \(.[$k])&quot;'</code>:</p>
+<p>to get all keys and their values, the magic is <code>'keys[] as $k | "\($k), \(.[$k])"'</code>:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">my_json_above </span><span>| </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">keys[] as $k | &quot;key: _\($k)_   value: \(.[$k])&quot;</span><span>&#39;
 </span><span>&quot;</span><span style="color:#a3be8c;">key: _foo_   value: bar</span><span>&quot;
 </span><span>&quot;</span><span style="color:#a3be8c;">key: _numbers_   value: [{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">one</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:1},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">two</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:2},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">tree</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">NaN</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">},{</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">foo</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">:</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">NaN</span><span style="color:#96b5b4;">\&quot;</span><span style="color:#a3be8c;">}]</span><span>&quot;
@@ -268,13 +266,13 @@ formatting text. It is more interesting to get the keys and their values of
 </li>
 <li>
 <p>to get the value of a key or a default one in case the key does not exist,
-the filter is <code>.key // &quot;value&quot;</code>:</p>
+the filter is <code>.key // "value"</code>:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#96b5b4;">echo </span><span>&quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">.foos // &quot;bars&quot;</span><span>&#39;
 </span><span>&quot;</span><span style="color:#a3be8c;">bars</span><span>&quot;
 </span></code></pre>
 </li>
 <li>
-<p>to add/update key/value, the filter is <code>. * {&quot;key&quot;: &quot;value&quot;}</code>:</p>
+<p>to add/update key/value, the filter is <code>. * {"key": "value"}</code>:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">. * {&quot;foo&quot;: &quot;FOO&quot;, &quot;bar&quot;: &quot;baz&quot;}</span><span>&#39;
 </span><span>{
 </span><span>  &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">FOO</span><span>&quot;,
@@ -306,7 +304,7 @@ the filter is <code>.key // &quot;value&quot;</code>:</p>
 </li>
 <li>
 <p>to delete all keys that contain a specific value, the filter is
-<code>del(.[] | select . == &quot;value&quot;)</code>:</p>
+<code>del(.[] | select . == "value")</code>:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;$</span><span style="color:#bf616a;">my_json_above</span><span>&quot; | </span><span style="color:#bf616a;">jq </span><span>&#39;</span><span style="color:#a3be8c;">del(.[] | select(. == &quot;bar&quot;))</span><span>&#39;
 </span><span>{
 </span><span>  &quot;</span><span style="color:#a3be8c;">numbers</span><span>&quot;</span><span style="color:#bf616a;">:</span><span> [

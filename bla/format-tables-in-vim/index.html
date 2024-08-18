@@ -31,9 +31,7 @@
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/format-tables-in-vim/">
 
-            
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
-    
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
 <!-- KaTeX css and JS -->
 <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
@@ -193,7 +191,7 @@ spaces and replace with only one. Like this:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;</span><span style="color:#a3be8c;">     a    a   !</span><span>&quot; | </span><span style="color:#bf616a;">tr -s </span><span>&#39; &#39;
 </span><span> </span><span style="color:#bf616a;">a</span><span> a !
 </span></code></pre>
-<p>So, the neatest filter is actually <code>:! tr -s &quot; &quot; | column -t -s '|' -o '|'</code>.
+<p>So, the neatest filter is actually <code>:! tr -s " " | column -t -s '|' -o '|'</code>.
 This way we first apply <code>tr</code> to get rid of repeated spaces and pipe that to the
 <code>column</code> command.</p>
 <p>But note: any internal sequence of spaces is replaced with only one. Careful if

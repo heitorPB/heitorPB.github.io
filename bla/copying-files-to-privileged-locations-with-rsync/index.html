@@ -31,9 +31,7 @@
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/copying-files-to-privileged-locations-with-rsync/">
 
-            
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
-    
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
 <!-- KaTeX css and JS -->
 <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
@@ -157,7 +155,7 @@ and, when used, <code>mv</code> tells you what file is being moved.</p>
 </span><span style="color:#bf616a;">sent</span><span> 107 bytes  received 35 bytes  31.56 bytes/sec
 </span><span style="color:#bf616a;">total</span><span> size is 3  speedup is 0.02
 </span></code></pre>
-<p>The magic words here are <code>--rsync-path=&quot;sudo rsync&quot;</code>. This flag specifies the
+<p>The magic words here are <code>--rsync-path="sudo rsync"</code>. This flag specifies the
 path for the <code>rsync</code> executable on the remote machine. By using <code>sudo rsync</code>
 remotely, we can access the directory we want!</p>
 <p>Of course, this approach also requires the remote user to be able to <code>sudo</code>
@@ -172,7 +170,7 @@ recursive and preserve almost all file attributes.</li>
 partial files in case of connection loss.</li>
 </ul>
 <h2 id="summary">Summary</h2>
-<p><code>--rsync-path=&quot;sudo rsync&quot;</code> is the magical flag to be <code>sudo</code> on a remote
+<p><code>--rsync-path="sudo rsync"</code> is the magical flag to be <code>sudo</code> on a remote
 machine, when the server is configured with passwordless <code>sudo</code>.</p>
 
         </div>

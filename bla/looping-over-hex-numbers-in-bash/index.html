@@ -31,9 +31,7 @@
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/">
 
-            
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
-    
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
 <!-- KaTeX css and JS -->
 <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
@@ -145,9 +143,9 @@ lines, for educational purposes only:</p>
 </span><span style="color:#b48ead;">done
 </span></code></pre>
 <p>The first line is a C-style <code>for</code> loop. The loop variable, <code>i</code>, starts from <code>8</code>
-and the loop goes on while <code>i &lt; $(printf &quot;%d&quot; 0xe)</code> is true. The loop variable
+and the loop goes on while <code>i &lt; $(printf "%d" 0xe)</code> is true. The loop variable
 is incremented (<code>++i</code>, C-style pre-increment) at the end of each iteration.</p>
-<p>The <code>printf &quot;%d&quot; 0xe</code> is the cool trick: it takes the string <code>0xe</code> and
+<p>The <code>printf "%d" 0xe</code> is the cool trick: it takes the string <code>0xe</code> and
 generates another string using the formatter <code>%d</code>. This means: print <em>0xe</em> as
 an integer. This way the loop starts at <em>8</em> and ends at <em>14</em> (<em>0xe</em>), not
 inclusive. The <code>printf</code> is executed using
@@ -161,7 +159,7 @@ hexadecimal (formatter <code>%x</code> is for hexadecimal numbers) and “saves�
 variable <code>j</code>. The <code>echo</code> statement prints <code>i</code>, the decimal value, and <code>j</code>, the
 corresponding hexadecimal.</p>
 <p>All one needs when coding in Bash is one line.</p>
-<p>And just for fun, here’s the equivalent Python code: </p>
+<p>And just for fun, here’s the equivalent Python code:</p>
 <pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0xE</span><span>):
 </span><span>    </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;{i}</span><span style="color:#a3be8c;">:   </span><span>{i</span><span style="color:#d08770;">:x</span><span>}&quot;)
 </span></code></pre>

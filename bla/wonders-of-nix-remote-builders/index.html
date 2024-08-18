@@ -34,9 +34,7 @@
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/">
 
-            
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
-    
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
 <!-- KaTeX css and JS -->
 <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
@@ -151,14 +149,14 @@ was at warp speed: I saw a load of 79, 72, 45, 100% CPU usage clocked at
 <ul>
 <li>on the remote builder:
 <ul>
-<li>Configure a trusted user: <code>nix.config.trusted-users = [&quot;root&quot; &quot;myuser&quot;];</code></li>
+<li>Configure a trusted user: <code>nix.config.trusted-users = ["root" "myuser"];</code></li>
 <li>Add the public SSH key of the machine that will use that builder</li>
 </ul>
 </li>
 <li>on the laptop:
 <ul>
 <li>Add a CLI flag to <code>nixos-reuild</code> to use the remote builder:
-<code>sudo nixos-rebuild switch --flake . --builders &quot;ssh://myuser@builder &lt;other builder specification&gt;&quot;</code></li>
+<code>sudo nixos-rebuild switch --flake . --builders "ssh://myuser@builder &lt;other builder specification&gt;"</code></li>
 <li>Or add <code>nix.buildMachines</code> to your NixOs configuration to not have to use
 <code>--builders</code> flag. Don’t forget to set <code>nix.distributedBuilds = true</code>, to
 enable using the <code>buildMachines</code>.</li>

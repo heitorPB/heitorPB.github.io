@@ -31,9 +31,7 @@
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/linuxupskill/">
 
-            
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="https://heitorpb.github.io/atom.xml">
-    
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
 <!-- KaTeX css and JS -->
 <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
@@ -140,7 +138,7 @@ chaotic… The most difficult task of the day was setting up the SSH public key
 to log to my new <abbr title="Virtual Machine">VM</abbr>.</p>
 <p>SSH keys are awesome. I’ve been using them for a long time for remote access
 and they make life way easier. <code>ssh-copy-id</code> command is easier than
-<code>cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &quot;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys&quot;</code>,
+<code>cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address "mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys"</code>,
 but for old servers is not an option. The machine I’m using at my university to
 run the simulations for my Master’s studies did not accept <code>ssh-copy-id</code>…</p>
 <h3 id="day-2">Day 2</h3>
@@ -342,7 +340,7 @@ good.</p>
 <h3 id="day-11">Day 11</h3>
 <p>Goal: searching for files and patterns.</p>
 <p>I’ve been using blindly <code>find</code> for quite a while. It was time to finally read
-it’s manual. There’s more to it than <code>find . -iname &quot;bla*&quot;</code>.</p>
+it’s manual. There’s more to it than <code>find . -iname "bla*"</code>.</p>
 <p><code>zcat</code>, <code>zgrep</code>, <code>zless</code>, and <code>zmore</code> are awesome! Did not know I could
 <code>cat</code>/<code>less</code>/<code>grep</code> gzip compressed files.</p>
 <h3 id="day-12">Day 12</h3>
