@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Setting up Mainsail on Ender 3 V3 KE | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to setup Mainsail and webcam support on Creality Ender 3 V3 KE printer.">
+
+    <meta property="og:description" content="How to setup Mainsail and webcam support on Creality Ender 3 V3 KE printer.">
+    <meta property="og:title" content="Setting up Mainsail on Ender 3 V3 KE | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/ender3v3ke-mainsail/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/ender3v3ke-mainsail/equipment.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/ender3v3ke-mainsail/equipment.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to setup Mainsail and webcam support on Creality Ender 3 V3 KE printer.">
+    <meta name="twitter:title" content="Setting up Mainsail on Ender 3 V3 KE | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/ender3v3ke-mainsail/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/ender3v3ke-mainsail/">Setting up Mainsail on Ender 3 V3 KE</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Sep 03, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/3d-printing/">#3D printing</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/creality/">#Creality</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/ender-3-v3-ke/">#Ender 3 V3 KE</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/mainsail/">#Mainsail</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 3 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I decided to install extra apps in my Creality Ender 3 V3 KE 3D printer. The
+main (and only) reason I have for that is to make nice timelapses of my prints.
+Really, that’s the only reason for me to do it.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/32452746158/in/album-72157704652716634" title="DSC_3740"><img src="https://live.staticflickr.com/4914/32452746158_1185b5ee0f.jpg" width="640" height="426" alt="DSC_3740"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>I chose to go with <a href="https://mainsail.xyz">Mainsail</a>, a nice looking web
+interface to control and monitor the printer. Installation requires a few
+steps:</p>
+<ol>
+<li>
+<p>Update the printer firmware via the touch screen, the latest version as of
+this writing is v1.1.0.14.</p>
+</li>
+<li>
+<p>Root the printer. For that, go to printer settings and click on “Root
+account”. You need to “read” the disclaimer and accept it. Congratz! You’re
+groot now! The password for my <code>root</code> user is <code>Creality2023</code>, it <em>may</em> be
+different for you.</p>
+</li>
+<li>
+<p>SSH into the printer. Either do it with PuTTY or with <code>ssh</code> in the terminal
+if you are on Linux, WSL, or MacOS. One way to get the IP address of the
+printer is in the network tab of the settings menu.</p>
+</li>
+<li>
+<p>Download the installation script, after SSHing:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git clone https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script
+</span></code></pre>
+</li>
+<li>
+<p>Now it is time to install it! Still in the terminal, run the helper script:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sh /usr/data/helper-script/helper.sh
+</span></code></pre>
+<p>Select <code>1</code> for the Install Menu, then <code>1</code> to install Moonraker and Nginx,
+confirm it. This may take a while to complete, don’t rush the script.</p>
+<p>After the installation is complete, you’ll be back into the Install Menu.
+Chose option <code>3</code> for Mainsail (or <code>2</code> for Fluidd).</p>
+</li>
+</ol>
+<p>Done! That’s all to install Mainsail. You can now open your browser at
+<code>http://&lt;printer-ip&gt;:4409</code> and see Mainsail there.</p>
+<p>Now I want my cheap non-Creality webcam to work. For that we need to install
+Entware and the webcam support. Back in the Install menu, choose <code>4</code> to install
+Entware, then <code>13</code> for the webcam support, and finally <code>11</code> for the timelapse
+plugin. Mainsail should find the webcam automagically.</p>
+<p>The default settings in Mainsail should be enough for most users. But may not
+be for you. To configure the timelapse plugin, go to Settings (the gear icon in
+the top right area), find the timelapse menu in the left, and configure for
+your liking. If you want the timelapse in <em>layermacro</em> mode, you need your
+slicer to add a <code>TIMELAPSE_TAKE_FRAME</code> macro to the G-code on each layer
+change. For <em>hyperlapse</em> mode you don’t need the G-code instruction.</p>
+<p>To configure OrcaSlicer to add the G-code: go to the printer profile, edit
+preset, <em>Machine G-code</em> (second tab), scroll down to <em>Before layer change
+G-code</em>, and add <code>TIMELAPSE_TAKE_FRAME</code> one line above the <code>G92 E0</code>
+instruction.</p>
+<p>Enjoy.</p>
+<center>
+<p><img src="https://heitorpb.github.io/bla/ender3v3ke-mainsail/print.gif" title="Camera%20support%20timelapse" alt="“Camera support timelapse”" loading="lazy" decoding="async" /></p>
+</center>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/looping-over-hex-numbers-in-bash/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">TIL: looping over hex numbers in Bash</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

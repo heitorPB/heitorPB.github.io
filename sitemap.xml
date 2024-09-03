@@ -27,6 +27,10 @@
         <lastmod>2023-07-16</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/ender3v3ke-mainsail/</loc>
+        <lastmod>2024-09-03</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/essertineshiking/</loc>
         <lastmod>2018-10-16</lastmod>
     </url>
@@ -141,6 +145,9 @@
         <loc>https://heitorpb.github.io/tags/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/3d-printing/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/algorithm/</loc>
     </url>
     <url>
@@ -160,6 +167,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/cli/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/creality/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/curl/</loc>
@@ -190,6 +200,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/encoding/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/ender-3-v3-ke/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/fly-io/</loc>
@@ -232,6 +245,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/magic/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/mainsail/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/markdown/</loc>

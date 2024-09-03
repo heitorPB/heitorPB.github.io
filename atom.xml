@@ -5,8 +5,34 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-06-13T00:00:00+00:00</updated>
+    <updated>2024-09-03T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Setting up Mainsail on Ender 3 V3 KE</title>
+        <published>2024-09-03T00:00:00+00:00</published>
+        <updated>2024-09-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/ender3v3ke-mainsail/"/>
+        <id>https://heitorpb.github.io/bla/ender3v3ke-mainsail/</id>
+        
+        <summary type="html">How to setup Mainsail and webcam support on Creality Ender 3 V3 KE printer.</summary>
+        
+        <category term="3D printing"/>
+        
+        <category term="Mainsail"/>
+        
+        <category term="Creality"/>
+        
+        <category term="Ender 3 V3 KE"/>
+        </entry>
     <entry xml:lang="en">
         <title>TIL: looping over hex numbers in Bash</title>
         <published>2024-06-13T00:00:00+00:00</published>
