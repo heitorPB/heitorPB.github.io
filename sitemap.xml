@@ -103,6 +103,10 @@
         <lastmod>2018-11-29</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/random-strings-bash/</loc>
+        <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/rasp3-pihole/</loc>
         <lastmod>2020-10-13</lastmod>
     </url>
@@ -311,6 +315,12 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/sat/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/shell/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/string/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/symlink/</loc>

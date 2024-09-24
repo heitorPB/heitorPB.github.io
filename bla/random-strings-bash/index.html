@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Generating random strings in Bash | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to generate random strings in Bash.">
+
+    <meta property="og:description" content="How to generate random strings in Bash.">
+    <meta property="og:title" content="Generating random strings in Bash | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/random-strings-bash/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/random-strings-bash/tractor.png">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/random-strings-bash/tractor.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to generate random strings in Bash.">
+    <meta name="twitter:title" content="Generating random strings in Bash | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/random-strings-bash/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/random-strings-bash/">Generating random strings in Bash</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Sep 24, 2024
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/dev-urandom/">#&#x2F;dev&#x2F;urandom</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/bash/">#bash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/random/">#random</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/shell/">#shell</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/string/">#string</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I needed to generate some random strings in a Bash script, here’s how I ended
+up doing it.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/53673889278/" title="Old Tractor"><img src="https://live.staticflickr.com/65535/53673889278_630a78e5fe_z.jpg" width="640" height="425" alt="Old Tractor"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>As with all Bash tricks, one line gets the job done:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> tr</span><span style="color:#bf616a;"> -dc </span><span style="color:#b48ead;">[</span><span>:alnum:</span><span style="color:#b48ead;">] </span><span>&lt; /dev/urandom | </span><span style="color:#bf616a;">head -c </span><span>&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">len</span><span style="color:#a3be8c;">}</span><span>&quot;
+</span></code></pre>
+<p>This command gets random bits from <code>/dev/urandom</code> and deletes (<code>-d</code>) all
+characters that are not (<code>-c</code>) in a letters and digits set (<code>[:alnum:]</code>). The
+<code>head</code> command is to limit the output to <code>$len</code> bytes (characters in this
+case).</p>
+<hr />
+<p>Before getting to this solution, I used a more pedestrian script:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">alphabet</span><span>=&quot;</span><span style="color:#a3be8c;">abcdefghijklmnopqrstuvwxyz1234567890</span><span>&quot;
+</span><span style="color:#bf616a;">len</span><span>=</span><span style="color:#a3be8c;">5
+</span><span>
+</span><span style="color:#bf616a;">str</span><span>=&quot;&quot;
+</span><span style="color:#b48ead;">for</span><span> i </span><span style="color:#b48ead;">in </span><span>$(</span><span style="color:#bf616a;">seq</span><span> 1 ${</span><span style="color:#bf616a;">len</span><span>}); </span><span style="color:#b48ead;">do
+</span><span>	</span><span style="color:#bf616a;">char</span><span>=&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">alphabet</span><span>:$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">RANDOM</span><span style="color:#a3be8c;">} </span><span>% $</span><span style="color:#a3be8c;">{</span><span>#</span><span style="color:#bf616a;">alphabet</span><span style="color:#a3be8c;">}</span><span>:</span><span style="color:#d08770;">1</span><span style="color:#a3be8c;">}</span><span>&quot;
+</span><span>	</span><span style="color:#bf616a;">str</span><span>=&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">str</span><span style="color:#a3be8c;">}</span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">char</span><span style="color:#a3be8c;">}</span><span>&quot;
+</span><span style="color:#b48ead;">done
+</span></code></pre>
+<p>We first define all characters to choose from, then pick one randomly as many
+times as the length of the final string.</p>
+<p>The trick is picking the random character. Here we use
+<a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">substring expansion</a>
+(<code>${variable:offset:length}</code>) to select only one character from our alphabet
+(the <code>length</code> is <code>1</code>). The <code>offset</code> is calculated as a random number
+(<code>${RANDOM}</code>) modulo our <code>alphabet</code> length (<code>${#alphabet}</code>).</p>
+<p>In substring expansions, both <code>offset</code> and <code>length</code> are arithmetic expressions,
+that’s why we can calculate <code>RANDOM % #alphabet</code> in there.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/ender3v3ke-mainsail/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Setting up Mainsail on Ender 3 V3 KE</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
