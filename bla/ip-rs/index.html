@@ -135,14 +135,14 @@ then figure out it only has internal addresses…</p>
 that question for me: <a href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>.</p>
 <p>Usage is straightforward: make a GET request to my hosted server at
 <a href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>. For example, using <code>curl</code>:</p>
-<pre data-lang="shell" style="background-color:#2b303b;color:#c0c5ce;" class="language-shell "><code class="language-shell" data-lang="shell"><span>$ curl -L iprs.fly.dev
-</span><span>2804:431:c00f:feee:bee:2572:573d:c00f
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> curl</span><span style="color:#bf616a;"> -L</span><span> iprs.fly.dev
+</span><span style="color:#bf616a;">2804:431:c00f:feee:bee:2572:573d:c00f
 </span></code></pre>
 <p>😎</p>
 <p>And if you <del>still care about</del> want your IPv4 instead, you can also check it
 out:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ curl -L -4 iprs.fly.dev
-</span><span>200.232.29.121
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> curl</span><span style="color:#bf616a;"> -L -4</span><span> iprs.fly.dev
+</span><span style="color:#bf616a;">200.232.29.121
 </span></code></pre>
 <p>Way easier and faster than navigating the cloud provider’s console :)</p>
 <p>You can always force <code>curl</code> to use a specific IP version with <code>-4</code>/<code>--ipv4</code> or
