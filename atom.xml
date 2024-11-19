@@ -5,8 +5,34 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2024-09-24T00:00:00+00:00</updated>
+    <updated>2024-11-19T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Handling tarballs in Python</title>
+        <published>2024-11-19T00:00:00+00:00</published>
+        <updated>2024-11-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/tarballing-in-python/"/>
+        <id>https://heitorpb.github.io/bla/tarballing-in-python/</id>
+        
+        <summary type="html">Need to work with tar files in Python? Here&#x27;s how to create and extract compressed tarballs effortlessly.</summary>
+        
+        <category term="Python"/>
+        
+        <category term="TIL"/>
+        
+        <category term="tar"/>
+        
+        <category term="tarfile"/>
+        </entry>
     <entry xml:lang="en">
         <title>Generating random strings in Bash</title>
         <published>2024-09-24T00:00:00+00:00</published>

@@ -131,6 +131,10 @@
         <lastmod>2023-08-14</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/tarballing-in-python/</loc>
+        <lastmod>2024-11-19</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/test/</loc>
         <lastmod>2018-09-05</lastmod>
     </url>
@@ -330,6 +334,12 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/table/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/tar/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/tarfile/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/tee/</loc>
