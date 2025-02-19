@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Temporary files and directories in Python | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="Creating temporary files and directories in Python, using the standard library module `tempfile`.">
+
+    <meta property="og:description" content="Creating temporary files and directories in Python, using the standard library module `tempfile`.">
+    <meta property="og:title" content="Temporary files and directories in Python | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/pytmp/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/pytmp/balance.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/pytmp/balance.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Creating temporary files and directories in Python, using the standard library module `tempfile`.">
+    <meta name="twitter:title" content="Temporary files and directories in Python | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/pytmp/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/pytmp/">Temporary files and directories in Python</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Feb 19, 2025
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/python/">#Python</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/pytest/">#pytest</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/random/">#random</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 3 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>Python Standard Library has a module to work with temporary files and
+directories: <a href="https://docs.python.org/3/library/tempfile.htm"><code>tempfile</code></a>. This
+module handles creating the files/directories, naming them, and cleaning-up
+after done.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/53275504754/" title="Precision Balance"><img src="https://live.staticflickr.com/65535/53275504754_189015e9c3_z.jpg" width="640" height="426" alt="Precision Balance"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>To create a temporary directory: instantiate a <code>tempfile.TemporaryDirectory</code>
+object. By default, when this object is destroyed, the temporary directory
+created along with all its contents are wiped from disk. The name of the
+directory is saved in the <code>name</code> attribute. After the directory fulfills its
+duty, call the <code>cleanup()</code> method to remove the temporary bits. For example, to
+create a <code>foo</code> file in a temporary directory:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>tempfile
+</span><span>
+</span><span style="color:#65737e;"># Create temporary directory on disk
+</span><span>tmp_dir = tempfile.</span><span style="color:#bf616a;">TemporaryDirectory</span><span>()
+</span><span style="color:#96b5b4;">print</span><span>(tmp_dir.name) </span><span style="color:#65737e;"># Prints something like `/tmp/tmpr8d4aomi` on Unix
+</span><span>
+</span><span style="color:#65737e;"># Create a file in there with some content
+</span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(tmp_dir.name + &quot;</span><span style="color:#a3be8c;">/foo</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">w</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>foo_file:
+</span><span>    foo_file.</span><span style="color:#bf616a;">write</span><span>(&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
+</span><span>
+</span><span style="color:#65737e;"># Destroy dir and its contents
+</span><span>tmp_dir.</span><span style="color:#bf616a;">cleanup</span><span>()
+</span></code></pre>
+<p><code>tempfile.TemporaryDirectory</code> can also be used as a <a href="https://docs.python.org/3/glossary.html#term-context-manager">context
+manager</a>, to
+automatically cleanup the resources after we are done with them. One key
+difference is that, as a context manager, there’s no <code>.name</code> attribute. The
+snippet above can be rewritten to:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">with </span><span>tempfile.</span><span style="color:#bf616a;">TemporaryDirectory</span><span>() </span><span style="color:#b48ead;">as </span><span>tmp_dir:
+</span><span>    </span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(tmp_dir + &quot;</span><span style="color:#a3be8c;">/foo</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">w</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>foo_file:
+</span><span>        foo_file.</span><span style="color:#bf616a;">write</span><span>(&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
+</span></code></pre>
+<p>The <code>tempfile.TemporaryDirectory()</code> constructor has some knobs to add a prefix
+or suffix to the directory name, specify a different base directory to use, and
+control whether to delete the directory when exiting the context (defaults to
+deleting).</p>
+<p>In the examples above, we create a file in a temporary directory. But if all we
+want is a temporary file, we are better served with <code>tempfile.TemporaryFile</code>
+instead, which returns a <a href="https://docs.python.org/3/glossary.html#term-file-object">file
+object</a>. This file is
+deleted after closing:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>tmp_file = tempfile.</span><span style="color:#bf616a;">TemporaryFile</span><span>()
+</span><span>tmp_file.</span><span style="color:#bf616a;">write</span><span>(</span><span style="color:#b48ead;">b</span><span>&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
+</span><span>tmp_file.</span><span style="color:#bf616a;">close</span><span>()
+</span></code></pre>
+<p>One interesting thing about this <code>tempfile.TemporaryFile</code> object is that it is
+kind of a ghost on Unixes: the file exists, but has no readable path, only a
+file descriptor. The documentation says (as of Python 3.13): <em>Under Unix, the
+directory entry for the file is either not created at all or is removed
+immediately after the file is created</em>. Pretty weird, in my opinion, but also
+cool.</p>
+<p>If you need a file with a name, use <code>tempfile.NamedTemporaryFile()</code> instead.
+This way you get a file that has a visible name on disk, accessible via the
+<code>name</code> attribute. This named file is created under the <code>tempfile.gettmpdir()</code>
+directory.</p>
+<p><code>tempfile.TemporaryFile</code> and <code>tempfile.NamedTemporaryFile</code> can also be used as
+context managers, similar to <code>tempfile.TemporaryDirectory</code>:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">with </span><span>tempfile.</span><span style="color:#bf616a;">NamedTemporaryFile</span><span>() </span><span style="color:#b48ead;">as </span><span>tmp_file:
+</span><span>    tmp_file.</span><span style="color:#bf616a;">write</span><span>(</span><span style="color:#b48ead;">b</span><span>&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
+</span></code></pre>
+<p>In case you need temporary files in a test, don’t use <code>tempfile</code> module
+directly. Pytest provides the <a href="https://docs.pytest.org/en/7.1.x/how-to/tmp_path.html"><code>tmp_path</code>
+fixture</a> for temporary
+directories. This fixture is a <code>pathlib.Path</code> object pointing to an existing
+directory, unique to the test invocation.</p>
+<p>Both pytest’s <code>tmp_path</code> and <code>tempfile.TemporaryDirectory</code> directories are
+created with 700 permission, that is, only the user that owns the Python
+process can read, write, and execute it, group and others have zero
+permissions (<code>rwx------</code>). Directories created via <code>pathlib.Path.mkdir</code> have
+755, so group and others can read and execute (<code>rwxr-xr-x</code>).
+Files created with <code>open()</code> directly have 644 permission (<code>rw-r--r--</code>), while
+<code>tempfile.TemporaryFile</code> have 600 permission.</p>
+<p>These differences in permissions can bite hard. If you need to change the
+permission, I suggest to create a <code>pathlib.Path</code> for the directory or file and
+then <code>chmod</code> it:</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>tempfile
+</span><span style="color:#b48ead;">from </span><span>pathlib </span><span style="color:#b48ead;">import </span><span>Path
+</span><span>
+</span><span style="color:#b48ead;">with </span><span>tempfile.</span><span style="color:#bf616a;">TemporaryDirectory</span><span>() </span><span style="color:#b48ead;">as </span><span>tmp_dir:
+</span><span>    tmp_path = </span><span style="color:#bf616a;">Path</span><span>(tmp_dir)
+</span><span>    tmp_path.</span><span style="color:#bf616a;">chmod</span><span>(</span><span style="color:#d08770;">0o755</span><span>)
+</span><span>    </span><span style="color:#bf616a;">foo</span><span>(tmp_path)
+</span></code></pre>
+<p>You could also use the <code>chmod</code> function from the <code>os</code> module, but I’m a huge
+fan of <code>pathlib</code> and prefer it instead.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/tarballing-in-python/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Handling tarballs in Python</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -103,6 +103,10 @@
         <lastmod>2018-11-29</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/pytmp/</loc>
+        <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/random-strings-bash/</loc>
         <lastmod>2024-09-24</lastmod>
     </url>
@@ -295,6 +299,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/process-substitution/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/pytest/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/python/</loc>
