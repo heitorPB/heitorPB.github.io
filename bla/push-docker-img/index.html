@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pushing Docker images to a remote host | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to push and pull Docker/Podman images to a remote server, without using an Image Registry.">
+
+    <meta property="og:description" content="How to push and pull Docker/Podman images to a remote server, without using an Image Registry.">
+    <meta property="og:title" content="Pushing Docker images to a remote host | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/push-docker-img/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/push-docker-img/3811.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/push-docker-img/3811.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to push and pull Docker/Podman images to a remote server, without using an Image Registry.">
+    <meta name="twitter:title" content="Pushing Docker images to a remote host | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/push-docker-img/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/push-docker-img/">Pushing Docker images to a remote host</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Mar 28, 2025
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/docker/">#Docker</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/podman/">#Podman</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 3 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>Today I had to ship some Docker images to a remote server and I was just too
+lazy to push to a registry, like Docker Hub. That would require me to log-in
+twice: once in my laptop and once in the remote server, that’s too much effort.
+I can SSH into the server, so why not just ship the images?</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/46026731485/in/album-72157702952581402" title="DSC_3811"><img src="https://live.staticflickr.com/4910/46026731485_bc57774b04_z.jpg" width="640" height="426" alt="DSC_3811"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>We can save an image as a tarball with the command
+<code>docker image save my_image:foo</code>. This will dump a tarball to the terminal,
+or we can save the output to a file with the <code>--output my_image.tar</code> flag.
+Note: this tarball is not compressed. You can compress with gzip for example:
+<code>docker image save my_image:foo | gzip &gt; my_image.tar.gz</code>.</p>
+<p>Docker can do the opposite as well: load an image from a tarball. The command
+is <code>docker image load</code>. This command expects the tarball from <em>stdin</em>, but we
+can also specify a file to read from: <code>docker image load --input my_image.tar</code>.</p>
+<p>As both commands work with the same data format, we can combine them with a
+pipe: <code>docker image save my_image:foo | docker image load</code>, avoiding
+intermediate files.</p>
+<p>Here enters a little trick: we can use SSH “between” the two commands, like a
+network pipe, to send the output of <code>docker image save</code> from my laptop to the
+input of <code>docker image load</code> in a remote server:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> docker image save hello-world:latest | </span><span style="color:#bf616a;">ssh</span><span> user@server.com docker image load
+</span><span style="color:#bf616a;">Getting</span><span> image source signatures
+</span><span style="color:#bf616a;">Copying</span><span> blob sha256:63a41026379f4391a306242eb0b9f26dc3550d863b7fdbb97d899f6eb89efe72
+</span><span style="color:#bf616a;">Copying</span><span> config sha256:74cc54e27dc41bb10dc4b2226072d469509f2f22f1a3ce74f4a59661a1d44602
+</span><span style="color:#bf616a;">Writing</span><span> manifest to image destination
+</span><span style="color:#bf616a;">Loaded</span><span> image: docker.io/library/hello-world:latest
+</span></code></pre>
+<p>We can also do the opposite: get the image from a remote server. The command
+just swaps where the SSH is:
+<code>ssh user@server.com docker image save hello-world:latest | docker image load</code></p>
+<p>I mentioned earlier that the tarballs exported are not compressed. You can
+compress them with <code>gzip</code>, or <code>xz</code>, and they just work. You can also use other
+compression formats if you also run the “uncompressor” on the target machine,
+for example:
+<code>docker image save foo | bzip2 | ssh user@host 'bunzip2 | docker image load'</code>.</p>
+<p>Here I assumed you have access to Docker, either being root or root equivalent
+(if your user is in the <code>docker</code> group, this is dangerous) or running Docker in
+rootless mode (never seen anyone doing that though).</p>
+<p>The good news is: Podman has the same commands and they work the same :) so:</p>
+<ul>
+<li><code>podman image save IMAGE | ssh user@server.com podman image load</code></li>
+<li><code>podman image save IMAGE | gzip | ssh user@server.com podman image load</code></li>
+<li><code>ssh user@server.com podman image save IMAGE | podman image load</code></li>
+<li><code>ssh user@server.com 'podman image save IMAGE | gzip' | podman image load</code></li>
+</ul>
+<p>We can also use this <code>save | load</code> approach to send an image from Docker to
+Podman on the same machine. I have rootfull Docker and [rootless] Podman on my
+laptop and they don’t share the images. An image that Docker has is not
+available from Podman. But I can send and image from one to another:
+<code>podman image save IMAGE | sudo docker image load</code> and now Podman and Docker
+have the same image.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/pytmp/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Temporary files and directories in Python</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2025 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
