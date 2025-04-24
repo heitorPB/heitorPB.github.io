@@ -5,8 +5,35 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2025-03-28T00:00:00+00:00</updated>
+    <updated>2025-04-24T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Git aliases</title>
+        <published>2025-04-24T00:00:00+00:00</published>
+        <updated>2025-04-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/git-aliases/"/>
+        <id>https://heitorpb.github.io/bla/git-aliases/</id>
+        
+        <summary type="html">Boosting productivity with Git aliases: what they are, their
+                 benefits over shell aliases, setup, and examples.</summary>
+        
+        <category term="git"/>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
+        
+        <category term="tricks"/>
+        </entry>
     <entry xml:lang="en">
         <title>Pushing Docker images to a remote host</title>
         <published>2025-03-28T00:00:00+00:00</published>
