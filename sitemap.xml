@@ -151,6 +151,10 @@
         <lastmod>2018-09-05</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/timeout/</loc>
+        <lastmod>2025-05-20</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/utf-8-files/</loc>
         <lastmod>2020-05-12</lastmod>
     </url>
@@ -369,10 +373,16 @@
         <loc>https://heitorpb.github.io/tags/til/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/timeout/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/tricks/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/troubleshooting/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/until/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/vim/</loc>

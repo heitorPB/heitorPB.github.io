@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIL: timeout in Bash scripts | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to use the `timeout` command to terminate processes after a specified time and how to combine it with `until` for smarter shell scripting.">
+
+    <meta property="og:description" content="How to use the `timeout` command to terminate processes after a specified time and how to combine it with `until` for smarter shell scripting.">
+    <meta property="og:title" content="TIL: timeout in Bash scripts | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/timeout/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/timeout/3187.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/timeout/3187.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to use the `timeout` command to terminate processes after a specified time and how to combine it with `until` for smarter shell scripting.">
+    <meta name="twitter:title" content="TIL: timeout in Bash scripts | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/timeout/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/timeout/">TIL: timeout in Bash scripts</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            May 20, 2025
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/bash/">#Bash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/terminal/">#terminal</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/timeout/">#timeout</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/until/">#until</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>The other day at work we had a Bash script that would set up a web server and
+wait for it to be up before proceeding to the next things. The script worked
+fine and we had no issues, until we had an infinite loop.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/30622866477/" title="Airplane Tracks"><img src="https://live.staticflickr.com/1908/30622866477_d147a6f3fc_z.jpg" width="640" height="426" alt="Airplane Tracks"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>We were using the Bash built-in <code>until</code> to check if the web server was up:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">until </span><span style="color:#bf616a;">curl --silent --fail-with-body</span><span> 10.0.0.1:8080/health; </span><span style="color:#b48ead;">do
+</span><span>	</span><span style="color:#bf616a;">sleep</span><span> 1
+</span><span style="color:#b48ead;">done
+</span></code></pre>
+<p>This works fine. Unless our web server crashes during startup and we <code>sleep 1</code>
+forever.</p>
+<p>Here comes a handy utility: <code>timeout</code>. As the name suggests, this command adds
+a timeout to other commands. You specify the time limit you want to wait for a
+command and if that time passes, <code>timeout</code> sends a signal to terminate it and
+exits with non-zero. By default, <code>timeout</code> sends <code>SIGTERM</code>, but you can change
+it with the <code>--signal</code> flag, e.g. <code>timeout --signal=SIGKILL 1s foo</code>.</p>
+<p>For example, <code>timeout 1s sleep 5</code> will send the <code>SIGTERM</code> signal to <code>sleep</code>
+after 1 second:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> time timeout 1s sleep 4
+</span><span>
+</span><span style="color:#bf616a;">real</span><span>    0m1,004s
+</span><span style="color:#bf616a;">user</span><span>    0m0,000s
+</span><span style="color:#bf616a;">sys</span><span>     0m0,005s
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">?
+</span><span style="color:#bf616a;">124
+</span></code></pre>
+<p>The natural thing to do then is to combine <code>timeout</code> and <code>until</code>:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">timeout</span><span> 1m until curl</span><span style="color:#bf616a;"> --silent --fail-with-body</span><span> 10.0.0.1:8080/health; </span><span style="color:#b48ead;">do
+</span><span>	</span><span style="color:#bf616a;">sleep</span><span> 1
+</span><span style="color:#b48ead;">done
+</span></code></pre>
+<p>The only issue is that this doesn’t work. <code>timeout</code> expects a killable command
+and <code>until</code> is a shell keyword: you can’t <code>SIGTERM</code> <code>until</code>. We can’t use
+<code>timeout</code> with any shell built-in.</p>
+<p>The way forward is to wrap that <code>until</code> in a Bash process:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">timeout</span><span> 1m bash</span><span style="color:#bf616a;"> -c </span><span>&quot;</span><span style="color:#a3be8c;">until curl --silent --fail-with-body 10.0.0.1:8080/health; do
+</span><span style="color:#a3be8c;">	sleep 1
+</span><span style="color:#a3be8c;">done</span><span>&quot;
+</span></code></pre>
+<p>Another approach is to move the <code>until</code> to a separate Bash script and <code>timeout</code>
+it:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">timeout</span><span> 1m ./until.sh
+</span></code></pre>
+<p>It’s a shame we can’t use <code>timeout</code> with <code>until</code> directly, that would be
+amazing. But wrapping it in a Bash process/script gets the job done.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/git-aliases/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Git aliases</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2025 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
