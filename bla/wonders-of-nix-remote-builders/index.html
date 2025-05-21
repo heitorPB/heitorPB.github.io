@@ -15,10 +15,10 @@
     
     <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
 
-    <meta name="description" content="The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.
+    <meta name="description" content="The more I use NixOS the more interesting it gets. I now found out about remote builders and those are just awesome.
                  ">
 
-    <meta property="og:description" content="The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.
+    <meta property="og:description" content="The more I use NixOS the more interesting it gets. I now found out about remote builders and those are just awesome.
                  ">
     <meta property="og:title" content="The wonders of Nix remote builders | Heitor's log">
     <meta property="og:type" content="article">
@@ -28,7 +28,7 @@
     <meta name="twitter:image" content="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/under-pressure.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.
+    <meta name="twitter:description" content="The more I use NixOS the more interesting it gets. I now found out about remote builders and those are just awesome.
                  ">
     <meta name="twitter:title" content="The wonders of Nix remote builders | Heitor's log">
     <meta property="twitter:domain" content="heitorpb.github.io">
@@ -112,7 +112,7 @@
                 <a class="post-tag" href="https://heitorpb.github.io/tags/distributed-systems/">#Distributed Systems</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/nix/">#Nix</a>&nbsp;
-                <a class="post-tag" href="https://heitorpb.github.io/tags/nixos/">#NixOs</a></span>
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nixos/">#NixOS</a></span>
     
     
     <br><div class="post-meta-inline"><small>
@@ -122,7 +122,7 @@
 
         
         <div class="post-content">
-            <p>The more I use <a href="https://nixos.org">NixOs</a> the more interesting it gets. I now
+            <p>The more I use <a href="https://nixos.org">NixOS</a> the more interesting it gets. I now
 found out about <em>remote builders</em> and those are just awesome.</p>
 <center>
 <!-- !https://www.flickr.com/photos/heitorpb/52702401256 -->
@@ -157,7 +157,7 @@ was at warp speed: I saw a load of 79, 72, 45, 100% CPU usage clocked at
 <ul>
 <li>Add a CLI flag to <code>nixos-reuild</code> to use the remote builder:
 <code>sudo nixos-rebuild switch --flake . --builders "ssh://myuser@builder &lt;other builder specification&gt;"</code></li>
-<li>Or add <code>nix.buildMachines</code> to your NixOs configuration to not have to use
+<li>Or add <code>nix.buildMachines</code> to your NixOS configuration to not have to use
 <code>--builders</code> flag. Don’t forget to set <code>nix.distributedBuilds = true</code>, to
 enable using the <code>buildMachines</code>.</li>
 </ul>
@@ -177,9 +177,9 @@ enable using the <code>buildMachines</code>.</li>
 <code>nixos-test</code>, <code>kvm</code>.</li>
 <li>Public key of the builder.</li>
 </ul>
-<p>More details on the builder options and configuration in the <a href="https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html">NixOs
+<p>More details on the builder options and configuration in the <a href="https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html">NixOS
 documentation</a>
-and in the <a href="https://nixos.wiki/wiki/Distributed_build">NixOs Wiki</a>.</p>
+and in the <a href="https://nixos.wiki/wiki/Distributed_build">NixOS Wiki</a>.</p>
 <p>Happy building.</p>
 
         </div>

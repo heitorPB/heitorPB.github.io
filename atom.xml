@@ -323,13 +323,13 @@
         <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/"/>
         <id>https://heitorpb.github.io/bla/wonders-of-nix-remote-builders/</id>
         
-        <summary type="html">The more I use NixOs the more interesting it gets. I now found out about remote builders and those are just awesome.</summary>
+        <summary type="html">The more I use NixOS the more interesting it gets. I now found out about remote builders and those are just awesome.</summary>
         
         <category term="Linux"/>
         
         <category term="Nix"/>
         
-        <category term="NixOs"/>
+        <category term="NixOS"/>
         
         <category term="Distributed Systems"/>
         
@@ -364,7 +364,7 @@
         <category term="Markdown"/>
         </entry>
     <entry xml:lang="en">
-        <title>Deploying Nomad on NixOs</title>
+        <title>Deploying Nomad on NixOS</title>
         <published>2023-10-19T00:00:00+00:00</published>
         <updated>2023-10-19T00:00:00+00:00</updated>
         
@@ -379,9 +379,9 @@
         <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/nomad-on-nixos/"/>
         <id>https://heitorpb.github.io/bla/nomad-on-nixos/</id>
         
-        <summary type="html">How to get Nomad running on NixOs for local development, with Podman and Docker task drivers.</summary>
+        <summary type="html">How to get Nomad running on NixOS for local development, with Podman and Docker task drivers.</summary>
         
-        <category term="NixOs"/>
+        <category term="NixOS"/>
         
         <category term="Nomad"/>
         
@@ -449,7 +449,7 @@
         
         <category term="Rust"/>
         
-        <category term="ReinventingThewheel"/>
+        <category term="ReinventingTheWheel"/>
         
         <category term="networking"/>
         

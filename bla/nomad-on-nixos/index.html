@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Deploying Nomad on NixOs | Heitor&#x27;s log</title>
+    <title>Deploying Nomad on NixOS | Heitor&#x27;s log</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -15,10 +15,10 @@
     
     <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
 
-    <meta name="description" content="How to get Nomad running on NixOs for local development, with Podman and Docker task drivers.">
+    <meta name="description" content="How to get Nomad running on NixOS for local development, with Podman and Docker task drivers.">
 
-    <meta property="og:description" content="How to get Nomad running on NixOs for local development, with Podman and Docker task drivers.">
-    <meta property="og:title" content="Deploying Nomad on NixOs | Heitor's log">
+    <meta property="og:description" content="How to get Nomad running on NixOS for local development, with Podman and Docker task drivers.">
+    <meta property="og:title" content="Deploying Nomad on NixOS | Heitor's log">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://heitorpb.github.io/bla/nomad-on-nixos/">
 
@@ -26,8 +26,8 @@
     <meta name="twitter:image" content="https://heitorpb.github.io/bla/nomad-on-nixos/nomad-client.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="How to get Nomad running on NixOs for local development, with Podman and Docker task drivers.">
-    <meta name="twitter:title" content="Deploying Nomad on NixOs | Heitor's log">
+    <meta name="twitter:description" content="How to get Nomad running on NixOS for local development, with Podman and Docker task drivers.">
+    <meta name="twitter:title" content="Deploying Nomad on NixOS | Heitor's log">
     <meta property="twitter:domain" content="heitorpb.github.io">
     <meta property="twitter:url" content="https://heitorpb.github.io/bla/nomad-on-nixos/">
 
@@ -93,7 +93,7 @@
         
     <div class="post">
         
-    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/nomad-on-nixos/">Deploying Nomad on NixOs</a></h1>
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/nomad-on-nixos/">Deploying Nomad on NixOS</a></h1>
     <div class="post-meta-inline">
         
     <span class="post-date">
@@ -108,7 +108,7 @@
                 <a class="post-tag" href="https://heitorpb.github.io/tags/docker/">#Docker</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/nix/">#Nix</a>&nbsp;
-                <a class="post-tag" href="https://heitorpb.github.io/tags/nixos/">#NixOs</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nixos/">#NixOS</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/nomad/">#Nomad</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/podman/">#Podman</a>&nbsp;
                 <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
@@ -122,7 +122,7 @@
         
         <div class="post-content">
             <p>I decided to run <a href="https://www.nomadproject.io">HashiCorp’s Nomad</a> on my dev
-server, that runs NixOs. The process was <em>almost</em> straightforward and here’s
+server, that runs NixOS. The process was <em>almost</em> straightforward and here’s
 how I went from “I’ve never used Nomad before” to “it works for me”.</p>
 <center>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/31958126887/" title="Wanderer of Science"><img src="https://live.staticflickr.com/7815/31958126887_e24b1f6246_k.jpg" width="640" height="426" alt="Wanderer of Science"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
@@ -132,7 +132,7 @@ how I went from “I’ve never used Nomad before” to “it works for me”.</
 Nomad 1.6</abbr>, Docker and Podman task drivers. I also want a separate ZFS
 dataset for Nomad’s data. Firecracker and Singularity support is also of my
 interest, but not for now.</p>
-<p>Installing Nomad on NixOs is neat, as is with other services/packages in
+<p>Installing Nomad on NixOS is neat, as is with other services/packages in
 this operating system. This Nix snippet does everything I need, installation
 and configuration:</p>
 <pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#8fa1b3;">{ </span><span>lib, pkgs, ... </span><span style="color:#8fa1b3;">}</span><span>:
@@ -177,7 +177,7 @@ and configuration:</p>
 </span></code></pre>
 <p>The tricky part is figuring out how to write the Nomad’s configuration (the
 <code>settings</code> attribute) using Nix. The official documentation suggests HCL for the
-configuration and all examples use it. But NixOs uses JSON instead, which is
+configuration and all examples use it. But NixOS uses JSON instead, which is
 also valid. I used an online HCL to JSON converter to translate the examples
 in the documentation.</p>
 <p>I already had Podman (in rootless mode 🙂) installed and
@@ -202,7 +202,7 @@ now I also want Docker. This is what I use to have them:</p>
 </span><span>}
 </span></code></pre>
 <p>I keep these bits on separate files (<code>nomad.nix</code>, <code>podman.nix</code>, <code>docker.nix</code>)
-and add them to the machines I want. I like this composability aspect of NixOs,
+and add them to the machines I want. I like this composability aspect of NixOS,
 helps me remember how I did things in the past.</p>
 <p>Now I need a ZFS dataset for my Nomad data:</p>
 <pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo zfs create</span><span style="color:#bf616a;"> -o</span><span> mountpoint=legacy</span><span style="color:#bf616a;"> -o</span><span> compression=lz4 zroot/nomad
