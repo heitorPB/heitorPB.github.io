@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Firmware updates on Linux via fwupd | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to use fwupd to update device's firmware on Linux.">
+
+    <meta property="og:description" content="How to use fwupd to update device's firmware on Linux.">
+    <meta property="og:title" content="Firmware updates on Linux via fwupd | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/update-devices-firmware/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/update-devices-firmware/cricket.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/update-devices-firmware/cricket.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to use fwupd to update device's firmware on Linux.">
+    <meta name="twitter:title" content="Firmware updates on Linux via fwupd | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/update-devices-firmware/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/update-devices-firmware/">Firmware updates on Linux via fwupd</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Oct 14, 2025
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/lvfs/">#LVFS</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/firmware/">#firmware</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/fwupd/">#fwupd</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>Keeping your computer secure and running smoothly requires more than just
+software updates: firmware updates are equally essential.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/33883468948/" title="Hidden Cricket"><img src="https://live.staticflickr.com/65535/33883468948_878d8e178d_z.jpg" width="640" height="476" alt="Hidden Cricket"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>Updating the firmware may fix bugs, harden security, improve performance, and
+even add new features. Or screw up something, and then you may
+have a “bricked” device (hardware that is as useful as a brick), or a
+regression in the functionality/performance/security. Update at your own risk.
+It’s usually a good idea to update firmware and software though.</p>
+<p><em>Some</em> vendors offer a way to update the firmware of their products, usually
+via some proprietary software they provide. To update the firmware of all
+devices your machine has, you can go over the website of their vendors and
+follow their documentation, <em>if</em> you can find it and have the right OS. Good
+luck.</p>
+<p>Or use <code>fwupd</code>: a vendor-agnostic tool to discover, download, and update
+firmware.</p>
+<p>The <a href="https://fwupd.org">Linux Vendor Firmware Service (LVFS)</a> project provides
+two software components to update the firmware of devices: a daemon, <code>fwupd</code>,
+to update the device firmware; and a CLI client, <code>fwupdmgr</code>, to view and apply
+updates. There are also graphical user interfaces like GNOME Software and KDE
+Discover to interact with <code>fwupd</code>.</p>
+<p>And the killer functionality of this project is that LVFS provides not only the
+tools but also the firmware for many, but not all, devices. More than 100
+vendors provide firmware updates via LVFS and all you need to do is run a
+command (or press a button) to update all your firmware.</p>
+<p>Usage is straightforward, assuming you installed it:</p>
+<ol>
+<li>download the latest metadata from LVFS<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> fwupdmgr refresh</span><span style="color:#bf616a;"> --force
+</span><span style="color:#bf616a;">Updating</span><span> lvfs
+</span><span style="color:#bf616a;">Downloading…             </span><span style="color:#b48ead;">[</span><span>***************************************</span><span style="color:#b48ead;">]
+</span><span style="color:#bf616a;">Successfully</span><span> downloaded new metadata: Updates have been published for 4 of 23 local devices
+</span></code></pre>
+</li>
+<li>Optionally list the available updates with <code>fwupdmgr get-updates</code>. The
+output is too long for me to copy-paste here, but worth reviewing.</li>
+<li>Update what is available:<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> fwupdmgr update
+</span><span style="color:#bf616a;">Devices</span><span> with no available firmware updates:
+</span><span> </span><span style="color:#bf616a;">•</span><span> ELAN067F:00 04F3:3309
+</span><span> </span><span style="color:#bf616a;">•</span><span> Element Hub
+</span><span> </span><span style="color:#bf616a;">•</span><span> UEFI Device Firmware
+</span><span> </span><span style="color:#bf616a;">•</span><span> UMIS RPJTJ512MGE2QDQ
+</span><span> </span><span style="color:#bf616a;">•</span><span> USB3.0 Hub
+</span><span style="color:#bf616a;">╔══════════════════════════════════════════════════════════════════════════════╗
+</span><span style="color:#bf616a;">║</span><span> Upgrade System Firmware from 0.1.15 to 0.1.31?                               ║
+</span><span style="color:#bf616a;">╠══════════════════════════════════════════════════════════════════════════════╣
+</span><span style="color:#bf616a;">║</span><span> ThinkPad L14L15 Gen3 AMD System Firmware                                     ║
+</span><span style="color:#bf616a;">║</span><span>                                                                              ║
+</span><span style="color:#bf616a;">║</span><span> • MR01221(N3AET79W) </span><span style="color:#bf616a;">-</span><span> Updated Realtek UNDI driver to ver.2.043.              ║
+</span><span style="color:#bf616a;">║</span><span> • MR00592(N3XET49W) </span><span style="color:#bf616a;">-</span><span> add dbx update 23/05                                   ║
+</span><span style="color:#bf616a;">║</span><span> • MR00616(N3XET51W) </span><span style="color:#bf616a;">-</span><span> Fixed Various vulnerabilities in NetworkPkg IP         ║
+</span><span style="color:#bf616a;">║</span><span> stack implementation.                                                        ║
+</span><span style="color:#bf616a;">║</span><span> • MR00621(N3XET51W) </span><span style="color:#bf616a;">-</span><span> Add MSFT 2023 kek/db                                   ║
+</span><span style="color:#bf616a;">║</span><span>                                                                              ║
+</span><span style="color:#bf616a;">║</span><span> 5 Update Absolute module to v2.8 (154756)                                    </span><span style="color:#bf616a;">║
+</span><span style="color:#bf616a;">║</span><span>                                                                              ║
+</span><span style="color:#bf616a;">║</span><span> • Improve boot time for DASH Enable                                          ║
+</span><span style="color:#bf616a;">║</span><span> • Correct the output values of the CU_WMI_script.ps1                         ║
+</span><span style="color:#bf616a;">║</span><span> • CP20240328_0006 CS22 Wi-Fi6E for CA                                        ║
+</span><span style="color:#bf616a;">║</span><span>                                                                              ║
+</span><span style="color:#bf616a;">║</span><span> 21C60010BO must remain plugged into a power source for the duration of the   ║
+</span><span style="color:#bf616a;">║</span><span> update to avoid damage.                                                      ║
+</span><span style="color:#bf616a;">╚══════════════════════════════════════════════════════════════════════════════╝
+</span><span style="color:#bf616a;">Perform</span><span> operation? </span><span style="color:#b48ead;">[</span><span>Y|n</span><span style="color:#b48ead;">]</span><span>: y
+</span><span style="color:#bf616a;">Waiting…                 </span><span style="color:#b48ead;">[</span><span>***************************************</span><span style="color:#b48ead;">]
+</span><span style="color:#bf616a;">Successfully</span><span> installed firmware
+</span></code></pre>
+</li>
+</ol>
+<p>And that’s it.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/timeout/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">TIL: timeout in Bash scripts</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2025 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

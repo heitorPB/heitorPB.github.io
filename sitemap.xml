@@ -155,6 +155,10 @@
         <lastmod>2025-05-20</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/update-devices-firmware/</loc>
+        <lastmod>2025-10-14</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/utf-8-files/</loc>
         <lastmod>2020-05-12</lastmod>
     </url>
@@ -229,7 +233,13 @@
         <loc>https://heitorpb.github.io/tags/ender-3-v3-ke/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/firmware/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/fly-io/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/fwupd/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/geocache/</loc>
@@ -266,6 +276,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/lspci/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/lvfs/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/magic/</loc>

@@ -5,8 +5,34 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2025-05-20T00:00:00+00:00</updated>
+    <updated>2025-10-14T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Firmware updates on Linux via fwupd</title>
+        <published>2025-10-14T00:00:00+00:00</published>
+        <updated>2025-10-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/update-devices-firmware/"/>
+        <id>https://heitorpb.github.io/bla/update-devices-firmware/</id>
+        
+        <summary type="html">How to use fwupd to update device&#x27;s firmware on Linux.</summary>
+        
+        <category term="Linux"/>
+        
+        <category term="fwupd"/>
+        
+        <category term="firmware"/>
+        
+        <category term="LVFS"/>
+        </entry>
     <entry xml:lang="en">
         <title>TIL: timeout in Bash scripts</title>
         <published>2025-05-20T00:00:00+00:00</published>
