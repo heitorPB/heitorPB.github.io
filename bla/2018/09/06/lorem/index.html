@@ -1,6 +1,12 @@
 <!doctype html>
 <meta charset="utf-8">
-<link rel="canonical" href="https://heitorpb.github.io/bla/lorem/">
-<meta http-equiv="refresh" content="0; url=https://heitorpb.github.io/bla/lorem/">
 <title>Redirect</title>
+<script>
+  const target = "https://heitorpb.github.io/bla/lorem/";
+  const hash = window.location.hash || "";
+  window.location.replace(target + hash);
+</script>
+<noscript>
+  <meta http-equiv="refresh" content="0; url=https://heitorpb.github.io/bla/lorem/">
+</noscript>
 <p><a href="https://heitorpb.github.io/bla/lorem/">Click here</a> to be redirected.</p>
