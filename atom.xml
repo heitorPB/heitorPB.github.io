@@ -5,8 +5,48 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2025-10-14T00:00:00+00:00</updated>
+    <updated>2025-11-27T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Benchmarking checksum tools</title>
+        <published>2025-11-27T00:00:00+00:00</published>
+        <updated>2025-11-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/checksum-benchmark/"/>
+        <id>https://heitorpb.github.io/bla/checksum-benchmark/</id>
+        
+        <summary type="html">There are plenty of CLI tools to calculate the checksum of files. But, which one is the fastest?</summary>
+        
+        <category term="CLI"/>
+        
+        <category term="terminal"/>
+        
+        <category term="checksum"/>
+        
+        <category term="hash"/>
+        
+        <category term="BLAKE2b"/>
+        
+        <category term="CRC"/>
+        
+        <category term="MD5"/>
+        
+        <category term="SHA"/>
+        
+        <category term="xxHash"/>
+        
+        <category term="benchmark"/>
+        
+        <category term="hyperfine"/>
+        </entry>
     <entry xml:lang="en">
         <title>Firmware updates on Linux via fwupd</title>
         <published>2025-10-14T00:00:00+00:00</published>

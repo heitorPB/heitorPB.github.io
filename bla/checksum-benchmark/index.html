@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Benchmarking checksum tools | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="There are plenty of CLI tools to calculate the checksum of files. But, which one is the fastest?">
+
+    <meta property="og:description" content="There are plenty of CLI tools to calculate the checksum of files. But, which one is the fastest?">
+    <meta property="og:title" content="Benchmarking checksum tools | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/checksum-benchmark/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/checksum-benchmark/chandelier.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/checksum-benchmark/chandelier.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="There are plenty of CLI tools to calculate the checksum of files. But, which one is the fastest?">
+    <meta name="twitter:title" content="Benchmarking checksum tools | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/checksum-benchmark/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/checksum-benchmark/">Benchmarking checksum tools</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Nov 27, 2025
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/blake2b/">#BLAKE2b</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/cli/">#CLI</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/crc/">#CRC</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/md5/">#MD5</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sha/">#SHA</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/benchmark/">#benchmark</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/checksum/">#checksum</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/hash/">#hash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/hyperfine/">#hyperfine</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/terminal/">#terminal</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/xxhash/">#xxHash</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 3 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I was curious to see which checksumming/hashing tool would be the fastest on my
+machine. This is helpful when copying files around and checking if they were
+not corrupted.</p>
+<center>
+<a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/54055309676/" title="Chandelier"><img src="https://live.staticflickr.com/65535/54055309676_7fe633947e_z.jpg" width="640" height="425" alt="Chandelier"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>These are the checksumming tools I’ll benchmark, from GNU coreutils and
+<a href="https://xxhash.com/">xxHash</a>:</p>
+<ul>
+<li><code>b2sum</code>: 512-bit hash (BLAKE2b)</li>
+<li><code>cksum</code>: 32-bit CRC checksum - non-cryptographic algorithm</li>
+<li><code>md5sum</code>: 128-bit hash - cryptographically broken</li>
+<li><code>sha1sum</code>: 160-bit hash - cryptographically broken</li>
+<li><code>sha224sum</code>: 224-bit hash</li>
+<li><code>sha256sum</code>: 256-bit hash</li>
+<li><code>sha384sum</code>: 384-bit hash</li>
+<li><code>sha512sum</code>: 512-bit hash</li>
+<li><code>XXH128</code>: 128-bit hash - non-cryptographic algorithm.</li>
+</ul>
+<p>I want to see their performance on small (1 KiB), medium (1 MiB), and large (1
+GiB) files. For testing purposes, I’ll generate random data:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">dd</span><span> if=/dev/urandom of=1K bs=1K count=1
+</span><span style="color:#bf616a;">dd</span><span> if=/dev/urandom of=1M bs=1M count=1
+</span><span style="color:#bf616a;">dd</span><span> if=/dev/urandom of=1G bs=1M count=1024
+</span></code></pre>
+<p>I’ll use <a href="https://github.com/sharkdp/hyperfine/">hyperfine</a> to run the
+benchmarks:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for</span><span> file_size </span><span style="color:#b48ead;">in</span><span> 1K 1M 1G; </span><span style="color:#b48ead;">do 
+</span><span>    </span><span style="color:#bf616a;">hyperfine --warmup</span><span> 3</span><span style="color:#bf616a;"> --shell</span><span>=none</span><span style="color:#bf616a;"> --min-runs</span><span> 20</span><span style="color:#bf616a;"> --export-json </span><span>&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}.json</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">b2sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">cksum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">md5sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">sha1sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">sha224sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">sha256sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">sha384sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">sha512sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
+</span><span>        &quot;</span><span style="color:#a3be8c;">xxhsum -H2 </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot;
+</span><span style="color:#b48ead;">done
+</span></code></pre>
+<p>I got many warnings about statistical outliers when running these benchmarks,
+even when I had nothing but <code>hyperfine</code> and NeoVim (and the OS) running. I’ll
+ignore that for now.</p>
+<p>For 1 KiB files, <code>hyperfine</code> run each command more than 1000 times; for 1 MiB
+files, it run at least 600 times; and for 1 GiB files, 20 times only.</p>
+<p>The results on my laptop (AMD Ryzen 7 PRO 5875U, NVMe) are very interesting:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Summary
+</span><span>  xxhsum -H2 1K ran
+</span><span>    1.64 ± 0.33 times faster than sha512sum 1K
+</span><span>    1.67 ± 0.46 times faster than md5sum 1K
+</span><span>    1.73 ± 0.44 times faster than sha1sum 1K
+</span><span>    2.60 ± 0.75 times faster than sha384sum 1K
+</span><span>    2.91 ± 0.52 times faster than sha256sum 1K
+</span><span>    2.91 ± 0.51 times faster than sha224sum 1K
+</span><span>    2.91 ± 0.52 times faster than b2sum 1K
+</span><span>    2.95 ± 0.53 times faster than cksum 1K
+</span><span>
+</span><span>Summary
+</span><span>  xxhsum -H2 1M ran
+</span><span>    1.33 ± 0.14 times faster than cksum 1M
+</span><span>    1.72 ± 0.17 times faster than sha256sum 1M
+</span><span>    2.46 ± 0.81 times faster than b2sum 1M
+</span><span>    2.84 ± 0.69 times faster than sha224sum 1M
+</span><span>    3.14 ± 0.23 times faster than sha1sum 1M
+</span><span>    3.66 ± 0.80 times faster than sha384sum 1M
+</span><span>    4.05 ± 0.27 times faster than sha512sum 1M
+</span><span>    4.16 ± 0.25 times faster than md5sum 1M
+</span><span>
+</span><span>Summary
+</span><span>  cksum 1G ran
+</span><span>    1.19 ± 0.29 times faster than xxhsum -H2 1G
+</span><span>    2.90 ± 0.68 times faster than sha1sum 1G
+</span><span>    3.34 ± 1.02 times faster than sha256sum 1G
+</span><span>    3.74 ± 1.23 times faster than sha224sum 1G
+</span><span>    6.90 ± 2.29 times faster than md5sum 1G
+</span><span>    6.97 ± 2.09 times faster than b2sum 1G
+</span><span>    7.16 ± 2.22 times faster than sha512sum 1G
+</span><span>    7.16 ± 2.18 times faster than sha384sum 1G
+</span></code></pre>
+<p>I also wanted to play with Matplotlib, so I made a nice plot of the actual
+runtimes, the lower the better. Note the log scale:</p>
+<center>
+<p><img src="https://heitorpb.github.io/bla/checksum-benchmark/result.png" alt="Runtime of each algorithm for each file size" loading="lazy" decoding="async" /></p>
+</center>
+<p>Here’s the code in case you want to play with it: <a href="https://heitorpb.github.io/bla/checksum-benchmark/matplot.py">matplot.py</a>; and
+my raw data: <a href="https://heitorpb.github.io/bla/checksum-benchmark/1K.json">1K.json</a>, <a href="https://heitorpb.github.io/bla/checksum-benchmark/1M.json">1M.json</a>, and <a href="https://heitorpb.github.io/bla/checksum-benchmark/1G.json">1G.json</a>.</p>
+<p>For small and medium files, XXH128 (<code>xxhsum -H2</code>) was the absolute fastest. For
+large files, CRC (<code>cksum</code>) and XXH128 have roughly the same performance, when
+you take into account the measurement errors.</p>
+<p>The difference in runtime from 1 KiB to 1 MiB is way smaller than from 1 MiB to
+1 GiB, even though each “step” is relatively the same (1024 times). My CPU has
+16 MiB L3 cache, it can fit my small and medium testing data just fine (1 KiB
+even fits L1d) but not the large one, that one comes from the disk and took two
+orders of magnitude longer on all cases.</p>
+<p>I’m very surprised about <code>sha224sum</code> and <code>sha256sum</code>: they were faster for 1
+MiB than for 1 KiB files. I expected the larger the file size the longer it
+would take to compute the hash, but not for these two.</p>
+<p>I’m disappointed at <code>b2sum</code>. I was using it all the time because I thought it
+would always outperform <code>md5sum</code>. But that’s not the case, their performance is
+similar when you compare only these two. Still, I prefer <code>b2sum</code> over <code>md5sum</code>:
+both are cryptographic hashes, but BLAKE2b is not broken.</p>
+<p>The winner, to me, is <code>xxhsum -H2</code> and that’s what I’ll be using from now on to
+check data integrity. It is the fastest in my tests and is available in most
+Linux distributions (and also in FreeBSD ports). It doesn’t give a
+cryptographically secure hash, but that is not needed for this use case: I want
+to check if the files were not corrupted, I’m not hashing passwords or anything
+like that.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/update-devices-firmware/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Firmware updates on Linux via fwupd</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2025 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

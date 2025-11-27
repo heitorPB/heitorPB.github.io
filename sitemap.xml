@@ -19,6 +19,10 @@
         <lastmod>2020-09-13</lastmod>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/checksum-benchmark/</loc>
+        <lastmod>2025-11-27</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/close-matplotlib-figures/</loc>
         <lastmod>2020-03-18</lastmod>
     </url>
@@ -185,7 +189,13 @@
         <loc>https://heitorpb.github.io/tags/bash/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/benchmark/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/blackhole/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/blake2b/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/c/</loc>
@@ -194,7 +204,13 @@
         <loc>https://heitorpb.github.io/tags/cache/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/checksum/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/cli/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/crc/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/creality/</loc>
@@ -251,6 +267,9 @@
         <loc>https://heitorpb.github.io/tags/golang/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/hash/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/hexadecimal/</loc>
     </url>
     <url>
@@ -258,6 +277,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/history/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/hyperfine/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/iproute2/</loc>
@@ -291,6 +313,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/matplotlib/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/md5/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/networking/</loc>
@@ -353,6 +378,9 @@
         <loc>https://heitorpb.github.io/tags/sat/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/sha/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/shell/</loc>
     </url>
     <url>
@@ -402,6 +430,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/website/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/xxhash/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/zola/</loc>
