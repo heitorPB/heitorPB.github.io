@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Betting on the Lottery with Bash and &#x2F;dev&#x2F;urandom | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="Trying to win the lottery with pure Linux RNG magic.">
+
+    <meta property="og:description" content="Trying to win the lottery with pure Linux RNG magic.">
+    <meta property="og:title" content="Betting on the Lottery with Bash and /dev/urandom | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/lottery-bash/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/lottery-bash/diamond.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/lottery-bash/diamond.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Trying to win the lottery with pure Linux RNG magic.">
+    <meta name="twitter:title" content="Betting on the Lottery with Bash and /dev/urandom | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/lottery-bash/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/lottery-bash/">Betting on the Lottery with Bash and &#x2F;dev&#x2F;urandom</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Dec 05, 2025
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/dev-urandom/">#&#x2F;dev&#x2F;urandom</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/bash/">#Bash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/cli/">#CLI</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/lottery/">#lottery</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/random/">#random</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/terminal/">#terminal</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>This year’s Mega-Sena New Year’s Eve lottery here in Brazil has an accumulated
+prize of R$850 million, that’s approximately 160 million US dollars. I’m
+definitely throwing in a ticket.</p>
+<center>
+    <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/48045858401/" title="Diamond in the Map"><img src="https://live.staticflickr.com/65535/48045858401_a03de74b3b_z.jpg" width="640" height="577" alt="Diamond in the Map"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>This lottery draws six numbers from 1 to 60. You win when your bet matches 4,
+5, or 6 numbers. You can bet on 6 numbers or more, up to 20, in the same game.
+The more numbers you bet, the more expensive the game is. The odds of winning
+this lottery when betting six numbers is 1 in 50,063,860, pretty low. The house
+always wins.</p>
+<p>I’m betting this year, and I want an easy way to choose my numbers. I’m
+embracing the chaos and going random. If I had a 60-sided dice, I’d roll it six
+times. Instead, I’ll use <code>/dev/urandom</code> as a source of luck, because why not
+let a cryptographically secure random number generator decide my fate?</p>
+<p>There are a few ways of picking random numbers from <code>/dev/urandom</code>, I wrote an
+<a href="https://heitorpb.github.io/bla/bash-random-numbers/">article about that in the past</a>. But
+this time I need numbers in a very small range, and I want to try a different
+approach.</p>
+<p>I’m going to use <code>shuf</code> to generate six unique random numbers, from <code>1</code> to
+<code>60</code>, using <code>/dev/urandom</code> as source of randomness. It is pleasantly
+straightforward:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> shuf</span><span style="color:#bf616a;"> -i</span><span> 1-60</span><span style="color:#bf616a;"> --random-source</span><span>=/dev/urandom</span><span style="color:#bf616a;"> -n</span><span> 6
+</span><span style="color:#bf616a;">52
+</span><span style="color:#bf616a;">9
+</span><span style="color:#bf616a;">43
+</span><span style="color:#bf616a;">47
+</span><span style="color:#bf616a;">45
+</span><span style="color:#bf616a;">21
+</span></code></pre>
+<p>And that’s it: my randomly blessed lottery ticket for the year.</p>
+<p>Maybe I win the lottery? Probably not.
+Did I have fun with a Linux-powered ritual? Absolutely!</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/checksum-benchmark/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Benchmarking checksum tools</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2025 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
