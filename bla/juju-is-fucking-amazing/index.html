@@ -120,98 +120,90 @@
 
         
         <div class="post-content">
-            <p>I’m working with <a href="https://juju.is">juju</a> to manage High Performance Computing clusters. It is an interesting software, but with horrible documentation. And of course, easter eggs are not documented.</p>
+            <p>I’m working with <a rel="external" href="https://juju.is">juju</a> to manage High Performance Computing clusters. It is an interesting software, but with horrible documentation. And of course, easter eggs are not documented.</p>
 <p>After all, that’s why <em>easter eggs</em> have this name: they are secret features.</p>
 <p>Last Friday, just a few minutes before ending the week, my boss told me “<em>Do
 you know what <code>juju is</code>? Find out how this command works.</em>” At first, I didn’t
 get the question. I’ve been working with <code>juju</code> for a few days, I have an idea
 of what <em>it is</em>. Instead, I was supposed to type in the terminal:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> juju is
-</span><span style="color:#bf616a;">fucking</span><span> amazing
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> juju is</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fucking</span><span style="color: #A5D6FF;"> amazing</span></span></code></pre>
 <p>So, <code>juju</code> has a very high self-esteem. Now that I know <em>what <code>juju is</code></em>, I
 need to find out <em>how</em> this command works. Let’s ask for help:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> juju is</span><span style="color:#bf616a;"> --help
-</span><span style="color:#bf616a;">ERROR</span><span> juju: &quot;</span><span style="color:#a3be8c;">is</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
-</span><span>
-</span><span style="color:#bf616a;">Did</span><span> you mean:
-</span><span>        </span><span style="color:#bf616a;">ssh
-</span><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">?
-</span><span style="color:#bf616a;">1
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> juju is</span><span style="color: #79C0FF;"> --help</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ERROR</span><span style="color: #A5D6FF;"> juju: &quot;is&quot; is not a juju command. See &quot;juju --help&quot;.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">Did</span><span style="color: #A5D6FF;"> you mean:</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">        ssh</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo</span><span style="color: #79C0FF;"> $?</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">1</span></span></code></pre>
 <p>Hmmm, looks like this command is quite hidden. Time to get the source and look
 around:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git clone git@github.com:juju/juju.git
-</span><span style="color:#bf616a;">$</span><span> cd juju
-</span><span style="color:#bf616a;">$</span><span> grep</span><span style="color:#bf616a;"> -iRn --exclude-dir</span><span>=.git fuck
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git clone git@github.com:juju/juju.git</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> cd juju</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> grep</span><span style="color: #79C0FF;"> -iRn --exclude-dir=.git</span><span style="color: #A5D6FF;"> fuck</span></span></code></pre>
 <p>Hmmm. The string <code>fuck</code> is not in the repository. So, it is not just “quite
 hidden”, they obscured it. I liked the challenge! Where to start searching, and
 what to search for? They probably wrote that string in binary, or in something
 weirder. There are too many files in this source code to go through everything,
 we need another strategy.</p>
 <p>Let’s start looking for that <code>is not a juju command</code> error-string:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> grep</span><span style="color:#bf616a;"> -iRn --exclude-dir</span><span>=.git &quot;</span><span style="color:#a3be8c;">is not a juju command</span><span>&quot;
-</span><span style="color:#bf616a;">cmd/juju/commands/repl_test.go:207:ERROR</span><span> juju: &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot; is not a juju command. Type &quot;</span><span style="color:#a3be8c;">help</span><span>&quot; to see a list of commands.
-</span><span style="color:#bf616a;">cmd/juju/commands/main.go:236:const</span><span> notFoundCommandMessage = `</span><span style="color:#bf616a;">juju: </span><span>%</span><span style="color:#bf616a;">q</span><span> is not a juju command. %</span><span style="color:#bf616a;">s</span><span>.
-</span><span style="color:#bf616a;">cmd/juju/commands/plugin_test.go:163:</span><span>   expectedHelp := `ERROR juju: &quot;</span><span style="color:#a3be8c;">foo</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
-</span><span style="color:#bf616a;">cmd/juju/commands/plugin_test.go:173:</span><span>   expectedHelp := `</span><span style="color:#bf616a;">ERROR</span><span> juju: &quot;</span><span style="color:#a3be8c;">/foo</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
-</span><span style="color:#bf616a;">cmd/juju/commands/plugin_test.go:183:</span><span>   expectedHelp := `ERROR juju: &quot;</span><span style="color:#a3be8c;">.foo</span><span>&quot; is not a juju command. See &quot;</span><span style="color:#a3be8c;">juju --help</span><span>&quot;.
-</span><span style="color:#bf616a;">grep:</span><span> testcharms/charm-repo/series/format2/hooks/symlink: No such file or directory
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> grep</span><span style="color: #79C0FF;"> -iRn --exclude-dir=.git</span><span style="color: #A5D6FF;"> &quot;is not a juju command&quot;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cmd/juju/commands/repl_test.go:207:ERROR</span><span style="color: #A5D6FF;"> juju: &quot;foo&quot; is not a juju command. Type &quot;help&quot; to see a list of commands.</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cmd/juju/commands/main.go:236:const</span><span style="color: #A5D6FF;"> notFoundCommandMessage = `</span><span style="color: #FFA657;">juju:</span><span style="color: #A5D6FF;"> %q is not a juju command. %s.</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cmd/juju/commands/plugin_test.go:163:</span><span style="color: #A5D6FF;">   expectedHelp := `</span><span style="color: #FFA657;">ERROR</span><span style="color: #A5D6FF;"> juju: &quot;foo&quot; is not a juju command. See &quot;juju --help&quot;.</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cmd/juju/commands/plugin_test.go:173:</span><span style="color: #A5D6FF;">   expectedHelp := `</span><span style="color: #FFA657;">ERROR</span><span style="color: #A5D6FF;"> juju: &quot;/foo&quot; is not a juju command. See &quot;juju --help&quot;.</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cmd/juju/commands/plugin_test.go:183:</span><span style="color: #A5D6FF;">   expectedHelp := `</span><span style="color: #FFA657;">ERROR</span><span style="color: #A5D6FF;"> juju: &quot;.foo&quot; is not a juju command. See &quot;juju --help&quot;.</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">grep:</span><span style="color: #A5D6FF;"> testcharms/charm-repo/series/format2/hooks/symlink: No such file or directory</span></span></code></pre>
 <p>The file <code>cmd/juju/commands/main.go</code> appears to be an interesting starting
 point, after all it is the file that parses the command line arguments! Just in
 the beginning, there’s a very suspicious line (78):</p>
-<pre data-lang="go" style="background-color:#2b303b;color:#c0c5ce;" class="language-go "><code class="language-go" data-lang="go"><span style="color:#b48ead;">var </span><span style="color:#bf616a;">x </span><span>= []</span><span style="color:#b48ead;">byte</span><span>(&quot;</span><span style="color:#96b5b4;">\x96\x8c\x8a\x91\x93\x9a\x9e\x8c\x97\x99\x8a\x9c\x94\x96\x91\x98\xdf\x9e\x92\x9e\x85\x96\x91\x98\xf5</span><span>&quot;)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="go"><span class="giallo-l"><span style="color: #FF7B72;">var</span><span> x</span><span style="color: #FF7B72;"> =</span><span> []</span><span style="color: #FF7B72;">byte</span><span>(</span><span style="color: #A5D6FF;">&quot;</span><span style="color: #FF7B72;">\x96\x8c\x8a\x91\x93\x9a\x9e\x8c\x97\x99\x8a\x9c\x94\x96\x91\x98\xdf\x9e\x92\x9e\x85\x96\x91\x98\xf5</span><span style="color: #A5D6FF;">&quot;</span><span>)</span></span></code></pre>
 <p>What the hell? Looking for this variable in the file shows something
 interesting on lines 126-138:</p>
-<pre data-lang="go" style="background-color:#2b303b;color:#c0c5ce;" class="language-go "><code class="language-go" data-lang="go"><span>	</span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">i </span><span>:= </span><span style="color:#b48ead;">range </span><span style="color:#bf616a;">x </span><span>{
-</span><span>		</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#bf616a;">i</span><span>] ^= </span><span style="color:#d08770;">255
-</span><span>	}
-</span><span>	</span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">len</span><span>(</span><span style="color:#bf616a;">args</span><span>) == </span><span style="color:#d08770;">2 </span><span>{
-</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">args</span><span>[</span><span style="color:#d08770;">1</span><span>] == </span><span style="color:#bf616a;">string</span><span>(</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">0</span><span>:</span><span style="color:#d08770;">2</span><span>]) {
-</span><span>			</span><span style="color:#bf616a;">os</span><span>.</span><span style="color:#bf616a;">Stdout</span><span>.</span><span style="color:#bf616a;">Write</span><span>(</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">9</span><span>:])
-</span><span>			</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0
-</span><span>		}
-</span><span>		</span><span style="color:#b48ead;">if </span><span style="color:#bf616a;">args</span><span>[</span><span style="color:#d08770;">1</span><span>] == </span><span style="color:#bf616a;">string</span><span>(</span><span style="color:#bf616a;">x</span><span>[</span><span style="color:#d08770;">2</span><span>:</span><span style="color:#d08770;">9</span><span>]) {
-</span><span>			</span><span style="color:#bf616a;">os</span><span>.</span><span style="color:#bf616a;">Stdout</span><span>.</span><span style="color:#bf616a;">Write</span><span>(</span><span style="color:#bf616a;">model</span><span>.</span><span style="color:#bf616a;">ExtractCert</span><span>())
-</span><span>			</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0
-</span><span>		}
-</span><span>	}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="go"><span class="giallo-l"><span style="color: #FF7B72;">	for</span><span> i</span><span style="color: #FF7B72;"> := range</span><span> x {</span></span>
+<span class="giallo-l"><span>		x[i]</span><span style="color: #FF7B72;"> ^=</span><span style="color: #79C0FF;"> 255</span></span>
+<span class="giallo-l"><span>	}</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	if</span><span style="color: #D2A8FF;"> len</span><span>(args)</span><span style="color: #FF7B72;"> ==</span><span style="color: #79C0FF;"> 2</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">		if</span><span> args[</span><span style="color: #79C0FF;">1</span><span>]</span><span style="color: #FF7B72;"> == string</span><span>(x[</span><span style="color: #79C0FF;">0</span><span>:</span><span style="color: #79C0FF;">2</span><span>]) {</span></span>
+<span class="giallo-l"><span>			os.Stdout.</span><span style="color: #D2A8FF;">Write</span><span>(x[</span><span style="color: #79C0FF;">9</span><span>:])</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">			return</span><span style="color: #79C0FF;"> 0</span></span>
+<span class="giallo-l"><span>		}</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">		if</span><span> args[</span><span style="color: #79C0FF;">1</span><span>]</span><span style="color: #FF7B72;"> == string</span><span>(x[</span><span style="color: #79C0FF;">2</span><span>:</span><span style="color: #79C0FF;">9</span><span>]) {</span></span>
+<span class="giallo-l"><span>			os.Stdout.</span><span style="color: #D2A8FF;">Write</span><span>(model.</span><span style="color: #D2A8FF;">ExtractCert</span><span>())</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">			return</span><span style="color: #79C0FF;"> 0</span></span>
+<span class="giallo-l"><span>		}</span></span>
+<span class="giallo-l"><span>	}</span></span></code></pre>
 <p>This variable is XORed with <code>255</code> and the CLI arguments are compared with parts
 of it, casted to string. That’s too suspicious. I made a quick C++ code to find
 out what that weird byte sequence XORed with <code>255</code> is:</p>
-<pre data-lang="cpp" style="background-color:#2b303b;color:#c0c5ce;" class="language-cpp "><code class="language-cpp" data-lang="cpp"><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">vector</span><span>&gt;
-</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">iostream</span><span>&gt;
-</span><span>
-</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
-</span><span>{
-</span><span>	</span><span style="color:#b48ead;">const</span><span> std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">x </span><span>{</span><span style="color:#d08770;">0x96</span><span>, </span><span style="color:#d08770;">0x8c</span><span>, </span><span style="color:#d08770;">0x8a</span><span>, </span><span style="color:#d08770;">0x91</span><span>, </span><span style="color:#d08770;">0x93</span><span>, </span><span style="color:#d08770;">0x9a</span><span>, </span><span style="color:#d08770;">0x9e</span><span>,
-</span><span>	                          </span><span style="color:#d08770;">0x8c</span><span>, </span><span style="color:#d08770;">0x97</span><span>, </span><span style="color:#d08770;">0x99</span><span>, </span><span style="color:#d08770;">0x8a</span><span>, </span><span style="color:#d08770;">0x9c</span><span>, </span><span style="color:#d08770;">0x94</span><span>, </span><span style="color:#d08770;">0x96</span><span>,
-</span><span>	                          </span><span style="color:#d08770;">0x91</span><span>, </span><span style="color:#d08770;">0x98</span><span>, </span><span style="color:#d08770;">0xdf</span><span>, </span><span style="color:#d08770;">0x9e</span><span>, </span><span style="color:#d08770;">0x92</span><span>, </span><span style="color:#d08770;">0x9e</span><span>, </span><span style="color:#d08770;">0x85</span><span>,
-</span><span>	                          </span><span style="color:#d08770;">0x96</span><span>, </span><span style="color:#d08770;">0x91</span><span>, </span><span style="color:#d08770;">0x98</span><span>, </span><span style="color:#d08770;">0xf5</span><span>};
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const auto</span><span> i: x)
-</span><span>		std::cout &lt;&lt; i &lt;&lt; &quot; &quot;;
-</span><span>	std::cout &lt;&lt; &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">for </span><span>(</span><span style="color:#b48ead;">const auto</span><span> i: x)
-</span><span>		std::cout &lt;&lt; static_cast&lt;</span><span style="color:#b48ead;">char</span><span>&gt;(i^</span><span style="color:#d08770;">255</span><span>);
-</span><span>	std::cout &lt;&lt; &quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="cpp"><span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;vector&gt;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;iostream&gt;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">int</span><span style="color: #D2A8FF;"> main</span><span>()</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	const</span><span style="color: #FFA657;"> std</span><span>::vector</span><span style="color: #FF7B72;">&lt;int&gt;</span><span> x {</span><span style="color: #FF7B72;">0x</span><span style="color: #79C0FF;">96</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">8c</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">8a</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">91</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">93</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">9a</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">9e</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	                          0x</span><span style="color: #79C0FF;">8c</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">97</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">99</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">8a</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">9c</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">94</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">96</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	                          0x</span><span style="color: #79C0FF;">91</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">98</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">df</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">9e</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">92</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">9e</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">85</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	                          0x</span><span style="color: #79C0FF;">96</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">91</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">98</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">f5</span><span>};</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	for</span><span> (</span><span style="color: #FF7B72;">const auto</span><span> i: x)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt;</span><span> i </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot; &quot;</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot;</span><span style="color: #FF7B72;">\n</span><span style="color: #A5D6FF;">&quot;</span><span>;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	for</span><span> (</span><span style="color: #FF7B72;">const auto</span><span> i: x)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt; static_cast&lt;char&gt;</span><span>(i</span><span style="color: #FF7B72;">^</span><span style="color: #79C0FF;">255</span><span>);</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot;</span><span style="color: #FF7B72;">\n</span><span style="color: #A5D6FF;">&quot;</span><span>;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	return</span><span style="color: #79C0FF;"> 0</span><span>;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>It starts with some standard libraries, that weird byte sequence written the
 C++ way, prints the sequence, prints the sequence XORed with <code>255</code> as a char,
 and returns:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> g++ weird.cpp
-</span><span style="color:#bf616a;">$</span><span> ./a.out
-</span><span style="color:#bf616a;">150</span><span> 140 138 145 147 154 158 140 151 153 138 156 148 150 145 152 223 158 146 158 133 150 145 152 245
-</span><span style="color:#bf616a;">isunleashfucking</span><span> amazing
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> g++ weird.cpp</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ./a.out</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">150</span><span style="color: #79C0FF;"> 140 138 145 147 154 158 140 151 153 138 156 148 150 145 152 223 158 146 158 133 150 145 152 245</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">isunleashfucking</span><span style="color: #A5D6FF;"> amazing</span></span></code></pre>
 <p>HA, that’s it! That weird byte sequence is <code>isunleashfucking amazing</code>. Lines
 130-133 of the <code>main.go</code> file compare the CLI argument with the first 2 chars
 of this string (<code>is</code>) and, if it matches, it prints the chars starting from

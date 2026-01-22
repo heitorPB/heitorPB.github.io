@@ -119,7 +119,7 @@
         
         <div class="post-content">
             <p>Python Standard Library has a module to work with temporary files and
-directories: <a href="https://docs.python.org/3/library/tempfile.htm"><code>tempfile</code></a>. This
+directories: <a rel="external" href="https://docs.python.org/3/library/tempfile.htm"><code>tempfile</code></a>. This
 module handles creating the files/directories, naming them, and cleaning-up
 after done.</p>
 <center>
@@ -131,41 +131,38 @@ created along with all its contents are wiped from disk. The name of the
 directory is saved in the <code>name</code> attribute. After the directory fulfills its
 duty, call the <code>cleanup()</code> method to remove the temporary bits. For example, to
 create a <code>foo</code> file in a temporary directory:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>tempfile
-</span><span>
-</span><span style="color:#65737e;"># Create temporary directory on disk
-</span><span>tmp_dir = tempfile.</span><span style="color:#bf616a;">TemporaryDirectory</span><span>()
-</span><span style="color:#96b5b4;">print</span><span>(tmp_dir.name) </span><span style="color:#65737e;"># Prints something like `/tmp/tmpr8d4aomi` on Unix
-</span><span>
-</span><span style="color:#65737e;"># Create a file in there with some content
-</span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(tmp_dir.name + &quot;</span><span style="color:#a3be8c;">/foo</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">w</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>foo_file:
-</span><span>    foo_file.</span><span style="color:#bf616a;">write</span><span>(&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
-</span><span>
-</span><span style="color:#65737e;"># Destroy dir and its contents
-</span><span>tmp_dir.</span><span style="color:#bf616a;">cleanup</span><span>()
-</span></code></pre>
-<p><code>tempfile.TemporaryDirectory</code> can also be used as a <a href="https://docs.python.org/3/glossary.html#term-context-manager">context
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">import</span><span> tempfile</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Create temporary directory on disk</span></span>
+<span class="giallo-l"><span>tmp_dir</span><span style="color: #FF7B72;"> =</span><span> tempfile.TemporaryDirectory()</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(tmp_dir.name)</span><span style="color: #8B949E;"> # Prints something like `/tmp/tmpr8d4aomi` on Unix</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Create a file in there with some content</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">with</span><span style="color: #79C0FF;"> open</span><span>(tmp_dir.name</span><span style="color: #FF7B72;"> +</span><span style="color: #A5D6FF;"> &quot;/foo&quot;</span><span>,</span><span style="color: #A5D6FF;"> &quot;w&quot;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> foo_file:</span></span>
+<span class="giallo-l"><span>    foo_file.write(</span><span style="color: #A5D6FF;">&quot;Temporary hello&quot;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Destroy dir and its contents</span></span>
+<span class="giallo-l"><span>tmp_dir.cleanup()</span></span></code></pre>
+<p><code>tempfile.TemporaryDirectory</code> can also be used as a <a rel="external" href="https://docs.python.org/3/glossary.html#term-context-manager">context
 manager</a>, to
 automatically cleanup the resources after we are done with them. One key
 difference is that, as a context manager, there’s no <code>.name</code> attribute. The
 snippet above can be rewritten to:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">with </span><span>tempfile.</span><span style="color:#bf616a;">TemporaryDirectory</span><span>() </span><span style="color:#b48ead;">as </span><span>tmp_dir:
-</span><span>    </span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(tmp_dir + &quot;</span><span style="color:#a3be8c;">/foo</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">w</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>foo_file:
-</span><span>        foo_file.</span><span style="color:#bf616a;">write</span><span>(&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">with</span><span> tempfile.TemporaryDirectory()</span><span style="color: #FF7B72;"> as</span><span> tmp_dir:</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    with</span><span style="color: #79C0FF;"> open</span><span>(tmp_dir</span><span style="color: #FF7B72;"> +</span><span style="color: #A5D6FF;"> &quot;/foo&quot;</span><span>,</span><span style="color: #A5D6FF;"> &quot;w&quot;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> foo_file:</span></span>
+<span class="giallo-l"><span>        foo_file.write(</span><span style="color: #A5D6FF;">&quot;Temporary hello&quot;</span><span>)</span></span></code></pre>
 <p>The <code>tempfile.TemporaryDirectory()</code> constructor has some knobs to add a prefix
 or suffix to the directory name, specify a different base directory to use, and
 control whether to delete the directory when exiting the context (defaults to
 deleting).</p>
 <p>In the examples above, we create a file in a temporary directory. But if all we
 want is a temporary file, we are better served with <code>tempfile.TemporaryFile</code>
-instead, which returns a <a href="https://docs.python.org/3/glossary.html#term-file-object">file
+instead, which returns a <a rel="external" href="https://docs.python.org/3/glossary.html#term-file-object">file
 object</a>. This file is
 deleted after closing:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>tmp_file = tempfile.</span><span style="color:#bf616a;">TemporaryFile</span><span>()
-</span><span>tmp_file.</span><span style="color:#bf616a;">write</span><span>(</span><span style="color:#b48ead;">b</span><span>&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
-</span><span>tmp_file.</span><span style="color:#bf616a;">close</span><span>()
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span>tmp_file</span><span style="color: #FF7B72;"> =</span><span> tempfile.TemporaryFile()</span></span>
+<span class="giallo-l"><span>tmp_file.write(</span><span style="color: #FF7B72;">b</span><span style="color: #A5D6FF;">&quot;Temporary hello&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>tmp_file.close()</span></span></code></pre>
 <p>One interesting thing about this <code>tempfile.TemporaryFile</code> object is that it is
 kind of a ghost on Unixes: the file exists, but has no readable path, only a
 file descriptor. The documentation says (as of Python 3.13): <em>Under Unix, the
@@ -178,11 +175,10 @@ This way you get a file that has a visible name on disk, accessible via the
 directory.</p>
 <p><code>tempfile.TemporaryFile</code> and <code>tempfile.NamedTemporaryFile</code> can also be used as
 context managers, similar to <code>tempfile.TemporaryDirectory</code>:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">with </span><span>tempfile.</span><span style="color:#bf616a;">NamedTemporaryFile</span><span>() </span><span style="color:#b48ead;">as </span><span>tmp_file:
-</span><span>    tmp_file.</span><span style="color:#bf616a;">write</span><span>(</span><span style="color:#b48ead;">b</span><span>&quot;</span><span style="color:#a3be8c;">Temporary hello</span><span>&quot;)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">with</span><span> tempfile.NamedTemporaryFile()</span><span style="color: #FF7B72;"> as</span><span> tmp_file:</span></span>
+<span class="giallo-l"><span>    tmp_file.write(</span><span style="color: #FF7B72;">b</span><span style="color: #A5D6FF;">&quot;Temporary hello&quot;</span><span>)</span></span></code></pre>
 <p>In case you need temporary files in a test, don’t use <code>tempfile</code> module
-directly. Pytest provides the <a href="https://docs.pytest.org/en/7.1.x/how-to/tmp_path.html"><code>tmp_path</code>
+directly. Pytest provides the <a rel="external" href="https://docs.pytest.org/en/7.1.x/how-to/tmp_path.html"><code>tmp_path</code>
 fixture</a> for temporary
 directories. This fixture is a <code>pathlib.Path</code> object pointing to an existing
 directory, unique to the test invocation.</p>
@@ -196,14 +192,13 @@ Files created with <code>open()</code> directly have 644 permission (<code>rw-r-
 <p>These differences in permissions can bite hard. If you need to change the
 permission, I suggest to create a <code>pathlib.Path</code> for the directory or file and
 then <code>chmod</code> it:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>tempfile
-</span><span style="color:#b48ead;">from </span><span>pathlib </span><span style="color:#b48ead;">import </span><span>Path
-</span><span>
-</span><span style="color:#b48ead;">with </span><span>tempfile.</span><span style="color:#bf616a;">TemporaryDirectory</span><span>() </span><span style="color:#b48ead;">as </span><span>tmp_dir:
-</span><span>    tmp_path = </span><span style="color:#bf616a;">Path</span><span>(tmp_dir)
-</span><span>    tmp_path.</span><span style="color:#bf616a;">chmod</span><span>(</span><span style="color:#d08770;">0o755</span><span>)
-</span><span>    </span><span style="color:#bf616a;">foo</span><span>(tmp_path)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">import</span><span> tempfile</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">from</span><span> pathlib</span><span style="color: #FF7B72;"> import</span><span> Path</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">with</span><span> tempfile.TemporaryDirectory()</span><span style="color: #FF7B72;"> as</span><span> tmp_dir:</span></span>
+<span class="giallo-l"><span>    tmp_path</span><span style="color: #FF7B72;"> =</span><span> Path(tmp_dir)</span></span>
+<span class="giallo-l"><span>    tmp_path.chmod(</span><span style="color: #FF7B72;">0o</span><span style="color: #79C0FF;">755</span><span>)</span></span>
+<span class="giallo-l"><span>    foo(tmp_path)</span></span></code></pre>
 <p>You could also use the <code>chmod</code> function from the <code>os</code> module, but I’m a huge
 fan of <code>pathlib</code> and prefer it instead.</p>
 

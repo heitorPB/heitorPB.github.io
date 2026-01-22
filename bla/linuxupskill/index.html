@@ -117,7 +117,7 @@
         
         <div class="post-content">
             <p>The Linux Upskill Challenge is a month-long course on Reddit
-(<a href="https://www.reddit.com/r/linuxupskillchallenge">r/linuxupskillchallenge</a>),
+(<a rel="external" href="https://www.reddit.com/r/linuxupskillchallenge">r/linuxupskillchallenge</a>),
 about Linux Server Administration.</p>
 <p>It is not a formal course, neither gives a certificate to share on social
 media. I think this makes the course more valuable, because the people taking
@@ -156,7 +156,7 @@ Bots everywhere.</p>
 <p>It was nice to learn about <code>sudo -i</code>. I’ve been using <code>sudo su -</code> to become
 root and is good to know there are other ways to do it as well. The details
 about the differences and other comments are explained
-<a href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used">here</a>.</p>
+<a rel="external" href="https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used">here</a>.</p>
 <h3 id="day-4">Day 4</h3>
 <p>Goal: install stuff, explore the file structure and get familiar with “walking”
 around.</p>
@@ -172,7 +172,7 @@ position, and quite fast for huge files.</p>
 prefer to <code>ctrl + r</code> and a trick to use the Up/Down arrows to use the text that
 has already been typed as the prefix for searching commands. Only works with
 Bash, though. Check <code>readline</code> on
-<a href="https://wiki.archlinux.org/index.php/Readline#History">ArchWiki</a> for more
+<a rel="external" href="https://wiki.archlinux.org/index.php/Readline#History">ArchWiki</a> for more
 details.</p>
 <h3 id="day-6">Day 6</h3>
 <p>Goal: learn <code>Vim</code> and how to exit it.</p>
@@ -211,67 +211,61 @@ Curiously, <code>neovim</code> has one fewer additional mode (at least as of <co
 <p>Goal: install a web server and use it to host a page.</p>
 <p>The instructions are for Apache2, a.k.a. <code>httpd</code>, but I decided to use Caddy
 instead. I’m curious about it’s automatic conversion from Markdown to HTML.</p>
-<p>I got the binary from the <a href="https://caddyserver.com/download">Download page</a> and
+<p>I got the binary from the <a rel="external" href="https://caddyserver.com/download">Download page</a> and
 followed the official documentation to install it, creating a <code>systemd</code> service
 file.</p>
 <p>I am using this <code>Caddyfile</code> to serve a static-website:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>:80 {
-</span><span>	root * /var/lib/caddy/www/
-</span><span>	encode zstd gzip
-</span><span>	templates
-</span><span>	file_server
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="html"><span class="giallo-l"><span>:80 {</span></span>
+<span class="giallo-l"><span>	root * /var/lib/caddy/www/</span></span>
+<span class="giallo-l"><span>	encode zstd gzip</span></span>
+<span class="giallo-l"><span>	templates</span></span>
+<span class="giallo-l"><span>	file_server</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>And my <code>/var/lib/caddy/www/index.html</code> is a very complex one:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>{ { include &quot;index.md&quot; | markdown }}
-</span></code></pre>
-<h4 id="afterthoughts">Afterthoughts</h4>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="html"><span class="giallo-l"><span>{ { include &quot;index.md&quot; | markdown }}</span></span></code></pre><h4 id="afterthoughts">Afterthoughts</h4>
 <p>I should just follow the course. Lets play with Apache2. It is also simple, for
 some reason I expected it to be a quite complex to set up. On the other hand, I
 need to write html instead of Markdown :( but I can have a nice text only web
 page using only one tag:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">pre</span><span>&gt;
-</span><span># Title
-</span><span>
-</span><span>## Section
-</span><span>
-</span><span>bla
-</span></code></pre>
-<h3 id="day-8">Day 8</h3>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="html"><span class="giallo-l"><span>&lt;</span><span style="color: #7EE787;">pre</span><span>&gt;</span></span>
+<span class="giallo-l"><span># Title</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>## Section</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>bla</span></span></code></pre><h3 id="day-8">Day 8</h3>
 <p>Goal: search for specific patterns in text files.</p>
 <p>The Apache2 logs are in <code>/var/log/apache2</code>. To get all IP addresses that
 connected to Apache:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sed</span><span style="color:#bf616a;"> -E </span><span>&#39;</span><span style="color:#a3be8c;">s/ (.*)//g</span><span>&#39; access.log | </span><span style="color:#bf616a;">sort -n </span><span>| </span><span style="color:#bf616a;">uniq
-</span><span style="color:#bf616a;">27.123.241.20
-</span><span style="color:#bf616a;">45.148.121.28
-</span><span style="color:#bf616a;">45.148.121.85
-</span><span style="color:#bf616a;">54.93.196.88
-</span><span style="color:#bf616a;">62.33.138.6
-</span><span style="color:#bf616a;">66.249.75.147
-</span><span style="color:#bf616a;">66.249.75.149
-</span><span style="color:#bf616a;">74.120.14.52
-</span><span style="color:#bf616a;">75.76.251.71
-</span><span style="color:#bf616a;">91.193.5.58
-</span><span style="color:#bf616a;">92.118.160.17
-</span><span style="color:#bf616a;">99.10.249.153
-</span><span style="color:#bf616a;">103.49.188.166
-</span><span style="color:#bf616a;">116.28.214.153
-</span><span style="color:#bf616a;">125.41.10.86
-</span><span style="color:#bf616a;">125.43.93.10
-</span><span style="color:#bf616a;">125.47.64.145
-</span><span style="color:#bf616a;">139.162.119.197
-</span><span style="color:#bf616a;">142.118.76.99
-</span><span style="color:#bf616a;">173.174.64.235
-</span><span style="color:#bf616a;">174.51.18.48
-</span><span style="color:#bf616a;">177.76.230.216
-</span><span style="color:#bf616a;">179.99.69.186
-</span><span style="color:#bf616a;">186.71.77.9
-</span><span style="color:#bf616a;">192.241.239.84
-</span><span style="color:#bf616a;">193.118.53.210
-</span><span style="color:#bf616a;">194.87.138.60
-</span><span style="color:#bf616a;">209.126.3.185
-</span><span style="color:#bf616a;">209.17.97.34
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> sed</span><span style="color: #79C0FF;"> -E</span><span style="color: #A5D6FF;"> &#39;s/ (.*)//g&#39; access.log</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> sort</span><span style="color: #79C0FF;"> -n</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> uniq</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">27.123.241.20</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">45.148.121.28</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">45.148.121.85</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">54.93.196.88</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">62.33.138.6</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">66.249.75.147</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">66.249.75.149</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">74.120.14.52</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">75.76.251.71</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">91.193.5.58</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">92.118.160.17</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">99.10.249.153</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">103.49.188.166</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">116.28.214.153</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">125.41.10.86</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">125.43.93.10</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">125.47.64.145</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">139.162.119.197</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">142.118.76.99</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">173.174.64.235</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">174.51.18.48</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">177.76.230.216</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">179.99.69.186</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">186.71.77.9</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">192.241.239.84</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">193.118.53.210</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">194.87.138.60</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">209.126.3.185</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">209.17.97.34</span></span></code></pre>
 <p>Grepping <code>/var/log/auth.log</code> I can see 72 different IPs trying to log as
 <code>root</code> and 10 other random users. Hahah, nice.</p>
 <p>I liked to know that <code>cut</code> can also remove words from a string, I finally got
@@ -280,51 +274,48 @@ what the <code>--fields</code> option mean.</p>
 <p>Goal: First look at network security.</p>
 <p>The first task is to find open ports. I’ve used <code>nmap</code> for that before and
 let’s see what happens, when running it on the remote server:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> nmap localhost
-</span><span style="color:#bf616a;">Starting</span><span> Nmap 7.80 ( https://nmap.org ) </span><span style="color:#bf616a;">at</span><span> 2020-10-15 11:32</span><span style="color:#bf616a;"> -03
-</span><span style="color:#bf616a;">Nmap</span><span> scan report for localhost (127.0.0.1)
-</span><span style="color:#bf616a;">Host</span><span> is up (0.000086s latency)</span><span style="color:#96b5b4;">.
-</span><span style="color:#bf616a;">Not</span><span> shown: 998 closed ports
-</span><span style="color:#bf616a;">PORT</span><span>   STATE SERVICE
-</span><span style="color:#bf616a;">22/tcp</span><span> open  ssh
-</span><span style="color:#bf616a;">80/tcp</span><span> open  http
-</span><span>
-</span><span style="color:#bf616a;">Nmap</span><span> done: 1 IP address (1 host up) </span><span style="color:#bf616a;">scanned</span><span> in 0.07 seconds
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> nmap localhost</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Starting</span><span style="color: #A5D6FF;"> Nmap</span><span style="color: #79C0FF;"> 7.80</span><span> (</span><span style="color: #A5D6FF;"> https://nmap.org</span><span> ) at 2020-10-15 11:32 -03</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Nmap</span><span style="color: #A5D6FF;"> scan report for localhost</span><span> (127.0.0.1)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Host</span><span style="color: #A5D6FF;"> is up</span><span> (0.000086s</span><span style="color: #A5D6FF;"> latency</span><span>).</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Not</span><span style="color: #A5D6FF;"> shown:</span><span style="color: #79C0FF;"> 998</span><span style="color: #A5D6FF;"> closed ports</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">PORT</span><span style="color: #A5D6FF;">   STATE SERVICE</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">22/tcp</span><span style="color: #A5D6FF;"> open  ssh</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">80/tcp</span><span style="color: #A5D6FF;"> open  http</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">Nmap</span><span style="color: #A5D6FF;"> done:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> IP address</span><span> (1</span><span style="color: #A5D6FF;"> host up</span><span>) scanned in 0.07 seconds</span></span></code></pre>
 <p>Nice, it can see <code>ssh</code> and something for <code>http</code>, that is <code>apache2</code> on port <code>80</code>
 here. But it is interesting how different it is from my laptop:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> nmap 35.228.166.73
-</span><span style="color:#bf616a;">Starting</span><span> Nmap 7.80 ( https://nmap.org ) </span><span style="color:#bf616a;">at</span><span> 2020-10-15 11:32</span><span style="color:#bf616a;"> -03
-</span><span style="color:#bf616a;">Nmap</span><span> scan report for 73.166.228.35.bc.googleusercontent.com (35.228.166.73)
-</span><span style="color:#bf616a;">Host</span><span> is up (0.25s latency)</span><span style="color:#96b5b4;">.
-</span><span style="color:#bf616a;">Not</span><span> shown: 995 closed ports
-</span><span style="color:#bf616a;">PORT</span><span>     STATE    SERVICE
-</span><span style="color:#bf616a;">19/tcp</span><span>   filtered chargen
-</span><span style="color:#bf616a;">22/tcp</span><span>   open     ssh
-</span><span style="color:#bf616a;">25/tcp</span><span>   filtered smtp
-</span><span style="color:#bf616a;">80/tcp</span><span>   open     http
-</span><span style="color:#bf616a;">5555/tcp</span><span> filtered freeciv
-</span><span>
-</span><span style="color:#bf616a;">Nmap</span><span> done: 1 IP address (1 host up) </span><span style="color:#bf616a;">scanned</span><span> in 23.00 seconds
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> nmap</span><span style="color: #79C0FF;"> 35.228.166.73</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Starting</span><span style="color: #A5D6FF;"> Nmap</span><span style="color: #79C0FF;"> 7.80</span><span> (</span><span style="color: #A5D6FF;"> https://nmap.org</span><span> ) at 2020-10-15 11:32 -03</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Nmap</span><span style="color: #A5D6FF;"> scan report for 73.166.228.35.bc.googleusercontent.com</span><span> (35.228.166.73)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Host</span><span style="color: #A5D6FF;"> is up</span><span> (0.25s</span><span style="color: #A5D6FF;"> latency</span><span>).</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Not</span><span style="color: #A5D6FF;"> shown:</span><span style="color: #79C0FF;"> 995</span><span style="color: #A5D6FF;"> closed ports</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">PORT</span><span style="color: #A5D6FF;">     STATE    SERVICE</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">19/tcp</span><span style="color: #A5D6FF;">   filtered chargen</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">22/tcp</span><span style="color: #A5D6FF;">   open     ssh</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">25/tcp</span><span style="color: #A5D6FF;">   filtered smtp</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">80/tcp</span><span style="color: #A5D6FF;">   open     http</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">5555/tcp</span><span style="color: #A5D6FF;"> filtered freeciv</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">Nmap</span><span style="color: #A5D6FF;"> done:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> IP address</span><span> (1</span><span style="color: #A5D6FF;"> host up</span><span>) scanned in 23.00 seconds</span></span></code></pre>
 <p>It finds three other <code>filtered</code> services. The manual says:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>The state is either open, filtered, closed, or unfiltered. Open means that
-</span><span>an application on the target machine is listening for connections/packets
-</span><span>on that port. Filtered means that a firewall, filter, or other network
-</span><span>obstacle is blocking the port so that Nmap cannot tell whether it is open
-</span><span>or closed.
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="plain"><span class="giallo-l"><span>The state is either open, filtered, closed, or unfiltered. Open means that</span></span>
+<span class="giallo-l"><span>an application on the target machine is listening for connections/packets</span></span>
+<span class="giallo-l"><span>on that port. Filtered means that a firewall, filter, or other network</span></span>
+<span class="giallo-l"><span>obstacle is blocking the port so that Nmap cannot tell whether it is open</span></span>
+<span class="giallo-l"><span>or closed.</span></span></code></pre>
 <p>So, those ports might be or might not be open.</p>
 <p>I tried to host something at those ports and could not get a connection from my
 laptop, so they are blocked by Google by default and there’s nothing (?) I can
 do. I can use all other ports though.</p>
-<p>I’ve never used <a href="https://launchpad.net/ufw">ufw</a> before. It is time to learn
+<p>I’ve never used <a rel="external" href="https://launchpad.net/ufw">ufw</a> before. It is time to learn
 how to properly use a firewall and this one is simple and powerful enough,
 although it uses <code>iptables</code> and not the “modern” <code>nftables</code>. I liked how simple
 it is to allow or deny traffic in a port. But I can’t compare with other tools.</p>
 <p>Changing my SSH port to a random number. I thought it was a bit pointless, but
 apparently it
-<a href="https://web.archive.org/web/20201013122112/https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity/">is not</a>.
+<a rel="external" href="https://web.archive.org/web/20201013122112/https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity/">is not</a>.
 Using <code>nmap</code>, it shows the port open, but with <code>unknown</code> as the service. Sounds
 good.</p>
 <h3 id="day-10">Day 10</h3>
@@ -332,12 +323,10 @@ good.</p>
 <p>Lazy people automate stuff :)</p>
 <p><code>systemd</code> can also run jobs at specific times, using <code>systemd/timers</code>.</p>
 <p>A fun cron job to add is to periodically change the SSH banner:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> cat /etc/cron.hourly/banner
-</span><span style="color:#65737e;">#!/bin/sh
-</span><span>
-</span><span style="color:#bf616a;">/usr/games/fortune </span><span>| </span><span style="color:#bf616a;">/usr/games/cowsay </span><span>&gt; /etc/banner.txt
-</span></code></pre>
-<h3 id="day-11">Day 11</h3>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> cat /etc/cron.hourly/banner</span></span>
+<span class="giallo-l"><span style="color: #8B949E;">#!/bin/sh</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">/usr/games/fortune</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> /usr/games/cowsay</span><span style="color: #FF7B72;"> &gt;</span><span style="color: #A5D6FF;"> /etc/banner.txt</span></span></code></pre><h3 id="day-11">Day 11</h3>
 <p>Goal: searching for files and patterns.</p>
 <p>I’ve been using blindly <code>find</code> for quite a while. It was time to finally read
 it’s manual. There’s more to it than <code>find . -iname "bla*"</code>.</p>
@@ -352,56 +341,50 @@ save <em>a lot</em> of time. I normally use <code>rsync -azvP src dst</code> mea
 <code>-P</code> flag can be annoying, but YMMV.</p>
 <p>Something funny I found out is that <code>rsync</code> shows the SSH banner of the remote
 server:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> rsync</span><span style="color:#bf616a;"> -avz</span><span> linuxUpskill-gc:/var/www/html .
-</span><span> </span><span style="color:#bf616a;">_________________________________________
-</span><span> </span><span style="color:#bf616a;">/</span><span> Be free and open and breezy! Enjoy!     \
-</span><span> | </span><span style="color:#bf616a;">Things</span><span> won&#39;</span><span style="color:#a3be8c;">t get any better so get used |
-</span><span style="color:#a3be8c;"> \ to it.                                  /
-</span><span style="color:#a3be8c;">  -----------------------------------------
-</span><span style="color:#a3be8c;">          \   ^__^
-</span><span style="color:#a3be8c;">           \  (oo)\_______
-</span><span style="color:#a3be8c;">              (__)\       )\/\
-</span><span style="color:#a3be8c;">                  ||----w |
-</span><span style="color:#a3be8c;">                  ||     ||
-</span><span style="color:#a3be8c;">receiving incremental file list
-</span><span style="color:#a3be8c;">html/
-</span><span style="color:#a3be8c;">html/404.html
-</span><span style="color:#a3be8c;">html/index.html
-</span><span style="color:#a3be8c;">html/robots.txt
-</span><span style="color:#a3be8c;">
-</span><span style="color:#a3be8c;">sent 104 bytes  received 3,710 bytes  693.45 bytes/sec
-</span><span style="color:#a3be8c;">total size is 11,324  speedup is 2.97
-</span></code></pre>
-<h3 id="day-13">Day 13</h3>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> rsync</span><span style="color: #79C0FF;"> -avz</span><span style="color: #A5D6FF;"> linuxUpskill-gc:/var/www/html .</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> _________________________________________</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> /</span><span style="color: #A5D6FF;"> Be free and open and breezy! Enjoy!</span><span style="color: #FF7B72;">     \</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> Things</span><span style="color: #A5D6FF;"> won&#39;t get any better so get used |</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;"> \ to it.                                  /</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">  -----------------------------------------</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">          \   ^__^</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">           \  (oo)\_______</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">              (__)\       )\/\</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">                  ||----w |</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">                  ||     ||</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">receiving incremental file list</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">html/</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">html/404.html</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">html/index.html</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">html/robots.txt</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">sent 104 bytes  received 3,710 bytes  693.45 bytes/sec</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">total size is 11,324  speedup is 2.97</span></span></code></pre><h3 id="day-13">Day 13</h3>
 <p>Goal: familiarize with the Linux permission system.</p>
 <p>It is way simpler to use <code>u+w</code> or <code>o-rwx</code> than playing around with octal
 numbers for <code>chmod</code>. I didn’t know I could change the permission to more than
 one letter of <em>ugo</em>, as in <code>chmod go-wr [files]</code>, it never occurred to me to
 try that either.</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo bla, blabla &gt; file.txt
-</span><span style="color:#bf616a;">$</span><span> ls</span><span style="color:#bf616a;"> -la</span><span> file.txt
-</span><span style="color:#bf616a;">-rw-rw-r--</span><span> 1 user user 12 Oct 21 12:11 file.txt
-</span><span style="color:#bf616a;">$</span><span> chmod ug-w file.txt
-</span><span style="color:#bf616a;">$</span><span> ls</span><span style="color:#bf616a;"> -la</span><span> file.txt
-</span><span style="color:#bf616a;">-r--r--r--</span><span> 1 user user 12 Oct 21 12:11 file.txt
-</span><span style="color:#bf616a;">$</span><span> echo hehe &gt;&gt; file.txt
-</span><span style="color:#bf616a;">-bash:</span><span> file.txt: Permission denied
-</span></code></pre>
-<h3 id="day-14">Day 14</h3>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo bla, blabla</span><span style="color: #FF7B72;"> &gt;</span><span style="color: #A5D6FF;"> file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ls</span><span style="color: #79C0FF;"> -la</span><span style="color: #A5D6FF;"> file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">-rw-rw-r--</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> user user</span><span style="color: #79C0FF;"> 12</span><span style="color: #A5D6FF;"> Oct</span><span style="color: #79C0FF;"> 21</span><span style="color: #A5D6FF;"> 12:11 file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> chmod ug-w file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ls</span><span style="color: #79C0FF;"> -la</span><span style="color: #A5D6FF;"> file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">-r--r--r--</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> user user</span><span style="color: #79C0FF;"> 12</span><span style="color: #A5D6FF;"> Oct</span><span style="color: #79C0FF;"> 21</span><span style="color: #A5D6FF;"> 12:11 file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo hehe</span><span style="color: #FF7B72;"> &gt;&gt;</span><span style="color: #A5D6FF;"> file.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">-bash:</span><span style="color: #A5D6FF;"> file.txt: Permission denied</span></span></code></pre><h3 id="day-14">Day 14</h3>
 <p>Goal: user management and permissions.</p>
 <p>I always confuse <code>useradd</code> and <code>adduser</code>, after all they are anagrams.
-<a href="https://serverfault.com/questions/218993/whats-the-difference-between-useradd-and-adduser">This ServerFault</a>
+<a rel="external" href="https://serverfault.com/questions/218993/whats-the-difference-between-useradd-and-adduser">This ServerFault</a>
 question has a nice answer about it:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>adduser is a friendlier interactive frontend to useradd
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="plain"><span class="giallo-l"><span>adduser is a friendlier interactive frontend to useradd</span></span></code></pre>
 <p>I found out it is possible to enable offensive messages when an user type an
 incorrect password when <code>sudo</code>ing. Just add <code>Defaults	insults</code> to
 <code>/etc/sudoers</code>, obviously using <code>visudo</code>.</p>
 <p>Nice to know that it is possible to enable specific commands for a user to run
 with <code>sudo</code> without granting full <code>sudo</code>, like:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">fred</span><span>    ALL = NOPASSWD:/sbin/reboot
-</span><span style="color:#bf616a;">fred</span><span>    ALL = NOPASSWD:/usr/bin/ls
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">fred</span><span style="color: #A5D6FF;">    ALL = NOPASSWD:/sbin/reboot</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fred</span><span style="color: #A5D6FF;">    ALL = NOPASSWD:/usr/bin/ls</span></span></code></pre>
 <p>This allows user <code>fred</code> to <code>sudo ls</code> and <code>sudo reboot</code>, without typing the
 password, but does not allow any other command with <code>sudo</code>.</p>
 <h3 id="day-15">Day 15</h3>
@@ -422,7 +405,7 @@ became. It was an AMD 32-bit single-core CPU, 1.2 GHz, 384 MiB RAM DDR, GeForce
 in ~2000, and when I finally managed to have a working Kernel, it needed ~12
 seconds to fully boot! It had a very slow hard drive, slow RAM, slow CPU, and
 still was insanely fast! How I miss Gentoo…</p>
-<p>ArchWiki has a <a href="https://wiki.archlinux.org/index.php/Pacman/Rosetta">Rosetta</a>
+<p>ArchWiki has a <a rel="external" href="https://wiki.archlinux.org/index.php/Pacman/Rosetta">Rosetta</a>
 page, that “translates” commands from one package manager to other. It is a
 nice reference when dealing with different systems.</p>
 <h3 id="day-16">Day 16</h3>
@@ -436,35 +419,34 @@ use <code>tar</code> and <code>gzip</code>/<code>bzip</code>.</p>
 <h3 id="day-17">Day 17</h3>
 <p>Goal: compiling stuff.</p>
 <p>I liked to <code>./configure</code> <code>nmap</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> CFLAGS=&quot;</span><span style="color:#a3be8c;">-O2 -march=native</span><span>&quot; CXXFLAGS=&quot;</span><span style="color:#a3be8c;">-O2 -march=native</span><span>&quot; ./configure
-</span><span style="color:#65737e;"># skipping lots of lines...
-</span><span>            </span><span style="color:#96b5b4;">.</span><span>       .
-</span><span>            </span><span style="color:#96b5b4;">\`</span><span style="color:#bf616a;">-</span><span>&quot;</span><span style="color:#a3be8c;">&#39;</span><span>&quot;</span><span style="color:#bf616a;">-</span><span>&#39;</span><span style="color:#a3be8c;">/
-</span><span style="color:#a3be8c;">             } 6 6 {
-</span><span style="color:#a3be8c;">            ==. Y ,==
-</span><span style="color:#a3be8c;">              /^^^\  .
-</span><span style="color:#a3be8c;">             /     \  )  Ncat: A modern interpretation of classic Netcat
-</span><span style="color:#a3be8c;">            (  )-(  )/
-</span><span style="color:#a3be8c;">            -&quot;&quot;---&quot;&quot;---   /
-</span><span style="color:#a3be8c;">           /   Ncat    \_/
-</span><span style="color:#a3be8c;">          (     ____
-</span><span style="color:#a3be8c;">           \_.=|____E
-</span><span style="color:#a3be8c;">Configuration complete.
-</span><span style="color:#a3be8c;">   (  )   /\   _                 (
-</span><span style="color:#a3be8c;">    \ |  (  \ ( \.(               )                      _____
-</span><span style="color:#a3be8c;">  \  \ \  `  `   ) \             (  ___                 / _   \
-</span><span style="color:#a3be8c;"> (_`    \+   . x  ( .\            \/   \____-----------/ (o)   \_
-</span><span style="color:#a3be8c;">- .-               \+  ;          (  O                           \____
-</span><span style="color:#a3be8c;">(__                +- .( -</span><span>&#39;</span><span style="color:#bf616a;">.- </span><span>&lt;.   </span><span style="color:#96b5b4;">\_</span><span>____________  `              </span><span style="color:#96b5b4;">\  </span><span style="color:#bf616a;">/
-</span><span>(</span><span style="color:#bf616a;">_____</span><span>            ._._: &lt;_ - &lt;- _- _  VVVVVVV VV V</span><span style="color:#96b5b4;">\                \/
-</span><span>  </span><span style="color:#96b5b4;">.</span><span>    /./.+-  . .- /  +--  - .    (--_AAAAAAA__A_/                |
-</span><span>  (</span><span style="color:#bf616a;">__ </span><span>&#39;</span><span style="color:#a3be8c;"> /x  / x _/ (                \______________//_              \_______
-</span><span style="color:#a3be8c;"> , x / ( </span><span>&#39;  . / .  /                                  </span><span style="color:#96b5b4;">\_</span><span>__&#39;</span><span style="color:#a3be8c;">          \     /
-</span><span style="color:#a3be8c;">    /  /  _/ /    +                                       |           \   /
-</span><span style="color:#a3be8c;">   </span><span>&#39;  (__/                                               /              </span><span style="color:#96b5b4;">\/
-</span><span>                                                       </span><span style="color:#bf616a;">/                  </span><span>\
-</span><span>  NMAP IS A POWERFUL TOOL -- USE CAREFULLY AND RESPONSIBLY
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> CFLAGS=&quot;-O2 -march=native&quot; CXXFLAGS=&quot;-O2 -march=native&quot; ./configure</span></span>
+<span class="giallo-l"><span style="color: #8B949E;"># skipping lots of lines...</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">            .</span><span style="color: #A5D6FF;">       .</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">            \</span><span>`-</span><span style="color: #A5D6FF;">&quot;&#39;&quot;</span><span>-</span><span style="color: #A5D6FF;">&#39;/</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">             } 6 6 {</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">            ==. Y ,==</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">              /^^^\  .</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">             /     \  )  Ncat: A modern interpretation of classic Netcat</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">            (  )-(  )/</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">            -&quot;&quot;---&quot;&quot;---   /</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">           /   Ncat    \_/</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">          (     ____</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">           \_.=|____E</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">Configuration complete.</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">   (  )   /\   _                 (</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">    \ |  (  \ ( \.(               )                      _____</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">  \  \ \  `  `   ) \             (  ___                 / _   \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;"> (_`    \+   . x  ( .\            \/   \____-----------/ (o)   \_</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">- .-               \+  ;          (  O                           \____</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">(__                +- .( -&#39;</span><span>.-</span><span style="color: #FF7B72;"> &lt;</span><span style="color: #A5D6FF;">.</span><span style="color: #FF7B72;">   \_</span><span style="color: #A5D6FF;">____________  `</span><span style="color: #FFA657;">              \</span><span style="color: #A5D6FF;">  /</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">(</span><span style="color: #FFA657;">_____</span><span style="color: #A5D6FF;">            ._._:</span><span style="color: #FF7B72;"> &lt;</span><span style="color: #A5D6FF;">_ -</span><span style="color: #FF7B72;"> &lt;</span><span style="color: #A5D6FF;">- _- _  VVVVVVV VV V</span><span style="color: #FF7B72;">\                \/</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">  .</span><span style="color: #A5D6FF;">    /./.+-  . .- /  +--  - .    (--_AAAAAAA__A_/                </span><span style="color: #FF7B72;">|</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">  (</span><span style="color: #FFA657;">__</span><span style="color: #A5D6FF;"> &#39; /x  / x _/ (                \______________//_              \_______</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;"> , x / ( &#39;  . / .  /</span><span style="color: #FF7B72;">                                  \_</span><span style="color: #A5D6FF;">__&#39;          \     /</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">    /  /  _/ /    +                                       |           \   /</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">   &#39;  (__/                                               /</span><span style="color: #FF7B72;">              \/</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                                       /</span><span style="color: #FF7B72;">                  \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">  NMAP IS A POWERFUL TOOL</span><span style="color: #79C0FF;"> --</span><span style="color: #A5D6FF;"> USE CAREFULLY AND RESPONSIBLY</span></span></code></pre>
 <p>Cool ASCII art!</p>
 <h3 id="day-18">Day 18</h3>
 <p>Goal: cleaning-up old logs.</p>
@@ -489,103 +471,100 @@ more. So, it is metadata.</p>
 inode number is per filesystem, so there might be more than one file with the
 same number. To locate a file by its inode number, without traversing to a
 different filesystem:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo find /</span><span style="color:#bf616a;"> -mount -inum</span><span> 1
-</span><span style="color:#bf616a;">/sys
-</span><span style="color:#bf616a;">/boot/efi
-</span><span style="color:#bf616a;">/proc
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> stat /sys /boot/efi /proc
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> /sys
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 0               Blocks: 0          IO Block: 4096   directory
-</span><span style="color:#bf616a;">Device:</span><span> 18h/24d Inode: 1           Links: 13
-</span><span style="color:#bf616a;">Access:</span><span> (0555/dr-xr-xr-x)  </span><span style="color:#bf616a;">Uid:</span><span> (    0/    root)   </span><span style="color:#bf616a;">Gid:</span><span> (    0/    root)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-22 18:38:03.292000000</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-22 18:38:03.292000000</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-22 18:38:03.292000000</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> /boot/efi
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 512             Blocks: 1          IO Block: 512    directory
-</span><span style="color:#bf616a;">Device:</span><span> 80fh/2063d      Inode: 1           Links: 4
-</span><span style="color:#bf616a;">Access:</span><span> (0755/drwxr-xr-x)  </span><span style="color:#bf616a;">Uid:</span><span> (    0/    root)   </span><span style="color:#bf616a;">Gid:</span><span> (    0/    root)
-</span><span style="color:#bf616a;">Access:</span><span> 1969-12-31 21:00:00.000000000</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 1969-12-31 21:00:00.000000000</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 1969-12-31 21:00:00.000000000</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> /proc
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 0               Blocks: 0          IO Block: 1024   directory
-</span><span style="color:#bf616a;">Device:</span><span> 5h/5d   Inode: 1           Links: 120
-</span><span style="color:#bf616a;">Access:</span><span> (0555/dr-xr-xr-x)  </span><span style="color:#bf616a;">Uid:</span><span> (    0/    root)   </span><span style="color:#bf616a;">Gid:</span><span> (    0/    root)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-22 18:38:01.390534452</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-22 18:38:01.390534452</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-22 18:38:01.390534452</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> sudo find /</span><span style="color: #79C0FF;"> -mount -inum 1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">/sys</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">/boot/efi</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">/proc</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> stat /sys /boot/efi /proc</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> /sys</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;">               Blocks:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   directory</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 18h/24d Inode:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;">           Links:</span><span style="color: #79C0FF;"> 13</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0555/dr-xr-xr-x)  Uid: (</span><span style="color: #FFA657;">    0/</span><span style="color: #A5D6FF;">    root</span><span>)   Gid: (</span><span style="color: #FFA657;">    0/</span><span style="color: #A5D6FF;">    root</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-22 18:38:03.292000000</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-22 18:38:03.292000000</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-22 18:38:03.292000000</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> /boot/efi</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 512</span><span style="color: #A5D6FF;">             Blocks:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 512</span><span style="color: #A5D6FF;">    directory</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 80fh/2063d      Inode:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;">           Links:</span><span style="color: #79C0FF;"> 4</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0755/drwxr-xr-x)  Uid: (</span><span style="color: #FFA657;">    0/</span><span style="color: #A5D6FF;">    root</span><span>)   Gid: (</span><span style="color: #FFA657;">    0/</span><span style="color: #A5D6FF;">    root</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 1969-12-31 21:00:00.000000000</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 1969-12-31 21:00:00.000000000</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 1969-12-31 21:00:00.000000000</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> /proc</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;">               Blocks:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 1024</span><span style="color: #A5D6FF;">   directory</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 5h/5d   Inode:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;">           Links:</span><span style="color: #79C0FF;"> 120</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0555/dr-xr-xr-x)  Uid: (</span><span style="color: #FFA657;">    0/</span><span style="color: #A5D6FF;">    root</span><span>)   Gid: (</span><span style="color: #FFA657;">    0/</span><span style="color: #A5D6FF;">    root</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-22 18:38:01.390534452</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-22 18:38:01.390534452</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-22 18:38:01.390534452</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span></code></pre>
 <p>I just found out, empirically, that there’s no file with inode 0. This number
 is reserved.</p>
 <p>I think I finally got the difference between a <em>hard</em> and <em>soft</em> link. But I am
 definitely not sure about it. The following copy-pasta blob from a terminal
 might shred some light on it:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ls &gt; /tmp/bla.txt
-</span><span style="color:#bf616a;">$</span><span> ln /tmp/bla.txt link_hard
-</span><span style="color:#bf616a;">$</span><span> ln</span><span style="color:#bf616a;"> -s</span><span> /tmp/bla.txt link_soft
-</span><span style="color:#bf616a;">$</span><span> stat /tmp/bla.txt link_hard link_soft
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> /tmp/bla.txt
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 82              Blocks: 8          IO Block: 4096   regular file
-</span><span style="color:#bf616a;">Device:</span><span> 801h/2049d      Inode: 3122        Links: 2
-</span><span style="color:#bf616a;">Access:</span><span> (0664/-rw-rw-r--)  </span><span style="color:#bf616a;">Uid:</span><span> ( 1001/       h)   </span><span style="color:#bf616a;">Gid:</span><span> ( 1002/       h)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-29 16:13:55.123855608</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> link_hard
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 82              Blocks: 8          IO Block: 4096   regular file
-</span><span style="color:#bf616a;">Device:</span><span> 801h/2049d      Inode: 3122        Links: 2
-</span><span style="color:#bf616a;">Access:</span><span> (0664/-rw-rw-r--)  </span><span style="color:#bf616a;">Uid:</span><span> ( 1001/       h)   </span><span style="color:#bf616a;">Gid:</span><span> ( 1002/       h)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-29 16:13:55.123855608</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> link_soft -&gt; /tmp/bla.txt
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 12              Blocks: 0          IO Block: 4096   symbolic link
-</span><span style="color:#bf616a;">Device:</span><span> 801h/2049d      Inode: 292697      Links: 1
-</span><span style="color:#bf616a;">Access:</span><span> (0777/lrwxrwxrwx)  </span><span style="color:#bf616a;">Uid:</span><span> ( 1001/       h)   </span><span style="color:#bf616a;">Gid:</span><span> ( 1002/       h)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-29 16:14:14.681037964</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-29 16:14:03.624369542</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-29 16:14:03.624369542</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> mv /tmp/bla.txt /tmp/bla2.txt
-</span><span style="color:#bf616a;">$</span><span> stat /tmp/bla2.txt link_hard link_soft
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> /tmp/bla2.txt
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 82              Blocks: 8          IO Block: 4096   regular file
-</span><span style="color:#bf616a;">Device:</span><span> 801h/2049d      Inode: 3122        Links: 2
-</span><span style="color:#bf616a;">Access:</span><span> (0664/-rw-rw-r--)  </span><span style="color:#bf616a;">Uid:</span><span> ( 1001/       h)   </span><span style="color:#bf616a;">Gid:</span><span> ( 1002/       h)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-29 16:31:42.488385936</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-29 16:31:39.232189075</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> link_hard
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 82              Blocks: 8          IO Block: 4096   regular file
-</span><span style="color:#bf616a;">Device:</span><span> 801h/2049d      Inode: 3122        Links: 2
-</span><span style="color:#bf616a;">Access:</span><span> (0664/-rw-rw-r--)  </span><span style="color:#bf616a;">Uid:</span><span> ( 1001/       h)   </span><span style="color:#bf616a;">Gid:</span><span> ( 1002/       h)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-29 16:13:43.003122821</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-29 16:14:38.554481313</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>  </span><span style="color:#bf616a;">File:</span><span> link_soft -&gt; /tmp/bla.txt
-</span><span>  </span><span style="color:#bf616a;">Size:</span><span> 12              Blocks: 0          IO Block: 4096   symbolic link
-</span><span style="color:#bf616a;">Device:</span><span> 801h/2049d      Inode: 292697      Links: 1
-</span><span style="color:#bf616a;">Access:</span><span> (0777/lrwxrwxrwx)  </span><span style="color:#bf616a;">Uid:</span><span> ( 1001/       h)   </span><span style="color:#bf616a;">Gid:</span><span> ( 1002/       h)
-</span><span style="color:#bf616a;">Access:</span><span> 2020-10-29 16:14:14.681037964</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Modify:</span><span> 2020-10-29 16:14:03.624369542</span><span style="color:#bf616a;"> -0300
-</span><span style="color:#bf616a;">Change:</span><span> 2020-10-29 16:14:03.624369542</span><span style="color:#bf616a;"> -0300
-</span><span> </span><span style="color:#bf616a;">Birth:</span><span> -
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> file link_*
-</span><span style="color:#bf616a;">link_hard:</span><span> ASCII text
-</span><span style="color:#bf616a;">link_soft:</span><span> broken symbolic link to /tmp/bla.txt
-</span></code></pre>
-<h3 id="day-20">Day 20</h3>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ls</span><span style="color: #FF7B72;"> &gt;</span><span style="color: #A5D6FF;"> /tmp/bla.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ln /tmp/bla.txt link_hard</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ln</span><span style="color: #79C0FF;"> -s</span><span style="color: #A5D6FF;"> /tmp/bla.txt link_soft</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> stat /tmp/bla.txt link_hard link_soft</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> /tmp/bla.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 82</span><span style="color: #A5D6FF;">              Blocks:</span><span style="color: #79C0FF;"> 8</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   regular file</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 801h/2049d      Inode:</span><span style="color: #79C0FF;"> 3122</span><span style="color: #A5D6FF;">        Links:</span><span style="color: #79C0FF;"> 2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0664/-rw-rw-r--)  Uid: (</span><span style="color: #FFA657;"> 1001/</span><span style="color: #A5D6FF;">       h</span><span>)   Gid: (</span><span style="color: #FFA657;"> 1002/</span><span style="color: #A5D6FF;">       h</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:55.123855608</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> link_hard</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 82</span><span style="color: #A5D6FF;">              Blocks:</span><span style="color: #79C0FF;"> 8</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   regular file</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 801h/2049d      Inode:</span><span style="color: #79C0FF;"> 3122</span><span style="color: #A5D6FF;">        Links:</span><span style="color: #79C0FF;"> 2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0664/-rw-rw-r--)  Uid: (</span><span style="color: #FFA657;"> 1001/</span><span style="color: #A5D6FF;">       h</span><span>)   Gid: (</span><span style="color: #FFA657;"> 1002/</span><span style="color: #A5D6FF;">       h</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:55.123855608</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> link_soft</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #A5D6FF;"> /tmp/bla.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 12</span><span style="color: #A5D6FF;">              Blocks:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   symbolic link</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 801h/2049d      Inode:</span><span style="color: #79C0FF;"> 292697</span><span style="color: #A5D6FF;">      Links:</span><span style="color: #79C0FF;"> 1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0777/lrwxrwxrwx)  Uid: (</span><span style="color: #FFA657;"> 1001/</span><span style="color: #A5D6FF;">       h</span><span>)   Gid: (</span><span style="color: #FFA657;"> 1002/</span><span style="color: #A5D6FF;">       h</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:14.681037964</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:03.624369542</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:03.624369542</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> mv /tmp/bla.txt /tmp/bla2.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> stat /tmp/bla2.txt link_hard link_soft</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> /tmp/bla2.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 82</span><span style="color: #A5D6FF;">              Blocks:</span><span style="color: #79C0FF;"> 8</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   regular file</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 801h/2049d      Inode:</span><span style="color: #79C0FF;"> 3122</span><span style="color: #A5D6FF;">        Links:</span><span style="color: #79C0FF;"> 2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0664/-rw-rw-r--)  Uid: (</span><span style="color: #FFA657;"> 1001/</span><span style="color: #A5D6FF;">       h</span><span>)   Gid: (</span><span style="color: #FFA657;"> 1002/</span><span style="color: #A5D6FF;">       h</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-29 16:31:42.488385936</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-29 16:31:39.232189075</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> link_hard</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 82</span><span style="color: #A5D6FF;">              Blocks:</span><span style="color: #79C0FF;"> 8</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   regular file</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 801h/2049d      Inode:</span><span style="color: #79C0FF;"> 3122</span><span style="color: #A5D6FF;">        Links:</span><span style="color: #79C0FF;"> 2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0664/-rw-rw-r--)  Uid: (</span><span style="color: #FFA657;"> 1001/</span><span style="color: #A5D6FF;">       h</span><span>)   Gid: (</span><span style="color: #FFA657;"> 1002/</span><span style="color: #A5D6FF;">       h</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-29 16:13:43.003122821</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:38.554481313</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  File:</span><span style="color: #A5D6FF;"> link_soft</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #A5D6FF;"> /tmp/bla.txt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  Size:</span><span style="color: #79C0FF;"> 12</span><span style="color: #A5D6FF;">              Blocks:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;">          IO Block:</span><span style="color: #79C0FF;"> 4096</span><span style="color: #A5D6FF;">   symbolic link</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Device:</span><span style="color: #A5D6FF;"> 801h/2049d      Inode:</span><span style="color: #79C0FF;"> 292697</span><span style="color: #A5D6FF;">      Links:</span><span style="color: #79C0FF;"> 1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span> (0777/lrwxrwxrwx)  Uid: (</span><span style="color: #FFA657;"> 1001/</span><span style="color: #A5D6FF;">       h</span><span>)   Gid: (</span><span style="color: #FFA657;"> 1002/</span><span style="color: #A5D6FF;">       h</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Access:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:14.681037964</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Modify:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:03.624369542</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Change:</span><span style="color: #A5D6FF;"> 2020-10-29 16:14:03.624369542</span><span style="color: #79C0FF;"> -0300</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> Birth:</span><span style="color: #A5D6FF;"> -</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> file link_</span><span style="color: #79C0FF;">*</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">link_hard:</span><span style="color: #A5D6FF;"> ASCII text</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">link_soft:</span><span style="color: #A5D6FF;"> broken symbolic link to /tmp/bla.txt</span></span></code></pre><h3 id="day-20">Day 20</h3>
 <p>Goal: ultimate laziness with scripts.</p>
 <p>This is the last lesson of the Linux Upskill Challenge.</p>
 <p>Scripting is an endless topic. As Bilbo would say, <em>You start with a shebang,

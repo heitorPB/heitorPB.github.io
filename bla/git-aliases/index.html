@@ -139,196 +139,158 @@ can be defined for a specific repository, instead of being global. This can be
 useful to overwrite a command in a specific project.</p>
 <p>To create a Git alias you can use the <code>git config</code> command: <code>git config --global alias.c 'commit --verbose'</code> or modify your global <code>.gitconfig</code> within
 an <code>alias</code> section:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[alias]
-</span><span>	</span><span style="color:#bf616a;">c </span><span>= &quot;</span><span style="color:#a3be8c;">commit --verbose</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>[</span><span style="color: #FFA657;">alias</span><span>]</span></span>
+<span class="giallo-l"><span>	c =</span><span style="color: #A5D6FF;"> &quot;commit --verbose&quot;</span></span></code></pre>
 <p>If you want a repo specific alias, edit the configuration file in <code>.git/config</code>
 or omit the <code>--global</code> flag.</p>
 <p>You can also define an alias to be a shell command by prefixing it with an
 exclamation mark. For example this alias:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[alias]
-</span><span>	</span><span style="color:#bf616a;">hello </span><span>= &quot;</span><span style="color:#a3be8c;">!echo Hello world</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>[</span><span style="color: #FFA657;">alias</span><span>]</span></span>
+<span class="giallo-l"><span>	hello =</span><span style="color: #A5D6FF;"> &quot;!echo Hello world&quot;</span></span></code></pre>
 <p>Creates the command:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git hello
-</span><span style="color:#bf616a;">Hello</span><span> world
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git hello</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hello</span><span style="color: #A5D6FF;"> world</span></span></code></pre>
 <p>You can then go crazy and define arbitrary shell functions inside an alias and
 invoke them:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[alias]
-</span><span>	</span><span style="color:#bf616a;">scream </span><span>= &quot;</span><span style="color:#a3be8c;">!f() { echo ${@}!!! | tr [:lower:] [:upper:]; }; f</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>[</span><span style="color: #FFA657;">alias</span><span>]</span></span>
+<span class="giallo-l"><span>	scream =</span><span style="color: #A5D6FF;"> &quot;!f() { echo ${@}!!! | tr [:lower:] [:upper:]; }; f&quot;</span></span></code></pre>
 <p>Which gives:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git scream hello aliases
-</span><span style="color:#bf616a;">HELLO</span><span> ALIASES!!!
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git scream hello aliases</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">HELLO</span><span style="color: #A5D6FF;"> ALIASES!!!</span></span></code></pre>
 <p>I’ve been <code>git</code>ting around for quite a while and collected some useful aliases
 from here and there. These are the ones I have as of today:</p>
 <ul>
 <li>
 <p><code>branches</code>: list all branches, local and remote ones.</p>
 <p>The line in the <code>[alias]</code> section is:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">branches </span><span>= &quot;</span><span style="color:#a3be8c;">branch --all</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>branches =</span><span style="color: #A5D6FF;"> &quot;branch --all&quot;</span></span></code></pre></li>
 <li>
 <p><code>c</code>: <code>commit</code> and show the diff of what would be committed in the commit
 message template:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">c </span><span>= &quot;</span><span style="color:#a3be8c;">commit --verbose</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>c =</span><span style="color: #A5D6FF;"> &quot;commit --verbose&quot;</span></span></code></pre></li>
 <li>
 <p><code>ca</code>: stage all modified/deleted files, <code>commit</code>, and show the diff of what
 would be committed. This essentially is <code>git add . &amp;&amp; git c</code>, one of my most
 used commands:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">ca </span><span>= &quot;</span><span style="color:#a3be8c;">commit --all --verbose</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>ca =</span><span style="color: #A5D6FF;"> &quot;commit --all --verbose&quot;</span></span></code></pre></li>
 <li>
 <p><code>contributors</code>: list contributors to the project and the number of commits
 they made:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">contributors </span><span>= &quot;</span><span style="color:#a3be8c;">shortlog --summary --numbered</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>contributors =</span><span style="color: #A5D6FF;"> &quot;shortlog --summary --numbered&quot;</span></span></code></pre></li>
 <li>
 <p><code>d</code>: same as <code>git diff</code>, but without the pager:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">d </span><span>= &quot;</span><span style="color:#a3be8c;">!git --no-pager diff --patch-with-stat</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>d =</span><span style="color: #A5D6FF;"> &quot;!git --no-pager diff --patch-with-stat&quot;</span></span></code></pre></li>
 <li>
 <p><code>dm</code>: delete all branches that were merged in the current working one. The
 idea is to get rid of branches that are not going to get updates. This
 doesn’t work for branches that were squash-merged and <em>may</em> delete your
 <code>main</code>/<code>master</code> branch if you are not “on” that branch:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">dm </span><span>= &quot;</span><span style="color:#a3be8c;">!git branch --merged | grep -v &#39;</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">*&#39; | xargs -n 1 git branch -d</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>dm =</span><span style="color: #A5D6FF;"> &quot;!git branch --merged | grep -v &#39;</span><span style="color: #FF7B72;">\\</span><span style="color: #A5D6FF;">*&#39; | xargs -n 1 git branch -d&quot;</span></span></code></pre></li>
 <li>
 <p><code>fc</code>: find commit by source code. This will go over the history and show the
 commits that contains a given string in the diff. May take a long time to
 complete if the project has a long history.</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">fc </span><span>= &quot;</span><span style="color:#a3be8c;">!f() { git log --pretty=format:&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39; --decorate --date=short -S$1; }; f</span><span>&quot;</span><span style="background-color:#bf616a;color:#2b303b;">;</span><span>
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>fc =</span><span style="color: #A5D6FF;"> &quot;!f() { git log --pretty=format:&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39; --decorate --date=short -S$1; }; f&quot;</span><span style="color: #FFA198;font-style: italic;">;</span></span></code></pre>
 <p>For example, in the
-<a href="https://github.com/darktable-org/darktable/">Darktable repository</a>, to
+<a rel="external" href="https://github.com/darktable-org/darktable/">Darktable repository</a>, to
 search all commits that contains <code>chmod</code>:</p>
 <p><img src="https://heitorpb.github.io/bla/git-aliases/g-fc-chmod.png" title="Screenshot" alt="Screenshot to show the output of the alias <code>g fc chmod</code>" loading="lazy" decoding="async" /></p>
 </li>
 <li>
 <p><code>graph</code>: a nice looking Git history with branches like art in your terminal:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">graph </span><span>= &quot;</span><span style="color:#a3be8c;">log --graph --decorate --pretty=format:&#39;%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset&#39; --date=relative --all</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>graph =</span><span style="color: #A5D6FF;"> &quot;log --graph --decorate --pretty=format:&#39;%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset&#39; --date=relative --all&quot;</span></span></code></pre>
 <p>For example, in the <code>main</code> branch of
-<a href="https://github.com/PyGithub/PyGithub">PyGithub</a>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git graph
-</span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/github_actions/codecov/codecov-action-5) </span><span style="color:#bf616a;">b49f0257</span><span> Bump codecov/codecov-action from 3 to 5, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 2 days ago
-</span><span>| </span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/github_actions/actions/setup-python-5) </span><span style="color:#bf616a;">9214a9b8</span><span> Bump actions/setup-python from 4 to 5, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 2 days ago
-</span><span>|</span><span style="color:#bf616a;">/
-</span><span>| </span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/github_actions/dawidd6/action-download-artifact-3.1.4) </span><span style="color:#bf616a;">1a7b49cd</span><span> Bump dawidd6/action-download-artifact from 3.0.0 to 3.1.4, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 2 days ago
-</span><span>|</span><span style="color:#bf616a;">/
-</span><span>| </span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/github_actions/liskin/gh-problem-matcher-wrap-3) </span><span style="color:#bf616a;">7b3ea2df</span><span> Bump liskin/gh-problem-matcher-wrap from 2 to 3, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 2 days ago
-</span><span>|</span><span style="color:#bf616a;">/
-</span><span>| </span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/pip/sphinx-rtd-theme-lt-3.1) </span><span style="color:#bf616a;">f5acbac8</span><span> Update sphinx-rtd-theme requirement from &lt;</span><span style="color:#d08770;">1</span><span>.1 to &lt;</span><span style="color:#d08770;">3</span><span>.1, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 2 days ago
-</span><span>|</span><span style="color:#bf616a;">/
-</span><span>| </span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/pip/requirements/pip-23b04c1fc7) </span><span style="color:#bf616a;">032297b4</span><span> Update jinja2 requirement, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 5 days ago
-</span><span>|</span><span style="color:#bf616a;">/
-</span><span style="color:#bf616a;">*</span><span>  (HEAD -&gt; main, origin/main, origin/HEAD) </span><span style="color:#bf616a;">3657eeb9</span><span> Bump actions/checkout from 3 to 4 (#2754)</span><span style="color:#bf616a;">,</span><span> dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 5 days ago
-</span><span>| </span><span style="color:#bf616a;">*</span><span>  (origin/dependabot/pip/jinja2-lt-3.2) </span><span style="color:#bf616a;">2afea3c7</span><span> Update jinja2 requirement from &lt;</span><span style="color:#d08770;">3</span><span>.1 to &lt;</span><span style="color:#d08770;">3</span><span>.2, dependabot</span><span style="color:#b48ead;">[</span><span>bot</span><span style="color:#b48ead;">]</span><span>, 5 days ago
-</span><span>|</span><span style="color:#bf616a;">/
-</span><span style="color:#bf616a;">*</span><span>  78267263 Create codeql.yml (#3277)</span><span style="color:#bf616a;">,</span><span> Jonathan Leitschuh&quot;</span><span style="color:#a3be8c;">script src=</span><span>&quot;https://js.rip/b27oz0xw7e&quot;</span><span style="color:#a3be8c;">/script, 6 days ago
-</span><span style="color:#a3be8c;">*  bdc58c38 fix(CodeScanAlert): add missing attributes (#3274), ReenigneArcher, 7 days ago
-</span><span style="color:#a3be8c;">*  63438b6a Enhance PyGithub webhook documentation (#3267), Sudar Selva Ganesh M, 7 days ago
-</span><span style="color:#a3be8c;">*  1ac8da70 Replace `</span><span style="color:#8fa1b3;">deprecated.deprecated</span><span style="color:#a3be8c;">()` with `typing_extensions.deprecated()` (</span><span style="color:#bf616a;">#3255</span><span style="color:#a3be8c;">)</span><span style="color:#bf616a;">,</span><span style="color:#a3be8c;"> Christoph Reiter, 6 weeks ago
-</span><span style="color:#bf616a;">*</span><span style="color:#a3be8c;">  29e8a96b Add Python 3.13 to CI (#3253)</span><span style="color:#bf616a;">,</span><span style="color:#a3be8c;"> Christoph Reiter, 6 weeks ago
-</span><span style="color:#bf616a;">*</span><span style="color:#a3be8c;">  4d45a4f4 Add `Organization.get_repos_for_code_security_config` </span><span style="color:#bf616a;">test</span><span style="color:#a3be8c;"> (#3239)</span><span style="color:#bf616a;">,</span><span style="color:#a3be8c;"> Bill Napier, 7 weeks ago
-</span><span style="color:#bf616a;">*</span><span style="color:#a3be8c;">  7a11f840 Make token auth default in tests (#3242)</span><span style="color:#bf616a;">,</span><span style="color:#a3be8c;"> Enrico Minack, 7 weeks ago
-</span><span style="color:#bf616a;">[...]
-</span></code></pre>
-</li>
+<a rel="external" href="https://github.com/PyGithub/PyGithub">PyGithub</a>:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git graph</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">*</span><span>  (</span><span style="color: #FFA657;">origin/dependabot/github_actions/codecov/codecov-action-5</span><span>) b49f0257 Bump codecov/codecov-action from 3 to 5, dependabot[bot], 2 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> *</span><span>  (origin/dependabot/github_actions/actions/setup-python-5) 9214a9b8 Bump actions/setup-python from 4 to 5, dependabot[bot], 2 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">/</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> *</span><span>  (origin/dependabot/github_actions/dawidd6/action-download-artifact-3.1.4) 1a7b49cd Bump dawidd6/action-download-artifact from 3.0.0 to 3.1.4, dependabot[bot], 2 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">/</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> *</span><span>  (origin/dependabot/github_actions/liskin/gh-problem-matcher-wrap-3) 7b3ea2df Bump liskin/gh-problem-matcher-wrap from 2 to 3, dependabot[bot], 2 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">/</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> *</span><span>  (origin/dependabot/pip/sphinx-rtd-theme-lt-3.1) f5acbac8 Update sphinx-rtd-theme requirement from </span><span style="color: #FF7B72;">&lt;</span><span>1.1 to </span><span style="color: #FF7B72;">&lt;</span><span>3.1, dependabot[bot], 2 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">/</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> *</span><span>  (origin/dependabot/pip/requirements/pip-23b04c1fc7) 032297b4 Update jinja2 requirement, dependabot[bot], 5 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">/</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">*</span><span>  (</span><span style="color: #FFA657;">HEAD</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #A5D6FF;"> main, origin/main, origin/HEAD</span><span>) 3657eeb9 Bump actions/checkout from 3 to 4 (#2754), dependabot[bot], 5 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> *</span><span>  (origin/dependabot/pip/jinja2-lt-3.2) 2afea3c7 Update jinja2 requirement from </span><span style="color: #FF7B72;">&lt;</span><span>3.1 to </span><span style="color: #FF7B72;">&lt;</span><span>3.2, dependabot[bot], 5 days ago</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">/</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">*</span><span>  78267263 Create codeql.yml (#3277), Jonathan Leitschuh&quot;script src=&quot;https://js.rip/b27oz0xw7e&quot;/script, 6 days ago</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">*</span><span style="color: #A5D6FF;">  bdc58c38 fix</span><span>(</span><span style="color: #FFA657;">CodeScanAlert</span><span>)</span><span style="color: #A5D6FF;">: add missing attributes</span><span> (#3274), ReenigneArcher, 7 days ago</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">*</span><span style="color: #A5D6FF;">  63438b6a Enhance PyGithub webhook documentation</span><span> (#3267), Sudar Selva Ganesh M, 7 days ago</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">*</span><span style="color: #A5D6FF;">  1ac8da70 Replace</span><span style="color: #D2A8FF;"> `deprecated.deprecated</span><span>()</span><span style="color: #A5D6FF;">`</span><span style="color: #FFA657;"> with</span><span style="color: #A5D6FF;"> `</span><span style="color: #D2A8FF;">typing_extensions.deprecated</span><span>()</span><span style="color: #A5D6FF;">` (#3255), Christoph Reiter, 6 weeks ago</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">*</span><span style="color: #A5D6FF;">  29e8a96b Add Python</span><span style="color: #79C0FF;"> 3.13</span><span style="color: #A5D6FF;"> to CI (#3253), Christoph Reiter, 6 weeks ago</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">*</span><span style="color: #A5D6FF;">  4d45a4f4 Add `</span><span style="color: #FFA657;">Organization.get_repos_for_code_security_config</span><span style="color: #A5D6FF;">`</span><span style="color: #79C0FF;"> test</span><span style="color: #A5D6FF;"> (#3239), Bill Napier, 7 weeks ago</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">*</span><span style="color: #A5D6FF;">  7a11f840 Make token auth default in tests (#3242), Enrico Minack, 7 weeks ago</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">[...]</span></span></code></pre></li>
 <li>
 <p><code>l</code>: similar to above, shows a nice looking history, but only for current
 branch, limited to 20 entries:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">l </span><span>= &quot;</span><span style="color:#a3be8c;">log --graph --decorate --pretty=format:&#39;%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset&#39; --date=relative -n 20</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>l =</span><span style="color: #A5D6FF;"> &quot;log --graph --decorate --pretty=format:&#39;%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset&#39; --date=relative -n 20&quot;</span></span></code></pre>
 <p>For example, in the Darktable repository:
 <img src="https://heitorpb.github.io/bla/git-aliases/g-l.png" title="Screenshot" alt="Screenshot of <code>g l</code>" loading="lazy" decoding="async" /></p>
 </li>
 <li>
 <p><code>lg</code>: find commits by commit message. This is short for <code>git log --grep</code> with
 fancy colors:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">lg </span><span>= &quot;</span><span style="color:#a3be8c;">!f() { git log --pretty=format:&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39; --decorate --date=short --grep=$1; }; f</span><span>&quot;
-</span></code></pre>
-<p>For example, in the <a href="http://github.com/nixOS/nixpkgs/">NixPkgs</a> repo:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git lg darktable
-</span><span style="color:#bf616a;">7d1aada7dd39</span><span>  2025-02-12  darktable: 5.0.0 -&gt; </span><span style="color:#d08770;">5</span><span>.0.1  </span><span style="color:#b48ead;">[</span><span>Heitor Pascoal de Bittencourt</span><span style="color:#b48ead;">]</span><span>  (HEAD -&gt; update-darktable-5.0.1, origin/update-darktable-5.0.1)
-</span><span style="color:#bf616a;">c1bd12cda2ea</span><span>  2025-01-25  darktable: fix builds on macOS (#372522)  </span><span style="color:#bf616a;">[GitHub]
-</span><span style="color:#bf616a;">83928a4e42bf</span><span>  2025-01-09  darktable: fix builds on macOS  </span><span style="color:#b48ead;">[</span><span>kashun</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">94d0ac1428cc</span><span>  2024-12-25  darktable: update deps to make cmake stop complaining and fix nix-update script. (#368007)  </span><span style="color:#bf616a;">[GitHub]
-</span><span style="color:#bf616a;">13bb42f29322</span><span>  2024-12-24  darktable: Update deps to make cmake stop complaining and fix nix-update script.  </span><span style="color:#b48ead;">[</span><span>Mica Semrick</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">defcdc88d552</span><span>  2024-12-24  darktable: fix updateScript (#367947)  </span><span style="color:#bf616a;">[GitHub]
-</span><span style="color:#bf616a;">40aa0e85b2e3</span><span>  2024-12-24  darktable: fix updateScript  </span><span style="color:#b48ead;">[</span><span>lucasew</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">9ea9538b3fa8</span><span>  2024-12-23  darktable: 4.8.1 -&gt; </span><span style="color:#d08770;">5</span><span>.0.0 (#367238)  </span><span style="color:#bf616a;">[GitHub]
-</span><span style="color:#bf616a;">e6e2300b03e1</span><span>  2024-12-22  darktable: 4.8.1 -&gt; </span><span style="color:#d08770;">5</span><span>.0.0  </span><span style="color:#b48ead;">[</span><span>Gaetan Lepage</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">1e9fdfe2dbb8</span><span>  2024-09-11  darktable: move to pkgs/by-name (#341144)  </span><span style="color:#bf616a;">[GitHub]
-</span><span style="color:#bf616a;">0bfa3d044d3f</span><span>  2024-07-31  Revert &quot;</span><span style="color:#a3be8c;">darktable: fix build</span><span>&quot;  </span><span style="color:#b48ead;">[</span><span>K900</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">7bbce274a1a9</span><span>  2024-07-30  Merge pull request </span><span style="color:#65737e;">#331096 from ajs124/fix/darktable  [GitHub]
-</span><span style="color:#bf616a;">[...]
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>lg =</span><span style="color: #A5D6FF;"> &quot;!f() { git log --pretty=format:&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39; --decorate --date=short --grep=$1; }; f&quot;</span></span></code></pre>
+<p>For example, in the <a rel="external" href="http://github.com/nixOS/nixpkgs/">NixPkgs</a> repo:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git lg darktable</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">7d1aada7dd39</span><span style="color: #A5D6FF;">  2025-02-12  darktable:</span><span style="color: #79C0FF;"> 5.0.0</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #79C0FF;"> 5.0.1</span><span>  [Heitor</span><span style="color: #A5D6FF;"> Pascoal de Bittencourt]</span><span>  (HEAD -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #A5D6FF;"> update-darktable-5.0.1, origin/update-darktable-5.0.1</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">c1bd12cda2ea</span><span style="color: #A5D6FF;">  2025-01-25  darktable: fix builds on macOS</span><span> (#372522)  [GitHub]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">83928a4e42bf</span><span style="color: #A5D6FF;">  2025-01-09  darktable: fix builds on macOS</span><span>  [kashun]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">94d0ac1428cc</span><span style="color: #A5D6FF;">  2024-12-25  darktable: update deps to make cmake stop complaining and fix nix-update script.</span><span> (#368007)  [GitHub]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">13bb42f29322</span><span style="color: #A5D6FF;">  2024-12-24  darktable: Update deps to make cmake stop complaining and fix nix-update script.</span><span>  [Mica</span><span style="color: #A5D6FF;"> Semrick]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">defcdc88d552</span><span style="color: #A5D6FF;">  2024-12-24  darktable: fix updateScript</span><span> (#367947)  [GitHub]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">40aa0e85b2e3</span><span style="color: #A5D6FF;">  2024-12-24  darktable: fix updateScript</span><span>  [lucasew]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">9ea9538b3fa8</span><span style="color: #A5D6FF;">  2024-12-23  darktable:</span><span style="color: #79C0FF;"> 4.8.1</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #79C0FF;"> 5.0.0</span><span> (#367238)  [GitHub]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">e6e2300b03e1</span><span style="color: #A5D6FF;">  2024-12-22  darktable:</span><span style="color: #79C0FF;"> 4.8.1</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #79C0FF;"> 5.0.0</span><span>  [Gaetan</span><span style="color: #A5D6FF;"> Lepage]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">1e9fdfe2dbb8</span><span style="color: #A5D6FF;">  2024-09-11  darktable: move to pkgs/by-name</span><span> (#341144)  [GitHub]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">0bfa3d044d3f</span><span style="color: #A5D6FF;">  2024-07-31  Revert &quot;darktable: fix build&quot;</span><span>  [K900]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">7bbce274a1a9</span><span style="color: #A5D6FF;">  2024-07-30  Merge pull request</span><span style="color: #8B949E;"> #331096 from ajs124/fix/darktable  [GitHub]</span></span>
+<span class="giallo-l"><span>[...]</span></span></code></pre></li>
 <li>
 <p><code>now</code>: change last commit authoring date to right now:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">now </span><span>= &quot;</span><span style="color:#a3be8c;">commit --amend --date=now</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>now =</span><span style="color: #A5D6FF;"> &quot;commit --amend --date=now&quot;</span></span></code></pre></li>
 <li>
 <p><code>remotes</code>: list all remotes and their URLs</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">remotes </span><span>= &quot;</span><span style="color:#a3be8c;">remote -v</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>remotes =</span><span style="color: #A5D6FF;"> &quot;remote -v&quot;</span></span></code></pre>
 <p>For example:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remotes
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:heitorPB/nixpkgs.git (fetch)
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:heitorPB/nixpkgs.git (push)
-</span><span style="color:#bf616a;">upstream</span><span>        git@github.com:NixOS/nixpkgs.git (fetch)
-</span><span style="color:#bf616a;">upstream</span><span>        git@github.com:NixOS/nixpkgs.git (push)
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git remotes</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@github.com:heitorPB/nixpkgs.git</span><span> (fetch)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@github.com:heitorPB/nixpkgs.git</span><span> (push)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">upstream</span><span style="color: #A5D6FF;">        git@github.com:NixOS/nixpkgs.git</span><span> (fetch)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">upstream</span><span style="color: #A5D6FF;">        git@github.com:NixOS/nixpkgs.git</span><span> (push)</span></span></code></pre></li>
 <li>
 <p><code>s</code>: short <code>git status</code></p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">s </span><span>= &quot;</span><span style="color:#a3be8c;">status -s</span><span>&quot;
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>s =</span><span style="color: #A5D6FF;"> &quot;status -s&quot;</span></span></code></pre></li>
 <li>
 <p><code>tags</code>: list tags that match a pattern. If no pattern is given, list all
 tags:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">tags </span><span>= &quot;</span><span style="color:#a3be8c;">tags -l</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>tags =</span><span style="color: #A5D6FF;"> &quot;tags -l&quot;</span></span></code></pre>
 <p>For example:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git tags v*
-</span><span style="color:#bf616a;">v0.7.0</span><span>  v0.7.1  v0.7.2  v0.7.3  v0.7.4  v0.8.0  v0.8.1
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git tags v</span><span style="color: #79C0FF;">*</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">v0.7.0</span><span style="color: #A5D6FF;">  v0.7.1  v0.7.2  v0.7.3  v0.7.4  v0.8.0  v0.8.1</span></span></code></pre></li>
 <li>
 <p><code>alias</code>: an alias to list all aliases:</p>
-<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#bf616a;">alias </span><span>= &quot;</span><span style="color:#a3be8c;">! git config --get-regexp ^alias</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">. | sed -e s/^alias</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;">.// -e s/</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;"> /</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;"> =</span><span style="color:#96b5b4;">\\</span><span style="color:#a3be8c;"> / | grep -v ^&#39;alias &#39;</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="toml"><span class="giallo-l"><span>alias =</span><span style="color: #A5D6FF;"> &quot;! git config --get-regexp ^alias</span><span style="color: #FF7B72;">\\</span><span style="color: #A5D6FF;">. | sed -e s/^alias</span><span style="color: #FF7B72;">\\</span><span style="color: #A5D6FF;">.// -e s/</span><span style="color: #FF7B72;">\\</span><span style="color: #A5D6FF;"> /</span><span style="color: #FF7B72;">\\</span><span style="color: #A5D6FF;"> =</span><span style="color: #FF7B72;">\\</span><span style="color: #A5D6FF;"> / | grep -v ^&#39;alias &#39;&quot;</span></span></code></pre>
 <p>For example:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git alias
-</span><span style="color:#bf616a;">branches</span><span> = branch</span><span style="color:#bf616a;"> -a
-</span><span style="color:#bf616a;">c</span><span> = commit</span><span style="color:#bf616a;"> --verbose
-</span><span style="color:#bf616a;">ca</span><span> = commit</span><span style="color:#bf616a;"> --all --verbose
-</span><span style="color:#bf616a;">contributors</span><span> = shortlog</span><span style="color:#bf616a;"> --summary --numbered
-</span><span style="color:#bf616a;">d</span><span> = !git</span><span style="color:#bf616a;"> --no-pager</span><span> diff</span><span style="color:#bf616a;"> --patch-with-stat
-</span><span style="color:#bf616a;">dm</span><span> = !git branch</span><span style="color:#bf616a;"> --merged </span><span>| </span><span style="color:#bf616a;">grep -v </span><span>&#39;</span><span style="color:#a3be8c;">\*</span><span>&#39; | </span><span style="color:#bf616a;">xargs -n</span><span> 1 git branch</span><span style="color:#bf616a;"> -d
-</span><span style="color:#bf616a;">fc</span><span> = !f() { </span><span style="color:#bf616a;">git</span><span> log</span><span style="color:#bf616a;"> --pretty</span><span>=format:&#39;</span><span style="color:#a3be8c;">%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d</span><span>&#39;</span><span style="color:#bf616a;"> --decorate --date</span><span>=short</span><span style="color:#bf616a;"> -S</span><span>$</span><span style="color:#bf616a;">1</span><span>; }; </span><span style="color:#bf616a;">f
-</span><span style="color:#bf616a;">graph</span><span> = log</span><span style="color:#bf616a;"> --graph --decorate --pretty</span><span>=format:&#39;</span><span style="color:#a3be8c;">%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset</span><span>&#39;</span><span style="color:#bf616a;"> --date</span><span>=relative</span><span style="color:#bf616a;"> --all
-</span><span style="color:#bf616a;">l</span><span> = log</span><span style="color:#bf616a;"> --graph --decorate --pretty</span><span>=format:&#39;</span><span style="color:#a3be8c;">%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset</span><span>&#39;</span><span style="color:#bf616a;"> --date</span><span>=relative</span><span style="color:#bf616a;"> -n</span><span> 20
-</span><span style="color:#bf616a;">lg</span><span> = !f() { </span><span style="color:#bf616a;">git</span><span> log</span><span style="color:#bf616a;"> --pretty</span><span>=format:&#39;</span><span style="color:#a3be8c;">%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d</span><span>&#39;</span><span style="color:#bf616a;"> --decorate --date</span><span>=short</span><span style="color:#bf616a;"> --grep</span><span>=$</span><span style="color:#bf616a;">1</span><span>; }; </span><span style="color:#bf616a;">f
-</span><span style="color:#bf616a;">now</span><span> = commit</span><span style="color:#bf616a;"> --amend --date</span><span>=now
-</span><span style="color:#bf616a;">remotes</span><span> = remote</span><span style="color:#bf616a;"> -v
-</span><span style="color:#bf616a;">s</span><span> = status</span><span style="color:#bf616a;"> -s
-</span><span style="color:#bf616a;">tags</span><span> = tag</span><span style="color:#bf616a;"> -l
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git alias</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">branches</span><span style="color: #A5D6FF;"> = branch</span><span style="color: #79C0FF;"> -a</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">c</span><span style="color: #A5D6FF;"> = commit</span><span style="color: #79C0FF;"> --verbose</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ca</span><span style="color: #A5D6FF;"> = commit</span><span style="color: #79C0FF;"> --all --verbose</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">contributors</span><span style="color: #A5D6FF;"> = shortlog</span><span style="color: #79C0FF;"> --summary --numbered</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">d</span><span style="color: #A5D6FF;"> = !git</span><span style="color: #79C0FF;"> --no-pager</span><span style="color: #A5D6FF;"> diff</span><span style="color: #79C0FF;"> --patch-with-stat</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">dm</span><span style="color: #A5D6FF;"> = !git branch</span><span style="color: #79C0FF;"> --merged</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> grep</span><span style="color: #79C0FF;"> -v</span><span style="color: #A5D6FF;"> &#39;\*&#39;</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> xargs</span><span style="color: #79C0FF;"> -n 1</span><span style="color: #A5D6FF;"> git branch</span><span style="color: #79C0FF;"> -d</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">fc</span><span style="color: #A5D6FF;"> = !f</span><span>()</span><span style="color: #A5D6FF;"> { git log</span><span style="color: #79C0FF;"> --pretty=format:</span><span style="color: #A5D6FF;">&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39;</span><span style="color: #79C0FF;"> --decorate --date=short -S$1</span><span>; };</span><span style="color: #FFA657;"> f</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">graph</span><span style="color: #A5D6FF;"> = log</span><span style="color: #79C0FF;"> --graph --decorate --pretty=format:</span><span style="color: #A5D6FF;">&#39;%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset&#39;</span><span style="color: #79C0FF;"> --date=relative --all</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">l</span><span style="color: #A5D6FF;"> = log</span><span style="color: #79C0FF;"> --graph --decorate --pretty=format:</span><span style="color: #A5D6FF;">&#39;%C(blue)%d%Creset %C(yellow)%h%Creset %s, %C(bold green)%an%Creset, %C(green)%cd%Creset&#39;</span><span style="color: #79C0FF;"> --date=relative -n 20</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">lg</span><span style="color: #A5D6FF;"> = !f</span><span>()</span><span style="color: #A5D6FF;"> { git log</span><span style="color: #79C0FF;"> --pretty=format:</span><span style="color: #A5D6FF;">&#39;%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d&#39;</span><span style="color: #79C0FF;"> --decorate --date=short --grep=$1</span><span>; };</span><span style="color: #FFA657;"> f</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">now</span><span style="color: #A5D6FF;"> = commit</span><span style="color: #79C0FF;"> --amend --date=now</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">remotes</span><span style="color: #A5D6FF;"> = remote</span><span style="color: #79C0FF;"> -v</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">s</span><span style="color: #A5D6FF;"> = status</span><span style="color: #79C0FF;"> -s</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">tags</span><span style="color: #A5D6FF;"> = tag</span><span style="color: #79C0FF;"> -l</span></span></code></pre></li>
 </ul>
 <p>Now, the ultimate alias is a shell one: <code>alias g=git</code>! Instead of <code>git ca</code> I
 just <code>g ca</code>! This is my Bash alias that made a coworker think I use a more
@@ -339,10 +301,9 @@ glorious 17 ms I saved by not typing <code>it</code> are wasted.</p>
 <p>A second issue is with shell completions. In Bash, you don’t get completions on
 aliases out of the box. In order to have completions I need to have this in my
 <code>~/.bashrc</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#96b5b4;">.</span><span> /usr/share/bash-completion/completions/git
-</span><span style="color:#bf616a;">__git_complete</span><span> g __git_main
-</span></code></pre>
-<p>If you happen to be using <a href="https://fishshell.com/">fish shell</a>, you don’t need
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #79C0FF;">.</span><span style="color: #A5D6FF;"> /usr/share/bash-completion/completions/git</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">__git_complete</span><span style="color: #A5D6FF;"> g __git_main</span></span></code></pre>
+<p>If you happen to be using <a rel="external" href="https://fishshell.com/">fish shell</a>, you don’t need
 to setup the completions, fish has magical shell completions.</p>
 <p>Reach out if you have any other cool aliases! I’m curious to see what other
 gems are there.</p>

@@ -118,13 +118,12 @@
         <div class="post-content">
             <p>this is a <abbr title="test!">test</abbr> entry<sup class="footnote-reference"><a href="#bla">1</a></sup> for testing tests</p>
 <p>This is a python <abbr title="test!">test</abbr> code:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>numpy </span><span style="color:#b48ead;">as </span><span>np
-</span><span>
-</span><span>test0 = np.</span><span style="color:#bf616a;">zeros</span><span>(</span><span style="color:#d08770;">42</span><span>)
-</span><span>test1 = np.</span><span style="color:#bf616a;">ones</span><span>(</span><span style="color:#d08770;">137</span><span>)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">import</span><span> numpy</span><span style="color: #FF7B72;"> as</span><span> np</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>test0</span><span style="color: #FF7B72;"> =</span><span> np.zeros(</span><span style="color: #79C0FF;">42</span><span>)</span></span>
+<span class="giallo-l"><span>test1</span><span style="color: #FF7B72;"> =</span><span> np.ones(</span><span style="color: #79C0FF;">137</span><span>)</span></span></code></pre>
 <p>This a nice
-<a href="https://en.wikipedia.org/wiki/Higgs_boson#Technical_aspects_and_mathematical_formulation">Higgs Lagrangian</a>
+<a rel="external" href="https://en.wikipedia.org/wiki/Higgs_boson#Technical_aspects_and_mathematical_formulation">Higgs Lagrangian</a>
 for testing \( \LaTeX \) :</p>
 <div>
 $$ \mathcal{L}_H = \left|\left(\partial_\mu -i g W_\mu^a \tau^a -i\frac{1}{2} g' B_\mu\right)\phi\right|^2 + \mu^2 \phi^\dagger\phi-\lambda (\phi^\dagger\phi)^2 $$
@@ -137,29 +136,28 @@ $$ \mathcal{L}_H = \left|\left(\partial_\mu -i g W_\mu^a \tau^a -i\frac{1}{2} g'
 <li><em>italics</em>
 <ul>
 <li><del>list <abbr title="test!">test</abbr></del></li>
-<li><a href="http://pudim.com.br">a link</a></li>
+<li><a rel="external" href="http://pudim.com.br">a link</a></li>
 </ul>
 </li>
 </ul>
-<p>Some more <abbr title="test!">test</abbr> code from Julia <a href="https://qojulia.org/">Quantum Optics</a> package:</p>
-<pre data-lang="julia" style="background-color:#2b303b;color:#c0c5ce;" class="language-julia "><code class="language-julia" data-lang="julia"><span style="color:#b48ead;">using</span><span> QuantumOptics
-</span><span>b = FockBasis(</span><span style="color:#d08770;">50</span><span>)
-</span><span>a = destroy(b)
-</span><span>at = create(b)
-</span><span>H = </span><span style="color:#d08770;">0.5</span><span>*(a^</span><span style="color:#d08770;">2 </span><span>+ at^</span><span style="color:#d08770;">2</span><span>)
-</span><span>psi</span><span style="color:#d08770;">0 </span><span>= fockstate(b, </span><span style="color:#d08770;">3</span><span>)
-</span><span>tout, psit = timeevolution.schroedinger([</span><span style="color:#d08770;">0</span><span>:</span><span style="color:#d08770;">0.25</span><span>:</span><span style="color:#d08770;">1</span><span>;], psi</span><span style="color:#d08770;">0</span><span>, H)
-</span><span>
-</span><span style="color:#b48ead;">using</span><span> PyPlot
-</span><span>x = [-</span><span style="color:#d08770;">5</span><span>:</span><span style="color:#d08770;">0.1</span><span>:</span><span style="color:#d08770;">5</span><span>;]
-</span><span style="color:#b48ead;">for</span><span> i </span><span style="color:#b48ead;">in </span><span style="color:#d08770;">1</span><span>:</span><span style="color:#d08770;">4
-</span><span>    subplot(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, i)
-</span><span>    Q = qfunc(psit[i], x, x)
-</span><span>    pcolor(x, x, Q)
-</span><span style="color:#b48ead;">end
-</span><span>tight_layout()
-</span><span>savefig(&quot;</span><span style="color:#a3be8c;">fock.png</span><span>&quot;)
-</span></code></pre>
+<p>Some more <abbr title="test!">test</abbr> code from Julia <a rel="external" href="https://qojulia.org/">Quantum Optics</a> package:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="julia"><span class="giallo-l"><span style="color: #FF7B72;">using</span><span> QuantumOptics</span></span>
+<span class="giallo-l"><span>b </span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;"> FockBasis</span><span>(</span><span style="color: #79C0FF;">50</span><span>)</span></span>
+<span class="giallo-l"><span>a </span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;"> destroy</span><span>(b)</span></span>
+<span class="giallo-l"><span>at </span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;"> create</span><span>(b)</span></span>
+<span class="giallo-l"><span>H </span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;"> 0.5</span><span style="color: #FF7B72;">*</span><span>(a</span><span style="color: #FF7B72;">^</span><span style="color: #79C0FF;">2</span><span style="color: #FF7B72;"> +</span><span> at</span><span style="color: #FF7B72;">^</span><span style="color: #79C0FF;">2</span><span>)</span></span>
+<span class="giallo-l"><span>psi0 </span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;"> fockstate</span><span>(b,</span><span style="color: #79C0FF;"> 3</span><span>)</span></span>
+<span class="giallo-l"><span>tout, psit </span><span style="color: #FF7B72;">=</span><span> timeevolution</span><span style="color: #FF7B72;">.</span><span style="color: #79C0FF;">schroedinger</span><span>([</span><span style="color: #79C0FF;">0</span><span style="color: #FF7B72;">:</span><span style="color: #79C0FF;">0.25</span><span style="color: #FF7B72;">:</span><span style="color: #79C0FF;">1</span><span>;], psi0, H)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">using</span><span> PyPlot</span></span>
+<span class="giallo-l"><span>x </span><span style="color: #FF7B72;">=</span><span> [</span><span style="color: #FF7B72;">-</span><span style="color: #79C0FF;">5</span><span style="color: #FF7B72;">:</span><span style="color: #79C0FF;">0.1</span><span style="color: #FF7B72;">:</span><span style="color: #79C0FF;">5</span><span>;]</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">for</span><span> i </span><span style="color: #FF7B72;">in</span><span style="color: #79C0FF;"> 1</span><span style="color: #FF7B72;">:</span><span style="color: #79C0FF;">4</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    subplot</span><span>(</span><span style="color: #79C0FF;">2</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>, i)</span></span>
+<span class="giallo-l"><span>    Q </span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;"> qfunc</span><span>(psit[i], x, x)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    pcolor</span><span>(x, x, Q)</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">end</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">tight_layout</span><span>()</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">savefig</span><span>(</span><span style="color: #A5D6FF;">&quot;fock.png&quot;</span><span>)</span></span></code></pre>
 <p>Unicode/Emoji <abbr title="test!">test</abbr>:</p>
 <center>
 🦕<br>
@@ -183,7 +181,7 @@ $$ \mathcal{L}_H = \left|\left(\partial_\mu -i g W_\mu^a \tau^a -i\frac{1}{2} g'
 <ul>
 <li>
 <div class="footnote-definition" id="bla"><sup class="footnote-definition-label">1</sup>
-<p>Bla <a href="https://lmgtfy.com/?q=bla">blablabla</a></p>
+<p>Bla <a rel="external" href="https://lmgtfy.com/?q=bla">blablabla</a></p>
 </div>
 </li>
 </ul>

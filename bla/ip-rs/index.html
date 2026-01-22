@@ -132,26 +132,24 @@ particular instance (probably takes two or three attempts until getting the
 correct instance name, assuming you know the right region to search for), and
 then figure out it only has internal addresses…</p>
 <p>I’m too lazy to go that route again. So I made a little web server to answer
-that question for me: <a href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>.</p>
+that question for me: <a rel="external" href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>.</p>
 <p>Usage is straightforward: make a GET request to my hosted server at
-<a href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>. For example, using <code>curl</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> curl</span><span style="color:#bf616a;"> -L</span><span> iprs.fly.dev
-</span><span style="color:#bf616a;">2804:431:c00f:feee:bee:2572:573d:c00f
-</span></code></pre>
+<a rel="external" href="https://iprs.fly.dev"><code>iprs.fly.dev</code></a>. For example, using <code>curl</code>:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> curl</span><span style="color: #79C0FF;"> -L</span><span style="color: #A5D6FF;"> iprs.fly.dev</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2804:431:c00f:feee:bee:2572:573d:c00f</span></span></code></pre>
 <p>😎</p>
 <p>And if you <del>still care about</del> want your IPv4 instead, you can also check it
 out:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> curl</span><span style="color:#bf616a;"> -L -4</span><span> iprs.fly.dev
-</span><span style="color:#bf616a;">200.232.29.121
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> curl</span><span style="color: #79C0FF;"> -L -4</span><span style="color: #A5D6FF;"> iprs.fly.dev</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">200.232.29.121</span></span></code></pre>
 <p>Way easier and faster than navigating the cloud provider’s console :)</p>
 <p>You can always force <code>curl</code> to use a specific IP version with <code>-4</code>/<code>--ipv4</code> or
 <code>-6</code>/<code>--ipv6</code>. Whether your connection uses IPv4 or IPv6 by default depends on
 your local network setup and ISP, you might not even have IPv6.</p>
 <p>The source code for this project is available at
-<a href="https://github.com/heitorPB/ip.rs">GitHub:heitorPB/ip.rs</a>. I coded it in Rust,
-using <a href="https://crates.io/crates/axum">Axum</a> for the web server, built the
-Docker image via Nix and hosted it in a <a href="https://fly.io">Flying Cloud</a>.</p>
+<a rel="external" href="https://github.com/heitorPB/ip.rs">GitHub:heitorPB/ip.rs</a>. I coded it in Rust,
+using <a rel="external" href="https://crates.io/crates/axum">Axum</a> for the web server, built the
+Docker image via Nix and hosted it in a <a rel="external" href="https://fly.io">Flying Cloud</a>.</p>
 <p>And this is totally reinventing the wheel. There are plenty of other services
 online that also show your IP. And now there’s one more
 <abbr title="Mandatory xkcd: xkcd.com/927/">🙃</abbr> So, why

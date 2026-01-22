@@ -133,10 +133,9 @@ modifying the program?</p>
 <li>Get the size of the file with <code>wc --bytes</code>.</li>
 </ol>
 <p>As simple as:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> foo &gt; output_of_foo
-</span><span style="color:#bf616a;">$</span><span> cat output_of_foo
-</span><span style="color:#bf616a;">$</span><span> wc</span><span style="color:#bf616a;"> --bytes</span><span> output_of_foo
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> foo</span><span style="color: #FF7B72;"> &gt;</span><span style="color: #A5D6FF;"> output_of_foo</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> cat output_of_foo</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> wc</span><span style="color: #79C0FF;"> --bytes</span><span style="color: #A5D6FF;"> output_of_foo</span></span></code></pre>
 <p>That works. But that isn’t as convenient as I needed. How to do all of that in
 one go? Concatenating that to a one-liner like <code>foo &gt; output_of_foo; cat output_of_foo; wc -c output_of_foo</code> is out.</p>
 <p>Could <code>tee</code> do that? <code>tee</code> copies the standard input (<em>stdin</em>) to both the
@@ -150,31 +149,28 @@ specified files.</p>
 way we have the output of <code>foo</code> in both <em>stdout</em> and in <em>stderr</em> (standard
 error)! The pipe to <code>wc</code> redirects only <em>stdout</em> leaving <em>stderr</em> in the
 terminal:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo Hi | </span><span style="color:#bf616a;">tee</span><span> /dev/stderr | </span><span style="color:#bf616a;">wc --bytes
-</span><span style="color:#bf616a;">Hi
-</span><span style="color:#bf616a;">3
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo Hi</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> tee</span><span style="color: #A5D6FF;"> /dev/stderr</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> wc</span><span style="color: #79C0FF;"> --bytes</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hi</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">3</span></span></code></pre>
 <p>Note the three bytes in there: <code>H</code>, <code>i</code> and <code>\n</code>. Use <code>echo -n</code> to not have the
 trailing newline at the end of the string. Beware of side effects. You’ve been
 warned.</p>
 <p>That gets the job done. But can we avoid <em>stderr</em>?</p>
-<p>In case you are running Bash you can use some nasty <a href="https://www.gnu.org/software/bash/manual/bash.html#Process-Substitution-1">process substitution
+<p>In case you are running Bash you can use some nasty <a rel="external" href="https://www.gnu.org/software/bash/manual/bash.html#Process-Substitution-1">process substitution
 expansion</a>
 as well. With this obscenity we can turn the input for <code>wc</code> into a filename for
 our <code>tee</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo Hi | </span><span style="color:#bf616a;">tee </span><span>&gt;(</span><span style="color:#bf616a;">wc --bytes</span><span>)
-</span><span style="color:#bf616a;">Hi
-</span><span style="color:#bf616a;">3
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo Hi</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> tee</span><span style="color: #A5D6FF;"> &gt;(</span><span style="color: #FFA657;">wc</span><span style="color: #79C0FF;"> --bytes</span><span style="color: #A5D6FF;">)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hi</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">3</span></span></code></pre>
 <p>And no <em>stderr</em> involved 🙂</p>
 <p>With this neat trick we can feed the output of one command to any number of
 following processes, for example:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo Hi | </span><span style="color:#bf616a;">tee </span><span>&gt;(</span><span style="color:#bf616a;">wc --bytes</span><span>) &gt;(</span><span style="color:#bf616a;">wc --lines</span><span>) &gt;(</span><span style="color:#bf616a;">md5sum</span><span>)
-</span><span style="color:#bf616a;">Hi
-</span><span style="color:#bf616a;">31ebdfce8b77ac49d7f5506dd1495830</span><span>  -
-</span><span style="color:#bf616a;">1
-</span><span style="color:#bf616a;">3
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo Hi</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> tee</span><span style="color: #A5D6FF;"> &gt;(</span><span style="color: #FFA657;">wc</span><span style="color: #79C0FF;"> --bytes</span><span style="color: #A5D6FF;">) &gt;(</span><span style="color: #FFA657;">wc</span><span style="color: #79C0FF;"> --lines</span><span style="color: #A5D6FF;">) &gt;(</span><span style="color: #FFA657;">md5sum</span><span style="color: #A5D6FF;">)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hi</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">31ebdfce8b77ac49d7f5506dd1495830</span><span style="color: #A5D6FF;">  -</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">3</span></span></code></pre>
 <p>Note that <code>tee</code> wrote into the filenames starting from the right to the left,
 after writing to <em>stdout</em>: the first line contains the input string <code>Hi\n</code>,
 then the MD5 checksum (output from <code>md5sum</code>), then the number of lines (from

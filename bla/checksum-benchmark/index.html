@@ -132,7 +132,7 @@ not corrupted.</p>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/54055309676/" title="Chandelier"><img src="https://live.staticflickr.com/65535/54055309676_7fe633947e_z.jpg" width="640" height="425" alt="Chandelier"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
 <p>These are the checksumming tools I’ll benchmark, from GNU coreutils and
-<a href="https://xxhash.com/">xxHash</a>:</p>
+<a rel="external" href="https://xxhash.com/">xxHash</a>:</p>
 <ul>
 <li><code>b2sum</code>: 512-bit hash (BLAKE2b)</li>
 <li><code>cksum</code>: 32-bit CRC checksum - non-cryptographic algorithm</li>
@@ -146,64 +146,61 @@ not corrupted.</p>
 </ul>
 <p>I want to see their performance on small (1 KiB), medium (1 MiB), and large (1
 GiB) files. For testing purposes, I’ll generate random data:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">dd</span><span> if=/dev/urandom of=1K bs=1K count=1
-</span><span style="color:#bf616a;">dd</span><span> if=/dev/urandom of=1M bs=1M count=1
-</span><span style="color:#bf616a;">dd</span><span> if=/dev/urandom of=1G bs=1M count=1024
-</span></code></pre>
-<p>I’ll use <a href="https://github.com/sharkdp/hyperfine/">hyperfine</a> to run the
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">dd</span><span style="color: #A5D6FF;"> if=/dev/urandom of=1K bs=1K count=</span><span style="color: #79C0FF;">1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">dd</span><span style="color: #A5D6FF;"> if=/dev/urandom of=1M bs=1M count=</span><span style="color: #79C0FF;">1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">dd</span><span style="color: #A5D6FF;"> if=/dev/urandom of=1G bs=1M count=</span><span style="color: #79C0FF;">1024</span></span></code></pre>
+<p>I’ll use <a rel="external" href="https://github.com/sharkdp/hyperfine/">hyperfine</a> to run the
 benchmarks:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for</span><span> file_size </span><span style="color:#b48ead;">in</span><span> 1K 1M 1G; </span><span style="color:#b48ead;">do 
-</span><span>    </span><span style="color:#bf616a;">hyperfine --warmup</span><span> 3</span><span style="color:#bf616a;"> --shell</span><span>=none</span><span style="color:#bf616a;"> --min-runs</span><span> 20</span><span style="color:#bf616a;"> --export-json </span><span>&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}.json</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">b2sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">cksum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">md5sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">sha1sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">sha224sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">sha256sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">sha384sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">sha512sum </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot; \
-</span><span>        &quot;</span><span style="color:#a3be8c;">xxhsum -H2 </span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">file_size</span><span style="color:#a3be8c;">}</span><span>&quot;
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FF7B72;">for</span><span> file_size</span><span style="color: #FF7B72;"> in</span><span style="color: #A5D6FF;"> 1K 1M 1G</span><span>;</span><span style="color: #FF7B72;"> do</span><span> </span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    hyperfine</span><span style="color: #79C0FF;"> --warmup 3 --shell=none --min-runs 20 --export-json</span><span style="color: #A5D6FF;"> &quot;${</span><span>file_size</span><span style="color: #A5D6FF;">}.json&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;b2sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;cksum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;md5sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;sha1sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;sha224sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;sha256sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;sha384sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;sha512sum ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">        &quot;xxhsum -H2 ${</span><span>file_size</span><span style="color: #A5D6FF;">}&quot;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>I got many warnings about statistical outliers when running these benchmarks,
 even when I had nothing but <code>hyperfine</code> and NeoVim (and the OS) running. I’ll
 ignore that for now.</p>
 <p>For 1 KiB files, <code>hyperfine</code> run each command more than 1000 times; for 1 MiB
 files, it run at least 600 times; and for 1 GiB files, 20 times only.</p>
 <p>The results on my laptop (AMD Ryzen 7 PRO 5875U, NVMe) are very interesting:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Summary
-</span><span>  xxhsum -H2 1K ran
-</span><span>    1.64 ± 0.33 times faster than sha512sum 1K
-</span><span>    1.67 ± 0.46 times faster than md5sum 1K
-</span><span>    1.73 ± 0.44 times faster than sha1sum 1K
-</span><span>    2.60 ± 0.75 times faster than sha384sum 1K
-</span><span>    2.91 ± 0.52 times faster than sha256sum 1K
-</span><span>    2.91 ± 0.51 times faster than sha224sum 1K
-</span><span>    2.91 ± 0.52 times faster than b2sum 1K
-</span><span>    2.95 ± 0.53 times faster than cksum 1K
-</span><span>
-</span><span>Summary
-</span><span>  xxhsum -H2 1M ran
-</span><span>    1.33 ± 0.14 times faster than cksum 1M
-</span><span>    1.72 ± 0.17 times faster than sha256sum 1M
-</span><span>    2.46 ± 0.81 times faster than b2sum 1M
-</span><span>    2.84 ± 0.69 times faster than sha224sum 1M
-</span><span>    3.14 ± 0.23 times faster than sha1sum 1M
-</span><span>    3.66 ± 0.80 times faster than sha384sum 1M
-</span><span>    4.05 ± 0.27 times faster than sha512sum 1M
-</span><span>    4.16 ± 0.25 times faster than md5sum 1M
-</span><span>
-</span><span>Summary
-</span><span>  cksum 1G ran
-</span><span>    1.19 ± 0.29 times faster than xxhsum -H2 1G
-</span><span>    2.90 ± 0.68 times faster than sha1sum 1G
-</span><span>    3.34 ± 1.02 times faster than sha256sum 1G
-</span><span>    3.74 ± 1.23 times faster than sha224sum 1G
-</span><span>    6.90 ± 2.29 times faster than md5sum 1G
-</span><span>    6.97 ± 2.09 times faster than b2sum 1G
-</span><span>    7.16 ± 2.22 times faster than sha512sum 1G
-</span><span>    7.16 ± 2.18 times faster than sha384sum 1G
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="plain"><span class="giallo-l"><span>Summary</span></span>
+<span class="giallo-l"><span>  xxhsum -H2 1K ran</span></span>
+<span class="giallo-l"><span>    1.64 ± 0.33 times faster than sha512sum 1K</span></span>
+<span class="giallo-l"><span>    1.67 ± 0.46 times faster than md5sum 1K</span></span>
+<span class="giallo-l"><span>    1.73 ± 0.44 times faster than sha1sum 1K</span></span>
+<span class="giallo-l"><span>    2.60 ± 0.75 times faster than sha384sum 1K</span></span>
+<span class="giallo-l"><span>    2.91 ± 0.52 times faster than sha256sum 1K</span></span>
+<span class="giallo-l"><span>    2.91 ± 0.51 times faster than sha224sum 1K</span></span>
+<span class="giallo-l"><span>    2.91 ± 0.52 times faster than b2sum 1K</span></span>
+<span class="giallo-l"><span>    2.95 ± 0.53 times faster than cksum 1K</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>Summary</span></span>
+<span class="giallo-l"><span>  xxhsum -H2 1M ran</span></span>
+<span class="giallo-l"><span>    1.33 ± 0.14 times faster than cksum 1M</span></span>
+<span class="giallo-l"><span>    1.72 ± 0.17 times faster than sha256sum 1M</span></span>
+<span class="giallo-l"><span>    2.46 ± 0.81 times faster than b2sum 1M</span></span>
+<span class="giallo-l"><span>    2.84 ± 0.69 times faster than sha224sum 1M</span></span>
+<span class="giallo-l"><span>    3.14 ± 0.23 times faster than sha1sum 1M</span></span>
+<span class="giallo-l"><span>    3.66 ± 0.80 times faster than sha384sum 1M</span></span>
+<span class="giallo-l"><span>    4.05 ± 0.27 times faster than sha512sum 1M</span></span>
+<span class="giallo-l"><span>    4.16 ± 0.25 times faster than md5sum 1M</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>Summary</span></span>
+<span class="giallo-l"><span>  cksum 1G ran</span></span>
+<span class="giallo-l"><span>    1.19 ± 0.29 times faster than xxhsum -H2 1G</span></span>
+<span class="giallo-l"><span>    2.90 ± 0.68 times faster than sha1sum 1G</span></span>
+<span class="giallo-l"><span>    3.34 ± 1.02 times faster than sha256sum 1G</span></span>
+<span class="giallo-l"><span>    3.74 ± 1.23 times faster than sha224sum 1G</span></span>
+<span class="giallo-l"><span>    6.90 ± 2.29 times faster than md5sum 1G</span></span>
+<span class="giallo-l"><span>    6.97 ± 2.09 times faster than b2sum 1G</span></span>
+<span class="giallo-l"><span>    7.16 ± 2.22 times faster than sha512sum 1G</span></span>
+<span class="giallo-l"><span>    7.16 ± 2.18 times faster than sha384sum 1G</span></span></code></pre>
 <p>I also wanted to play with Matplotlib, so I made a nice plot of the actual
 runtimes, the lower the better. Note the log scale:</p>
 <center>

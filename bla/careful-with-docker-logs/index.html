@@ -125,47 +125,42 @@ running Docker containers, so it must be a Docker problem, right?</p>
 <h3 id="the-problem">The Problem</h3>
 <p>This test server has 100 GiB of disk, and it was full. As it is a “Docker only”
 server, the first obvious thing to check is how much space Docker used:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> docker system df
-</span><span style="color:#bf616a;">TYPE</span><span>             TOTAL    ACTIVE    SIZE       RECLAIMABLE
-</span><span style="color:#bf616a;">Images</span><span>           21       18        16GB       10.07GB (60%)
-</span><span style="color:#bf616a;">Containers</span><span>       18       17        812.8MB    15.24MB (1%)
-</span><span style="color:#bf616a;">Local</span><span> Volumes    69       14        6.428GB    395.9MB (6%)
-</span><span style="color:#bf616a;">Build</span><span> Cache      0        0         0B         0B
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> docker system df</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">TYPE</span><span style="color: #A5D6FF;">             TOTAL    ACTIVE    SIZE       RECLAIMABLE</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Images</span><span style="color: #79C0FF;">           21       18</span><span style="color: #A5D6FF;">        16GB       10.07GB</span><span> (60%)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Containers</span><span style="color: #79C0FF;">       18       17</span><span style="color: #A5D6FF;">        812.8MB    15.24MB</span><span> (1%)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Local</span><span style="color: #A5D6FF;"> Volumes</span><span style="color: #79C0FF;">    69       14</span><span style="color: #A5D6FF;">        6.428GB    395.9MB</span><span> (6%)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Build</span><span style="color: #A5D6FF;"> Cache</span><span style="color: #79C0FF;">      0        0</span><span style="color: #A5D6FF;">         0B         0B</span></span></code></pre>
 <p>So, Docker is using about 23 GB. And the volumes are not to blame, they are
 using only 6.4 GB. Pruning it would free some space and in fact saved the
 machine. But a few hours later, the disk was full again. Something flooded the
 disk, and it was not in any Docker container or volume.</p>
 <p>I checked the machine logs, and they were small:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/log
-</span><span style="color:#bf616a;">1.6G</span><span>    /var/log
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> du</span><span style="color: #79C0FF;"> -h -d 0</span><span style="color: #A5D6FF;"> /var/log</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">1.6G</span><span style="color: #A5D6FF;">    /var/log</span></span></code></pre>
 <p>I dug deeper and saw something weird:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/
-</span><span style="color:#bf616a;">99G</span><span>     var/
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> du</span><span style="color: #79C0FF;"> -h -d 0</span><span style="color: #A5D6FF;"> /var/</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">99G</span><span style="color: #A5D6FF;">     var/</span></span></code></pre>
 <p>And then, the guilty service appeared:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/lib/
-</span><span style="color:#bf616a;">97.6G</span><span>   /var/lib
-</span><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h -d</span><span> 0 /var/lib/docker
-</span><span style="color:#bf616a;">96.7G</span><span>   /var/lib/docer
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> du</span><span style="color: #79C0FF;"> -h -d 0</span><span style="color: #A5D6FF;"> /var/lib/</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">97.6G</span><span style="color: #A5D6FF;">   /var/lib</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> du</span><span style="color: #79C0FF;"> -h -d 0</span><span style="color: #A5D6FF;"> /var/lib/docker</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">96.7G</span><span style="color: #A5D6FF;">   /var/lib/docer</span></span></code></pre>
 <p>So it was Docker the whole time. But, what else Docker has, besides images,
 layers, containers, volumes and build cache, as reported by <code>docker system df</code>?</p>
 <p>Docker has logs.</p>
 <p>By default, Docker saves the output of each container in a <code>json</code> file in
 <code>/var/lib/docker/containers/&lt;container_ID&gt;/&lt;container_ID&gt;-json.log</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> du</span><span style="color:#bf616a;"> -h</span><span> /var/lib/docker/containers/*/*.log
-</span><span>
-</span><span style="color:#bf616a;">315M</span><span>    /var/lib/docker/containers/016.../016...-json.log
-</span><span style="color:#bf616a;">164K</span><span>    /var/lib/docker/containers/0d1.../0d1...-json.log
-</span><span style="color:#bf616a;">51G</span><span>     /var/lib/docker/containers/0f7.../0f7...-json.log
-</span><span style="color:#bf616a;">6G</span><span>      /var/lib/docker/containers/0f8.../0f8...-json.log
-</span><span style="color:#bf616a;">...
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> du</span><span style="color: #79C0FF;"> -h</span><span style="color: #A5D6FF;"> /var/lib/docker/containers/</span><span style="color: #79C0FF;">*</span><span style="color: #A5D6FF;">/</span><span style="color: #79C0FF;">*</span><span style="color: #A5D6FF;">.log</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">315M</span><span style="color: #A5D6FF;">    /var/lib/docker/containers/016.../016...-json.log</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">164K</span><span style="color: #A5D6FF;">    /var/lib/docker/containers/0d1.../0d1...-json.log</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">51G</span><span style="color: #A5D6FF;">     /var/lib/docker/containers/0f7.../0f7...-json.log</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">6G</span><span style="color: #A5D6FF;">      /var/lib/docker/containers/0f8.../0f8...-json.log</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">...</span></span></code></pre>
 <p>Yeah, there were huge log files…</p>
 <p>By
-<a href="https://docs.docker.com/config/containers/logging/json-file/#options">default</a>:</p>
+<a rel="external" href="https://docs.docker.com/config/containers/logging/json-file/#options">default</a>:</p>
 <ul>
 <li>Docker saves the output of each container in <code>json</code> format. That is the
 <code>json-file</code> log driver.</li>
@@ -176,7 +171,7 @@ layers, containers, volumes and build cache, as reported by <code>docker system 
 <p>There are some ways to solve this problem:</p>
 <ul>
 <li>periodically remove/trim the logs, with a cron job or <code>logrotate</code>.</li>
-<li>use an external log aggregator like <a href="https://www.fluentd.org/">fluentd</a>.</li>
+<li>use an external log aggregator like <a rel="external" href="https://www.fluentd.org/">fluentd</a>.</li>
 <li>configure Docker to not flood the disk.</li>
 </ul>
 <p>First option is nice and generic. Second option is the most robust, but
@@ -186,11 +181,10 @@ third option is good enough.</p>
 have a maximum of 3 log files per service. To do so, we need to configure the
 docker daemon. It is as simple as adding these lines to
 <code>/etc/docker/daemon.json</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span>{
-</span><span>        &quot;</span><span style="color:#a3be8c;">log-driver</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>&quot;</span><span style="color:#a3be8c;">json-file</span><span>&quot;,
-</span><span>        &quot;</span><span style="color:#a3be8c;">log-opts</span><span>&quot;</span><span style="color:#bf616a;">: </span><span>{&quot;</span><span style="color:#a3be8c;">max-size</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">1g</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">max-file</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">3</span><span>&quot;}
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">        &quot;log-driver&quot;</span><span style="color: #79C0FF;">:</span><span style="color: #A5D6FF;"> &quot;json-file&quot;,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">        &quot;log-opts&quot;</span><span style="color: #79C0FF;">:</span><span style="color: #A5D6FF;"> {&quot;max-size&quot;: &quot;1g&quot;, &quot;max-file&quot;: &quot;3&quot;}</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>Now it is time to restart docker. This automagically trimmed all the logs
 and the machine was usable again. Services were running smoothly and well.</p>
 <h3 id="conclusion">Conclusion</h3>

@@ -143,14 +143,13 @@ approach.</p>
 <p>I’m going to use <code>shuf</code> to generate six unique random numbers, from <code>1</code> to
 <code>60</code>, using <code>/dev/urandom</code> as source of randomness. It is pleasantly
 straightforward:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> shuf</span><span style="color:#bf616a;"> -i</span><span> 1-60</span><span style="color:#bf616a;"> --random-source</span><span>=/dev/urandom</span><span style="color:#bf616a;"> -n</span><span> 6
-</span><span style="color:#bf616a;">52
-</span><span style="color:#bf616a;">9
-</span><span style="color:#bf616a;">43
-</span><span style="color:#bf616a;">47
-</span><span style="color:#bf616a;">45
-</span><span style="color:#bf616a;">21
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> shuf</span><span style="color: #79C0FF;"> -i</span><span style="color: #A5D6FF;"> 1-60</span><span style="color: #79C0FF;"> --random-source=/dev/urandom -n 6</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">52</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">9</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">43</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">47</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">45</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">21</span></span></code></pre>
 <p>And that’s it: my randomly blessed lottery ticket for the year.</p>
 <p>Maybe I win the lottery? Probably not.
 Did I have fun with a Linux-powered ritual? Absolutely!</p>

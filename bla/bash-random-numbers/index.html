@@ -126,34 +126,32 @@
 <code>/dev/urandom</code>) to access the kernel’s random number generator. But how
 do we get random numbers from them in a bash script?</p>
 <p>If we try to <code>cat</code> them we get random things:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> cat /dev/random
-</span><span style="color:#bf616a;">XB</span><span style="color:#a3be8c;">&gt;7;Mq</span><span>&#39;</span><span style="color:#a3be8c;">\</span><span>&#39;</span><span style="color:#a3be8c;">$,dH՞ՈT=H}0]eS19Ѡ
-</span><span style="color:#bf616a;">Hd9</span><span>)</span><span style="color:#bf616a;">7ܢVO</span><span>&#39;</span><span style="color:#a3be8c;">y.ۧMW^C
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> cat /dev/random</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">XB</span><span>&gt;</span><span style="color: #A5D6FF;">7</span><span>;</span><span style="color: #FFA657;">Mq&#39;\&#39;$,dH՞ՈT</span><span style="color: #A5D6FF;">=H}</span><span style="color: #FFA657;">0]eS19Ѡ</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hd9</span><span>)7ܢVO</span><span style="color: #A5D6FF;">&#39;y.ۧMW^C</span></span></code></pre>
 <p>Something a bit weirder happens with <code>/dev/urandom</code>: it continues vomiting
 characters really fast at you until you stop it with <code>Ctrl + C</code>.</p>
 <p>What’s the difference between <code>/dev/random</code> and <code>/dev/urandom</code>? Lets check the
 manpage for <code>random (4)</code>, as of Linux 5.6:</p>
-<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>   The  random number generator gathers environmental noise from device driv‐
-</span><span>   ers and other sources into an entropy pool.  The generator also  keeps  an
-</span><span>   estimate  of  the  number of bits of noise in the entropy pool.  From this
-</span><span>   entropy pool, random numbers are created.
-</span><span>
-</span><span>   When read, the /dev/urandom device returns random bytes using a pseudoran‐
-</span><span>   dom number generator seeded from the entropy pool.  Reads from this device
-</span><span>   do not block (i.e., the CPU is not yielded), but can incur an  appreciable
-</span><span>   delay when requesting large amounts of data.
-</span><span>
-</span><span>   The  /dev/random  device  is a legacy interface which dates back to a time
-</span><span>   where  the  cryptographic  primitives  used  in  the   implementation   of
-</span><span>   /dev/urandom  were  not  widely trusted.  It will return random bytes only
-</span><span>   within the estimated number of bits of fresh noise in  the  entropy  pool,
-</span><span>   blocking if necessary.  /dev/random is suitable for applications that need
-</span><span>   high quality randomness, and can afford indeterminate delays.
-</span><span>
-</span><span>   When the entropy pool is empty, reads from /dev/random  will  block  until
-</span><span>   additional  environmental  noise  is  gathered. (...)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="plain"><span class="giallo-l"><span>   The  random number generator gathers environmental noise from device driv‐</span></span>
+<span class="giallo-l"><span>   ers and other sources into an entropy pool.  The generator also  keeps  an</span></span>
+<span class="giallo-l"><span>   estimate  of  the  number of bits of noise in the entropy pool.  From this</span></span>
+<span class="giallo-l"><span>   entropy pool, random numbers are created.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>   When read, the /dev/urandom device returns random bytes using a pseudoran‐</span></span>
+<span class="giallo-l"><span>   dom number generator seeded from the entropy pool.  Reads from this device</span></span>
+<span class="giallo-l"><span>   do not block (i.e., the CPU is not yielded), but can incur an  appreciable</span></span>
+<span class="giallo-l"><span>   delay when requesting large amounts of data.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>   The  /dev/random  device  is a legacy interface which dates back to a time</span></span>
+<span class="giallo-l"><span>   where  the  cryptographic  primitives  used  in  the   implementation   of</span></span>
+<span class="giallo-l"><span>   /dev/urandom  were  not  widely trusted.  It will return random bytes only</span></span>
+<span class="giallo-l"><span>   within the estimated number of bits of fresh noise in  the  entropy  pool,</span></span>
+<span class="giallo-l"><span>   blocking if necessary.  /dev/random is suitable for applications that need</span></span>
+<span class="giallo-l"><span>   high quality randomness, and can afford indeterminate delays.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>   When the entropy pool is empty, reads from /dev/random  will  block  until</span></span>
+<span class="giallo-l"><span>   additional  environmental  noise  is  gathered. (...)</span></span></code></pre>
 <p>From this, we get that:</p>
 <ul>
 <li>the Kernel maintains a pool of entropy from random things that happens in the
@@ -165,7 +163,7 @@ title="pseudorandom number generator">PRNG</abbr>.</li>
 <li>both files gives us <em>bytes</em>.</li>
 </ul>
 <p>And from the Kernel’s source we get that <code>urandom</code> uses
-<a href="https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant">ChaCha20</a> as <abbr
+<a rel="external" href="https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant">ChaCha20</a> as <abbr
 title="cryptographiccally secure pseudorandom number generator">CSPRNG</abbr>.
 <sup class="footnote-reference"><a href="#kernel-source">1</a></sup></p>
 <p>We now need a tool to read a specific number of bytes from those files and
@@ -174,34 +172,30 @@ command to display data in several formats.<sup class="footnote-reference"><a hr
 name <code>od</code>: <em>octal dump</em>.</p>
 <p>With this utility we can read <code>N</code> bytes from a file and display it in a
 specified format. For example, here’s the dump of `Hello World“:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo Hello World | </span><span style="color:#bf616a;">od
-</span><span style="color:#bf616a;">0000000</span><span> 062510 066154 020157 067527 066162 005144
-</span><span style="color:#bf616a;">0000014
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo Hello World</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> od</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">0000000</span><span style="color: #79C0FF;"> 062510 066154 020157 067527 066162 005144</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">0000014</span></span></code></pre>
 <p>The first column is the offset, and then the octal representation of that line.
 So, the second line of the output means: starting at the offset <code>0000014</code> we
 have nothing, i.g. there are 14 (in octal, or 12 in decimal) characters in that
 string.</p>
 <p>It looks like <code>od</code> does not know how to count. There are 11 chars in <code>Hello World</code>! Lets see each char individually (<code>-c</code>) in octal (<code>-b</code>):</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;</span><span style="color:#a3be8c;">Hello World</span><span>&quot; | </span><span style="color:#bf616a;">od -cb
-</span><span style="color:#bf616a;">0000000</span><span>   H   e   l   l   o       W   o   r   l   d  </span><span style="color:#96b5b4;">\n
-</span><span>        </span><span style="color:#bf616a;">110</span><span> 145 154 154 157 040 127 157 162 154 144 012
-</span><span style="color:#bf616a;">0000014
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo &quot;Hello World&quot;</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> od</span><span style="color: #79C0FF;"> -cb</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">0000000</span><span style="color: #A5D6FF;">   H   e   l   l   o       W   o   r   l   d</span><span style="color: #FF7B72;">  \n</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">        110</span><span style="color: #79C0FF;"> 145 154 154 157 040 127 157 162 154 144 012</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">0000014</span></span></code></pre>
 <p>Sweet, it counted the line ending as well.</p>
 <p><code>od</code> can also read <code>N</code> bytes from a source and display it in a specified
 format. So, to read 4 bytes from <code>/dev/urandom</code>, display it as an unsigned
 integer without the offset column:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> od</span><span style="color:#bf616a;"> -vAn -N4 -t</span><span> u4 &lt; /dev/urandom
-</span><span>  </span><span style="color:#bf616a;">402803061
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> od</span><span style="color: #79C0FF;"> -vAn -N4 -t</span><span style="color: #A5D6FF;"> u4</span><span style="color: #FF7B72;"> &lt;</span><span style="color: #A5D6FF;"> /dev/urandom</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  402803061</span></span></code></pre>
 <p>And to use in your bash code:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for</span><span> i </span><span style="color:#b48ead;">in </span><span>$(</span><span style="color:#bf616a;">seq</span><span> 1 10)
-</span><span style="color:#b48ead;">do
-</span><span>	</span><span style="color:#bf616a;">random</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">od -vAn -N4 -t</span><span style="color:#a3be8c;"> u4 </span><span>&lt;</span><span style="color:#a3be8c;"> /dev/urandom)
-</span><span>	</span><span style="color:#96b5b4;">echo </span><span>$</span><span style="color:#bf616a;">random
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FF7B72;">for</span><span> i</span><span style="color: #FF7B72;"> in</span><span> $(</span><span style="color: #FFA657;">seq</span><span style="color: #79C0FF;"> 1 10</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">do</span></span>
+<span class="giallo-l"><span>	random</span><span style="color: #FF7B72;">=</span><span>$(</span><span style="color: #FFA657;">od</span><span style="color: #79C0FF;"> -vAn -N4 -t</span><span style="color: #A5D6FF;"> u4</span><span style="color: #FF7B72;"> &lt;</span><span style="color: #A5D6FF;"> /dev/urandom</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">	echo</span><span> $random</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>With this code, those 32 bits (4 bytes) from <code>urandom</code> are interpreted as an
 integer. How do we get floats? If interested only in the range <code>[0, 1)</code>: simply
 divide by the greatest possible value, \( 2^{32} - 1\).</p>
@@ -210,12 +204,12 @@ divide by the greatest possible value, \( 2^{32} - 1\).</p>
 <ul>
 <li>
 <div class="footnote-definition" id="kernel-source"><sup class="footnote-definition-label">1</sup>
-<p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0">file <code>drivers/char/random.c</code></a></p>
+<p><a rel="external" href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/char/random.c?h=v5.6.2&amp;id=4aa37c463764052c68c5c430af2a67b5d784c1e0">file <code>drivers/char/random.c</code></a></p>
 </div>
 </li>
 <li>
 <div class="footnote-definition" id="od"><sup class="footnote-definition-label">2</sup>
-<p><a href="https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html">GNU Coreutils</a></p>
+<p><a rel="external" href="https://www.gnu.org/software/coreutils/manual/html_node/od-invocation.html">GNU Coreutils</a></p>
 </div>
 </li>
 </ul>

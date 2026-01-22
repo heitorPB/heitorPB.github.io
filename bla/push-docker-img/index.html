@@ -140,13 +140,12 @@ intermediate files.</p>
 <p>Here enters a little trick: we can use SSH “between” the two commands, like a
 network pipe, to send the output of <code>docker image save</code> from my laptop to the
 input of <code>docker image load</code> in a remote server:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> docker image save hello-world:latest | </span><span style="color:#bf616a;">ssh</span><span> user@server.com docker image load
-</span><span style="color:#bf616a;">Getting</span><span> image source signatures
-</span><span style="color:#bf616a;">Copying</span><span> blob sha256:63a41026379f4391a306242eb0b9f26dc3550d863b7fdbb97d899f6eb89efe72
-</span><span style="color:#bf616a;">Copying</span><span> config sha256:74cc54e27dc41bb10dc4b2226072d469509f2f22f1a3ce74f4a59661a1d44602
-</span><span style="color:#bf616a;">Writing</span><span> manifest to image destination
-</span><span style="color:#bf616a;">Loaded</span><span> image: docker.io/library/hello-world:latest
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> docker image save hello-world:latest</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> ssh</span><span style="color: #A5D6FF;"> user@server.com docker image load</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Getting</span><span style="color: #A5D6FF;"> image source signatures</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Copying</span><span style="color: #A5D6FF;"> blob sha256:63a41026379f4391a306242eb0b9f26dc3550d863b7fdbb97d899f6eb89efe72</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Copying</span><span style="color: #A5D6FF;"> config sha256:74cc54e27dc41bb10dc4b2226072d469509f2f22f1a3ce74f4a59661a1d44602</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Writing</span><span style="color: #A5D6FF;"> manifest to image destination</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Loaded</span><span style="color: #A5D6FF;"> image: docker.io/library/hello-world:latest</span></span></code></pre>
 <p>We can also do the opposite: get the image from a remote server. The command
 just swaps where the SSH is:
 <code>ssh user@server.com docker image save hello-world:latest | docker image load</code></p>

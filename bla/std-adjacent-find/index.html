@@ -125,21 +125,20 @@ standard library.</p>
 It returns an iterator to the first repeated element. So, if you have a list of
 numbers <code>{1, 2, 2, 3, 3}</code>, this function would return an iterator to the first
 <code>2</code>. Let’s see it in practice:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">algorithm</span><span>&gt;
-</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">iostream</span><span>&gt;
-</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">vector</span><span>&gt;
-</span><span>
-</span><span>
-</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
-</span><span>{
-</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers);
-</span><span>	std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="cpp"><span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;algorithm&gt;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;iostream&gt;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;vector&gt;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">int</span><span style="color: #D2A8FF;"> main</span><span>()</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::vector</span><span style="color: #FF7B72;">&lt;int&gt;</span><span> numbers {</span><span style="color: #79C0FF;">1</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 4</span><span>,</span><span style="color: #79C0FF;"> 5</span><span>};</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	auto</span><span> it </span><span style="color: #FF7B72;">=</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">adjacent_find</span><span>(numbers);</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt; *</span><span>it </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot; &quot;</span><span style="color: #FF7B72;"> &lt;&lt; *</span><span>(it</span><span style="color: #FF7B72;">+</span><span style="color: #79C0FF;">1</span><span>)</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	return</span><span style="color: #79C0FF;"> 0</span><span>;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>I’m using <code>ranges</code> in there, so you need a C++20 compatible compiler. To
 compile it with <code>gcc</code>: <code>g++ -Wall -Wextra -std=c++20 adj.cpp</code>. I tested with
 <code>g++</code> 10.2.0 and <code>clang++</code> 11.0.0, and both have support for it 😎.
@@ -147,68 +146,64 @@ But if you can’t (or don’t want to) use C++20, change the code to
 <code>std::adjacent_find(numbers.begin(), numbers.end());</code></p>
 <p>This code finds the repeated elements and return an iterator to the first one.
 It then prints it and the next:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ./a.out
-</span><span style="color:#bf616a;">2</span><span> 2
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ./a.out</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2</span><span style="color: #79C0FF;"> 2</span></span></code></pre>
 <p>But we can also hack <code>std::adjacent_find</code> with different <em>predicates</em>, and
 change how we compare equality between consecutive elements. The <code>&lt;functional&gt;</code>
 header contains some common arithmetic comparison operators, like <em>equal</em>, <em>not
 equal</em>, <em>less</em>, <em>less equal</em>, etc. Using the same numbers from before, we can
 find the first number that is less or equal the next one:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">algorithm</span><span>&gt;
-</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">functional</span><span>&gt;
-</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">iostream</span><span>&gt;
-</span><span style="color:#b48ead;">#include </span><span>&lt;</span><span style="color:#a3be8c;">vector</span><span>&gt;
-</span><span>
-</span><span>
-</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
-</span><span>{
-</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers, std::ranges::</span><span style="color:#bf616a;">less_equal</span><span>());
-</span><span>	std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="cpp"><span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;algorithm&gt;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;functional&gt;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;iostream&gt;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">#include</span><span style="color: #A5D6FF;"> &lt;vector&gt;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">int</span><span style="color: #D2A8FF;"> main</span><span>()</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::vector</span><span style="color: #FF7B72;">&lt;int&gt;</span><span> numbers {</span><span style="color: #79C0FF;">1</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 4</span><span>,</span><span style="color: #79C0FF;"> 5</span><span>};</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	auto</span><span> it </span><span style="color: #FF7B72;">=</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">adjacent_find</span><span>(numbers,</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">less_equal</span><span>());</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt; *</span><span>it </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot; &quot;</span><span style="color: #FF7B72;"> &lt;&lt; *</span><span>(it</span><span style="color: #FF7B72;">+</span><span style="color: #79C0FF;">1</span><span>)</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	return</span><span style="color: #79C0FF;"> 0</span><span>;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>This code returns <code>1 2</code>.</p>
 <p>Let’s see some more examples. From now on, I’ll omit the headers for brevity.</p>
 <p>You want to find the first number that is greater the next one:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
-</span><span>{
-</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers, std::ranges::</span><span style="color:#bf616a;">greater</span><span>());
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">if </span><span>(it != numbers.</span><span style="color:#bf616a;">end</span><span>())
-</span><span>		std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
-</span><span>	</span><span style="color:#b48ead;">else
-</span><span>		std::cout &lt;&lt; &quot;</span><span style="color:#a3be8c;">Found nothing</span><span>&quot; &lt;&lt; std::endl;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="cpp"><span class="giallo-l"><span style="color: #FF7B72;">int</span><span style="color: #D2A8FF;"> main</span><span>()</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::vector</span><span style="color: #FF7B72;">&lt;int&gt;</span><span> numbers {</span><span style="color: #79C0FF;">1</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 4</span><span>,</span><span style="color: #79C0FF;"> 5</span><span>};</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	auto</span><span> it </span><span style="color: #FF7B72;">=</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">adjacent_find</span><span>(numbers,</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">greater</span><span>());</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	if</span><span> (it </span><span style="color: #FF7B72;">!=</span><span> numbers.</span><span style="color: #D2A8FF;">end</span><span>())</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt; *</span><span>it </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot; &quot;</span><span style="color: #FF7B72;"> &lt;&lt; *</span><span>(it</span><span style="color: #FF7B72;">+</span><span style="color: #79C0FF;">1</span><span>)</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	else</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot;Found nothing&quot;</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	return</span><span style="color: #79C0FF;"> 0</span><span>;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>This code returns <code>Found nothing</code>, because no two consecutive numbers in <code>{1, 2, 2, 3, 3, 4, 5}</code> satisfies \( a &gt; b \). When <code>std::adjacent_find</code> does not
 find anything, it returns an iterator to the end of the range.</p>
 <p>Now you want to find the first number that does not follow the pattern
 \( x_{i+1} = x_i + 1 \):</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
-</span><span>{
-</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers,
-</span><span>	                                     [](</span><span style="color:#b48ead;">int</span><span> a, </span><span style="color:#b48ead;">int</span><span> b){
-</span><span>	                                             </span><span style="color:#b48ead;">return</span><span> a != b - </span><span style="color:#d08770;">1 </span><span>;
-</span><span>	                                     });
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">if </span><span>(it != numbers.</span><span style="color:#bf616a;">end</span><span>())
-</span><span>		std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
-</span><span>	</span><span style="color:#b48ead;">else
-</span><span>		std::cout &lt;&lt; &quot;</span><span style="color:#a3be8c;">Found nothing</span><span>&quot; &lt;&lt; std::endl;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="cpp"><span class="giallo-l"><span style="color: #FF7B72;">int</span><span style="color: #D2A8FF;"> main</span><span>()</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::vector</span><span style="color: #FF7B72;">&lt;int&gt;</span><span> numbers {</span><span style="color: #79C0FF;">1</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 4</span><span>,</span><span style="color: #79C0FF;"> 5</span><span>};</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	auto</span><span> it </span><span style="color: #FF7B72;">=</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">adjacent_find</span><span>(numbers,</span></span>
+<span class="giallo-l"><span>	                                     [](</span><span style="color: #FF7B72;">int</span><span style="color: #FFA657;"> a</span><span>,</span><span style="color: #FF7B72;"> int</span><span style="color: #FFA657;"> b</span><span>){</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	                                             return</span><span> a </span><span style="color: #FF7B72;">!=</span><span> b </span><span style="color: #FF7B72;">-</span><span style="color: #79C0FF;"> 1</span><span> ;</span></span>
+<span class="giallo-l"><span>	                                     });</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	if</span><span> (it </span><span style="color: #FF7B72;">!=</span><span> numbers.</span><span style="color: #D2A8FF;">end</span><span>())</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt; *</span><span>it </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot; &quot;</span><span style="color: #FF7B72;"> &lt;&lt; *</span><span>(it</span><span style="color: #FF7B72;">+</span><span style="color: #79C0FF;">1</span><span>)</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	else</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot;Found nothing&quot;</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	return</span><span style="color: #79C0FF;"> 0</span><span>;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>This returns, as expected, <code>2 2</code>. This happens because <code>2 != 2-1</code>, so the
 lambda returns <code>true</code> and the function returns the iterator to this number. By
 <em>this number</em> I mean, <code>std::adjacent_find</code> loops over the objects and compares
@@ -217,23 +212,22 @@ lambda returns <code>true</code> and the function returns the iterator to this n
 in there, that is, <code>numbers.end())</code>.</p>
 <p>Can you find the first pair <code>(a, b)</code> of numbers such that
 \(0.78 &lt; a/b &lt; 1 \)? Of course you can:</p>
-<pre data-lang="c++" style="background-color:#2b303b;color:#c0c5ce;" class="language-c++ "><code class="language-c++" data-lang="c++"><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span>()
-</span><span>{
-</span><span>	std::vector&lt;</span><span style="color:#b48ead;">int</span><span>&gt; </span><span style="color:#bf616a;">numbers </span><span>{</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#d08770;">5</span><span>};
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">auto</span><span> it = std::ranges::</span><span style="color:#bf616a;">adjacent_find</span><span>(numbers,
-</span><span>	                                     [](</span><span style="color:#b48ead;">float</span><span> a, </span><span style="color:#b48ead;">float</span><span> b) {
-</span><span>	                                             </span><span style="color:#b48ead;">return </span><span>(</span><span style="color:#d08770;">0.78 </span><span>&lt; a/b) &amp;&amp; (a/b &lt; </span><span style="color:#d08770;">1</span><span>);
-</span><span>	                                     });
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">if </span><span>(it != numbers.</span><span style="color:#bf616a;">end</span><span>())
-</span><span>		std::cout &lt;&lt; *it &lt;&lt; &quot; &quot; &lt;&lt; *(it+</span><span style="color:#d08770;">1</span><span>) &lt;&lt; std::endl;
-</span><span>	</span><span style="color:#b48ead;">else
-</span><span>		std::cout &lt;&lt; &quot;</span><span style="color:#a3be8c;">Found nothing</span><span>&quot; &lt;&lt; std::endl;
-</span><span>
-</span><span>	</span><span style="color:#b48ead;">return </span><span style="color:#d08770;">0</span><span>;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="cpp"><span class="giallo-l"><span style="color: #FF7B72;">int</span><span style="color: #D2A8FF;"> main</span><span>()</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	std</span><span>::vector</span><span style="color: #FF7B72;">&lt;int&gt;</span><span> numbers {</span><span style="color: #79C0FF;">1</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 3</span><span>,</span><span style="color: #79C0FF;"> 4</span><span>,</span><span style="color: #79C0FF;"> 5</span><span>};</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	auto</span><span> it </span><span style="color: #FF7B72;">=</span><span style="color: #FFA657;"> std</span><span>::</span><span style="color: #FFA657;">ranges</span><span>::</span><span style="color: #D2A8FF;">adjacent_find</span><span>(numbers,</span></span>
+<span class="giallo-l"><span>	                                     [](</span><span style="color: #FF7B72;">float</span><span style="color: #FFA657;"> a</span><span>,</span><span style="color: #FF7B72;"> float</span><span style="color: #FFA657;"> b</span><span>) {</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	                                             return</span><span> (</span><span style="color: #79C0FF;">0.78</span><span style="color: #FF7B72;"> &lt;</span><span> a</span><span style="color: #FF7B72;">/</span><span>b)</span><span style="color: #FF7B72;"> &amp;&amp;</span><span> (a</span><span style="color: #FF7B72;">/</span><span>b </span><span style="color: #FF7B72;">&lt;</span><span style="color: #79C0FF;"> 1</span><span>);</span></span>
+<span class="giallo-l"><span>	                                     });</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	if</span><span> (it </span><span style="color: #FF7B72;">!=</span><span> numbers.</span><span style="color: #D2A8FF;">end</span><span>())</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt; *</span><span>it </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot; &quot;</span><span style="color: #FF7B72;"> &lt;&lt; *</span><span>(it</span><span style="color: #FF7B72;">+</span><span style="color: #79C0FF;">1</span><span>)</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	else</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		std</span><span>::cout </span><span style="color: #FF7B72;">&lt;&lt;</span><span style="color: #A5D6FF;"> &quot;Found nothing&quot;</span><span style="color: #FF7B72;"> &lt;&lt;</span><span style="color: #FFA657;"> std</span><span>::endl;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	return</span><span style="color: #79C0FF;"> 0</span><span>;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>This code returns <code>4 5</code>, because \(0.78 &lt; 4/5 = 0.8 &lt; 1\).</p>
 <p>What I like about this function is that it gives to you an iterator to the
 first object matching <em>any rule</em>. If have a vector/list/range of objects, and

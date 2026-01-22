@@ -121,7 +121,7 @@
 
         
         <div class="post-content">
-            <p>I decided to run <a href="https://www.nomadproject.io">HashiCorp’s Nomad</a> on my dev
+            <p>I decided to run <a rel="external" href="https://www.nomadproject.io">HashiCorp’s Nomad</a> on my dev
 server, that runs NixOS. The process was <em>almost</em> straightforward and here’s
 how I went from “I’ve never used Nomad before” to “it works for me”.</p>
 <center>
@@ -135,46 +135,45 @@ interest, but not for now.</p>
 <p>Installing Nomad on NixOS is neat, as is with other services/packages in
 this operating system. This Nix snippet does everything I need, installation
 and configuration:</p>
-<pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#8fa1b3;">{ </span><span>lib, pkgs, ... </span><span style="color:#8fa1b3;">}</span><span>:
-</span><span>{
-</span><span>  </span><span style="color:#d08770;">services</span><span>.</span><span style="color:#d08770;">nomad </span><span>= {
-</span><span>    </span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>    </span><span style="color:#d08770;">package </span><span>= </span><span style="color:#bf616a;">pkgs</span><span>.</span><span style="color:#bf616a;">nomad_1_6</span><span>;
-</span><span>
-</span><span>    </span><span style="color:#65737e;"># Add extra plugins to Nomads plugin directory.
-</span><span>    </span><span style="color:#d08770;">extraSettingsPlugins </span><span>= [ </span><span style="color:#bf616a;">pkgs</span><span>.</span><span style="color:#bf616a;">nomad-driver-podman </span><span>];
-</span><span>    </span><span style="color:#65737e;"># Add Docker driver.
-</span><span>    </span><span style="color:#d08770;">enableDocker </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>
-</span><span>    </span><span style="color:#65737e;"># Nomad as Root to access Docker/Podman sockets.
-</span><span>    </span><span style="color:#d08770;">dropPrivileges </span><span>= </span><span style="color:#d08770;">false</span><span>;
-</span><span>
-</span><span>    </span><span style="color:#65737e;"># Nomad configuration, as Nix attribute set.
-</span><span>    </span><span style="color:#d08770;">settings </span><span>= {
-</span><span>      </span><span style="color:#d08770;">client</span><span>.</span><span style="color:#d08770;">enabled </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>      </span><span style="color:#d08770;">server </span><span>= {
-</span><span>        </span><span style="color:#d08770;">enabled </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>        </span><span style="color:#d08770;">bootstrap_expect </span><span>= </span><span style="color:#d08770;">1</span><span>;
-</span><span>      };
-</span><span>      </span><span style="color:#d08770;">plugin </span><span>= [{
-</span><span>        </span><span style="color:#d08770;">nomad-driver-podman </span><span>= {
-</span><span>          </span><span style="color:#d08770;">config </span><span>= { };
-</span><span>        };
-</span><span>      }];
-</span><span>    };
-</span><span>  };
-</span><span>
-</span><span>  </span><span style="color:#65737e;"># I don&#39;t Nomad starting when the system boots.
-</span><span>  </span><span style="color:#d08770;">systemd</span><span>.</span><span style="color:#d08770;">services</span><span>.</span><span style="color:#d08770;">nomad</span><span>.</span><span style="color:#d08770;">wantedBy </span><span>= </span><span style="color:#bf616a;">lib</span><span>.</span><span style="color:#bf616a;">mkForce </span><span>[ ];
-</span><span>
-</span><span>  </span><span style="color:#65737e;"># Handy packages
-</span><span>  </span><span style="color:#d08770;">environment</span><span>.</span><span style="color:#d08770;">systemPackages </span><span>= </span><span style="color:#b48ead;">with </span><span style="color:#bf616a;">pkgs</span><span>; [
-</span><span>    </span><span style="color:#bf616a;">nomad-driver-podman </span><span style="color:#65737e;"># Podman driver plugin.
-</span><span>
-</span><span>    </span><span style="color:#bf616a;">damon </span><span style="color:#65737e;"># TUI for Nomad.
-</span><span>  ];
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="nix"><span class="giallo-l"><span>{ lib</span><span style="color: #FF7B72;">,</span><span> pkgs</span><span style="color: #FF7B72;">, ...</span><span> }:</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">  services</span><span>.</span><span style="color: #79C0FF;">nomad</span><span style="color: #FF7B72;"> =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    enable</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    package</span><span style="color: #FF7B72;"> =</span><span style="color: #FFA657;"> pkgs</span><span style="color: #FF7B72;">.</span><span style="color: #FFA657;">nomad_1_6</span><span>;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;">    # Add extra plugins to Nomads plugin directory.</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    extraSettingsPlugins</span><span style="color: #FF7B72;"> =</span><span> [</span><span style="color: #FFA657;"> pkgs</span><span style="color: #FF7B72;">.</span><span style="color: #FFA657;">nomad-driver-podman</span><span> ];</span></span>
+<span class="giallo-l"><span style="color: #8B949E;">    # Add Docker driver.</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    enableDocker</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;">    # Nomad as Root to access Docker/Podman sockets.</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    dropPrivileges</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> false</span><span>;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;">    # Nomad configuration, as Nix attribute set.</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    settings</span><span style="color: #FF7B72;"> =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      client</span><span>.</span><span style="color: #79C0FF;">enabled</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      server</span><span style="color: #FF7B72;"> =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">        enabled</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">        bootstrap_expect</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 1</span><span>;</span></span>
+<span class="giallo-l"><span>      };</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      plugin</span><span style="color: #FF7B72;"> =</span><span> [{</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">        nomad-driver-podman</span><span style="color: #FF7B72;"> =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">          config</span><span style="color: #FF7B72;"> =</span><span> { };</span></span>
+<span class="giallo-l"><span>        };</span></span>
+<span class="giallo-l"><span>      }];</span></span>
+<span class="giallo-l"><span>    };</span></span>
+<span class="giallo-l"><span>  };</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;">  # I don&#39;t Nomad starting when the system boots.</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">  systemd</span><span>.</span><span style="color: #79C0FF;">services</span><span>.</span><span style="color: #79C0FF;">nomad</span><span>.</span><span style="color: #79C0FF;">wantedBy</span><span style="color: #FF7B72;"> =</span><span style="color: #FFA657;"> lib</span><span style="color: #FF7B72;">.</span><span style="color: #FFA657;">mkForce</span><span> [ ];</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;">  # Handy packages</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">  environment</span><span>.</span><span style="color: #79C0FF;">systemPackages</span><span style="color: #FF7B72;"> = with</span><span style="color: #FFA657;"> pkgs</span><span>; [</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    nomad-driver-podman</span><span style="color: #8B949E;"> # Podman driver plugin.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">    damon</span><span style="color: #8B949E;"> # TUI for Nomad.</span></span>
+<span class="giallo-l"><span>  ];</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>The tricky part is figuring out how to write the Nomad’s configuration (the
 <code>settings</code> attribute) using Nix. The official documentation suggests HCL for the
 configuration and all examples use it. But NixOS uses JSON instead, which is
@@ -182,37 +181,35 @@ also valid. I used an online HCL to JSON converter to translate the examples
 in the documentation.</p>
 <p>I already had Podman (in rootless mode 🙂) installed and
 now I also want Docker. This is what I use to have them:</p>
-<pre data-lang="nix" style="background-color:#2b303b;color:#c0c5ce;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#8fa1b3;">{ </span><span>pkgs, ... </span><span style="color:#8fa1b3;">}</span><span>:
-</span><span>{
-</span><span>  </span><span style="color:#d08770;">virtualisation </span><span>= {
-</span><span>    </span><span style="color:#d08770;">docker</span><span>.</span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>    </span><span style="color:#d08770;">podman </span><span>= {
-</span><span>      </span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>      </span><span style="color:#d08770;">dockerCompat </span><span>= </span><span style="color:#d08770;">false</span><span>;
-</span><span>      </span><span style="color:#d08770;">dockerSocket</span><span>.</span><span style="color:#d08770;">enable </span><span>= </span><span style="color:#d08770;">false</span><span>;
-</span><span>      </span><span style="color:#d08770;">defaultNetwork</span><span>.</span><span style="color:#d08770;">settings</span><span>.</span><span style="color:#d08770;">dns_enabled </span><span>= </span><span style="color:#d08770;">true</span><span>;
-</span><span>    };
-</span><span>
-</span><span>  </span><span style="color:#65737e;"># Extra handy packages
-</span><span>  </span><span style="color:#d08770;">environment</span><span>.</span><span style="color:#d08770;">systemPackages </span><span>= </span><span style="color:#b48ead;">with </span><span style="color:#bf616a;">pkgs</span><span>; [
-</span><span>    </span><span style="color:#bf616a;">docker-compose
-</span><span>    </span><span style="color:#bf616a;">podman-compose
-</span><span>    </span><span style="color:#bf616a;">podman-tui
-</span><span>  ];
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="nix"><span class="giallo-l"><span>{ pkgs</span><span style="color: #FF7B72;">, ...</span><span> }:</span></span>
+<span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">  virtualisation</span><span style="color: #FF7B72;"> =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    docker</span><span>.</span><span style="color: #79C0FF;">enable</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    podman</span><span style="color: #FF7B72;"> =</span><span> {</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      enable</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      dockerCompat</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> false</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      dockerSocket</span><span>.</span><span style="color: #79C0FF;">enable</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> false</span><span>;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">      defaultNetwork</span><span>.</span><span style="color: #79C0FF;">settings</span><span>.</span><span style="color: #79C0FF;">dns_enabled</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> true</span><span>;</span></span>
+<span class="giallo-l"><span>    };</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;">  # Extra handy packages</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">  environment</span><span>.</span><span style="color: #79C0FF;">systemPackages</span><span style="color: #FF7B72;"> = with</span><span style="color: #FFA657;"> pkgs</span><span>; [</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    docker-compose</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    podman-compose</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    podman-tui</span></span>
+<span class="giallo-l"><span>  ];</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>I keep these bits on separate files (<code>nomad.nix</code>, <code>podman.nix</code>, <code>docker.nix</code>)
 and add them to the machines I want. I like this composability aspect of NixOS,
 helps me remember how I did things in the past.</p>
 <p>Now I need a ZFS dataset for my Nomad data:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo zfs create</span><span style="color:#bf616a;"> -o</span><span> mountpoint=legacy</span><span style="color:#bf616a;"> -o</span><span> compression=lz4 zroot/nomad
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> sudo zfs create</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> mountpoint=legacy</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> compression=lz4 zroot/nomad</span></span></code></pre>
 <p>Creating a new dataset (or partition) doesn’t help much if I don’t <code>mount</code> it
 😛 Nomad stores its data in <code>/var/lib/nomad</code>, where my
 new partition should be. I added an entry to my <code>hardware-configuration.nix</code>
 to mount the partition on boot, while on other OSes you should hack
 <code>/etc/fstab</code>.</p>
-<p>After adding the new <code>nomad.nix</code> snippet on my <a href="https://github.com/heitorPB/dotfiles-supimpas/tree/nix">dotfiles
+<p>After adding the new <code>nomad.nix</code> snippet on my <a rel="external" href="https://github.com/heitorPB/dotfiles-supimpas/tree/nix">dotfiles
 repository</a> I rebuilt
 the system with: <code>sudo nixos-rebuild switch --flake .</code> Now we wait for a Nomad
 to visit our server.</p>
@@ -230,46 +227,44 @@ drivers. Nomad detected Docker and Podman :)</p>
 
 <p>We have Nomad running. Does it work? Let’s try an example job (Redis),
 created with <code>nomad job init --short</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> nomad job init</span><span style="color:#bf616a;"> --short
-</span><span style="color:#bf616a;">Example</span><span> job file written to example.nomad.hcl
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> grep driver example.nomad.hcl
-</span><span>      </span><span style="color:#bf616a;">driver</span><span> = &quot;</span><span style="color:#a3be8c;">docker</span><span>&quot;
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> nomad job run example.nomad.hcl
-</span><span>=</span><span style="color:#a3be8c;">=</span><span>&gt; </span><span style="color:#d08770;">2023</span><span style="color:#bf616a;">-10-17T16:00:36-03:00:</span><span> Monitoring evaluation &quot;</span><span style="color:#a3be8c;">59a89060</span><span>&quot;
-</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:36-03:00:</span><span> Evaluation triggered by job &quot;</span><span style="color:#a3be8c;">example</span><span>&quot;
-</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:37-03:00:</span><span> Evaluation within deployment: &quot;</span><span style="color:#a3be8c;">8d3abb2b</span><span>&quot;
-</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:37-03:00:</span><span> Allocation &quot;</span><span style="color:#a3be8c;">3514215c</span><span>&quot; created: node &quot;</span><span style="color:#a3be8c;">c0379200</span><span>&quot;, group &quot;</span><span style="color:#a3be8c;">cache</span><span>&quot;
-</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:00:37-03:00:</span><span> Evaluation status changed: &quot;</span><span style="color:#a3be8c;">pending</span><span>&quot; -&gt; &quot;</span><span style="color:#a3be8c;">complete</span><span>&quot;
-</span><span>=</span><span style="color:#a3be8c;">=</span><span>&gt; </span><span style="color:#d08770;">2023</span><span style="color:#bf616a;">-10-17T16:00:37-03:00:</span><span> Evaluation &quot;</span><span style="color:#a3be8c;">59a89060</span><span>&quot; finished with status &quot;</span><span style="color:#a3be8c;">complete</span><span>&quot;
-</span><span>=</span><span style="color:#a3be8c;">=</span><span>&gt; </span><span style="color:#d08770;">2023</span><span style="color:#bf616a;">-10-17T16:00:37-03:00:</span><span> Monitoring deployment &quot;</span><span style="color:#a3be8c;">8d3abb2b</span><span>&quot;
-</span><span>  </span><span style="color:#bf616a;">✓</span><span> Deployment &quot;</span><span style="color:#a3be8c;">8d3abb2b</span><span>&quot; successful
-</span><span>
-</span><span>    </span><span style="color:#bf616a;">2023-10-17T16:01:00-03:00
-</span><span>    </span><span style="color:#bf616a;">ID</span><span>          = 8d3abb2b
-</span><span>    </span><span style="color:#bf616a;">Job</span><span> ID      = example
-</span><span>    </span><span style="color:#bf616a;">Job</span><span> Version = 0
-</span><span>    </span><span style="color:#bf616a;">Status</span><span>      = successful
-</span><span>    </span><span style="color:#bf616a;">Description</span><span> = Deployment completed successfully
-</span><span>
-</span><span>    </span><span style="color:#bf616a;">Deployed
-</span><span>    </span><span style="color:#bf616a;">Task</span><span> Group  Desired  Placed  Healthy  Unhealthy  Progress Deadline
-</span><span>    </span><span style="color:#bf616a;">cache</span><span>       1        1       1        0          2023-10-17T16:10:58-03:00
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> nomad job init</span><span style="color: #79C0FF;"> --short</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Example</span><span style="color: #A5D6FF;"> job file written to example.nomad.hcl</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> grep driver example.nomad.hcl</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">      driver</span><span style="color: #A5D6FF;"> = &quot;docker&quot;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> nomad job run example.nomad.hcl</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">==</span><span>&gt;</span><span style="color: #A5D6FF;"> 2023-10-17T16:00:36-03:00: Monitoring evaluation &quot;59a89060&quot;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    2023-10-17T16:00:36-03:00:</span><span style="color: #A5D6FF;"> Evaluation triggered by job &quot;example&quot;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    2023-10-17T16:00:37-03:00:</span><span style="color: #A5D6FF;"> Evaluation within deployment: &quot;8d3abb2b&quot;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    2023-10-17T16:00:37-03:00:</span><span style="color: #A5D6FF;"> Allocation &quot;3514215c&quot; created: node &quot;c0379200&quot;, group &quot;cache&quot;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    2023-10-17T16:00:37-03:00:</span><span style="color: #A5D6FF;"> Evaluation status changed: &quot;pending&quot;</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #A5D6FF;"> &quot;complete&quot;</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">==</span><span>&gt;</span><span style="color: #A5D6FF;"> 2023-10-17T16:00:37-03:00: Evaluation &quot;59a89060&quot; finished with status &quot;complete&quot;</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">==</span><span>&gt;</span><span style="color: #A5D6FF;"> 2023-10-17T16:00:37-03:00: Monitoring deployment &quot;8d3abb2b&quot;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">  ✓</span><span style="color: #A5D6FF;"> Deployment &quot;8d3abb2b&quot; successful</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">    2023-10-17T16:01:00-03:00</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    ID</span><span style="color: #A5D6FF;">          = 8d3abb2b</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    Job</span><span style="color: #A5D6FF;"> ID      = example</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    Job</span><span style="color: #A5D6FF;"> Version =</span><span style="color: #79C0FF;"> 0</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    Status</span><span style="color: #A5D6FF;">      = successful</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    Description</span><span style="color: #A5D6FF;"> = Deployment completed successfully</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">    Deployed</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    Task</span><span style="color: #A5D6FF;"> Group  Desired  Placed  Healthy  Unhealthy  Progress Deadline</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    cache</span><span style="color: #79C0FF;">       1        1       1        0</span><span style="color: #A5D6FF;">          2023-10-17T16:10:58-03:00</span></span></code></pre>
 <p>Sweet, we can submit a job using the Docker driver! As this job uses dynamic
 port mapping, we get a “random” port to connect to the container. In this case,
 Nomad mapped the default Redis port 6379 to the host port 24825. You can get
 the host port in the Web UI or via <code>nomad alloc status &lt;allocation-ID&gt;</code>. I got
 the Allocation ID from <code>nomad job status example</code>.</p>
 <p>I used <code>redis-cli</code> to check if this job is working:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> nix shell nixpkgs#redis
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> redis-cli</span><span style="color:#bf616a;"> -p</span><span> 24825</span><span style="color:#bf616a;"> -h</span><span> 192.168.1.13
-</span><span style="color:#bf616a;">192.168.1.13:24825</span><span>&gt; ping
-</span><span style="color:#bf616a;">PONG
-</span><span style="color:#bf616a;">192.168.1.13:24825</span><span>&gt;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> nix shell nixpkgs#redis</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> redis-cli</span><span style="color: #79C0FF;"> -p 24825 -h 192.168.1.13</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">192.168.1.13:24825</span><span>&gt;</span><span style="color: #A5D6FF;"> ping</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">PONG</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">192.168.1.13:24825</span><span>&gt;</span></span></code></pre>
 <p>😎</p>
 <p>For my next steps, I want to understand the different types of jobs and how to
 manage a “production” Nomad cluster. I wanted to play with Nomad for a while and

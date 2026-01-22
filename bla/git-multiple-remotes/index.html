@@ -122,20 +122,17 @@ remote. This way you can easily mirror any Git repository into any hosting
 provider when <code>git push</code>ing.</p>
 <p>Let’s say your GitHub’s user is <code>user</code> and you want to mirror your <code>repo</code> into
 GitLab. Your local clone is initially:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote</span><span style="color:#bf616a;"> -v
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (fetch)
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (push)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git remote</span><span style="color: #79C0FF;"> -v</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@github.com:user/repo.git</span><span> (fetch)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@github.com:user/repo.git</span><span> (push)</span></span></code></pre>
 <p>Now we need to configure the <code>origin</code> remote to have two URLs:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote set-url</span><span style="color:#bf616a;"> --add --push</span><span> origin git@github.com:user/repo.git
-</span><span style="color:#bf616a;">$</span><span> git remote set-url</span><span style="color:#bf616a;"> --add --push</span><span> origin git@gitlab.com:user/repo.git
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git remote set-url</span><span style="color: #79C0FF;"> --add --push</span><span style="color: #A5D6FF;"> origin git@github.com:user/repo.git</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git remote set-url</span><span style="color: #79C0FF;"> --add --push</span><span style="color: #A5D6FF;"> origin git@gitlab.com:user/repo.git</span></span></code></pre>
 <p>And the magical result:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git remote</span><span style="color:#bf616a;"> -v
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (fetch)
-</span><span style="color:#bf616a;">origin</span><span>  git@github.com:user/repo.git (push)
-</span><span style="color:#bf616a;">origin</span><span>  git@gitlab.com:user/repo.git (push)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git remote</span><span style="color: #79C0FF;"> -v</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@github.com:user/repo.git</span><span> (fetch)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@github.com:user/repo.git</span><span> (push)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">origin</span><span style="color: #A5D6FF;">  git@gitlab.com:user/repo.git</span><span> (push)</span></span></code></pre>
 <p>This makes every <code>git push</code> send the changes to both GitHub and GitLab,
 creating an automatic backup.</p>
 <p>But note that <code>git pull</code> is still from GitHub. It is not possible to pull

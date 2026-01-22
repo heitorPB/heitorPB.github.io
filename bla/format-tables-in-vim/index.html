@@ -124,12 +124,11 @@
 </center>
 <p>While writing some documentation this weekend, I saw a Markdown file with a
 table that looked like this:</p>
-<pre data-lang="Markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-Markdown "><code class="language-Markdown" data-lang="Markdown"><span>| Foo | Bar | Detailed comment | Bla |
-</span><span>| --- | --- | -------- ------- | --- |
-</span><span>| First | Second | This is the first row of the table, ignoring the headers | % |
-</span><span>| O | O | Some very long sentence for this entry | :emoji: |
-</span><span>| Bla | bleeeeeeeeeeeeeeeeeeee | blii | x |
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="markdown"><span class="giallo-l"><span>| Foo | Bar | Detailed comment | Bla |</span></span>
+<span class="giallo-l"><span>| --- | --- | -------- ------- | --- |</span></span>
+<span class="giallo-l"><span>| First | Second | This is the first row of the table, ignoring the headers | % |</span></span>
+<span class="giallo-l"><span>| O | O | Some very long sentence for this entry | :emoji: |</span></span>
+<span class="giallo-l"><span>| Bla | bleeeeeeeeeeeeeeeeeeee | blii | x |</span></span></code></pre>
 <p>The columns are not aligned! This bothered me, although the rendered table
 looks fine.</p>
 <p>We have one million ways to make this table look nice in the Markdown file. One
@@ -141,12 +140,11 @@ example).</li>
 </ul>
 <p>It <abbr title="I'm only half joking">only takes these two steps</abbr> to
 align the columns of the example table:</p>
-<pre data-lang="Markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-Markdown "><code class="language-Markdown" data-lang="Markdown"><span>| Foo   | Bar                    | Detailed comment                                         | Bla     |
-</span><span>| ---   | ---                    | -------- -------                                         | ---     |
-</span><span>| First | Second                 | This is the first row of the table, ignoring the headers | %       |
-</span><span>| O     | O                      | Some very long sentence for this entry                   | :emoji: |
-</span><span>| Bla   | bleeeeeeeeeeeeeeeeeeee | blii                                                     | x       |
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="markdown"><span class="giallo-l"><span>| Foo   | Bar                    | Detailed comment                                         | Bla     |</span></span>
+<span class="giallo-l"><span>| ---   | ---                    | -------- -------                                         | ---     |</span></span>
+<span class="giallo-l"><span>| First | Second                 | This is the first row of the table, ignoring the headers | %       |</span></span>
+<span class="giallo-l"><span>| O     | O                      | Some very long sentence for this entry                   | :emoji: |</span></span>
+<span class="giallo-l"><span>| Bla   | bleeeeeeeeeeeeeeeeeeee | blii                                                     | x       |</span></span></code></pre>
 <p>No plugin needed 🎉</p>
 <p>How the hell this works?</p>
 <ul>
@@ -160,7 +158,7 @@ replace the original lines. In this case we are in Visual mode, we defined
 the input text (the selected lines) and we will use an external command to
 modify the data.</li>
 <li><code>column</code> is the filter command we are using, from the
-<a href="https://en.wikipedia.org/wiki/Util-linux"><code>util-linux</code></a> package. <code>column</code>’s
+<a rel="external" href="https://en.wikipedia.org/wiki/Util-linux"><code>util-linux</code></a> package. <code>column</code>’s
 purpose is to “columnate”. The <code>-t</code> flag tells <code>column</code> to use the Table
 mode. The <code>-s</code> flag specifies the delimiters in the input data (the default
 is whitespace). And the <code>-o</code> flag is to specify the output delimiter to use
@@ -172,25 +170,22 @@ is whitespace). And the <code>-o</code> flag is to specify the output delimiter 
 <p>There may be an issue with this filter: if there are consecutive spaces at the
 beginning or end of any element in the cell, the columns in the pretty table
 get too long. For example:</p>
-<pre data-lang="Markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-Markdown "><code class="language-Markdown" data-lang="Markdown"><span>| Foo | Bar | Detailed comment | Bla |
-</span><span>| --- | --- | -------- ------- | --- |
-</span><span>|    First | Second | This is the first row of the table, ignoring the headers | % |
-</span><span>| O | O | Some very long sentence for this entry | :emoji: |
-</span><span>| Bla | bleeeeeeeeeeeeeeeeeeee                   | blii | x |
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="markdown"><span class="giallo-l"><span>| Foo | Bar | Detailed comment | Bla |</span></span>
+<span class="giallo-l"><span>| --- | --- | -------- ------- | --- |</span></span>
+<span class="giallo-l"><span>|    First | Second | This is the first row of the table, ignoring the headers | % |</span></span>
+<span class="giallo-l"><span>| O | O | Some very long sentence for this entry | :emoji: |</span></span>
+<span class="giallo-l"><span>| Bla | bleeeeeeeeeeeeeeeeeeee                   | blii | x |</span></span></code></pre>
 <p>Becomes:</p>
-<pre data-lang="Markdown" style="background-color:#2b303b;color:#c0c5ce;" class="language-Markdown "><code class="language-Markdown" data-lang="Markdown"><span>| Foo      | Bar                                      | Detailed comment                                         | Bla     |
-</span><span>| ---      | ---                                      | -------- -------                                         | ---     |
-</span><span>|    First | Second                                   | This is the first row of the table, ignoring the headers | %       |
-</span><span>| O        | O                                        | Some very long sentence for this entry                   | :emoji: |
-</span><span>| Bla      | bleeeeeeeeeeeeeeeeeeee                   | blii                                                     | x       |
-</span></code></pre>
-<p>Thanks to <a href="https://github.com/phil0x2e">Phil</a>, I got the tip of first
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="markdown"><span class="giallo-l"><span>| Foo      | Bar                                      | Detailed comment                                         | Bla     |</span></span>
+<span class="giallo-l"><span>| ---      | ---                                      | -------- -------                                         | ---     |</span></span>
+<span class="giallo-l"><span>|    First | Second                                   | This is the first row of the table, ignoring the headers | %       |</span></span>
+<span class="giallo-l"><span>| O        | O                                        | Some very long sentence for this entry                   | :emoji: |</span></span>
+<span class="giallo-l"><span>| Bla      | bleeeeeeeeeeeeeeeeeeee                   | blii                                                     | x       |</span></span></code></pre>
+<p>Thanks to <a rel="external" href="https://github.com/phil0x2e">Phil</a>, I got the tip of first
 filtering with <code>tr -s ' '</code>. This neat command gets rid of all consecutive
 spaces and replace with only one. Like this:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> echo &quot;</span><span style="color:#a3be8c;">     a    a   !</span><span>&quot; | </span><span style="color:#bf616a;">tr -s </span><span>&#39; &#39;
-</span><span> </span><span style="color:#bf616a;">a</span><span> a !
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo &quot;     a    a   !&quot;</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> tr</span><span style="color: #79C0FF;"> -s</span><span style="color: #A5D6FF;"> &#39; &#39;</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> a</span><span style="color: #A5D6FF;"> a !</span></span></code></pre>
 <p>So, the neatest filter is actually <code>:! tr -s " " | column -t -s '|' -o '|'</code>.
 This way we first apply <code>tr</code> to get rid of repeated spaces and pipe that to the
 <code>column</code> command.</p>

@@ -120,67 +120,61 @@
         
         <div class="post-content">
             <p>Whenever we are working with lots of text files we might have to deal with
-their <a href="https://en.wikipedia.org/wiki/Character_encoding">encoding</a>. Reading a
+their <a rel="external" href="https://en.wikipedia.org/wiki/Character_encoding">encoding</a>. Reading a
 file with the wrong encoding feeds obscure data to our code. This way, the
 result becomes unpredictable</p>
 <p>For example, saving the string <code>Kalsarikännit</code> as an UTF-8 text file and then
 reading it in Python as an ASCII file gives an error:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>&gt;&gt;&gt; </span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(&#39;</span><span style="color:#a3be8c;">k</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">r</span><span>&#39;, </span><span style="color:#bf616a;">encoding</span><span>=&#39;</span><span style="color:#a3be8c;">ascii</span><span>&#39;) </span><span style="color:#b48ead;">as </span><span>afile:
-</span><span style="color:#d08770;">...     </span><span>afile.</span><span style="color:#bf616a;">read</span><span>()
-</span><span style="color:#d08770;">...
-</span><span style="color:#bf616a;">Traceback </span><span>(most recent call last):
-</span><span>  File &quot;</span><span style="color:#a3be8c;">&lt;stdin&gt;</span><span>&quot;, line </span><span style="color:#d08770;">2</span><span>, in &lt;module&gt;
-</span><span>    File &quot;</span><span style="color:#a3be8c;">/usr/lib/python3.8/encoding/ascii.py</span><span>&quot;, line </span><span style="color:#d08770;">26</span><span>, in decode
-</span><span>        </span><span style="color:#b48ead;">return </span><span>codecs.</span><span style="color:#bf616a;">ascii_decode</span><span>(</span><span style="color:#96b5b4;">input</span><span>, </span><span style="color:#bf616a;">self</span><span>.errors)[</span><span style="color:#d08770;">0</span><span>]
-</span><span>        UnicodeDecodeError: &#39;</span><span style="color:#a3be8c;">ascii</span><span>&#39; codec can&#39;</span><span style="color:#a3be8c;">t decode byte 0xc3 in position 8:</span><span style="background-color:#bf616a;color:#2b303b;">
-</span><span>        ordinal not in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">128</span><span>)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">&gt;&gt;&gt; with</span><span style="color: #79C0FF;"> open</span><span>(</span><span style="color: #A5D6FF;">&#39;k&#39;</span><span>,</span><span style="color: #A5D6FF;"> &#39;r&#39;</span><span>,</span><span style="color: #FFA657;"> encoding</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;ascii&#39;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> afile:</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">...</span><span>     afile.read()</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">...</span></span>
+<span class="giallo-l"><span>Traceback (most recent call last):</span></span>
+<span class="giallo-l"><span>  File</span><span style="color: #A5D6FF;"> &quot;&lt;stdin&gt;&quot;</span><span>, line</span><span style="color: #79C0FF;"> 2</span><span>,</span><span style="color: #FF7B72;"> in &lt;</span><span>module</span><span style="color: #FF7B72;">&gt;</span></span>
+<span class="giallo-l"><span>    File</span><span style="color: #A5D6FF;"> &quot;/usr/lib/python3.8/encoding/ascii.py&quot;</span><span>, line</span><span style="color: #79C0FF;"> 26</span><span>,</span><span style="color: #FF7B72;"> in</span><span> decode</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">        return</span><span> codecs.ascii_decode(</span><span style="color: #79C0FF;">input</span><span>,</span><span style="color: #79C0FF;"> self</span><span>.errors)[</span><span style="color: #79C0FF;">0</span><span>]</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">        UnicodeDecodeError</span><span>:</span><span style="color: #A5D6FF;"> &#39;ascii&#39;</span><span> codec can</span><span style="color: #A5D6FF;">&#39;t decode byte 0xc3 in position 8:</span></span>
+<span class="giallo-l"><span>        ordinal</span><span style="color: #FF7B72;"> not in</span><span style="color: #79C0FF;"> range</span><span>(</span><span style="color: #79C0FF;">128</span><span>)</span></span></code></pre>
 <p>I’ve run into this problem last week, when I had to parse hundreds of
 <abbr title="comma-separated values are simple text files that represent a spreadsheet">CSV</abbr>
 files. Most of them were fine, but I encountered weird problems, similar to the shown
 above, in some files. It turned out those problematic files were saved from a
 Windows machine, with <code>ISO-8859-1</code> encoding.</p>
 <p>One way to display the
-<a href="https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files">mime-type</a>
+<a rel="external" href="https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files">mime-type</a>
 of a file and its encoding is by using the
-<a href="https://www.darwinsys.com/file/"><code>file</code></a> command, that comes with most free
+<a rel="external" href="https://www.darwinsys.com/file/"><code>file</code></a> command, that comes with most free
 operating systems (Linux, BSD, etc):</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file</span><span style="color:#bf616a;"> --mime </span><span>*
-</span><span style="color:#bf616a;">bla.txt:</span><span> text/plain; </span><span style="color:#bf616a;">charset</span><span>=</span><span style="color:#a3be8c;">us-ascii
-</span><span style="color:#bf616a;">ble.txt:</span><span> text/plain; </span><span style="color:#bf616a;">charset</span><span>=</span><span style="color:#a3be8c;">iso-8859-1
-</span><span style="color:#bf616a;">k.csv:</span><span>   text/plain; </span><span style="color:#bf616a;">charset</span><span>=</span><span style="color:#a3be8c;">utf-8
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> file</span><span style="color: #79C0FF;"> --mime *</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">bla.txt:</span><span style="color: #A5D6FF;"> text/plain</span><span>; charset</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">us-ascii</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ble.txt:</span><span style="color: #A5D6FF;"> text/plain</span><span>; charset</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">iso-8859-1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">k.csv:</span><span style="color: #A5D6FF;">   text/plain</span><span>; charset</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">utf-8</span></span></code></pre>
 <p>Or display only the encoding:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file</span><span style="color:#bf616a;"> --mime-encoding </span><span>*
-</span><span style="color:#bf616a;">bla.txt:</span><span> us-ascii
-</span><span style="color:#bf616a;">ble.txt:</span><span> iso-8859-1
-</span><span style="color:#bf616a;">k.csv:</span><span>   utf-8
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> file</span><span style="color: #79C0FF;"> --mime-encoding *</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">bla.txt:</span><span style="color: #A5D6FF;"> us-ascii</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ble.txt:</span><span style="color: #A5D6FF;"> iso-8859-1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">k.csv:</span><span style="color: #A5D6FF;">   utf-8</span></span></code></pre>
 <p>Or only the mime-type:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file</span><span style="color:#bf616a;"> --mime-type </span><span>*
-</span><span style="color:#bf616a;">bla.txt:</span><span> text/plain
-</span><span style="color:#bf616a;">ble.txt:</span><span> text/plain
-</span><span style="color:#bf616a;">k.csv:</span><span>   text/plain
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> file</span><span style="color: #79C0FF;"> --mime-type *</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">bla.txt:</span><span style="color: #A5D6FF;"> text/plain</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ble.txt:</span><span style="color: #A5D6FF;"> text/plain</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">k.csv:</span><span style="color: #A5D6FF;">   text/plain</span></span></code></pre>
 <p>In these examples, we can see 3 plain-text files, each one with a different
 encoding.</p>
 <p>To convert a text file between encoding, we can use the
-<a href="https://en.wikipedia.org/wiki/Iconv"><code>iconv</code></a>. So, to convert <em>from</em>
+<a rel="external" href="https://en.wikipedia.org/wiki/Iconv"><code>iconv</code></a>. So, to convert <em>from</em>
 <code>ISO-8859-1</code> <em>to</em> <code>UTF-8</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> iconv</span><span style="color:#bf616a;"> -f</span><span> iso-8859-1</span><span style="color:#bf616a;"> -t</span><span> utf-8 infile</span><span style="color:#bf616a;"> -o</span><span> outfile
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> iconv</span><span style="color: #79C0FF;"> -f</span><span style="color: #A5D6FF;"> iso-8859-1</span><span style="color: #79C0FF;"> -t</span><span style="color: #A5D6FF;"> utf-8 infile</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> outfile</span></span></code></pre>
 <p>To convert all files in current directory from a different encoding to <code>UTF-8</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for</span><span> f </span><span style="color:#b48ead;">in </span><span>*
-</span><span style="color:#b48ead;">do
-</span><span>	</span><span style="color:#bf616a;">enc</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">file --mime-encoding </span><span>&quot;$</span><span style="color:#bf616a;">f</span><span>&quot; | </span><span style="color:#bf616a;">sed -E </span><span>&#39;</span><span style="color:#a3be8c;">s/.*: //g</span><span>&#39;</span><span style="color:#a3be8c;">)
-</span><span>	</span><span style="color:#b48ead;">if </span><span style="color:#96b5b4;">[ </span><span>$</span><span style="color:#bf616a;">enc </span><span>!= &quot;</span><span style="color:#a3be8c;">utf-8</span><span>&quot; </span><span style="color:#96b5b4;">]
-</span><span>	</span><span style="color:#b48ead;">then
-</span><span>		</span><span style="color:#96b5b4;">echo</span><span> Converting from $</span><span style="color:#bf616a;">enc</span><span> to UTF-8: $</span><span style="color:#bf616a;">f
-</span><span>		</span><span style="color:#bf616a;">iconv -f </span><span>$</span><span style="color:#bf616a;">enc -t</span><span> utf-8 &quot;$</span><span style="color:#bf616a;">f</span><span>&quot;</span><span style="color:#bf616a;"> -o </span><span>&quot;$</span><span style="color:#bf616a;">f</span><span>&quot;.utf
-</span><span>		</span><span style="color:#bf616a;">mv </span><span>&quot;$</span><span style="color:#bf616a;">f</span><span>&quot;.utf &quot;$</span><span style="color:#bf616a;">f</span><span>&quot;
-</span><span>	</span><span style="color:#b48ead;">fi
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FF7B72;">for</span><span> f</span><span style="color: #FF7B72;"> in</span><span style="color: #A5D6FF;"> *</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">do</span></span>
+<span class="giallo-l"><span>	enc</span><span style="color: #FF7B72;">=</span><span>$(</span><span style="color: #FFA657;">file</span><span style="color: #79C0FF;"> --mime-encoding</span><span style="color: #A5D6FF;"> &quot;</span><span>$f</span><span style="color: #A5D6FF;">&quot;</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> sed</span><span style="color: #79C0FF;"> -E</span><span style="color: #A5D6FF;"> &#39;s/.*: //g&#39;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	if</span><span> [ $enc</span><span style="color: #FF7B72;"> !=</span><span style="color: #A5D6FF;"> &quot;utf-8&quot;</span><span> ]</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	then</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">		echo</span><span style="color: #A5D6FF;"> Converting from</span><span> $enc</span><span style="color: #A5D6FF;"> to UTF-8:</span><span> $f</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		iconv</span><span style="color: #79C0FF;"> -f</span><span> $enc</span><span style="color: #79C0FF;"> -t</span><span style="color: #A5D6FF;"> utf-8 &quot;</span><span>$f</span><span style="color: #A5D6FF;">&quot;</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> &quot;</span><span>$f</span><span style="color: #A5D6FF;">&quot;.utf</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">		mv</span><span style="color: #A5D6FF;"> &quot;</span><span>$f</span><span style="color: #A5D6FF;">&quot;.utf &quot;</span><span>$f</span><span style="color: #A5D6FF;">&quot;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">	fi</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>A small bash script with <code>sed</code>, <code>file</code> and <code>iconv</code> is very versatile to
 uniformize the encoding of several text files. And it saves the day.</p>
 

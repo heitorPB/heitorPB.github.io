@@ -124,60 +124,54 @@ unsurprisingly straightforward.</p>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/52276916578/" title="Sod roof"><img src="https://live.staticflickr.com/65535/52276916578_c448040e14_z.jpg" width="640" height="360" alt="Sod roof"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
 <p>Python’s standard library provides the
-<a href="https://docs.python.org/3/library/tarfile.html"><code>tarfile</code></a> module to read and
+<a rel="external" href="https://docs.python.org/3/library/tarfile.html"><code>tarfile</code></a> module to read and
 write tar archives.</p>
 <p>To add some files, one can use absolute paths or relative ones:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>pathlib </span><span style="color:#b48ead;">import </span><span>Path
-</span><span style="color:#b48ead;">import </span><span>tarfile
-</span><span>
-</span><span>fstab = </span><span style="color:#bf616a;">Path</span><span>(&quot;</span><span style="color:#a3be8c;">/etc/fstab</span><span>&quot;)
-</span><span>os_release = </span><span style="color:#bf616a;">Path</span><span>(&quot;</span><span style="color:#a3be8c;">/etc/os-release</span><span>&quot;)
-</span><span>local_readme = </span><span style="color:#bf616a;">Path</span><span>(&quot;</span><span style="color:#a3be8c;">README.md</span><span>&quot;)
-</span><span>
-</span><span>my_files = </span><span style="color:#bf616a;">Path</span><span>(&quot;</span><span style="color:#a3be8c;">my_files.tar.gz</span><span>&quot;)
-</span><span>
-</span><span style="color:#b48ead;">with </span><span>tarfile.</span><span style="color:#bf616a;">open</span><span>(my_files, &quot;</span><span style="color:#a3be8c;">w:gz</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>tar:
-</span><span>    </span><span style="color:#b48ead;">for </span><span>afile </span><span style="color:#b48ead;">in </span><span>[fstab, os_release, local_readme]:
-</span><span>        tar.</span><span style="color:#bf616a;">add</span><span>(afile)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">from</span><span> pathlib</span><span style="color: #FF7B72;"> import</span><span> Path</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">import</span><span> tarfile</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>fstab</span><span style="color: #FF7B72;"> =</span><span> Path(</span><span style="color: #A5D6FF;">&quot;/etc/fstab&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>os_release</span><span style="color: #FF7B72;"> =</span><span> Path(</span><span style="color: #A5D6FF;">&quot;/etc/os-release&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>local_readme</span><span style="color: #FF7B72;"> =</span><span> Path(</span><span style="color: #A5D6FF;">&quot;README.md&quot;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>my_files</span><span style="color: #FF7B72;"> =</span><span> Path(</span><span style="color: #A5D6FF;">&quot;my_files.tar.gz&quot;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">with</span><span> tarfile.open(my_files,</span><span style="color: #A5D6FF;"> &quot;w:gz&quot;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> tar:</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    for</span><span> afile</span><span style="color: #FF7B72;"> in</span><span> [fstab, os_release, local_readme]:</span></span>
+<span class="giallo-l"><span>        tar.add(afile)</span></span></code></pre>
 <p>This results in the following tarball, assuming there’s a <code>README.md</code> in the
 current directory:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> tar</span><span style="color:#bf616a;"> --list --file</span><span> my_files.tar.gz
-</span><span style="color:#bf616a;">etc/fstab
-</span><span style="color:#bf616a;">etc/os-release
-</span><span style="color:#bf616a;">README.md
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> tar</span><span style="color: #79C0FF;"> --list --file</span><span style="color: #A5D6FF;"> my_files.tar.gz</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">etc/fstab</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">etc/os-release</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">README.md</span></span></code></pre>
 <p>The paths in the tar file are the same as we supplied. This can be annoying if
 we pass something like <code>/home/the_user/projects/foo/bar.md</code>, as the final
 tarball will contain the fully qualified path to the file. If all we want is to
 have the files in the root of the tar file, we add the <code>arcname</code> to the
 <code>tar.add</code> line:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">with </span><span>tarfile.</span><span style="color:#bf616a;">open</span><span>(my_files, &quot;</span><span style="color:#a3be8c;">w:gz</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>tar:
-</span><span>    </span><span style="color:#b48ead;">for </span><span>afile </span><span style="color:#b48ead;">in </span><span>[fstab, os_release, local_readme]:
-</span><span>        tar.</span><span style="color:#bf616a;">add</span><span>(afile, </span><span style="color:#bf616a;">arcname</span><span>=afile.name)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">with</span><span> tarfile.open(my_files,</span><span style="color: #A5D6FF;"> &quot;w:gz&quot;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> tar:</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    for</span><span> afile</span><span style="color: #FF7B72;"> in</span><span> [fstab, os_release, local_readme]:</span></span>
+<span class="giallo-l"><span>        tar.add(afile,</span><span style="color: #FFA657;"> arcname</span><span style="color: #FF7B72;">=</span><span>afile.name)</span></span></code></pre>
 <p>That results in:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> tar</span><span style="color:#bf616a;"> --list --file</span><span> my_files.tar.gz
-</span><span style="color:#bf616a;">fstab
-</span><span style="color:#bf616a;">os-release
-</span><span style="color:#bf616a;">README.md
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> tar</span><span style="color: #79C0FF;"> --list --file</span><span style="color: #A5D6FF;"> my_files.tar.gz</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fstab</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">os-release</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">README.md</span></span></code></pre>
 <p>You can also pass directories to the <code>tar.add()</code> function and they will be
 tarballed recursively by default. You can change it with <code>recursive=False</code>
 argument if needed.</p>
 <p>If you <code>tar.add()</code> a non-existing file, you get a <code>FileNotFoundError</code>
 exception.</p>
 <p>Extracting a tarball is also straightforward:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">with </span><span>tarfile.</span><span style="color:#bf616a;">open</span><span>(my_files, &quot;</span><span style="color:#a3be8c;">r</span><span>&quot;) </span><span style="color:#b48ead;">as </span><span>tar:
-</span><span>    tar.</span><span style="color:#bf616a;">extractall</span><span>(</span><span style="color:#bf616a;">path</span><span>=&quot;</span><span style="color:#a3be8c;">/tmp</span><span>&quot;, </span><span style="color:#bf616a;">filter</span><span>=&quot;</span><span style="color:#a3be8c;">data</span><span>&quot;)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">with</span><span> tarfile.open(my_files,</span><span style="color: #A5D6FF;"> &quot;r&quot;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> tar:</span></span>
+<span class="giallo-l"><span>    tar.extractall(</span><span style="color: #FFA657;">path</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;/tmp&quot;</span><span>,</span><span style="color: #FFA657;"> filter</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;data&quot;</span><span>)</span></span></code></pre>
 <p>If not specified, <code>path</code> defaults to the current working directory.</p>
 <p>The <code>tarfile</code> module also gives us a bonus command:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> python</span><span style="color:#bf616a;"> -m</span><span> tarfile</span><span style="color:#bf616a;"> -l</span><span> my_files.tar.gz
-</span><span style="color:#bf616a;">fstab
-</span><span style="color:#bf616a;">os-release
-</span><span style="color:#bf616a;">README.md
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> python</span><span style="color: #79C0FF;"> -m</span><span style="color: #A5D6FF;"> tarfile</span><span style="color: #79C0FF;"> -l</span><span style="color: #A5D6FF;"> my_files.tar.gz</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fstab</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">os-release</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">README.md</span></span></code></pre>
 <p>A pure Python alternative to <code>tar --list --file my_files.tar.gz</code>.</p>
 
         </div>

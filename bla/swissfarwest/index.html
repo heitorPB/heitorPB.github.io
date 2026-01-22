@@ -122,7 +122,7 @@ part of Switzerland. Unfortunately, we couldn’t go to the precise westernmost 
 of the border with France, because that’s in the
 <abbr title="Latitude: 46.1323565, Longitude: 5.9559113">middle</abbr> of the
 river <em>Le Rhône</em><sup class="footnote-reference"><a href="#1">1</a></sup> and we didn’t want to get inside the water.</p>
-<p>I recorded our hike using <a href="https://osmand.net/">OsmAnd</a>, a very nice app for
+<p>I recorded our hike using <a rel="external" href="https://osmand.net/">OsmAnd</a>, a very nice app for
 maps and location and finding out how to go from one place to another. And all
 that offline! You only need internet connection to download the app :) Oh, and
 it’s <abbr title="as in free beer">free</abbr>!</p>
@@ -130,58 +130,57 @@ it’s <abbr title="as in free beer">free</abbr>!</p>
 file</a>. It’s basically an XML file with coordinates (latitude,
 longidute, elevation and time) and some more information. You can read more
 about the format on
-<a href="https://en.wikipedia.org/wiki/GPS_Exchange_Format">WikiPedia</a>.</p>
-<p>I found this <a href="https://github.com/tkrajina/gpxpy">gpxpy</a> library to work with
+<a rel="external" href="https://en.wikipedia.org/wiki/GPS_Exchange_Format">WikiPedia</a>.</p>
+<p>I found this <a rel="external" href="https://github.com/tkrajina/gpxpy">gpxpy</a> library to work with
 <abbr title="GPS Exchange Format">GPX</abbr> files. It’s quite easy to use it
-together with <a href="https://matplotlib.org/">matplotlib</a>:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>gpxpy
-</span><span style="color:#b48ead;">import </span><span>matplotlib.pyplot </span><span style="color:#b48ead;">as </span><span>plt
-</span><span style="color:#b48ead;">from </span><span>matplotlib </span><span style="color:#b48ead;">import </span><span>animation
-</span><span style="color:#b48ead;">from </span><span>mpl_toolkits.mplot3d </span><span style="color:#b48ead;">import </span><span>Axes3D
-</span><span>
-</span><span>gpx_filename = &quot;</span><span style="color:#a3be8c;">hike.gpx</span><span>&quot;
-</span><span>
-</span><span>gps_lat = []
-</span><span>gps_long = []
-</span><span>gps_elevation = []
-</span><span>
-</span><span>fig = plt.</span><span style="color:#bf616a;">figure</span><span>()
-</span><span>ax = fig.</span><span style="color:#bf616a;">add_subplot</span><span>(</span><span style="color:#d08770;">111</span><span>, </span><span style="color:#bf616a;">projection</span><span>=&#39;</span><span style="color:#a3be8c;">3d</span><span>&#39;)
-</span><span>
-</span><span style="color:#b48ead;">with </span><span style="color:#96b5b4;">open</span><span>(gpx_filename, &#39;</span><span style="color:#a3be8c;">r</span><span>&#39;) </span><span style="color:#b48ead;">as </span><span>bla:
-</span><span>    gpx = gpxpy.</span><span style="color:#bf616a;">parse</span><span>(bla)
-</span><span>    </span><span style="color:#b48ead;">for </span><span>track </span><span style="color:#b48ead;">in </span><span>gpx.tracks:
-</span><span>        </span><span style="color:#b48ead;">for </span><span>segment </span><span style="color:#b48ead;">in </span><span>track.segments:
-</span><span>            </span><span style="color:#b48ead;">for </span><span>point </span><span style="color:#b48ead;">in </span><span>segment.points:
-</span><span>                gps_lat.</span><span style="color:#bf616a;">append</span><span>(point.latitude)
-</span><span>                gps_long.</span><span style="color:#bf616a;">append</span><span>(point.longitude)
-</span><span>                gps_elevation.</span><span style="color:#bf616a;">append</span><span>(point.elevation)
-</span><span>
-</span><span>
-</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">init</span><span>():
-</span><span>    N = </span><span style="color:#96b5b4;">len</span><span>(gps_lat)
-</span><span>    </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(N - </span><span style="color:#d08770;">1</span><span>):
-</span><span>        ax.</span><span style="color:#bf616a;">plot</span><span>(gps_long[i:i + </span><span style="color:#d08770;">2</span><span>],           </span><span style="color:#65737e;"># x coordinate
-</span><span>                gps_lat[i:i + </span><span style="color:#d08770;">2</span><span>],            </span><span style="color:#65737e;"># y,
-</span><span>                gps_elevation[i:i + </span><span style="color:#d08770;">2</span><span>],      </span><span style="color:#65737e;"># z
-</span><span>                </span><span style="color:#bf616a;">color</span><span>=plt.cm.</span><span style="color:#bf616a;">viridis</span><span>(i / N)) </span><span style="color:#65737e;"># sequential color
-</span><span>
-</span><span>    ax.</span><span style="color:#bf616a;">set_xlabel</span><span>(&quot;</span><span style="color:#a3be8c;">longitude</span><span>&quot;)
-</span><span>    ax.</span><span style="color:#bf616a;">set_ylabel</span><span>(&quot;</span><span style="color:#a3be8c;">latitude</span><span>&quot;)
-</span><span>    ax.</span><span style="color:#bf616a;">set_zlabel</span><span>(&quot;</span><span style="color:#a3be8c;">altitude (meters)</span><span>&quot;)
-</span><span>
-</span><span>    </span><span style="color:#b48ead;">return </span><span>fig,
-</span><span>
-</span><span>
-</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">animate</span><span>(</span><span style="color:#bf616a;">i</span><span>):
-</span><span>    ax.</span><span style="color:#bf616a;">view_init</span><span>(</span><span style="color:#bf616a;">elev</span><span>=</span><span style="color:#d08770;">10.</span><span>, </span><span style="color:#bf616a;">azim</span><span>=i)
-</span><span>    </span><span style="color:#b48ead;">return </span><span>fig,
-</span><span>
-</span><span>anim = animation.</span><span style="color:#bf616a;">FuncAnimation</span><span>(fig, animate, </span><span style="color:#bf616a;">init_func</span><span>=init,
-</span><span>                               </span><span style="color:#bf616a;">frames</span><span>=</span><span style="color:#d08770;">360</span><span>, </span><span style="color:#bf616a;">interval</span><span>=</span><span style="color:#d08770;">20</span><span>, </span><span style="color:#bf616a;">blit</span><span>=</span><span style="color:#d08770;">True</span><span>)
-</span><span>anim.</span><span style="color:#bf616a;">save</span><span>(&#39;</span><span style="color:#a3be8c;">hike.mp4</span><span>&#39;, </span><span style="color:#bf616a;">fps</span><span>=</span><span style="color:#d08770;">30</span><span>, </span><span style="color:#bf616a;">extra_args</span><span>=[&#39;</span><span style="color:#a3be8c;">-vcodec</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">libx264</span><span>&#39;])
-</span><span>
-</span></code></pre>
+together with <a rel="external" href="https://matplotlib.org/">matplotlib</a>:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">import</span><span> gpxpy</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">import</span><span> matplotlib.pyplot</span><span style="color: #FF7B72;"> as</span><span> plt</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">from</span><span> matplotlib</span><span style="color: #FF7B72;"> import</span><span> animation</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">from</span><span> mpl_toolkits.mplot3d</span><span style="color: #FF7B72;"> import</span><span> Axes3D</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>gpx_filename</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &quot;hike.gpx&quot;</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>gps_lat</span><span style="color: #FF7B72;"> =</span><span> []</span></span>
+<span class="giallo-l"><span>gps_long</span><span style="color: #FF7B72;"> =</span><span> []</span></span>
+<span class="giallo-l"><span>gps_elevation</span><span style="color: #FF7B72;"> =</span><span> []</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>fig</span><span style="color: #FF7B72;"> =</span><span> plt.figure()</span></span>
+<span class="giallo-l"><span>ax</span><span style="color: #FF7B72;"> =</span><span> fig.add_subplot(</span><span style="color: #79C0FF;">111</span><span>,</span><span style="color: #FFA657;"> projection</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;3d&#39;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">with</span><span style="color: #79C0FF;"> open</span><span>(gpx_filename,</span><span style="color: #A5D6FF;"> &#39;r&#39;</span><span>)</span><span style="color: #FF7B72;"> as</span><span> bla:</span></span>
+<span class="giallo-l"><span>    gpx</span><span style="color: #FF7B72;"> =</span><span> gpxpy.parse(bla)</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    for</span><span> track</span><span style="color: #FF7B72;"> in</span><span> gpx.tracks:</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">        for</span><span> segment</span><span style="color: #FF7B72;"> in</span><span> track.segments:</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">            for</span><span> point</span><span style="color: #FF7B72;"> in</span><span> segment.points:</span></span>
+<span class="giallo-l"><span>                gps_lat.append(point.latitude)</span></span>
+<span class="giallo-l"><span>                gps_long.append(point.longitude)</span></span>
+<span class="giallo-l"><span>                gps_elevation.append(point.elevation)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">def</span><span style="color: #D2A8FF;"> init</span><span>():</span></span>
+<span class="giallo-l"><span>    N</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> len</span><span>(gps_lat)</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    for</span><span> i</span><span style="color: #FF7B72;"> in</span><span style="color: #79C0FF;"> range</span><span>(N</span><span style="color: #FF7B72;"> -</span><span style="color: #79C0FF;"> 1</span><span>):</span></span>
+<span class="giallo-l"><span>        ax.plot(gps_long[i:i</span><span style="color: #FF7B72;"> +</span><span style="color: #79C0FF;"> 2</span><span>],</span><span style="color: #8B949E;">           # x coordinate</span></span>
+<span class="giallo-l"><span>                gps_lat[i:i</span><span style="color: #FF7B72;"> +</span><span style="color: #79C0FF;"> 2</span><span>],</span><span style="color: #8B949E;">            # y,</span></span>
+<span class="giallo-l"><span>                gps_elevation[i:i</span><span style="color: #FF7B72;"> +</span><span style="color: #79C0FF;"> 2</span><span>],</span><span style="color: #8B949E;">      # z</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                color</span><span style="color: #FF7B72;">=</span><span>plt.cm.viridis(i</span><span style="color: #FF7B72;"> /</span><span> N))</span><span style="color: #8B949E;"> # sequential color</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>    ax.set_xlabel(</span><span style="color: #A5D6FF;">&quot;longitude&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>    ax.set_ylabel(</span><span style="color: #A5D6FF;">&quot;latitude&quot;</span><span>)</span></span>
+<span class="giallo-l"><span>    ax.set_zlabel(</span><span style="color: #A5D6FF;">&quot;altitude (meters)&quot;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    return</span><span> fig,</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FF7B72;">def</span><span style="color: #D2A8FF;"> animate</span><span>(i):</span></span>
+<span class="giallo-l"><span>    ax.view_init(</span><span style="color: #FFA657;">elev</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">10</span><span>.,</span><span style="color: #FFA657;"> azim</span><span style="color: #FF7B72;">=</span><span>i)</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">    return</span><span> fig,</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>anim</span><span style="color: #FF7B72;"> =</span><span> animation.FuncAnimation(fig, animate,</span><span style="color: #FFA657;"> init_func</span><span style="color: #FF7B72;">=</span><span>init,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                               frames</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">360</span><span>,</span><span style="color: #FFA657;"> interval</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">20</span><span>,</span><span style="color: #FFA657;"> blit</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">True</span><span>)</span></span>
+<span class="giallo-l"><span>anim.save(</span><span style="color: #A5D6FF;">&#39;hike.mp4&#39;</span><span>,</span><span style="color: #FFA657;"> fps</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">30</span><span>,</span><span style="color: #FFA657;"> extra_args</span><span style="color: #FF7B72;">=</span><span>[</span><span style="color: #A5D6FF;">&#39;-vcodec&#39;</span><span>,</span><span style="color: #A5D6FF;"> &#39;libx264&#39;</span><span>])</span></span>
+<span class="giallo-l"></span></code></pre>
 <p>And this codes gives the path of our hike, after about 150 seconds:</p>
 <video width="100%" height="100%" loop="True" controls>
   <source src="hike.mp4" type="video/mp4">
@@ -191,105 +190,102 @@ together with <a href="https://matplotlib.org/">matplotlib</a>:</p>
 <p>And that’s pretty cool 😎</p>
 <p>Lets extract some more information about this <abbr title="GPS Exchange Format">GPX</abbr>
 file, in Python:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>gpxpy
-</span><span>
-</span><span>gpx_filename = &quot;</span><span style="color:#a3be8c;">hike.gpx</span><span>&quot;
-</span><span>gpx = gpxpy.</span><span style="color:#bf616a;">parse</span><span>(</span><span style="color:#96b5b4;">open</span><span>(gpx_filename))
-</span><span>
-</span><span style="color:#96b5b4;">print</span><span>(&quot;&quot;)
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">distance:</span><span>&quot;, gpx.</span><span style="color:#bf616a;">length_3d</span><span>(), &quot;</span><span style="color:#a3be8c;">m</span><span>&quot;)
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">duration:</span><span>&quot;, gpx.</span><span style="color:#bf616a;">get_duration</span><span>(), &quot;</span><span style="color:#a3be8c;">s</span><span>&quot;)
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">started:</span><span>&quot;, gpx.</span><span style="color:#bf616a;">get_time_bounds</span><span>()[</span><span style="color:#d08770;">0</span><span>])
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">ended:</span><span>&quot;,   gpx.</span><span style="color:#bf616a;">get_time_bounds</span><span>()[</span><span style="color:#d08770;">1</span><span>])
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">elevation extremes:</span><span>&quot;, gpx.</span><span style="color:#bf616a;">get_elevation_extremes</span><span>()[:], &quot;</span><span style="color:#a3be8c;">m</span><span>&quot;)
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">Max speed: </span><span>&quot;, gpx.</span><span style="color:#bf616a;">get_moving_data</span><span>()[-</span><span style="color:#d08770;">1</span><span>], &quot;</span><span style="color:#a3be8c;">m/s</span><span>&quot;)
-</span><span style="color:#96b5b4;">print</span><span>(&quot;</span><span style="color:#a3be8c;">Boundaries: </span><span>&quot;, [bla </span><span style="color:#b48ead;">for </span><span>bla </span><span style="color:#b48ead;">in </span><span>gpx.</span><span style="color:#bf616a;">get_bounds</span><span>()])
-</span><span>
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">import</span><span> gpxpy</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>gpx_filename</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &quot;hike.gpx&quot;</span></span>
+<span class="giallo-l"><span>gpx</span><span style="color: #FF7B72;"> =</span><span> gpxpy.parse(</span><span style="color: #79C0FF;">open</span><span>(gpx_filename))</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;distance:&quot;</span><span>, gpx.length_3d(),</span><span style="color: #A5D6FF;"> &quot;m&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;duration:&quot;</span><span>, gpx.get_duration(),</span><span style="color: #A5D6FF;"> &quot;s&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;started:&quot;</span><span>, gpx.get_time_bounds()[</span><span style="color: #79C0FF;">0</span><span>])</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;ended:&quot;</span><span>,   gpx.get_time_bounds()[</span><span style="color: #79C0FF;">1</span><span>])</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;elevation extremes:&quot;</span><span>, gpx.get_elevation_extremes()[:],</span><span style="color: #A5D6FF;"> &quot;m&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;Max speed: &quot;</span><span>, gpx.get_moving_data()[</span><span style="color: #FF7B72;">-</span><span style="color: #79C0FF;">1</span><span>],</span><span style="color: #A5D6FF;"> &quot;m/s&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">print</span><span>(</span><span style="color: #A5D6FF;">&quot;Boundaries: &quot;</span><span>, [bla</span><span style="color: #FF7B72;"> for</span><span> bla</span><span style="color: #FF7B72;"> in</span><span> gpx.get_bounds()])</span></span>
+<span class="giallo-l"></span></code></pre>
 <p>Which gives:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> python infos.py
-</span><span>
-</span><span style="color:#bf616a;">distance:</span><span> 5892.264830266586 m
-</span><span style="color:#bf616a;">duration</span><span>; </span><span style="color:#bf616a;">5550</span><span> s
-</span><span style="color:#bf616a;">started:</span><span> 2018-09-24 07:36:10
-</span><span style="color:#bf616a;">ended:</span><span> 2018-09-24 09:08:40
-</span><span style="color:#bf616a;">elevation</span><span> extremes: (320.36, 429.36) </span><span style="color:#bf616a;">m
-</span><span style="color:#bf616a;">Max</span><span> speed:  1.8713130924592616 m/s
-</span><span style="color:#bf616a;">Boundaries:  </span><span style="color:#b48ead;">[</span><span>46.1285393, 46.13805, 5.9561619, 5.9720922</span><span style="color:#b48ead;">]
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> python infos.py</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">distance:</span><span style="color: #79C0FF;"> 5892.264830266586</span><span style="color: #A5D6FF;"> m</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">duration</span><span>;</span><span style="color: #FFA657;"> 5550</span><span style="color: #A5D6FF;"> s</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">started:</span><span style="color: #A5D6FF;"> 2018-09-24 07:36:10</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ended:</span><span style="color: #A5D6FF;"> 2018-09-24 09:08:40</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">elevation</span><span style="color: #A5D6FF;"> extremes:</span><span> (320.36,</span><span style="color: #79C0FF;"> 429.36</span><span>) m</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Max</span><span style="color: #A5D6FF;"> speed:</span><span style="color: #79C0FF;">  1.8713130924592616</span><span style="color: #A5D6FF;"> m/s</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Boundaries:</span><span>  [46.1285393,</span><span style="color: #A5D6FF;"> 46.13805, 5.9561619, 5.9720922]</span></span></code></pre>
 <p>Nice! But the nicest thing would be a simple way to add the
 <abbr title="GPS Exchange Format">GPX</abbr> coordinates on top of the map of
-the region. The library <a href="https://github.com/wrobell/geotiler">geotiler</a>
-provides a way to get the map from <a href="http://openstreetmap.org/">OpenStreetMap</a>.
-You might need <a href="https://redis.io/">Redis</a> running as server in the background
+the region. The library <a rel="external" href="https://github.com/wrobell/geotiler">geotiler</a>
+provides a way to get the map from <a rel="external" href="http://openstreetmap.org/">OpenStreetMap</a>.
+You might need <a rel="external" href="https://redis.io/">Redis</a> running as server in the background
 for <em>geotiler</em> to work. Here’s the code:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>matplotlib.pyplot </span><span style="color:#b48ead;">as </span><span>plt
-</span><span style="color:#b48ead;">from </span><span>mpl_toolkits.basemap </span><span style="color:#b48ead;">import </span><span>Basemap
-</span><span style="color:#b48ead;">import </span><span>matplotlib.patheffects </span><span style="color:#b48ead;">as </span><span>PathEffects
-</span><span style="color:#b48ead;">from </span><span>matplotlib.patches </span><span style="color:#b48ead;">import </span><span>Ellipse
-</span><span style="color:#b48ead;">import </span><span>geotiler
-</span><span style="color:#b48ead;">import </span><span>gpxpy
-</span><span>
-</span><span>gpx_filename = &quot;</span><span style="color:#a3be8c;">hike.gpx</span><span>&quot;
-</span><span>gpx = gpxpy.</span><span style="color:#bf616a;">parse</span><span>(</span><span style="color:#96b5b4;">open</span><span>(gpx_filename))
-</span><span>
-</span><span>bbox = [gpx.</span><span style="color:#bf616a;">get_bounds</span><span>().min_longitude - </span><span style="color:#d08770;">0.002</span><span>,
-</span><span>        gpx.</span><span style="color:#bf616a;">get_bounds</span><span>().min_latitude  - </span><span style="color:#d08770;">0.002</span><span>,
-</span><span>        gpx.</span><span style="color:#bf616a;">get_bounds</span><span>().max_longitude + </span><span style="color:#d08770;">0.002</span><span>,
-</span><span>        gpx.</span><span style="color:#bf616a;">get_bounds</span><span>().max_latitude  + </span><span style="color:#d08770;">0.002</span><span>]
-</span><span>
-</span><span>fig = plt.</span><span style="color:#bf616a;">figure</span><span>(</span><span style="color:#bf616a;">figsize</span><span>=(</span><span style="color:#d08770;">13</span><span>, </span><span style="color:#d08770;">13</span><span>))
-</span><span>ax = plt.</span><span style="color:#bf616a;">subplot</span><span>(</span><span style="color:#d08770;">111</span><span>)
-</span><span>
-</span><span style="color:#65737e;"># download tiles from OSM
-</span><span>mm = geotiler.</span><span style="color:#bf616a;">Map</span><span>(</span><span style="color:#bf616a;">extent </span><span>= bbox, </span><span style="color:#bf616a;">zoom </span><span>= </span><span style="color:#d08770;">16</span><span>)
-</span><span>img = geotiler.</span><span style="color:#bf616a;">render_map</span><span>(mm)
-</span><span>
-</span><span>myMap = </span><span style="color:#bf616a;">Basemap</span><span>(</span><span style="color:#bf616a;">llcrnrlon</span><span>=bbox[</span><span style="color:#d08770;">0</span><span>], </span><span style="color:#bf616a;">llcrnrlat</span><span>=bbox[</span><span style="color:#d08770;">1</span><span>],
-</span><span>                </span><span style="color:#bf616a;">urcrnrlon</span><span>=bbox[</span><span style="color:#d08770;">2</span><span>], </span><span style="color:#bf616a;">urcrnrlat</span><span>=bbox[</span><span style="color:#d08770;">3</span><span>],
-</span><span>                </span><span style="color:#bf616a;">projection</span><span>=&#39;</span><span style="color:#a3be8c;">merc</span><span>&#39;, </span><span style="color:#bf616a;">ax</span><span>=ax)
-</span><span>myMap.</span><span style="color:#bf616a;">imshow</span><span>(img, </span><span style="color:#bf616a;">interpolation</span><span>=&#39;</span><span style="color:#a3be8c;">lanczos</span><span>&#39;, </span><span style="color:#bf616a;">origin</span><span>=&#39;</span><span style="color:#a3be8c;">upper</span><span>&#39;)
-</span><span>
-</span><span style="color:#65737e;"># plot hike
-</span><span>points = gpx.</span><span style="color:#bf616a;">get_points_data</span><span>()
-</span><span>lon = [p[</span><span style="color:#d08770;">0</span><span>].longitude </span><span style="color:#b48ead;">for </span><span>p </span><span style="color:#b48ead;">in </span><span>points]
-</span><span>lat = [p[</span><span style="color:#d08770;">0</span><span>].latitude  </span><span style="color:#b48ead;">for </span><span>p </span><span style="color:#b48ead;">in </span><span>points]
-</span><span>index = [p.point_no </span><span style="color:#b48ead;">for </span><span>p </span><span style="color:#b48ead;">in </span><span>points] </span><span style="color:#65737e;"># to color sequentially each point
-</span><span>
-</span><span>x, y = </span><span style="color:#bf616a;">myMap</span><span>(lon, lat) </span><span style="color:#65737e;"># map (long, lat) to (x,y) coordinates in plot
-</span><span>ax.</span><span style="color:#bf616a;">scatter</span><span>(x, y, </span><span style="color:#bf616a;">c </span><span>= index, </span><span style="color:#bf616a;">s </span><span>= </span><span style="color:#d08770;">4</span><span>, </span><span style="color:#bf616a;">cmap</span><span>=&#39;</span><span style="color:#a3be8c;">brg</span><span>&#39;)
-</span><span>
-</span><span style="color:#65737e;"># add some texts and arrows with style
-</span><span>t1 = ax.</span><span style="color:#bf616a;">annotate</span><span>(&#39;</span><span style="color:#a3be8c;">France</span><span>&#39;, </span><span style="color:#bf616a;">xy</span><span>=(</span><span style="color:#d08770;">.01</span><span>, </span><span style="color:#d08770;">.96</span><span>), </span><span style="color:#bf616a;">xycoords</span><span>=&#39;</span><span style="color:#a3be8c;">axes fraction</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">horizontalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">left</span><span>&#39;, </span><span style="color:#bf616a;">fontsize </span><span>= </span><span style="color:#d08770;">20</span><span>,
-</span><span>                 </span><span style="color:#bf616a;">verticalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">bottom</span><span>&#39;, </span><span style="color:#bf616a;">fontname </span><span>= &#39;</span><span style="color:#a3be8c;">monospace</span><span>&#39;)
-</span><span>t2 = ax.</span><span style="color:#bf616a;">annotate</span><span>(&#39;</span><span style="color:#a3be8c;">Switzerland</span><span>&#39;, </span><span style="color:#bf616a;">xy</span><span>=(</span><span style="color:#d08770;">.99</span><span>, </span><span style="color:#d08770;">.96</span><span>), </span><span style="color:#bf616a;">xycoords</span><span>=&#39;</span><span style="color:#a3be8c;">axes fraction</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">horizontalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">right</span><span>&#39;, </span><span style="color:#bf616a;">fontsize </span><span>= </span><span style="color:#d08770;">20</span><span>,
-</span><span>                 </span><span style="color:#bf616a;">verticalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">bottom</span><span>&#39;, </span><span style="color:#bf616a;">fontname </span><span>= &#39;</span><span style="color:#a3be8c;">monospace</span><span>&#39;)
-</span><span>el = </span><span style="color:#bf616a;">Ellipse</span><span>((</span><span style="color:#d08770;">2</span><span>, -</span><span style="color:#d08770;">1</span><span>), </span><span style="color:#d08770;">0.5</span><span>, </span><span style="color:#d08770;">0.5</span><span>)
-</span><span>t3 = ax.</span><span style="color:#bf616a;">annotate</span><span>(&#39;</span><span style="color:#a3be8c;">Border</span><span>&#39;, </span><span style="color:#bf616a;">xy</span><span>=(</span><span style="color:#d08770;">.61</span><span>, </span><span style="color:#d08770;">.90</span><span>), </span><span style="color:#bf616a;">xycoords</span><span>=&#39;</span><span style="color:#a3be8c;">axes fraction</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">xytext</span><span>=(</span><span style="color:#d08770;">.5</span><span>, </span><span style="color:#d08770;">.96</span><span>), </span><span style="color:#bf616a;">textcoords</span><span>=&#39;</span><span style="color:#a3be8c;">axes fraction</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">horizontalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">center</span><span>&#39;, </span><span style="color:#bf616a;">fontsize </span><span>= </span><span style="color:#d08770;">20</span><span>,
-</span><span>                 </span><span style="color:#bf616a;">verticalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">bottom</span><span>&#39;, </span><span style="color:#bf616a;">fontname </span><span>= &#39;</span><span style="color:#a3be8c;">monospace</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">arrowprops</span><span>=</span><span style="color:#bf616a;">dict</span><span>(</span><span style="color:#bf616a;">arrowstyle</span><span>=&quot;</span><span style="color:#a3be8c;">simple</span><span>&quot;,
-</span><span>                                 </span><span style="color:#bf616a;">fc</span><span>=&quot;</span><span style="color:#a3be8c;">black</span><span>&quot;, </span><span style="color:#bf616a;">ec</span><span>=&quot;</span><span style="color:#a3be8c;">none</span><span>&quot;,
-</span><span>                                 </span><span style="color:#bf616a;">patchB</span><span>=el,
-</span><span>                                 </span><span style="color:#bf616a;">connectionstyle</span><span>=&quot;</span><span style="color:#a3be8c;">arc3,rad=0.3</span><span>&quot;))
-</span><span>t4 = ax.</span><span style="color:#bf616a;">annotate</span><span>(&quot;</span><span style="color:#a3be8c;">Switzerland&#39;s</span><span style="color:#96b5b4;">\n</span><span style="color:#a3be8c;">westest point</span><span>&quot;, </span><span style="color:#bf616a;">xy</span><span>=</span><span style="color:#bf616a;">myMap</span><span>(</span><span style="color:#d08770;">5.9559555</span><span>, </span><span style="color:#d08770;">46.1323555</span><span>),
-</span><span>                 </span><span style="color:#bf616a;">xytext</span><span>=(</span><span style="color:#d08770;">.3</span><span>, </span><span style="color:#d08770;">.42</span><span>), </span><span style="color:#bf616a;">textcoords</span><span>=&#39;</span><span style="color:#a3be8c;">axes fraction</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">horizontalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">center</span><span>&#39;, </span><span style="color:#bf616a;">fontsize </span><span>= </span><span style="color:#d08770;">20</span><span>,
-</span><span>                 </span><span style="color:#bf616a;">verticalalignment</span><span>=&#39;</span><span style="color:#a3be8c;">bottom</span><span>&#39;, </span><span style="color:#bf616a;">fontname </span><span>= &#39;</span><span style="color:#a3be8c;">monospace</span><span>&#39;,
-</span><span>                 </span><span style="color:#bf616a;">arrowprops</span><span>=</span><span style="color:#bf616a;">dict</span><span>(</span><span style="color:#bf616a;">arrowstyle</span><span>=&quot;</span><span style="color:#a3be8c;">simple</span><span>&quot;,
-</span><span>                                 </span><span style="color:#bf616a;">fc</span><span>=&quot;</span><span style="color:#a3be8c;">black</span><span>&quot;, </span><span style="color:#bf616a;">ec</span><span>=&quot;</span><span style="color:#a3be8c;">none</span><span>&quot;,
-</span><span>                                 </span><span style="color:#bf616a;">patchB</span><span>=el,
-</span><span>                                 </span><span style="color:#bf616a;">connectionstyle</span><span>=&quot;</span><span style="color:#a3be8c;">arc3,rad=0.3</span><span>&quot;))
-</span><span style="color:#b48ead;">for </span><span>t </span><span style="color:#b48ead;">in </span><span>[t1, t2, t3, t4]:
-</span><span>    t.</span><span style="color:#bf616a;">set_path_effects</span><span>([PathEffects.</span><span style="color:#bf616a;">withStroke</span><span>(</span><span style="color:#bf616a;">linewidth</span><span>=</span><span style="color:#d08770;">5</span><span>, </span><span style="color:#bf616a;">foreground</span><span>=&#39;</span><span style="color:#a3be8c;">w</span><span>&#39;, </span><span style="color:#bf616a;">alpha </span><span>= </span><span style="color:#d08770;">0.666</span><span>)])
-</span><span>
-</span><span>
-</span><span>plt.</span><span style="color:#bf616a;">savefig</span><span>(&#39;</span><span style="color:#a3be8c;">map.png</span><span>&#39;, </span><span style="color:#bf616a;">quality </span><span>= </span><span style="color:#d08770;">100</span><span>, </span><span style="color:#bf616a;">bbox_inches </span><span>= &#39;</span><span style="color:#a3be8c;">tight</span><span>&#39;)
-</span><span>plt.</span><span style="color:#bf616a;">close</span><span>()
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">import</span><span> matplotlib.pyplot</span><span style="color: #FF7B72;"> as</span><span> plt</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">from</span><span> mpl_toolkits.basemap</span><span style="color: #FF7B72;"> import</span><span> Basemap</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">import</span><span> matplotlib.patheffects</span><span style="color: #FF7B72;"> as</span><span> PathEffects</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">from</span><span> matplotlib.patches</span><span style="color: #FF7B72;"> import</span><span> Ellipse</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">import</span><span> geotiler</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">import</span><span> gpxpy</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>gpx_filename</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &quot;hike.gpx&quot;</span></span>
+<span class="giallo-l"><span>gpx</span><span style="color: #FF7B72;"> =</span><span> gpxpy.parse(</span><span style="color: #79C0FF;">open</span><span>(gpx_filename))</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>bbox</span><span style="color: #FF7B72;"> =</span><span> [gpx.get_bounds().min_longitude</span><span style="color: #FF7B72;"> -</span><span style="color: #79C0FF;"> 0.002</span><span>,</span></span>
+<span class="giallo-l"><span>        gpx.get_bounds().min_latitude</span><span style="color: #FF7B72;">  -</span><span style="color: #79C0FF;"> 0.002</span><span>,</span></span>
+<span class="giallo-l"><span>        gpx.get_bounds().max_longitude</span><span style="color: #FF7B72;"> +</span><span style="color: #79C0FF;"> 0.002</span><span>,</span></span>
+<span class="giallo-l"><span>        gpx.get_bounds().max_latitude</span><span style="color: #FF7B72;">  +</span><span style="color: #79C0FF;"> 0.002</span><span>]</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>fig</span><span style="color: #FF7B72;"> =</span><span> plt.figure(</span><span style="color: #FFA657;">figsize</span><span style="color: #FF7B72;">=</span><span>(</span><span style="color: #79C0FF;">13</span><span>,</span><span style="color: #79C0FF;"> 13</span><span>))</span></span>
+<span class="giallo-l"><span>ax</span><span style="color: #FF7B72;"> =</span><span> plt.subplot(</span><span style="color: #79C0FF;">111</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># download tiles from OSM</span></span>
+<span class="giallo-l"><span>mm</span><span style="color: #FF7B72;"> =</span><span> geotiler.Map(</span><span style="color: #FFA657;">extent</span><span style="color: #FF7B72;"> =</span><span> bbox,</span><span style="color: #FFA657;"> zoom</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 16</span><span>)</span></span>
+<span class="giallo-l"><span>img</span><span style="color: #FF7B72;"> =</span><span> geotiler.render_map(mm)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>myMap</span><span style="color: #FF7B72;"> =</span><span> Basemap(</span><span style="color: #FFA657;">llcrnrlon</span><span style="color: #FF7B72;">=</span><span>bbox[</span><span style="color: #79C0FF;">0</span><span>],</span><span style="color: #FFA657;"> llcrnrlat</span><span style="color: #FF7B72;">=</span><span>bbox[</span><span style="color: #79C0FF;">1</span><span>],</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                urcrnrlon</span><span style="color: #FF7B72;">=</span><span>bbox[</span><span style="color: #79C0FF;">2</span><span>],</span><span style="color: #FFA657;"> urcrnrlat</span><span style="color: #FF7B72;">=</span><span>bbox[</span><span style="color: #79C0FF;">3</span><span>],</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                projection</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;merc&#39;</span><span>,</span><span style="color: #FFA657;"> ax</span><span style="color: #FF7B72;">=</span><span>ax)</span></span>
+<span class="giallo-l"><span>myMap.imshow(img,</span><span style="color: #FFA657;"> interpolation</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;lanczos&#39;</span><span>,</span><span style="color: #FFA657;"> origin</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;upper&#39;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># plot hike</span></span>
+<span class="giallo-l"><span>points</span><span style="color: #FF7B72;"> =</span><span> gpx.get_points_data()</span></span>
+<span class="giallo-l"><span>lon</span><span style="color: #FF7B72;"> =</span><span> [p[</span><span style="color: #79C0FF;">0</span><span>].longitude</span><span style="color: #FF7B72;"> for</span><span> p</span><span style="color: #FF7B72;"> in</span><span> points]</span></span>
+<span class="giallo-l"><span>lat</span><span style="color: #FF7B72;"> =</span><span> [p[</span><span style="color: #79C0FF;">0</span><span>].latitude</span><span style="color: #FF7B72;">  for</span><span> p</span><span style="color: #FF7B72;"> in</span><span> points]</span></span>
+<span class="giallo-l"><span>index</span><span style="color: #FF7B72;"> =</span><span> [p.point_no</span><span style="color: #FF7B72;"> for</span><span> p</span><span style="color: #FF7B72;"> in</span><span> points]</span><span style="color: #8B949E;"> # to color sequentially each point</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>x, y</span><span style="color: #FF7B72;"> =</span><span> myMap(lon, lat)</span><span style="color: #8B949E;"> # map (long, lat) to (x,y) coordinates in plot</span></span>
+<span class="giallo-l"><span>ax.scatter(x, y,</span><span style="color: #FFA657;"> c</span><span style="color: #FF7B72;"> =</span><span> index,</span><span style="color: #FFA657;"> s</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 4</span><span>,</span><span style="color: #FFA657;"> cmap</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;brg&#39;</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># add some texts and arrows with style</span></span>
+<span class="giallo-l"><span>t1</span><span style="color: #FF7B72;"> =</span><span> ax.annotate(</span><span style="color: #A5D6FF;">&#39;France&#39;</span><span>,</span><span style="color: #FFA657;"> xy</span><span style="color: #FF7B72;">=</span><span>(</span><span style="color: #79C0FF;">.01</span><span>,</span><span style="color: #79C0FF;"> .96</span><span>),</span><span style="color: #FFA657;"> xycoords</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;axes fraction&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 horizontalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;left&#39;</span><span>,</span><span style="color: #FFA657;"> fontsize</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 20</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 verticalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;bottom&#39;</span><span>,</span><span style="color: #FFA657;"> fontname</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &#39;monospace&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>t2</span><span style="color: #FF7B72;"> =</span><span> ax.annotate(</span><span style="color: #A5D6FF;">&#39;Switzerland&#39;</span><span>,</span><span style="color: #FFA657;"> xy</span><span style="color: #FF7B72;">=</span><span>(</span><span style="color: #79C0FF;">.99</span><span>,</span><span style="color: #79C0FF;"> .96</span><span>),</span><span style="color: #FFA657;"> xycoords</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;axes fraction&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 horizontalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;right&#39;</span><span>,</span><span style="color: #FFA657;"> fontsize</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 20</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 verticalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;bottom&#39;</span><span>,</span><span style="color: #FFA657;"> fontname</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &#39;monospace&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>el</span><span style="color: #FF7B72;"> =</span><span> Ellipse((</span><span style="color: #79C0FF;">2</span><span>,</span><span style="color: #FF7B72;"> -</span><span style="color: #79C0FF;">1</span><span>),</span><span style="color: #79C0FF;"> 0.5</span><span>,</span><span style="color: #79C0FF;"> 0.5</span><span>)</span></span>
+<span class="giallo-l"><span>t3</span><span style="color: #FF7B72;"> =</span><span> ax.annotate(</span><span style="color: #A5D6FF;">&#39;Border&#39;</span><span>,</span><span style="color: #FFA657;"> xy</span><span style="color: #FF7B72;">=</span><span>(</span><span style="color: #79C0FF;">.61</span><span>,</span><span style="color: #79C0FF;"> .90</span><span>),</span><span style="color: #FFA657;"> xycoords</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;axes fraction&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 xytext</span><span style="color: #FF7B72;">=</span><span>(</span><span style="color: #79C0FF;">.5</span><span>,</span><span style="color: #79C0FF;"> .96</span><span>),</span><span style="color: #FFA657;"> textcoords</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;axes fraction&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 horizontalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;center&#39;</span><span>,</span><span style="color: #FFA657;"> fontsize</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 20</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 verticalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;bottom&#39;</span><span>,</span><span style="color: #FFA657;"> fontname</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &#39;monospace&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 arrowprops</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">dict</span><span>(</span><span style="color: #FFA657;">arrowstyle</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;simple&quot;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                 fc</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;black&quot;</span><span>,</span><span style="color: #FFA657;"> ec</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;none&quot;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                 patchB</span><span style="color: #FF7B72;">=</span><span>el,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                 connectionstyle</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;arc3,rad=0.3&quot;</span><span>))</span></span>
+<span class="giallo-l"><span>t4</span><span style="color: #FF7B72;"> =</span><span> ax.annotate(</span><span style="color: #A5D6FF;">&quot;Switzerland&#39;s</span><span style="color: #FF7B72;">\n</span><span style="color: #A5D6FF;">westest point&quot;</span><span>,</span><span style="color: #FFA657;"> xy</span><span style="color: #FF7B72;">=</span><span>myMap(</span><span style="color: #79C0FF;">5.9559555</span><span>,</span><span style="color: #79C0FF;"> 46.1323555</span><span>),</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 xytext</span><span style="color: #FF7B72;">=</span><span>(</span><span style="color: #79C0FF;">.3</span><span>,</span><span style="color: #79C0FF;"> .42</span><span>),</span><span style="color: #FFA657;"> textcoords</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;axes fraction&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 horizontalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;center&#39;</span><span>,</span><span style="color: #FFA657;"> fontsize</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 20</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 verticalalignment</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;bottom&#39;</span><span>,</span><span style="color: #FFA657;"> fontname</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &#39;monospace&#39;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                 arrowprops</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">dict</span><span>(</span><span style="color: #FFA657;">arrowstyle</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;simple&quot;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                 fc</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;black&quot;</span><span>,</span><span style="color: #FFA657;"> ec</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;none&quot;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                 patchB</span><span style="color: #FF7B72;">=</span><span>el,</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">                                 connectionstyle</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;arc3,rad=0.3&quot;</span><span>))</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">for</span><span> t</span><span style="color: #FF7B72;"> in</span><span> [t1, t2, t3, t4]:</span></span>
+<span class="giallo-l"><span>    t.set_path_effects([PathEffects.withStroke(</span><span style="color: #FFA657;">linewidth</span><span style="color: #FF7B72;">=</span><span style="color: #79C0FF;">5</span><span>,</span><span style="color: #FFA657;"> foreground</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&#39;w&#39;</span><span>,</span><span style="color: #FFA657;"> alpha</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 0.666</span><span>)])</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>plt.savefig(</span><span style="color: #A5D6FF;">&#39;map.png&#39;</span><span>,</span><span style="color: #FFA657;"> quality</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 100</span><span>,</span><span style="color: #FFA657;"> bbox_inches</span><span style="color: #FF7B72;"> =</span><span style="color: #A5D6FF;"> &#39;tight&#39;</span><span>)</span></span>
+<span class="giallo-l"><span>plt.close()</span></span></code></pre>
 <p>It reads the <abbr title="GPS Exchange Format">GPX</abbr> file, gets the map of
 the region from OpenStreeMap, adds coloured points showing the path and some
 texts. The result:</p>
@@ -304,7 +300,7 @@ missing some blue points.</p>
 <ul>
 <li>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p><a href="https://osm.org/go/0CFL8Bq5?m=">Latitude: 46.1323565, Longitude: 5.9559113</a></p>
+<p><a rel="external" href="https://osm.org/go/0CFL8Bq5?m=">Latitude: 46.1323565, Longitude: 5.9559113</a></p>
 </div>
 </li>
 </ul>

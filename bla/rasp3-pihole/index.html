@@ -119,9 +119,9 @@
 
         
         <div class="post-content">
-            <p>I decided to try <a href="https://pi-hole.net/">PiHole</a> as a <a href="https://en.wikipedia.org/wiki/DNS_sinkhole">DNS sinkhole</a>. Here I logged how I set up my Raspberry Pi 3 with ArchLinux to run it.</p>
+            <p>I decided to try <a rel="external" href="https://pi-hole.net/">PiHole</a> as a <a rel="external" href="https://en.wikipedia.org/wiki/DNS_sinkhole">DNS sinkhole</a>. Here I logged how I set up my Raspberry Pi 3 with ArchLinux to run it.</p>
 <p>The idea is to have a way to block advertisement and trackers on my entire
-network. <a href="https://ublockorigin.com/">uBlock Origin</a> is a great browser plugin
+network. <a rel="external" href="https://ublockorigin.com/">uBlock Origin</a> is a great browser plugin
 that blocks those things on webpages, but I am lazy and want a solution that
 works for my laptop, phone, and guest’s devices as well. And that’s what PiHole
 tries to do.</p>
@@ -134,13 +134,13 @@ width="500" height="333" alt="Raspberry Pi 3"></a><script async
 src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
 <p>I have an old
-<a href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/">Raspberry Pi 3 B+</a>
+<a rel="external" href="https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/">Raspberry Pi 3 B+</a>
 that is now unused. Here is how I set it up to use PiHole.</p>
 <h2 id="system-set-up">System set up</h2>
 <h3 id="raspberry">Raspberry</h3>
 <p>This part is setting up a new computer, not much to discuss here:</p>
 <ul>
-<li>follow the <a href="https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3">installation
+<li>follow the <a rel="external" href="https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3">installation
 instructions</a>,
 with the AArch64 <em>thingy</em>.</li>
 <li>update the system</li>
@@ -159,7 +159,7 @@ with the AArch64 <em>thingy</em>.</li>
 <li>allow only ssh keys</li>
 <li>disable root login</li>
 <li>generate and enable a new
-<a href="https://wiki.archlinux.org/index.php/SSH_keys">ssh key</a></li>
+<a rel="external" href="https://wiki.archlinux.org/index.php/SSH_keys">ssh key</a></li>
 </ul>
 </li>
 <li>change GPU memory to 16 MB</li>
@@ -168,29 +168,26 @@ with the AArch64 <em>thingy</em>.</li>
 <li>remove <code>haveged</code></li>
 <li>install <code>rng-tools</code> and configure it:</li>
 </ul>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> cat /etc/conf.d/rngd
-</span><span style="color:#bf616a;">RNGD_OPTS</span><span>=&quot;</span><span style="color:#a3be8c;">-o /dev/random -r /dev/hwrng</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> cat /etc/conf.d/rngd</span></span>
+<span class="giallo-l"><span>RNGD_OPTS</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;-o /dev/random -r /dev/hwrng&quot;</span></span></code></pre>
 <ul>
 <li>entropy increased from ~3700 to ~4000</li>
 <li>can read from <code>/dev/random</code> at ~71 MB/s:</li>
 </ul>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> dd if=/dev/random of=/dev/null bs=1024 count=500000 iflag=fullblock
-</span><span style="color:#bf616a;">500000+0</span><span> records in
-</span><span style="color:#bf616a;">500000+0</span><span> records out
-</span><span style="color:#bf616a;">512000000</span><span> bytes (512 MB, 488 MiB) </span><span style="color:#bf616a;">copied,</span><span> 7.19274 s, 71.2 MB/s
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> dd if=/dev/random of=/dev/null bs=</span><span style="color: #79C0FF;">1024</span><span style="color: #A5D6FF;"> count=</span><span style="color: #79C0FF;">500000</span><span style="color: #A5D6FF;"> iflag=fullblock</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">500000+0</span><span style="color: #A5D6FF;"> records in</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">500000+0</span><span style="color: #A5D6FF;"> records out</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">512000000</span><span style="color: #A5D6FF;"> bytes</span><span> (512</span><span style="color: #A5D6FF;"> MB,</span><span style="color: #79C0FF;"> 488</span><span style="color: #A5D6FF;"> MiB</span><span>) copied, 7.19274 s, 71.2 MB/s</span></span></code></pre></li>
 <li>set up time and timezone
 <ul>
-<li><a href="https://wiki.archlinux.org/index.php/Systemd-timesyncd"><code>systemd-timesyncd.service</code></a>
+<li><a rel="external" href="https://wiki.archlinux.org/index.php/Systemd-timesyncd"><code>systemd-timesyncd.service</code></a>
 as an NTP client</li>
 <li>time zone: <code>timedatectl set-timezone America/Sao_Paulo</code></li>
 </ul>
 </li>
 <li>move  to permanent location</li>
 <li>set up fixed IP address with
-<a href="https://wiki.archlinux.org/index.php/Systemd-networkd">systemd-networkd</a></li>
+<a rel="external" href="https://wiki.archlinux.org/index.php/Systemd-networkd">systemd-networkd</a></li>
 <li>set up <code>en_US.UTF-8</code> locale</li>
 <li>install <code>yay</code>, configure <code>pacman</code></li>
 <li>install <code>raspberrypi-userland-aarch64-git</code> (AUR)</li>
@@ -198,49 +195,47 @@ as an NTP client</li>
 </li>
 </ul>
 <p>Some nice commands to run after everything is in place, just because:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> uname</span><span style="color:#bf616a;"> -a
-</span><span style="color:#bf616a;">Linux</span><span> alarm 5.8.0-1-ARCH </span><span style="color:#65737e;">#1 SMP Sun Aug 9 00:03:44 UTC 2020 aarch64 GNU/Linux
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> lscpu
-</span><span style="color:#bf616a;">Architecture:</span><span>                    aarch64
-</span><span style="color:#bf616a;">CPU</span><span> op-mode(s)</span><span style="color:#96b5b4;">:</span><span>                  32-bit, 64-bit
-</span><span style="color:#bf616a;">Byte</span><span> Order:                      Little Endian
-</span><span style="color:#bf616a;">CPU</span><span>(s)</span><span style="color:#96b5b4;">:</span><span>                          4
-</span><span style="color:#bf616a;">On-line</span><span> CPU(s) </span><span style="color:#bf616a;">list:</span><span>             0-3
-</span><span style="color:#bf616a;">Thread</span><span>(s) </span><span style="color:#bf616a;">per</span><span> core:              1
-</span><span style="color:#bf616a;">Core</span><span>(s) </span><span style="color:#bf616a;">per</span><span> socket:              4
-</span><span style="color:#bf616a;">Socket</span><span>(s)</span><span style="color:#96b5b4;">:</span><span>                       1
-</span><span style="color:#bf616a;">Vendor</span><span> ID:                       ARM
-</span><span style="color:#bf616a;">Model:</span><span>                           4
-</span><span style="color:#bf616a;">Model</span><span> name:                      Cortex-A53
-</span><span style="color:#bf616a;">Stepping:</span><span>                        r0p4
-</span><span style="color:#bf616a;">CPU</span><span> max MHz:                     1200.0000
-</span><span style="color:#bf616a;">CPU</span><span> min MHz:                     600.0000
-</span><span style="color:#bf616a;">BogoMIPS:</span><span>                        38.40
-</span><span style="color:#bf616a;">Vulnerability</span><span> Itlb multihit:     Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> L1tf:              Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> Mds:               Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> Meltdown:          Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> Spec store bypass: Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> Spectre v1:        Mitigation; </span><span style="color:#bf616a;">__user</span><span> pointer sanitization
-</span><span style="color:#bf616a;">Vulnerability</span><span> Spectre v2:        Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> Srbds:             Not affected
-</span><span style="color:#bf616a;">Vulnerability</span><span> Tsx async abort:   Not affected
-</span><span style="color:#bf616a;">Flags:</span><span>                           fp asimd evtstrm crc32 cpuid
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> free</span><span style="color:#bf616a;"> -h
-</span><span>          </span><span style="color:#bf616a;">total</span><span>      used      free      shared  buff/cache   available
-</span><span style="color:#bf616a;">Mem:</span><span>      899Mi      76Mi      41Mi       0.0Ki  781Mi        808Mi
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> uname</span><span style="color: #79C0FF;"> -a</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Linux</span><span style="color: #A5D6FF;"> alarm 5.8.0-1-ARCH</span><span style="color: #8B949E;"> #1 SMP Sun Aug 9 00:03:44 UTC 2020 aarch64 GNU/Linux</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> lscpu</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Architecture:</span><span style="color: #A5D6FF;">                    aarch64</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">CPU</span><span style="color: #A5D6FF;"> op-mode</span><span>(</span><span style="color: #FFA657;">s</span><span>)</span><span style="color: #A5D6FF;">:                  32-bit, 64-bit</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Byte</span><span style="color: #A5D6FF;"> Order:                      Little Endian</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">CPU(s</span><span>):                          4</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">On-line</span><span style="color: #A5D6FF;"> CPU</span><span>(</span><span style="color: #FFA657;">s</span><span>)</span><span style="color: #A5D6FF;"> list:             0-3</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Thread(s</span><span>) per core:              1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Core(s</span><span>) per socket:              4</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Socket(s</span><span>):                       1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vendor</span><span style="color: #A5D6FF;"> ID:                       ARM</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Model:</span><span style="color: #79C0FF;">                           4</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Model</span><span style="color: #A5D6FF;"> name:                      Cortex-A53</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Stepping:</span><span style="color: #A5D6FF;">                        r0p4</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">CPU</span><span style="color: #A5D6FF;"> max MHz:</span><span style="color: #79C0FF;">                     1200.0000</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">CPU</span><span style="color: #A5D6FF;"> min MHz:</span><span style="color: #79C0FF;">                     600.0000</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">BogoMIPS:</span><span style="color: #79C0FF;">                        38.40</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Itlb multihit:     Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> L1tf:              Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Mds:               Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Meltdown:          Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Spec store bypass: Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Spectre v1:        Mitigation</span><span>;</span><span style="color: #FFA657;"> __user</span><span style="color: #A5D6FF;"> pointer sanitization</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Spectre v2:        Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Srbds:             Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Vulnerability</span><span style="color: #A5D6FF;"> Tsx async abort:   Not affected</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Flags:</span><span style="color: #A5D6FF;">                           fp asimd evtstrm crc32 cpuid</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> free</span><span style="color: #79C0FF;"> -h</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">          total</span><span style="color: #A5D6FF;">      used      free      shared  buff/cache   available</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Mem:</span><span style="color: #A5D6FF;">      899Mi      76Mi      41Mi       0.0Ki  781Mi        808Mi</span></span></code></pre>
 <p>And this system needs almost 19 seconds to boot:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> systemd-analyze
-</span><span style="color:#bf616a;">Startup</span><span> finished in 7.670s (kernel) </span><span style="color:#bf616a;">+</span><span> 10.919s (userspace) = </span><span style="color:#bf616a;">18.590s
-</span><span style="color:#bf616a;">graphical.target</span><span> reached after 10.904s in userspace
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> systemd-analyze</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Startup</span><span style="color: #A5D6FF;"> finished in 7.670s</span><span> (kernel) + 10.919s (</span><span style="color: #FFA657;">userspace</span><span>) = 18.590s</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">graphical.target</span><span style="color: #A5D6FF;"> reached after 10.904s in userspace</span></span></code></pre>
 <p>It takes roughly 3 times longer than my 5-year old x86_64 laptop.</p>
 <h3 id="pihole">PiHole</h3>
 <p>Following the instructions in
-<a href="https://wiki.archlinux.org/index.php/Pi-hole">ArchWiki</a>:</p>
+<a rel="external" href="https://wiki.archlinux.org/index.php/Pi-hole">ArchWiki</a>:</p>
 <ol>
 <li>install pihole-server: <code>yay -S pi-hole-server</code></li>
 <li>install php things: <code>pacman -S php-sqlite</code> and enable the necessary
@@ -257,7 +252,7 @@ extensions</li>
 <li><code>$ yay -S cloudflared</code></li>
 <li>add some IPv6 entries in <code>/etc/cloudflared/cloudflared.yml</code></li>
 <li>start/enable <code>cloudflared.service</code></li>
-<li>in the <a href="http://pihole/admin/settings.php?tab=dns">web settings page</a>:
+<li>in the <a rel="external" href="http://pihole/admin/settings.php?tab=dns">web settings page</a>:
 <ul>
 <li>disable all DNS servers and use <code>127.0.0.1#5300</code> only</li>
 <li>enable DNSSEC</li>

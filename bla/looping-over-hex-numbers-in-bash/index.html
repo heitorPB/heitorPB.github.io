@@ -127,21 +127,19 @@ And sometimes we need to do that in Bash.</p>
 <p>We are talking about Bash, so it only takes one line to do it. For example, to
 go from <code>8</code> to <code>0xe</code> (not inclusive), and print the decimal value and their hex
 number:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for </span><span>((i = </span><span style="color:#d08770;">8</span><span>; i &lt; $(</span><span style="color:#96b5b4;">printf </span><span>%</span><span style="color:#bf616a;">d</span><span> 0xe); ++i)); </span><span style="color:#b48ead;">do </span><span style="color:#bf616a;">j</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%x</span><span>&quot; $</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">)</span><span>; </span><span style="color:#96b5b4;">echo </span><span style="color:#bf616a;">-e </span><span>&quot;$</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">:\t </span><span>$</span><span style="color:#bf616a;">j</span><span>&quot;; </span><span style="color:#b48ead;">done
-</span><span style="color:#bf616a;">8:</span><span>       8
-</span><span style="color:#bf616a;">9:</span><span>       9
-</span><span style="color:#bf616a;">10:</span><span>      a
-</span><span style="color:#bf616a;">11:</span><span>      b
-</span><span style="color:#bf616a;">12:</span><span>      c
-</span><span style="color:#bf616a;">13:</span><span>      d
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FF7B72;">for</span><span> ((i</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 8</span><span>; i</span><span style="color: #FF7B72;"> &lt;</span><span> $(printf</span><span style="color: #FF7B72;"> %</span><span>d</span><span style="color: #79C0FF;"> 0xe</span><span>);</span><span style="color: #FF7B72;"> ++</span><span>i));</span><span style="color: #FF7B72;"> do</span><span> j</span><span style="color: #FF7B72;">=</span><span>$(</span><span style="color: #79C0FF;">printf</span><span style="color: #A5D6FF;"> &quot;%x&quot;</span><span> $i);</span><span style="color: #79C0FF;"> echo -e</span><span style="color: #A5D6FF;"> &quot;</span><span>$i</span><span style="color: #A5D6FF;">:\t </span><span>$j</span><span style="color: #A5D6FF;">&quot;</span><span>;</span><span style="color: #FF7B72;"> done</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">8:</span><span style="color: #79C0FF;">       8</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">9:</span><span style="color: #79C0FF;">       9</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">10:</span><span style="color: #A5D6FF;">      a</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">11:</span><span style="color: #A5D6FF;">      b</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">12:</span><span style="color: #A5D6FF;">      c</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">13:</span><span style="color: #A5D6FF;">      d</span></span></code></pre>
 <p>Now, let’s see bit by bit what is this one-liner. The same code, in multiple
 lines, for educational purposes only:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">for </span><span>((i = </span><span style="color:#d08770;">8</span><span>; i &lt; $(</span><span style="color:#96b5b4;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%d</span><span>&quot; 0xe); ++i)); </span><span style="color:#b48ead;">do 
-</span><span>	</span><span style="color:#bf616a;">j</span><span>=$</span><span style="color:#a3be8c;">(</span><span style="color:#96b5b4;">printf </span><span>&quot;</span><span style="color:#a3be8c;">%x</span><span>&quot; $</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">)
-</span><span>	</span><span style="color:#96b5b4;">echo </span><span style="color:#bf616a;">-e </span><span>&quot;$</span><span style="color:#bf616a;">i</span><span style="color:#a3be8c;">:\t </span><span>$</span><span style="color:#bf616a;">j</span><span>&quot;
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FF7B72;">for</span><span> ((i</span><span style="color: #FF7B72;"> =</span><span style="color: #79C0FF;"> 8</span><span>; i</span><span style="color: #FF7B72;"> &lt;</span><span> $(printf</span><span style="color: #A5D6FF;"> &quot;%d&quot;</span><span style="color: #79C0FF;"> 0xe</span><span>);</span><span style="color: #FF7B72;"> ++</span><span>i));</span><span style="color: #FF7B72;"> do</span><span> </span></span>
+<span class="giallo-l"><span>	j</span><span style="color: #FF7B72;">=</span><span>$(</span><span style="color: #79C0FF;">printf</span><span style="color: #A5D6FF;"> &quot;%x&quot;</span><span> $i)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">	echo -e</span><span style="color: #A5D6FF;"> &quot;</span><span>$i</span><span style="color: #A5D6FF;">:\t </span><span>$j</span><span style="color: #A5D6FF;">&quot;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>The first line is a C-style <code>for</code> loop. The loop variable, <code>i</code>, starts from <code>8</code>
 and the loop goes on while <code>i &lt; $(printf "%d" 0xe)</code> is true. The loop variable
 is incremented (<code>++i</code>, C-style pre-increment) at the end of each iteration.</p>
@@ -149,7 +147,7 @@ is incremented (<code>++i</code>, C-style pre-increment) at the end of each iter
 generates another string using the formatter <code>%d</code>. This means: print <em>0xe</em> as
 an integer. This way the loop starts at <em>8</em> and ends at <em>14</em> (<em>0xe</em>), not
 inclusive. The <code>printf</code> is executed using
-<a href="https://www.gnu.org/software/bash/manual/bash.html#Command-Substitution-1">command substitution</a>,
+<a rel="external" href="https://www.gnu.org/software/bash/manual/bash.html#Command-Substitution-1">command substitution</a>,
 so its value “replaces” the command. This is what “tricks” the for loop into
 starting from <em>0</em> and ending at <em>13</em>.</p>
 <p>As the loop is not inclusive (the condition is <code>i &lt; 14</code>), the last iteration
@@ -160,9 +158,8 @@ variable <code>j</code>. The <code>echo</code> statement prints <code>i</code>, 
 corresponding hexadecimal.</p>
 <p>All one needs when coding in Bash is one line.</p>
 <p>And just for fun, here’s the equivalent Python code:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0xE</span><span>):
-</span><span>    </span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&quot;{i}</span><span style="color:#a3be8c;">:   </span><span>{i</span><span style="color:#d08770;">:x</span><span>}&quot;)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">for</span><span> i</span><span style="color: #FF7B72;"> in</span><span style="color: #79C0FF;"> range</span><span>(</span><span style="color: #79C0FF;">0</span><span>,</span><span style="color: #FF7B72;"> 0x</span><span style="color: #79C0FF;">E</span><span>):</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    print</span><span>(</span><span style="color: #FF7B72;">f</span><span style="color: #A5D6FF;">&quot;</span><span style="color: #FF7B72;">{</span><span>i</span><span style="color: #FF7B72;">}</span><span style="color: #A5D6FF;">:   </span><span style="color: #FF7B72;">{</span><span>i</span><span style="color: #FF7B72;">:x}</span><span style="color: #A5D6FF;">&quot;</span><span>)</span></span></code></pre>
 <p>But why use Python when we can suffer with Bash?</p>
 
         </div>

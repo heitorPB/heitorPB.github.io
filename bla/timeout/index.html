@@ -125,10 +125,9 @@ fine and we had no issues, until we had an infinite loop.</p>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/30622866477/" title="Airplane Tracks"><img src="https://live.staticflickr.com/1908/30622866477_d147a6f3fc_z.jpg" width="640" height="426" alt="Airplane Tracks"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
 <p>We were using the Bash built-in <code>until</code> to check if the web server was up:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">until </span><span style="color:#bf616a;">curl --silent --fail-with-body</span><span> 10.0.0.1:8080/health; </span><span style="color:#b48ead;">do
-</span><span>	</span><span style="color:#bf616a;">sleep</span><span> 1
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FF7B72;">until</span><span style="color: #FFA657;"> curl</span><span style="color: #79C0FF;"> --silent --fail-with-body</span><span style="color: #A5D6FF;"> 10.0.0.1:8080/health</span><span>;</span><span style="color: #FF7B72;"> do</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	sleep</span><span style="color: #79C0FF;"> 1</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>This works fine. Unless our web server crashes during startup and we <code>sleep 1</code>
 forever.</p>
 <p>Here comes a handy utility: <code>timeout</code>. As the name suggests, this command adds
@@ -138,36 +137,32 @@ exits with non-zero. By default, <code>timeout</code> sends <code>SIGTERM</code>
 it with the <code>--signal</code> flag, e.g. <code>timeout --signal=SIGKILL 1s foo</code>.</p>
 <p>For example, <code>timeout 1s sleep 5</code> will send the <code>SIGTERM</code> signal to <code>sleep</code>
 after 1 second:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> time timeout 1s sleep 4
-</span><span>
-</span><span style="color:#bf616a;">real</span><span>    0m1,004s
-</span><span style="color:#bf616a;">user</span><span>    0m0,000s
-</span><span style="color:#bf616a;">sys</span><span>     0m0,005s
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> echo $</span><span style="color:#bf616a;">?
-</span><span style="color:#bf616a;">124
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> time timeout 1s sleep</span><span style="color: #79C0FF;"> 4</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">real</span><span style="color: #A5D6FF;">    0m1,004s</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">user</span><span style="color: #A5D6FF;">    0m0,000s</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">sys</span><span style="color: #A5D6FF;">     0m0,005s</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo</span><span style="color: #79C0FF;"> $?</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">124</span></span></code></pre>
 <p>The natural thing to do then is to combine <code>timeout</code> and <code>until</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">timeout</span><span> 1m until curl</span><span style="color:#bf616a;"> --silent --fail-with-body</span><span> 10.0.0.1:8080/health; </span><span style="color:#b48ead;">do
-</span><span>	</span><span style="color:#bf616a;">sleep</span><span> 1
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">timeout</span><span style="color: #A5D6FF;"> 1m until curl</span><span style="color: #79C0FF;"> --silent --fail-with-body</span><span style="color: #A5D6FF;"> 10.0.0.1:8080/health</span><span>;</span><span style="color: #FF7B72;"> do</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">	sleep</span><span style="color: #79C0FF;"> 1</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>The only issue is that this doesn’t work. <code>timeout</code> expects a killable command
 and <code>until</code> is a shell keyword: you can’t <code>SIGTERM</code> <code>until</code>. We can’t use
 <code>timeout</code> with any shell built-in.</p>
 <p>The way forward is to wrap that <code>until</code> in a Bash process:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">timeout</span><span> 1m bash</span><span style="color:#bf616a;"> -c </span><span>&quot;</span><span style="color:#a3be8c;">until curl --silent --fail-with-body 10.0.0.1:8080/health; do
-</span><span style="color:#a3be8c;">	sleep 1
-</span><span style="color:#a3be8c;">done</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">timeout</span><span style="color: #A5D6FF;"> 1m bash</span><span style="color: #79C0FF;"> -c</span><span style="color: #A5D6FF;"> &quot;until curl --silent --fail-with-body 10.0.0.1:8080/health; do</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">	sleep 1</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">done&quot;</span></span></code></pre>
 <p>Another approach is to move the <code>until</code> to a separate Bash script and <code>timeout</code>
 it:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">timeout</span><span> 1m ./until.sh
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">timeout</span><span style="color: #A5D6FF;"> 1m ./until.sh</span></span></code></pre>
 <p>It’s a shame we can’t use <code>timeout</code> with <code>until</code> directly, that would be
 amazing. But wrapping it in a Bash process/script gets the job done.</p>
 <p><small><center></p>
-<p>Discussion on <a href="https://news.ycombinator.com/item?id=44096395">HackerNews</a>.</p>
+<p>Discussion on <a rel="external" href="https://news.ycombinator.com/item?id=44096395">HackerNews</a>.</p>
 </center></small>
 
         </div>

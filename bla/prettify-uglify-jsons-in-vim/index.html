@@ -125,15 +125,13 @@ did not accept pretty formatted JSON, they had to be compact (or minimized).</p>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/52816662927/" title="Ruins in the forest"><img src="https://live.staticflickr.com/65535/52816662927_7c35026394_z.jpg" width="640" height="426" alt="Ruins in the forest"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
 <p>So, instead of having this pretty JSON in a file:</p>
-<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
-</span><span>    &quot;</span><span style="color:#a3be8c;">user</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">L. Skywalker</span><span>&quot;,
-</span><span>    &quot;</span><span style="color:#a3be8c;">species</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">human</span><span>&quot;,
-</span><span>    &quot;</span><span style="color:#a3be8c;">color</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">green</span><span>&quot;
-</span><span>}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="json"><span class="giallo-l"><span>{</span></span>
+<span class="giallo-l"><span style="color: #7EE787;">    &quot;user&quot;</span><span>:</span><span style="color: #A5D6FF;"> &quot;L. Skywalker&quot;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #7EE787;">    &quot;species&quot;</span><span>:</span><span style="color: #A5D6FF;"> &quot;human&quot;</span><span>,</span></span>
+<span class="giallo-l"><span style="color: #7EE787;">    &quot;color&quot;</span><span>:</span><span style="color: #A5D6FF;"> &quot;green&quot;</span></span>
+<span class="giallo-l"><span>}</span></span></code></pre>
 <p>I had to use this ugly and barely readable JSON instead:</p>
-<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{&quot;</span><span style="color:#a3be8c;">user</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">L. Skywalker</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">species</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">human</span><span>&quot;,&quot;</span><span style="color:#a3be8c;">color</span><span>&quot;:&quot;</span><span style="color:#a3be8c;">green</span><span>&quot;}
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="json"><span class="giallo-l"><span>{</span><span style="color: #7EE787;">&quot;user&quot;</span><span>:</span><span style="color: #A5D6FF;">&quot;L. Skywalker&quot;</span><span>,</span><span style="color: #7EE787;">&quot;species&quot;</span><span>:</span><span style="color: #A5D6FF;">&quot;human&quot;</span><span>,</span><span style="color: #7EE787;">&quot;color&quot;</span><span>:</span><span style="color: #A5D6FF;">&quot;green&quot;</span><span>}</span></span></code></pre>
 <p>The JSON I needed was way longer with a few nested objects inside, but you got
 the idea. The problem I had was that one of the nested objects was
 missing or incomplete and the program crashed on startup.</p>

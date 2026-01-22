@@ -124,7 +124,7 @@ Really, that’s the only reason for me to do it.</p>
 <center>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/32452746158/in/album-72157704652716634" title="DSC_3740"><img src="https://live.staticflickr.com/4914/32452746158_1185b5ee0f.jpg" width="640" height="426" alt="DSC_3740"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
-<p>I chose to go with <a href="https://mainsail.xyz">Mainsail</a>, a nice looking web
+<p>I chose to go with <a rel="external" href="https://mainsail.xyz">Mainsail</a>, a nice looking web
 interface to control and monitor the printer. Installation requires a few
 steps:</p>
 <ol>
@@ -145,13 +145,10 @@ printer is in the network tab of the settings menu.</p>
 </li>
 <li>
 <p>Download the installation script, after SSHing:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> git clone https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script
-</span></code></pre>
-</li>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> git clone https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script</span></span></code></pre></li>
 <li>
 <p>Now it is time to install it! Still in the terminal, run the helper script:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sh /usr/data/helper-script/helper.sh
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> sh /usr/data/helper-script/helper.sh</span></span></code></pre>
 <p>Select <code>1</code> for the Install Menu, then <code>1</code> to install Moonraker and Nginx,
 confirm it. This may take a while to complete, don’t rush the script.</p>
 <p>After the installation is complete, you’ll be back into the Install Menu.

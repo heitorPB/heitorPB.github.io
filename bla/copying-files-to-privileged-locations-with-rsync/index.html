@@ -127,19 +127,18 @@
 bunch of them) to a directory that requires administrative privileges. My
 normal user does not have permissions for that, but I can get it via <code>sudo</code>.</p>
 <p>Copying files to other servers is simple and I usually use
-<a href="https://en.wikipedia.org/wiki/Rsync"><code>rsync</code></a> for that. After copying the
+<a rel="external" href="https://en.wikipedia.org/wiki/Rsync"><code>rsync</code></a> for that. After copying the
 files to a temporary location, I can use <code>ssh</code> to move files around.</p>
 <p>If the remote server is set up to not ask for passwords when using <code>sudo</code>, this
 task can be done easily:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> scp afile user@host.com:/tmp/
-</span><span style="color:#bf616a;">$</span><span> ssh user@host.com sudo mv</span><span style="color:#bf616a;"> -v</span><span> /tmp/afile /etc/default/
-</span><span style="color:#bf616a;">renamed </span><span>&#39;</span><span style="color:#a3be8c;">/tmp/afile</span><span>&#39; -&gt; &#39;</span><span style="color:#a3be8c;">/etc/default/afile</span><span>&#39;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> scp afile user@host.com:/tmp/</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ssh user@host.com sudo mv</span><span style="color: #79C0FF;"> -v</span><span style="color: #A5D6FF;"> /tmp/afile /etc/default/</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">renamed</span><span style="color: #A5D6FF;"> &#39;/tmp/afile&#39;</span><span> -</span><span style="color: #FF7B72;">&gt;</span><span style="color: #A5D6FF;"> &#39;/etc/default/afile&#39;</span></span></code></pre>
 <p>The <code>scp</code> command copies a file to a temporary directory on the remote server
 and then we execute <code>sudo mv -v /tmp/afile /etc/default/</code> via <code>ssh</code> on the
 server to move the file to the final destination.</p>
 <blockquote>
-<p>Note: I used <code>scp</code> in this example as it is simpler to type, but <a href="https://lwn.net/Articles/835962/">scp was
+<p>Note: I used <code>scp</code> in this example as it is simpler to type, but <a rel="external" href="https://lwn.net/Articles/835962/">scp was
 deprecated</a>. I use <code>rsync</code> instead.</p>
 </blockquote>
 <p>I really like the <code>-v</code> flag for <code>mv</code> in this command, it serves as a
@@ -147,14 +146,13 @@ confirmation that the file was indeed copied. <code>-v</code> is short for <code
 and, when used, <code>mv</code> tells you what file is being moved.</p>
 <p>But this approach requires typing two commands, while we could use only one
 <code>rsync</code> command:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> rsync</span><span style="color:#bf616a;"> -avzP --rsync-path</span><span>=&quot;</span><span style="color:#a3be8c;">sudo rsync</span><span>&quot; afile user@host.com:/etc/default/
-</span><span style="color:#bf616a;">sending</span><span> incremental file list
-</span><span style="color:#bf616a;">afile
-</span><span>              </span><span style="color:#bf616a;">3</span><span> 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
-</span><span>                                                                          
-</span><span style="color:#bf616a;">sent</span><span> 107 bytes  received 35 bytes  31.56 bytes/sec
-</span><span style="color:#bf616a;">total</span><span> size is 3  speedup is 0.02
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> rsync</span><span style="color: #79C0FF;"> -avzP --rsync-path=</span><span style="color: #A5D6FF;">&quot;sudo rsync&quot; afile user@host.com:/etc/default/</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">sending</span><span style="color: #A5D6FF;"> incremental file list</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">afile</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">              3</span><span style="color: #A5D6FF;"> 100%    0.00kB/s    0:00:00</span><span> (xfr#1, to-chk</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">0/1</span><span>)</span></span>
+<span class="giallo-l"><span>                                                                          </span></span>
+<span class="giallo-l"><span style="color: #FFA657;">sent</span><span style="color: #79C0FF;"> 107</span><span style="color: #A5D6FF;"> bytes  received</span><span style="color: #79C0FF;"> 35</span><span style="color: #A5D6FF;"> bytes</span><span style="color: #79C0FF;">  31.56</span><span style="color: #A5D6FF;"> bytes/sec</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">total</span><span style="color: #A5D6FF;"> size is</span><span style="color: #79C0FF;"> 3</span><span style="color: #A5D6FF;">  speedup is</span><span style="color: #79C0FF;"> 0.02</span></span></code></pre>
 <p>The magic words here are <code>--rsync-path="sudo rsync"</code>. This flag specifies the
 path for the <code>rsync</code> executable on the remote machine. By using <code>sudo rsync</code>
 remotely, we can access the directory we want!</p>

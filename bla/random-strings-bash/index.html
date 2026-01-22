@@ -126,27 +126,25 @@ up doing it.</p>
 <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/53673889278/" title="Old Tractor"><img src="https://live.staticflickr.com/65535/53673889278_630a78e5fe_z.jpg" width="640" height="425" alt="Old Tractor"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 </center>
 <p>As with all Bash tricks, one line gets the job done:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> tr</span><span style="color:#bf616a;"> -dc </span><span style="color:#b48ead;">[</span><span>:alnum:</span><span style="color:#b48ead;">] </span><span>&lt; /dev/urandom | </span><span style="color:#bf616a;">head -c </span><span>&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">len</span><span style="color:#a3be8c;">}</span><span>&quot;
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> tr</span><span style="color: #79C0FF;"> -dc</span><span> [:alnum:] </span><span style="color: #FF7B72;">&lt;</span><span> /dev/urandom </span><span style="color: #FF7B72;">|</span><span style="color: #FFA657;"> head</span><span style="color: #79C0FF;"> -c</span><span style="color: #A5D6FF;"> &quot;${</span><span>len</span><span style="color: #A5D6FF;">}&quot;</span></span></code></pre>
 <p>This command gets random bits from <code>/dev/urandom</code> and deletes (<code>-d</code>) all
 characters that are not (<code>-c</code>) in a letters and digits set (<code>[:alnum:]</code>). The
 <code>head</code> command is to limit the output to <code>$len</code> bytes (characters in this
 case).</p>
 <hr />
 <p>Before getting to this solution, I used a more pedestrian script:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">alphabet</span><span>=&quot;</span><span style="color:#a3be8c;">abcdefghijklmnopqrstuvwxyz1234567890</span><span>&quot;
-</span><span style="color:#bf616a;">len</span><span>=</span><span style="color:#a3be8c;">5
-</span><span>
-</span><span style="color:#bf616a;">str</span><span>=&quot;&quot;
-</span><span style="color:#b48ead;">for</span><span> i </span><span style="color:#b48ead;">in </span><span>$(</span><span style="color:#bf616a;">seq</span><span> 1 ${</span><span style="color:#bf616a;">len</span><span>}); </span><span style="color:#b48ead;">do
-</span><span>	</span><span style="color:#bf616a;">char</span><span>=&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">alphabet</span><span>:$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">RANDOM</span><span style="color:#a3be8c;">} </span><span>% $</span><span style="color:#a3be8c;">{</span><span>#</span><span style="color:#bf616a;">alphabet</span><span style="color:#a3be8c;">}</span><span>:</span><span style="color:#d08770;">1</span><span style="color:#a3be8c;">}</span><span>&quot;
-</span><span>	</span><span style="color:#bf616a;">str</span><span>=&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">str</span><span style="color:#a3be8c;">}</span><span>$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">char</span><span style="color:#a3be8c;">}</span><span>&quot;
-</span><span style="color:#b48ead;">done
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span>alphabet</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;abcdefghijklmnopqrstuvwxyz1234567890&quot;</span></span>
+<span class="giallo-l"><span>len</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">5</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>str</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;&quot;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">for</span><span> i</span><span style="color: #FF7B72;"> in</span><span> $(</span><span style="color: #FFA657;">seq</span><span style="color: #79C0FF;"> 1</span><span> ${len});</span><span style="color: #FF7B72;"> do</span></span>
+<span class="giallo-l"><span>	char</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;${</span><span>alphabet</span><span style="color: #FF7B72;">:</span><span style="color: #A5D6FF;">${</span><span>RANDOM</span><span style="color: #A5D6FF;">}</span><span style="color: #FF7B72;"> %</span><span style="color: #A5D6FF;"> ${</span><span style="color: #FF7B72;">#</span><span>alphabet</span><span style="color: #A5D6FF;">}</span><span style="color: #FF7B72;">:</span><span>1</span><span style="color: #A5D6FF;">}&quot;</span></span>
+<span class="giallo-l"><span>	str</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">&quot;${</span><span>str</span><span style="color: #A5D6FF;">}${</span><span>char</span><span style="color: #A5D6FF;">}&quot;</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">done</span></span></code></pre>
 <p>We first define all characters to choose from, then pick one randomly as many
 times as the length of the final string.</p>
 <p>The trick is picking the random character. Here we use
-<a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">substring expansion</a>
+<a rel="external" href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">substring expansion</a>
 (<code>${variable:offset:length}</code>) to select only one character from our alphabet
 (the <code>length</code> is <code>1</code>). The <code>offset</code> is calculated as a random number
 (<code>${RANDOM}</code>) modulo our <code>alphabet</code> length (<code>${#alphabet}</code>).</p>

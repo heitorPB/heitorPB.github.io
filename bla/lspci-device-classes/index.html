@@ -131,24 +131,21 @@ colons must be in hexadecimal format. You can omit a block and that means
 <em>any</em> device in that category.</p>
 <p>For example, to list all devices by AMD/ATI, use the vendor ID <code>1002</code>. The
 examples below are from my laptop:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lspci</span><span style="color:#bf616a;"> -d</span><span> 1002:: </span><span style="color:#65737e;"># AMD/ATI vendor, any class
-</span><span style="color:#bf616a;">07:00.0</span><span> VGA compatible controller: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD/ATI</span><span style="color:#b48ead;">]</span><span> Barcelo (rev d1)
-</span><span style="color:#bf616a;">07:00.1</span><span> Audio device: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD/ATI</span><span style="color:#b48ead;">]</span><span> Renoir Radeon High Definition Audio Controller
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> lspci</span><span style="color: #79C0FF;"> -d</span><span style="color: #A5D6FF;"> 1002::</span><span style="color: #8B949E;"> # AMD/ATI vendor, any class</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">07:00.0</span><span style="color: #A5D6FF;"> VGA compatible controller: Advanced Micro Devices, Inc.</span><span> [AMD/ATI] Barcelo (</span><span style="color: #FFA657;">rev</span><span style="color: #A5D6FF;"> d1</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">07:00.1</span><span style="color: #A5D6FF;"> Audio device: Advanced Micro Devices, Inc.</span><span> [AMD/ATI] Renoir Radeon High Definition Audio Controller</span></span></code></pre>
 <p>To list all wireless devices, the class is <code>0280</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lspci</span><span style="color:#bf616a;"> -d</span><span> ::0280 </span><span style="color:#65737e;"># Any vendor, Wireless class
-</span><span style="color:#bf616a;">06:00.0</span><span> Network controller: MEDIATEK Corp. MT7922 802.11ax PCI Express Wireless Network Adapter
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> lspci</span><span style="color: #79C0FF;"> -d</span><span style="color: #A5D6FF;"> ::0280</span><span style="color: #8B949E;"> # Any vendor, Wireless class</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">06:00.0</span><span style="color: #A5D6FF;"> Network controller: MEDIATEK Corp. MT7922 802.11ax PCI Express Wireless Network Adapter</span></span></code></pre>
 <p>My laptop is powered by an AMD CPU, so listing all AMD devices (vendor <code>1022</code>)
 shows a lot of information. To filter all USB controllers (class <code>c03</code>) by AMD,
 we combine the vendor and class:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lspci</span><span style="color:#bf616a;"> -d</span><span> 1022::0c03 </span><span style="color:#65737e;"># AMD vendor, USB controller class
-</span><span style="color:#bf616a;">07:00.3</span><span> USB controller: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD</span><span style="color:#b48ead;">]</span><span> Renoir/Cezanne USB 3.1
-</span><span style="color:#bf616a;">07:00.4</span><span> USB controller: Advanced Micro Devices, Inc. </span><span style="color:#b48ead;">[</span><span>AMD</span><span style="color:#b48ead;">]</span><span> Renoir/Cezanne USB 3.1
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> lspci</span><span style="color: #79C0FF;"> -d</span><span style="color: #A5D6FF;"> 1022::0c03</span><span style="color: #8B949E;"> # AMD vendor, USB controller class</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">07:00.3</span><span style="color: #A5D6FF;"> USB controller: Advanced Micro Devices, Inc.</span><span> [AMD] Renoir/Cezanne USB 3.1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">07:00.4</span><span style="color: #A5D6FF;"> USB controller: Advanced Micro Devices, Inc.</span><span> [AMD] Renoir/Cezanne USB 3.1</span></span></code></pre>
 <p>Note: AMD (<code>1022</code>) is not AMD/ATI (<code>1002</code>).</p>
 <p>You can check a list of device vendors and classes at the
-<a href="http://pci-ids.ucw.cz/">PCI ID Repository</a>.</p>
+<a rel="external" href="http://pci-ids.ucw.cz/">PCI ID Repository</a>.</p>
 
         </div>
 

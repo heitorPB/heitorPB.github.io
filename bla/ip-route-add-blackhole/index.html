@@ -124,29 +124,25 @@
         <div class="post-content">
             <p>Today I found out you can have your own local black hole. And it can eat away
 all your network packets, so be careful with that.</p>
-<p>To create a black hole, we need to add a new entry to the <a href="https://en.wikipedia.org/wiki/Routing_table">routing
+<p>To create a black hole, we need to add a new entry to the <a rel="external" href="https://en.wikipedia.org/wiki/Routing_table">routing
 table</a>. On modern Linux
 distributions, this is done with the <code>iproute2</code> package:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo ip route add blackhole 10.0.0.0/24
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> sudo ip route add blackhole 10.0.0.0/24</span></span></code></pre>
 <p>Now, let me tell you a joke: 3 ICMP packets entered a <del>bar</del> black hole:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ping</span><span style="color:#bf616a;"> -c</span><span> 3 10.0.0.1
-</span><span style="color:#bf616a;">ping:</span><span> connect: Invalid argument
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ping</span><span style="color: #79C0FF;"> -c 3 10.0.0.1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ping:</span><span style="color: #A5D6FF;"> connect: Invalid argument</span></span></code></pre>
 <p><code>ssh</code> also shows some interesting messages:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ssh 10.0.0.1
-</span><span style="color:#bf616a;">ssh:</span><span> connect to host 10.0.0.1 port 22: Invalid argument
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ssh</span><span style="color: #79C0FF;"> 10.0.0.1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ssh:</span><span style="color: #A5D6FF;"> connect to host</span><span style="color: #79C0FF;"> 10.0.0.1</span><span style="color: #A5D6FF;"> port 22: Invalid argument</span></span></code></pre>
 <p>And if we try any address that is far away from the black hole’s event horizon:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> ssh 10.0.10.1
-</span><span style="color:#bf616a;">ssh:</span><span> connect to host 10.0.10.1 port 22: Connection timed out
-</span><span>
-</span><span style="color:#bf616a;">$</span><span> ping</span><span style="color:#bf616a;"> -c</span><span> 3 10.0.10.1
-</span><span style="color:#bf616a;">PING</span><span> 10.0.10.1 (10.0.10.1) </span><span style="color:#bf616a;">56</span><span>(84) </span><span style="color:#bf616a;">bytes</span><span> of data.
-</span><span>
-</span><span style="color:#bf616a;">---</span><span> 10.0.10.1 ping statistics ---
-</span><span style="color:#bf616a;">3</span><span> packets transmitted, 0 received, 100% packet loss, time 2043ms
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ssh</span><span style="color: #79C0FF;"> 10.0.10.1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">ssh:</span><span style="color: #A5D6FF;"> connect to host</span><span style="color: #79C0FF;"> 10.0.10.1</span><span style="color: #A5D6FF;"> port 22: Connection timed out</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> ping</span><span style="color: #79C0FF;"> -c 3 10.0.10.1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">PING</span><span style="color: #79C0FF;"> 10.0.10.1</span><span> (10.0.10.1) 56(</span><span style="color: #FFA657;">84</span><span>) bytes of data.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">---</span><span style="color: #79C0FF;"> 10.0.10.1</span><span style="color: #A5D6FF;"> ping statistics</span><span style="color: #79C0FF;"> ---</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">3</span><span style="color: #A5D6FF;"> packets transmitted,</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;"> received, 100% packet loss, time 2043ms</span></span></code></pre>
 <p>According to the <code>ip-route(8)</code> manual, black hole routes are unreachable and
 the requesters get an <code>EINVAL</code> (error, invalid) error. There are other two
 types of routes that block connection: <code>unreachable</code> and <code>prohibit</code>. But those

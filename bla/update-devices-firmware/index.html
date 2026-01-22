@@ -135,7 +135,7 @@ follow their documentation, <em>if</em> you can find it and have the right OS. G
 luck.</p>
 <p>Or use <code>fwupd</code>: a vendor-agnostic tool to discover, download, and update
 firmware.</p>
-<p>The <a href="https://fwupd.org">Linux Vendor Firmware Service (LVFS)</a> project provides
+<p>The <a rel="external" href="https://fwupd.org">Linux Vendor Firmware Service (LVFS)</a> project provides
 two software components to update the firmware of devices: a daemon, <code>fwupd</code>,
 to update the device firmware; and a CLI client, <code>fwupdmgr</code>, to view and apply
 updates. There are also graphical user interfaces like GNOME Software and KDE
@@ -146,46 +146,42 @@ vendors provide firmware updates via LVFS and all you need to do is run a
 command (or press a button) to update all your firmware.</p>
 <p>Usage is straightforward, assuming you installed it:</p>
 <ol>
-<li>download the latest metadata from LVFS<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> fwupdmgr refresh</span><span style="color:#bf616a;"> --force
-</span><span style="color:#bf616a;">Updating</span><span> lvfs
-</span><span style="color:#bf616a;">Downloading…             </span><span style="color:#b48ead;">[</span><span>***************************************</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">Successfully</span><span> downloaded new metadata: Updates have been published for 4 of 23 local devices
-</span></code></pre>
-</li>
+<li>download the latest metadata from LVFS<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> fwupdmgr refresh</span><span style="color: #79C0FF;"> --force</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Updating</span><span style="color: #A5D6FF;"> lvfs</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Downloading…</span><span>             [***************************************]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Successfully</span><span style="color: #A5D6FF;"> downloaded new metadata: Updates have been published for</span><span style="color: #79C0FF;"> 4</span><span style="color: #A5D6FF;"> of</span><span style="color: #79C0FF;"> 23</span><span style="color: #A5D6FF;"> local devices</span></span></code></pre></li>
 <li>Optionally list the available updates with <code>fwupdmgr get-updates</code>. The
 output is too long for me to copy-paste here, but worth reviewing.</li>
-<li>Update what is available:<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> fwupdmgr update
-</span><span style="color:#bf616a;">Devices</span><span> with no available firmware updates:
-</span><span> </span><span style="color:#bf616a;">•</span><span> ELAN067F:00 04F3:3309
-</span><span> </span><span style="color:#bf616a;">•</span><span> Element Hub
-</span><span> </span><span style="color:#bf616a;">•</span><span> UEFI Device Firmware
-</span><span> </span><span style="color:#bf616a;">•</span><span> UMIS RPJTJ512MGE2QDQ
-</span><span> </span><span style="color:#bf616a;">•</span><span> USB3.0 Hub
-</span><span style="color:#bf616a;">╔══════════════════════════════════════════════════════════════════════════════╗
-</span><span style="color:#bf616a;">║</span><span> Upgrade System Firmware from 0.1.15 to 0.1.31?                               ║
-</span><span style="color:#bf616a;">╠══════════════════════════════════════════════════════════════════════════════╣
-</span><span style="color:#bf616a;">║</span><span> ThinkPad L14L15 Gen3 AMD System Firmware                                     ║
-</span><span style="color:#bf616a;">║</span><span>                                                                              ║
-</span><span style="color:#bf616a;">║</span><span> • MR01221(N3AET79W) </span><span style="color:#bf616a;">-</span><span> Updated Realtek UNDI driver to ver.2.043.              ║
-</span><span style="color:#bf616a;">║</span><span> • MR00592(N3XET49W) </span><span style="color:#bf616a;">-</span><span> add dbx update 23/05                                   ║
-</span><span style="color:#bf616a;">║</span><span> • MR00616(N3XET51W) </span><span style="color:#bf616a;">-</span><span> Fixed Various vulnerabilities in NetworkPkg IP         ║
-</span><span style="color:#bf616a;">║</span><span> stack implementation.                                                        ║
-</span><span style="color:#bf616a;">║</span><span> • MR00621(N3XET51W) </span><span style="color:#bf616a;">-</span><span> Add MSFT 2023 kek/db                                   ║
-</span><span style="color:#bf616a;">║</span><span>                                                                              ║
-</span><span style="color:#bf616a;">║</span><span> 5 Update Absolute module to v2.8 (154756)                                    </span><span style="color:#bf616a;">║
-</span><span style="color:#bf616a;">║</span><span>                                                                              ║
-</span><span style="color:#bf616a;">║</span><span> • Improve boot time for DASH Enable                                          ║
-</span><span style="color:#bf616a;">║</span><span> • Correct the output values of the CU_WMI_script.ps1                         ║
-</span><span style="color:#bf616a;">║</span><span> • CP20240328_0006 CS22 Wi-Fi6E for CA                                        ║
-</span><span style="color:#bf616a;">║</span><span>                                                                              ║
-</span><span style="color:#bf616a;">║</span><span> 21C60010BO must remain plugged into a power source for the duration of the   ║
-</span><span style="color:#bf616a;">║</span><span> update to avoid damage.                                                      ║
-</span><span style="color:#bf616a;">╚══════════════════════════════════════════════════════════════════════════════╝
-</span><span style="color:#bf616a;">Perform</span><span> operation? </span><span style="color:#b48ead;">[</span><span>Y|n</span><span style="color:#b48ead;">]</span><span>: y
-</span><span style="color:#bf616a;">Waiting…                 </span><span style="color:#b48ead;">[</span><span>***************************************</span><span style="color:#b48ead;">]
-</span><span style="color:#bf616a;">Successfully</span><span> installed firmware
-</span></code></pre>
-</li>
+<li>Update what is available:<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> fwupdmgr update</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Devices</span><span style="color: #A5D6FF;"> with no available firmware updates:</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> •</span><span style="color: #A5D6FF;"> ELAN067F:00 04F3:3309</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> •</span><span style="color: #A5D6FF;"> Element Hub</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> •</span><span style="color: #A5D6FF;"> UEFI Device Firmware</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> •</span><span style="color: #A5D6FF;"> UMIS RPJTJ512MGE2QDQ</span></span>
+<span class="giallo-l"><span style="color: #FFA657;"> •</span><span style="color: #A5D6FF;"> USB3.0 Hub</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">╔══════════════════════════════════════════════════════════════════════════════╗</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> Upgrade System Firmware from</span><span style="color: #79C0FF;"> 0.1.15</span><span style="color: #A5D6FF;"> to 0.1.31?                               ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">╠══════════════════════════════════════════════════════════════════════════════╣</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> ThinkPad L14L15 Gen3 AMD System Firmware                                     ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;">                                                                              ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • MR01221</span><span>(</span><span style="color: #FFA657;">N3AET79W</span><span>)</span><span style="color: #A5D6FF;"> - Updated Realtek UNDI driver to ver.2.043.              ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • MR00592</span><span>(</span><span style="color: #FFA657;">N3XET49W</span><span>)</span><span style="color: #A5D6FF;"> - add dbx update 23/05                                   ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • MR00616</span><span>(</span><span style="color: #FFA657;">N3XET51W</span><span>)</span><span style="color: #A5D6FF;"> - Fixed Various vulnerabilities in NetworkPkg IP         ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> stack implementation.                                                        ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • MR00621</span><span>(</span><span style="color: #FFA657;">N3XET51W</span><span>)</span><span style="color: #A5D6FF;"> - Add MSFT</span><span style="color: #79C0FF;"> 2023</span><span style="color: #A5D6FF;"> kek/db                                   ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;">                                                                              ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #79C0FF;"> 5</span><span style="color: #A5D6FF;"> Update Absolute module to v2.8</span><span> (154756)                                    ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;">                                                                              ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • Improve boot time for DASH Enable                                          ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • Correct the output values of the CU_WMI_script.ps1                         ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> • CP20240328_0006 CS22 Wi-Fi6E for CA                                        ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;">                                                                              ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> 21C60010BO must remain plugged into a power source for the duration of the   ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">║</span><span style="color: #A5D6FF;"> update to avoid damage.                                                      ║</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">╚══════════════════════════════════════════════════════════════════════════════╝</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Perform</span><span style="color: #A5D6FF;"> operation?</span><span> [Y</span><span style="color: #FF7B72;">|</span><span style="color: #FFA657;">n]:</span><span style="color: #A5D6FF;"> y</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Waiting…</span><span>                 [***************************************]</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Successfully</span><span style="color: #A5D6FF;"> installed firmware</span></span></code></pre></li>
 </ol>
 <p>And that’s it.</p>
 

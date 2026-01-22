@@ -138,22 +138,20 @@ columns to the side. But still, I flip the arguments… my brain is weird, what
 can I do?</p>
 <p>Well, I can open a Python interpreter.</p>
 <p>Python has an amazing module to work with filesystem paths called
-<a href="https://docs.python.org/3/library/pathlib.html">Pathlib</a>, since Python 3.4.
+<a rel="external" href="https://docs.python.org/3/library/pathlib.html">Pathlib</a>, since Python 3.4.
 This module allows you to create <code>Path</code> objects and with a <code>Path</code> object you
 can do file operations like: create/delete a file/directory, check if it is a
 directory/block device/socket, list contents of a path, change file permissions
 like <code>chmod</code>, and many other really cool stuff.</p>
 <p>Among those other really cool stuff is: create a <code>Path</code> and turn it into a real
 symbolic link! Like this:</p>
-<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>pathlib </span><span style="color:#b48ead;">import </span><span>Path
-</span><span>
-</span><span style="color:#bf616a;">Path</span><span>(&quot;</span><span style="color:#a3be8c;">/tmp/my_link_to_fstab</span><span>&quot;).</span><span style="color:#bf616a;">symlink_to</span><span>(&quot;</span><span style="color:#a3be8c;">/etc/fstab</span><span>&quot;)
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="python"><span class="giallo-l"><span style="color: #FF7B72;">from</span><span> pathlib</span><span style="color: #FF7B72;"> import</span><span> Path</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>Path(</span><span style="color: #A5D6FF;">&quot;/tmp/my_link_to_fstab&quot;</span><span>).symlink_to(</span><span style="color: #A5D6FF;">&quot;/etc/fstab&quot;</span><span>)</span></span></code></pre>
 <p>And voilà! Mind blowing, isn’t it? We now have a new symbolic link at
 <code>/tmp/my_link_to_fstab</code> that points to <code>/etc/fstab</code>:</p>
-<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> file /tmp/my_link_to_fstab
-</span><span style="color:#bf616a;">/tmp/my_link_to_fstab:</span><span> symbolic link to /etc/fstab
-</span></code></pre>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> file /tmp/my_link_to_fstab</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">/tmp/my_link_to_fstab:</span><span style="color: #A5D6FF;"> symbolic link to /etc/fstab</span></span></code></pre>
 <p>This is way easier to remember: create a <code>Path</code> representing where you want the
 link to exist and then write where to point it to. There’s no need anymore to
 think about the order of <code>ln</code> arguments.</p>
