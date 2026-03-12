@@ -184,6 +184,9 @@ output is too long for me to copy-paste here, but worth reviewing.</li>
 <span class="giallo-l"><span style="color: #FFA657;">Successfully</span><span style="color: #A5D6FF;"> installed firmware</span></span></code></pre></li>
 </ol>
 <p>And that’s it.</p>
+<p>But in case things go wrong, you can downgrade the firmware. Hopefully without
+side effects. For that, you need the device ID that you want to downgrade.
+Check it with <code>fwupdmgr get-devices</code>. Then downgrade with <code>fwupdmgr downgrade DEVICE ID</code>. Had to do that for my NVMe, not fun…</p>
 
         </div>
 
