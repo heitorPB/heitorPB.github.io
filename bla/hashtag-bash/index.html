@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title># is not always a comment symbol in Bash | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="`#` starts a comment in Bash, but not always. A small quirk with a clear rule.">
+
+    <meta property="og:description" content="`#` starts a comment in Bash, but not always. A small quirk with a clear rule.">
+    <meta property="og:title" content="# is not always a comment symbol in Bash | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/hashtag-bash/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/hashtag-bash/fake.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/hashtag-bash/fake.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="`#` starts a comment in Bash, but not always. A small quirk with a clear rule.">
+    <meta name="twitter:title" content="# is not always a comment symbol in Bash | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/hashtag-bash/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/hashtag-bash/"># is not always a comment symbol in Bash</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Mar 23, 2026
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/bash/">#Bash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/terminal/">#terminal</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 1 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>When I started using Nix, mainly for temporary development environments, I
+noticed something unexpected: <code>#</code> in some shell commands was treated like a
+“normal” character. I always thought <code>#</code> would mark the start of a comment, but
+that’s not always the case.</p>
+<center>
+    <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/39976206713/in/album-72157702952581402" title="Fake"><img src="https://live.staticflickr.com/7839/39976206713_0c9bb1a243_z.jpg" width="640" height="426" alt="Fake"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>Here’s an example of <code>#</code> working as a comment symbol:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo Hello</span><span style="color: #8B949E;"> # World</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hello</span></span></code></pre>
+<p>And here’s how you use it as a non-comment symbol:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> echo Hello#World</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">Hello#World</span></span></code></pre>
+<p>Mind-blowing, isn’t it?</p>
+<p>So I went to check Bash’s man page:</p>
+<blockquote>
+<p>[…] a word beginning with <code>#</code> introduces a comment. A word begins at the beginning of a line, after unquoted whitespace, or after an operator. The comment causes that word and all remaining characters on that line to be ignored. […]</p>
+</blockquote>
+<p>That’s interesting! Only a word <em>beginning</em> with <code>#</code> starts a comment. That’s
+different from other programming languages. For example, in Python any <code>#</code> not
+inside a string starts a comment, no leading whitespace required.</p>
+<p>Bash always amazes me with its quirks.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/nix-why-depends/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">TIL: how to check why a Nix package is in the Nix Store</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2026 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
