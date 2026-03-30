@@ -3,7 +3,8 @@ window.wander = {
   consoles: [
     'https://susam.net/wander/',
     'https://tuftel.today/wander/',
-    'https://martincapodici.com/wander/'
+    'https://martincapodici.com/wander/',
+    'https://punkto.org/wander/'
   ],
   // My favourite websites and pages I recommend to the Wander community.
   pages: [
@@ -11,7 +12,13 @@ window.wander = {
     'https://sunshowers.io/',
     'https://julianaklulo.dev/en/',
     'https://jvns.ca/',
-    'https://discord.com/blog/why-discord-is-switching-from-go-to-rust'
+    'https://discord.com/blog/why-discord-is-switching-from-go-to-rust',
+    'https://ratfactor.com/',
+    'https://マリウス.com/coffee/',
+    'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
+    'https://mcfunley.com/choose-boring-technology',
+    'https://simonwillison.net/2022/Nov/6/what-to-blog-about/',
+    'https://heitorpb.github.io'
   ],
   // Websites and consoles to ignore. My console will never fetch consoles or
   // web pages whose URLs match the following patterns.
