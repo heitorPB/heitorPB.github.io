@@ -18,7 +18,9 @@ window.wander = {
     'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
     'https://mcfunley.com/choose-boring-technology',
     'https://simonwillison.net/2022/Nov/6/what-to-blog-about/',
-    'https://heitorpb.github.io'
+    'https://heitorpb.github.io',
+    'https://alexhwoods.com/dont-let-ai-write-for-you/',
+    'https://se3.ch/'
   ],
   // Websites and consoles to ignore. My console will never fetch consoles or
   // web pages whose URLs match the following patterns.
