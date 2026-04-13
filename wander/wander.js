@@ -4,23 +4,27 @@ const wander = {
     'https://susam.net/wander/',
     'https://tuftel.today/wander/',
     'https://martincapodici.com/wander/',
-    'https://punkto.org/wander/'
+    'https://punkto.org/wander/',
   ],
   // My favourite websites and pages I recommend to the Wander community.
   pages: [
-    'https://susam.net/',
-    'https://sunshowers.io/',
+    'https://alexhwoods.com/dont-let-ai-write-for-you/',
+    'https://allenpike.com/2022/giving-a-shit/',
+    'https://blog.yossarian.net/2025/11/21/We-should-all-be-using-dependency-cooldowns',
+    'https://cbea.ms/git-commit/',
+    'https://discord.com/blog/why-discord-is-switching-from-go-to-rust',
+    'https://heitorpb.github.io',
     'https://julianaklulo.dev/en/',
     'https://jvns.ca/',
-    'https://discord.com/blog/why-discord-is-switching-from-go-to-rust',
-    'https://ratfactor.com/',
-    'https://マリウス.com/coffee/',
-    'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
+    'https://lorentz.app/blog-item.html?id=go-shebang',
     'https://mcfunley.com/choose-boring-technology',
+    'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
+    'https://ratfactor.com/',
+    'https://se3.ch/',
     'https://simonwillison.net/2022/Nov/6/what-to-blog-about/',
-    'https://heitorpb.github.io',
-    'https://alexhwoods.com/dont-let-ai-write-for-you/',
-    'https://se3.ch/'
+    'https://sunshowers.io/',
+    'https://susam.net/',
+    'https://マリウス.com/coffee/',
   ],
   // Websites and consoles to ignore. My console will never fetch consoles or
   // web pages whose URLs match the following patterns.
