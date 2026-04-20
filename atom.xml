@@ -5,8 +5,36 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-03-25T00:00:00+00:00</updated>
+    <updated>2026-04-20T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>TIL: checksumming files recursively with rclone</title>
+        <published>2026-04-20T00:00:00+00:00</published>
+        <updated>2026-04-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/recursive-checksum/"/>
+        <id>https://heitorpb.github.io/bla/recursive-checksum/</id>
+        
+        <summary type="html">Calculating checksum of files accross nested directories, and verifying them, without any custom scripts.</summary>
+        
+        <category term="checksum"/>
+        
+        <category term="rclone"/>
+        
+        <category term="hash"/>
+        
+        <category term="rsync"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title># is not always a comment symbol in Bash</title>
         <published>2026-03-23T00:00:00+00:00</published>

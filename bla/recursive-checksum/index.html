@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIL: checksumming files recursively with rclone | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="Calculating checksum of files accross nested directories, and verifying them, without any custom scripts.">
+
+    <meta property="og:description" content="Calculating checksum of files accross nested directories, and verifying them, without any custom scripts.">
+    <meta property="og:title" content="TIL: checksumming files recursively with rclone | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/recursive-checksum/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/recursive-checksum/mushrooms.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/recursive-checksum/mushrooms.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Calculating checksum of files accross nested directories, and verifying them, without any custom scripts.">
+    <meta name="twitter:title" content="TIL: checksumming files recursively with rclone | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/recursive-checksum/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/recursive-checksum/">TIL: checksumming files recursively with rclone</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Apr 20, 2026
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/checksum/">#checksum</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/hash/">#hash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/rclone/">#rclone</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/rsync/">#rsync</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 2 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>This weekend I was copying data from my laptop to one of my servers and wanted
+to double-check everything transferred successfully, without any corruption.</p>
+<center>
+    <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/53166888985/in/dateposted/" title="Mushrooms"><img src="https://live.staticflickr.com/65535/53166888985_e39ba3371e_z.jpg" width="640" height="426" alt="Mushrooms"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>My go-to tool to copy files to different machines is <code>rsync</code>. It is easy to
+use, reliable, and checks for file integrity as it transfers them. For each
+transferred file, <code>rsync</code> computes its checksum on the sending and receiving
+sides to make sure all went well.</p>
+<p>But I was curious to find an easy way to compute the checksum of all my files,
+in all their subdirectories, and then validate those hashes. The usual
+checksumming tools (e.g. <code>md5sum</code>, <code>sha256sum</code>, <code>xxhsum</code>, etc.) have a <code>-c</code>
+flag that reads checksums and filenames from a file and verifies they match
+with the real files. This works great for files in a directory, but doesn’t
+play very well for files in nested directories:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> tree</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">.</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">├──</span><span style="color: #A5D6FF;"> file1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">├──</span><span style="color: #A5D6FF;"> file2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">└──</span><span style="color: #A5D6FF;"> foo</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">    └──</span><span style="color: #A5D6FF;"> file3</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">2</span><span style="color: #A5D6FF;"> directories,</span><span style="color: #79C0FF;"> 3</span><span style="color: #A5D6FF;"> files</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> sha256sum</span><span style="color: #79C0FF;"> *</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">c1ab0663e764e040de477f9e3de4f733eb7787dbbfbfbfacb4dd0bb1c6705125</span><span style="color: #A5D6FF;">  file1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">478d1c63ffef35b04daec894bbd2fb7989dd53920af896f76b30a35ee8c81c1f</span><span style="color: #A5D6FF;">  file2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">sha256sum:</span><span style="color: #A5D6FF;"> foo: Is a directory</span></span></code></pre>
+<p>These tools don’t know how to handle directories.</p>
+<p>Smart people wrote Bash and Python scripts that recursively calculate checksums
+and generate a checkfile. And these same scripts can do the other way around:
+verify the files’ hashes match the checkfile.</p>
+<p>I just learned that those scripts are not needed: <code>rclone</code> can do it all.
+<code>rclone</code> is a command-line tool to sync files to and from cloud storage, but
+it also has a surprisingly capable <code>hashsum</code> subcommand.</p>
+<p>You feed this command the hashing algorithm you want to use and the base
+directory for your files. For example:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> rclone hashsum xxh128 .</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">c57b19b76f3500d2cac3e09f94063a67</span><span style="color: #A5D6FF;">  foo/file3</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">bdbc5b9efcfa50cc98865b8795e4ef79</span><span style="color: #A5D6FF;">  file1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">5e71cb0a7b6f5be79a981284868fcc48</span><span style="color: #A5D6FF;">  file2</span></span></code></pre>
+<p>I chose <code>xxh128</code> as it is the fastest in my benchmarks (see my post about
+<a href="https://heitorpb.github.io/bla/checksum-benchmark/">Benchmarking checksum tools</a>).</p>
+<p>And voilà! You get a checksum for every file in every subdirectory. Of course,
+remember to save these hashes somewhere, it can be as simple as redirecting to
+a file: <code>rclone hashsum xxh128 . &gt;/tmp/files.xxh128</code>.</p>
+<p>You can also verify an existing checkfile:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> rclone hashsum xxh128</span><span style="color: #79C0FF;"> -C</span><span style="color: #A5D6FF;"> /tmp/files.xxh128 .</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">= file1</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">= file2</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">= foo/file3</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:03 NOTICE: Local file system at /tmp/example:</span><span style="color: #79C0FF;"> 0</span><span style="color: #A5D6FF;"> differences found</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:03 NOTICE: Local file system at /tmp/example:</span><span style="color: #79C0FF;"> 3</span><span style="color: #A5D6FF;"> matching files</span></span></code></pre>
+<p>And if <code>rclone</code> finds a file with mismatching hashes, you get a clear error
+message:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> rclone hashsum xxh128</span><span style="color: #79C0FF;"> -C</span><span style="color: #A5D6FF;"> /tmp/files.xxh128 .</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">= file1</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">= file2</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:46 ERROR : foo/file3: files differ</span></span>
+<span class="giallo-l"><span style="color: #FF7B72;">*</span><span> foo/file3</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:46 NOTICE: Local file system at /tmp/example:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> differences found</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:46 NOTICE: Local file system at /tmp/example:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> errors while checking</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:46 NOTICE: Local file system at /tmp/example:</span><span style="color: #79C0FF;"> 2</span><span style="color: #A5D6FF;"> matching files</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">2026/04/18</span><span style="color: #A5D6FF;"> 15:01:46 NOTICE: Failed to hashsum:</span><span style="color: #79C0FF;"> 1</span><span style="color: #A5D6FF;"> differences found</span></span></code></pre>
+<p>No need for obscure scripts. One tool indistinguishable from magic does the
+job.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/hashtag-bash/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text"># is not always a comment symbol in Bash</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2026 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
