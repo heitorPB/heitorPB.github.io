@@ -16,6 +16,7 @@ const wander = {
     'https://heitorpb.github.io',
     'https://julianaklulo.dev/en/',
     'https://jvns.ca/',
+    'https://keunwoo.com/notes/rebooting/',
     'https://lorentz.app/blog-item.html?id=go-shebang',
     'https://mcfunley.com/choose-boring-technology',
     'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
