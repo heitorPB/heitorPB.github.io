@@ -12,11 +12,13 @@ const wander = {
     'https://allenpike.com/2022/giving-a-shit/',
     'https://blog.yossarian.net/2025/11/21/We-should-all-be-using-dependency-cooldowns',
     'https://cbea.ms/git-commit/',
+    'https://chrismorgan.info/no-query-strings',
     'https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity',
     'https://heitorpb.github.io',
     'https://julianaklulo.dev/en/',
     'https://jvns.ca/',
     'https://keunwoo.com/notes/rebooting/',
+    'https://lina.sh/',
     'https://lorentz.app/blog-item.html?id=go-shebang',
     'https://mcfunley.com/choose-boring-technology',
     'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
@@ -33,6 +35,7 @@ const wander = {
     'https://www.maxvanijsselmuiden.nl/blog/productive-procrastination/',
     'https://マリウス.com/coffee/',
     // 'https://discord.com/blog/why-discord-is-switching-from-go-to-rust', // Discord.com doesn't work inside an iframe :(
+    // 'https://sinceyouarrived.world/taken', // Does not work inside an iframe :(
   ],
   // Websites and consoles to ignore. My console will never fetch consoles or
   // web pages whose URLs match the following patterns.
