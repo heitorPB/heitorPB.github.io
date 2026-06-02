@@ -10,6 +10,7 @@ const wander = {
   pages: [
     'https://alexhwoods.com/dont-let-ai-write-for-you/',
     'https://allenpike.com/2022/giving-a-shit/',
+    'https://blog.tjll.net/you-dont-love-systemd-timers-enough/',
     'https://blog.yossarian.net/2025/11/21/We-should-all-be-using-dependency-cooldowns',
     'https://cbea.ms/git-commit/',
     'https://chrismorgan.info/no-query-strings',
