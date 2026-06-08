@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Benchmarking OpenZFS vs EXT4 for my NAS | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="Checking how ZFS compares against ext4 for my NAS, with an encrypted RAID1 array.">
+
+    <meta property="og:description" content="Checking how ZFS compares against ext4 for my NAS, with an encrypted RAID1 array.">
+    <meta property="og:title" content="Benchmarking OpenZFS vs EXT4 for my NAS | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/zfs-vs-ext4/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/zfs-vs-ext4/tortoise.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/zfs-vs-ext4/tortoise.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Checking how ZFS compares against ext4 for my NAS, with an encrypted RAID1 array.">
+    <meta name="twitter:title" content="Benchmarking OpenZFS vs EXT4 for my NAS | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/zfs-vs-ext4/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/zfs-vs-ext4/">Benchmarking OpenZFS vs EXT4 for my NAS</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Jun 08, 2026
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/linux/">#Linux</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/nas/">#NAS</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/zfs/">#ZFS</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/benchmark/">#benchmark</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/ext4/">#ext4</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/homelab/">#homelab</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/server/">#server</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/sysadmin/">#sysadmin</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 8 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I’m building a <abbr title="Network-Attached Storage">NAS</abbr> for myself and
+I was curious to see how OpenZFS would perform against ext4. My server will
+have full disk encryption on RAID1 and I couldn’t find a benchmark on a similar
+setup.</p>
+<center>
+    <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/54905384052/" title="Tortoise"><img src="https://live.staticflickr.com/65535/54905384052_0940a812bc_z.jpg" width="640" height="426" alt="Tortoise"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>My hardware:</p>
+<ul>
+<li>Intel i3-14100 CPU</li>
+<li>2x32 GB DDR4 2666 MT/s RAM</li>
+<li>1 TB NVMe for the OS</li>
+<li>2x2 TB HDD in RAID1 for the main storage pool</li>
+</ul>
+<p>I’m running NixOS with Linux Kernel 6.18.33.</p>
+<p>The filesystem configuration is different for the two filesystems I compared.
+For ext4, I had the filesystem on top of LVM on top of LUKS on top of software
+RAID1. For ZFS, I used the native functionality for RAID and encryption, and
+also full disk compression on.</p>
+<p>What I want to see is how these two filesystems compare for my use case:</p>
+<ul>
+<li>backups: large (~10s GiB), streaming writes and reads</li>
+<li>thumbnail/sidecar/metadata generation: small size (~10s KiB), random I/O.
+This is to simulate mainly Home Assistant SQLite access, Immich small file
+generation, and Darktable sidecar file access.</li>
+<li>photography ingestion: medium size (~10s MiB), random I/O. This box is where
+I’ll store photos from my SLR camera, both RAW and processed.</li>
+<li>random usage: I’m not running a single service at a given time. It is very
+possible that an automated backup happens while I browse Immich while Home
+Assistant updates its state.</li>
+</ul>
+<p>I have a ton of RAM in this machine, and it definitely alters the results of
+the tests. To reduce the chances of I/O being served from RAM instead of from
+the HDDs, I allocated 50 GiB of zeros in RAM:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #8B949E;"># My /tmp is a tmpfs</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">dd</span><span style="color: #A5D6FF;"> if=/dev/zero of=/tmp/crap bs=</span><span style="color: #79C0FF;">1024</span><span style="color: #A5D6FF;"> count=</span><span>$((</span><span style="color: #FFA657;">50</span><span style="color: #79C0FF;"> * 1024 * 1024</span><span>))</span><span style="color: #A5D6FF;"> status=progress</span></span></code></pre>
+<p>For the ZFS tests, I capped ZFS ARC to 4 GiB:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #79C0FF;">echo</span><span> $((</span><span style="color: #FFA657;">4</span><span style="color: #79C0FF;"> * 1024 * 1024 * 1024</span><span>))</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> sudo</span><span style="color: #A5D6FF;"> tee /sys/module/zfs/parameters/zfs_arc_max</span></span></code></pre>
+<p>My OS is on a different ZFS pool, but there’s no way to configure ARC per pool,
+only system-wide.</p>
+<p>I’m not sure it makes a difference, but I also turned off swap, which lives in
+my NVMe.</p>
+<p>These changes are not bulletproof but help making the comparison a bit more
+fair.</p>
+<h2 id="setting-up-storage">Setting up storage</h2>
+<p>This is how I prepared the disks for these benchmarks. For ext4:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #8B949E;"># Setup RAID1</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">mdadm</span><span style="color: #79C0FF;"> --create --verbose --level=1 --raid-devices=2</span><span style="color: #A5D6FF;"> /dev/md0 /dev/sda1 /dev/sdb1</span></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Wait until /proc/mdstat reports 100%</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Setup LUKS</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cryptsetup</span><span style="color: #A5D6FF;"> luksFormat</span><span style="color: #79C0FF;"> --type</span><span style="color: #A5D6FF;"> luks2 /dev/md0</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">cryptsetup</span><span style="color: #A5D6FF;"> open /dev/md0 nas_crypt</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Setup LVM</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">pvcreate</span><span style="color: #A5D6FF;"> /dev/mapper/nas_crypt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">vgcreate</span><span style="color: #A5D6FF;"> nas_vg /dev/mapper/nas_crypt</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">lvcreate</span><span style="color: #79C0FF;"> -l</span><span style="color: #A5D6FF;"> 100%FREE</span><span style="color: #79C0FF;"> -n</span><span style="color: #A5D6FF;"> nas_data nas_vg</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">lvreduce</span><span style="color: #79C0FF;"> -L -256M</span><span style="color: #A5D6FF;"> nas_vg/nas_data</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Setup ext4 fs</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">mkfs.ext4</span><span style="color: #A5D6FF;"> /dev/nas_vg/nas_data</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Mount it</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">mkdir</span><span style="color: #79C0FF;"> -p</span><span style="color: #A5D6FF;"> /mnt/nas</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">mount</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> noatime /dev/nas_vg/nas_data /mnt/nas</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">chown</span><span style="color: #79C0FF;"> --recursive</span><span style="color: #A5D6FF;"> h:users /mnt/nas</span></span></code></pre>
+<p>ZFS setup requires fewer steps, but has more knobs:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #8B949E;"># Setup ZFS pool with encryption, compression, mirror</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">zpool</span><span style="color: #A5D6FF;"> create</span><span style="color: #79C0FF;"> -O</span><span style="color: #A5D6FF;"> encryption=on</span><span style="color: #79C0FF;"> -O</span><span style="color: #A5D6FF;"> keyformat=passphrase</span><span style="color: #79C0FF;"> -O</span><span style="color: #A5D6FF;"> keylocation=prompt</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">             -O</span><span style="color: #A5D6FF;"> compression=on</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">             -O</span><span style="color: #A5D6FF;"> mountpoint=none</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">             -O</span><span style="color: #A5D6FF;"> xattr=sa</span><span style="color: #79C0FF;"> -O</span><span style="color: #A5D6FF;"> acltype=posixacl</span><span style="color: #79C0FF;"> -O</span><span style="color: #A5D6FF;"> atime=off</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> ashift=</span><span style="color: #79C0FF;">12</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #A5D6FF;">             main mirror /dev/disk/by-partlabel/mainTwoTB1 /dev/disk/by-partlabel/mainTwoTB2</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Create filesystem and mount it</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">zfs</span><span style="color: #A5D6FF;"> create</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> mountpoint=legacy main/data</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">mount</span><span style="color: #79C0FF;"> -t</span><span style="color: #A5D6FF;"> zfs main/data /mnt/nas</span></span></code></pre>
+<p>I first set up the ext4 system, then I ran the tests. After that, I formatted
+the HDDs, setup ZFS, and repeated the same tests.</p>
+<p>When I say “ext4” I mean the complete stack: software RAID1, LUKS encryption,
+LVM, and ext4. Each one of these adds a layer in the VFS.</p>
+<h2 id="theoretical-values">Theoretical values</h2>
+<p>Western Digital claims this HDD model’s transfer rate is up to 175 MB/s (~167
+MiB/s). This puts a theoretical max write speed at 167 MiB/s and 334 MiB/s for
+read (2x factor from RAID1). Let’s see if my system can get close to these
+numbers.</p>
+<h2 id="backup-benchmark">Backup benchmark</h2>
+<p>For these tests, a backup workload is a task that writes or reads large files,
+sequentially. There is only a single process at a given time. I used <code>fio</code> for
+this benchmark:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #8B949E;"># Write test: simulate creating a backup</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fio</span><span style="color: #79C0FF;"> --name=backup-write --rw=write --bs=1M --size=20G --numjobs=1 --direct=1</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --filename=/mnt/nas/fio-test --ioengine=libaio</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #8B949E;"># Read test, drop caches first: simulate restoring a backup</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">echo 3</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> sudo</span><span style="color: #A5D6FF;"> tee /proc/sys/vm/drop_caches</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fio</span><span style="color: #79C0FF;"> --name=backup-read --rw=read --bs=1M --size=20G --numjobs=1 --direct=1</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --filename=/mnt/nas/fio-test --ioengine=libaio</span></span></code></pre>
+<p>I ran each test twice for each filesystem. The first one as a warm-up round and
+the second one was the actual benchmark. There’s no need to run this test N
+times and average them: <code>fio</code> already averages the results over the entire
+test. One thing to notice is both runs gave consistent results.</p>
+<p>As a baseline, the average CPU usage while idle is ~0.5 %.</p>
+<table><thead><tr><th></th><th>ZFS</th><th>ext4</th></tr></thead><tbody>
+<tr><td>Sequential write</td><td>172 MiB/s</td><td>121 MiB/s</td></tr>
+<tr><td>Avg latency write</td><td>2.8 μs</td><td>8.3 ms</td></tr>
+<tr><td>P99 latency write</td><td>7.5 μs</td><td>61 ms</td></tr>
+<tr><td>Peak CPU usage (w)</td><td>14.5 %</td><td>4.7 %</td></tr>
+<tr><td>Sequential read</td><td>182 MiB/s</td><td>196 MiB/s</td></tr>
+<tr><td>Avg latency read</td><td>4.4 μs</td><td>5.1 ms</td></tr>
+<tr><td>P99 latency read</td><td>7.9 μs</td><td>5.9 ms</td></tr>
+<tr><td>Peak CPU usage (r)</td><td>29 %</td><td>41.1 %</td></tr>
+</tbody></table>
+<!--
+RAW results:
+- fio-backup-ext4.write.{1,2}
+- fio-backup-ext4.read.{1,2}
+- fio-backup-zfs.write.{1,2}
+- fio-backup-zfs.read.{1,2}
+-->
+<p>As expected: reads are faster than writes. I’m happy that I can see RAID1
+giving more read bandwidth than a single disk would. This shows all is working
+as expected, although the difference in ZFS is curiously not significant.</p>
+<p>I’m surprised by the difference in latency in ext4: read latency is more well
+behaved than write latency, as you can see with the p99 numbers. ZFS’s latency
+is three orders of magnitude smaller.</p>
+<p>ZFS’s write performance against this ext4 stack is mind-blowing: speeds are
+better than the manufacturer claimed. Compression is magical, it reduces disk
+writes increasing bandwidth. But I expected a better read speed, RAID1 here
+didn’t impact as much as it did for ext4.</p>
+<h2 id="metadata-generation-benchmark">Metadata generation benchmark</h2>
+<p>Home Assistant writes to SQLite frequently, Immich generates small files, and
+Darktable reads and writes many sidecar files. These reads and writes are small
+(~10s KiB) and concurrent. I also used <code>fio</code> to simulate this scenario:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #79C0FF;">echo 3</span><span style="color: #FF7B72;"> |</span><span style="color: #FFA657;"> sudo</span><span style="color: #A5D6FF;"> tee /proc/sys/vm/drop_caches</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fio</span><span style="color: #79C0FF;"> --name=rand-rw --rw=randrw --rwmixread=50 --bs=4K --size=4G</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --numjobs=4 --direct=1 --filename=/mnt/nas/fio-test</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --ioengine=libaio --iodepth=32 --runtime=60 --time_based</span></span></code></pre><table><thead><tr><th></th><th>ZFS</th><th>ext4</th></tr></thead><tbody>
+<tr><td>Random write</td><td>473 KiB/s</td><td>782 KiB/s</td></tr>
+<tr><td>Avg latency write</td><td>554 ms</td><td>348 ms</td></tr>
+<tr><td>P99 latency write</td><td>1.2 s</td><td>2.0 s</td></tr>
+<tr><td>Random read</td><td>452 KiB/s</td><td>754 KiB/s</td></tr>
+<tr><td>Avg latency read</td><td>550 ms</td><td>321 ms</td></tr>
+<tr><td>P99 latency read</td><td>1.2 s</td><td>2.1 s</td></tr>
+<tr><td>Peak CPU usage</td><td>47.2 %</td><td>38%</td></tr>
+</tbody></table>
+<!--
+RAW results:
+- fio-random-ext4.{1,2}
+- fio-random-zfs.{1,2}
+-->
+<p>I knew random I/O was slower than sequential I/O, but I was not expecting this
+huge difference. ext4 showed a ~200x reduction in bandwidth and a ~50x increase
+in latency. The impact on ZFS was more extreme: ~390x for bandwidth and
+~150000x in latency.</p>
+<h2 id="photography-ingestion-benchmark">Photography ingestion benchmark</h2>
+<p>I copied ~15 GiB of raw photos to my NVMe. Files range from 17 MiB to 28 MiB in
+size. This dataset has 717 photos, with around 70% of them in the range 20 MiB
+to 22 MiB.</p>
+<p>This time I used <code>rsync</code> for the benchmark. I wanted to see how fast I can copy
+photos into my NAS’s HDDs.</p>
+<p>I ran this test three times. I discarded the first result and got the worst
+numbers from the other two. A more rigorous benchmark would run <em>several</em> times
+and average the results, but for my purposes this conservative approach is
+enough. And I got very similar results from all runs for each filesystem.</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #79C0FF;">echo 3</span><span style="color: #FF7B72;"> &gt;</span><span style="color: #A5D6FF;"> /proc/sys/vm/drop_caches</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">rsync</span><span style="color: #79C0FF;"> -a --stats</span><span style="color: #A5D6FF;"> /var/tmp/source/photos /mnt/nas/</span></span></code></pre><table><thead><tr><th></th><th>ZFS</th><th>ext4</th></tr></thead><tbody>
+<tr><td>Bandwidth</td><td>183 MiB/s</td><td>168 MiB/s</td></tr>
+<tr><td>Peak CPU usage</td><td>29.8 %</td><td>41.2 %</td></tr>
+</tbody></table>
+<!--
+RAW results:
+- rsync-photo-ext4.{1,2}
+- rsync-photo-zfs.{2,3}
+-->
+<p>ext4 surprised me here: the bandwidth is what the manufacturer claimed as
+maximum transfer rate.</p>
+<p>ZFS’s bandwidth was even higher, due to compression being enabled. And its CPU
+usage was lower.</p>
+<h2 id="random-usage-benchmark">Random usage benchmark</h2>
+<p>In reality, this machine will be running different services simultaneously. It
+is very possible that an automated backup happens while Immich generates
+thumbnails while Home Assistant updates the database. I used <code>fio</code> to simulate
+this “closer to reality” scenario.</p>
+<p>In this test, 60% of the I/O is reads.</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #79C0FF;">echo 3</span><span style="color: #FF7B72;"> &gt;</span><span style="color: #A5D6FF;"> /proc/sys/vm/drop_caches</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">fio</span><span style="color: #79C0FF;"> --name=mixed-load</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --rw=randrw --rwmixread=60 --bs=128K</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --size=8G --numjobs=4 --direct=1</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --filename=/mnt/nas/fio-test</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --ioengine=libaio --iodepth=16</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --runtime=120 --time_based</span><span style="color: #FF7B72;"> \</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">    --group_reporting</span></span></code></pre><table><thead><tr><th></th><th>ZFS</th><th>ext4</th></tr></thead><tbody>
+<tr><td>Random write</td><td>15.0 MiB/s</td><td>16.8 MiB/s</td></tr>
+<tr><td>Avg latency write</td><td>204 ms</td><td>131 ms</td></tr>
+<tr><td>P99 latency write</td><td>743 ms</td><td>1.9 s</td></tr>
+<tr><td>Random read</td><td>21.7 MiB/s</td><td>24.6 MiB/s</td></tr>
+<tr><td>Avg latency read</td><td>204 ms</td><td>234 ms</td></tr>
+<tr><td>P99 latency read</td><td>743 ms</td><td>1.4 s</td></tr>
+<tr><td>Peak CPU usage</td><td>43.6 %</td><td>10.8 %</td></tr>
+</tbody></table>
+<!--
+RAW results:
+- fio-test-real-ext4.{1,2}
+- fio-test-real-zfs.{1,2}
+-->
+<p>Bandwidth results here are significantly better than in the metadata benchmark.
+Average latency here is half of there. P99 latency for ZFS is also ~half, but
+similar for ext4.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>It’s hard to answer the question of which filesystem is better here. For large
+sequential I/O, ZFS is faster with lower latency. For small and concurrent I/O,
+ext4 is faster and uses less CPU. For medium-sized sequential I/O, ZFS
+outperforms ext4 in bandwidth and CPU usage. For the random usage benchmark,
+ext4 is a bit faster and uses less CPU.</p>
+<p>I suspect ZFS performance will be better on my real tasks, as I won’t limit ARC
+size and won’t have a hoard of zeros in RAM. Also, I can tune block size and
+logbias for each ZFS filesystem, but that requires further tests.</p>
+<p>These synthetic benchmarks give me an upper bound on performance, but in
+reality there are other factors that will impact performance. For example, my
+home network is 1 gigabit: I won’t be able to copy files to/from my NAS faster
+than ~120 MiB/s even if the disks and the machine can handle that. Even though
+<code>fio</code> simulates my workloads, they are only a <em>simulation</em>. A good synthetic
+result is not a guarantee of good production performance.</p>
+<p>These tests are only for performance, and absolute performance is not all that
+matters. HDDs can silently fail and return corrupted data. <code>mdadm</code> can detect
+when a disk in the array failed but not that it returned wrong data. ext4’s
+journal protects metadata after power loss and crashes, but doesn’t protect
+<em>data</em> against bit rot. ZFS checksums data and metadata and detects corruption
+during reads; if there’s a mirror/zraid, it can also repair corrupted data via
+scrubs. For storing irreplaceable bits in my NAS, data integrity is more
+important than any performance difference I measured.</p>
+<p>I had already made up my mind before running these benchmarks, I’m going with
+ZFS. I did this out of curiosity and for fun and ended up learning a lot about
+the workloads I’ll have.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/recursive-checksum/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">TIL: checksumming files recursively with rclone</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2026 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
