@@ -34,7 +34,7 @@ const wander = {
     'https://taylor.town/',
     'https://thelocalstack.eu/posts/linkedin-identity-verification-privacy/',
     'https://www.amateuraerodynamics.com/2022/02/tuft-testing-how-to-manual.html',
-    'https://www.goodinternetmagazine.com/why-i-email-complete-strangers/,
+    'https://www.goodinternetmagazine.com/why-i-email-complete-strangers/',
     'https://www.jeffgeerling.com/blog/2026/ptp-wall-clock-impractical-too-precise/',
     'https://www.maxvanijsselmuiden.nl/blog/productive-procrastination/',
     'https://マリウス.com/coffee/',
