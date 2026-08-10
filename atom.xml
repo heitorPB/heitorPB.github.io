@@ -5,8 +5,34 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-06-08T00:00:00+00:00</updated>
+    <updated>2026-08-10T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>TIL: Unminimizing Ubuntu Docker images</title>
+        <published>2026-08-10T00:00:00+00:00</published>
+        <updated>2026-08-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/unminimzing-docker-images/"/>
+        <id>https://heitorpb.github.io/bla/unminimzing-docker-images/</id>
+        
+        <summary type="html">How to restore man pages and other stripped content in minimized Ubuntu Docker images.</summary>
+        
+        <category term="OCI"/>
+        
+        <category term="Ubuntu"/>
+        
+        <category term="Docker"/>
+        
+        <category term="TIL"/>
+        </entry>
     <entry xml:lang="en">
         <title>Benchmarking OpenZFS vs EXT4 for my NAS</title>
         <published>2026-06-08T00:00:00+00:00</published>

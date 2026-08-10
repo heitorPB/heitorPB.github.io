@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIL: Unminimizing Ubuntu Docker images | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to restore man pages and other stripped content in minimized Ubuntu Docker images.">
+
+    <meta property="og:description" content="How to restore man pages and other stripped content in minimized Ubuntu Docker images.">
+    <meta property="og:title" content="TIL: Unminimizing Ubuntu Docker images | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/unminimzing-docker-images/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/unminimzing-docker-images/lyrics.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/unminimzing-docker-images/lyrics.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to restore man pages and other stripped content in minimized Ubuntu Docker images.">
+    <meta name="twitter:title" content="TIL: Unminimizing Ubuntu Docker images | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/unminimzing-docker-images/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/unminimzing-docker-images/">TIL: Unminimizing Ubuntu Docker images</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Aug 10, 2026
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/docker/">#Docker</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/oci/">#OCI</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/ubuntu/">#Ubuntu</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 1 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I often spin up a temporary Ubuntu environment to run one-shot commands, or
+quickly and interactively run parts of a <code>Dockerfile</code>, or even check some
+Ubuntu-specific man pages. And I often get the message <code>This system has been minimized by removing packages</code>.</p>
+<center>
+    <a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/33606177868/in/dateposted/" title="Handwritten Lyrics"><img src="https://live.staticflickr.com/7801/33606177868_e61c31128a_z.jpg" width="640" height="387" alt="Handwritten Lyrics"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+</center>
+<p>For example, if you try to check a man page in a base <code>ubuntu:26.04</code> image, you
+get this message instead:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellsession"><span class="giallo-l"><span># man man</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">This system has been minimized by removing packages and content that are</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">not required on a system that users do not log into.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #79C0FF;">To restore this content, including manpages, you can run the &#39;unminimize&#39;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">command. You will still need to ensure the &#39;man-db&#39; package is installed.</span></span></code></pre>
+<p>To unminimize the container:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellsession"><span class="giallo-l"><span># apt-get update</span></span>
+<span class="giallo-l"><span># apt-get install -y unminimize</span></span>
+<span class="giallo-l"><span># unminimize</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">This system has been minimized by removing packages and content that are</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">not required on a system that users do not log into.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #79C0FF;">This script restores content and packages that are found on a default</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">Ubuntu server system in order to make this system more suitable for</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">interactive use.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #79C0FF;">Reinstallation of packages may fail due to changes to the system</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">configuration, the presence of third-party packages, or for other</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">reasons.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #79C0FF;">This operation may take some time.</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #79C0FF;">Would you like to continue? [y/N] y</span></span></code></pre>
+<p>It then installs a list of packages and their dependencies, which takes around
+3 minutes with my internet connection.</p>
+<p>This doubles the virtual image size:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellsession"><span class="giallo-l"><span>$ docker ps --size --format </span><span style="color: #A5D6FF;">&quot;table {{.Image}}\t{{.Names}}\t{{.Size}}&quot;</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">IMAGE                           NAMES        SIZE</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">docker.io/library/ubuntu:26.04  unminimized  137MB (virtual 248MB)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">docker.io/library/ubuntu:26.04  base         11.4kB (virtual 112MB)</span></span></code></pre>
+<p>And when I need man pages, I also have to install <code>man-db</code>, which adds around
+20 MB.</p>
+<p>Here’s a one-liner for all of this:
+<code>apt-get update &amp;&amp; apt-get install -y unminimize man-db &amp;&amp; yes | unminimize</code></p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/zfs-vs-ext4/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">Benchmarking OpenZFS vs EXT4 for my NAS</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2026 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
