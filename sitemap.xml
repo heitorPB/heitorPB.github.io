@@ -7,6 +7,10 @@
         <loc>https://heitorpb.github.io/bla/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/bla/ai-transparency/</loc>
+        <lastmod>2026-08-19</lastmod>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/bla/bash-random-numbers/</loc>
         <lastmod>2020-04-07</lastmod>
     </url>
@@ -204,6 +208,9 @@
         <loc>https://heitorpb.github.io/tags/3d-printing/</loc>
     </url>
     <url>
+        <loc>https://heitorpb.github.io/tags/ai/</loc>
+    </url>
+    <url>
         <loc>https://heitorpb.github.io/tags/algorithm/</loc>
     </url>
     <url>
@@ -325,6 +332,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/linux/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/llm/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/lottery/</loc>
@@ -478,6 +488,9 @@
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/website/</loc>
+    </url>
+    <url>
+        <loc>https://heitorpb.github.io/tags/writing/</loc>
     </url>
     <url>
         <loc>https://heitorpb.github.io/tags/xxhash/</loc>

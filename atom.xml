@@ -5,8 +5,32 @@
     <link rel="self" type="application/atom+xml" href="https://heitorpb.github.io/atom.xml"/>
     <link rel="alternate" type="text/html" href="https://heitorpb.github.io"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
-    <updated>2026-08-10T00:00:00+00:00</updated>
+    <updated>2026-08-19T00:00:00+00:00</updated>
     <id>https://heitorpb.github.io/atom.xml</id>
+    <entry xml:lang="en">
+        <title>My writing is not 100% organic anymore</title>
+        <published>2026-08-19T00:00:00+00:00</published>
+        <updated>2026-08-19T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Heitor de Bittencourt
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://heitorpb.github.io/bla/ai-transparency/"/>
+        <id>https://heitorpb.github.io/bla/ai-transparency/</id>
+        
+        <summary type="html">What I write is not 100% human-written anymore. I started using LLMs to help me write better and they do wonders.</summary>
+        
+        <category term="AI"/>
+        
+        <category term="LLM"/>
+        
+        <category term="writing"/>
+        </entry>
     <entry xml:lang="en">
         <title>TIL: Unminimizing Ubuntu Docker images</title>
         <published>2026-08-10T00:00:00+00:00</published>
