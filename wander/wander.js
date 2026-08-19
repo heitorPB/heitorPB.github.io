@@ -25,6 +25,7 @@ const wander = {
     'https://lorentz.app/blog-item.html?id=go-shebang',
     'https://mcfunley.com/choose-boring-technology',
     'https://neil.computer/notes/oh-sorry-i-was-on-mute/',
+    'https://perell.com/essay/the-ultimate-guide-to-writing-online/',
     'https://ratfactor.com/',
     'https://sandimetz.com/blog/2016/1/20/the-wrong-abstraction',
     'https://scottstuff.net/posts/2025/09/30/home-ethernet/',
