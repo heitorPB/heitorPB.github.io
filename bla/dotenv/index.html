@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TIL: loading .env files into my terminal | Heitor&#x27;s log</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://heitorpb.github.io/style.css">
+    <link rel="stylesheet" href="https://heitorpb.github.io/color/green.css">
+
+        <link rel="stylesheet" href="https://heitorpb.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://heitorpb.github.io/font-hack-subset.css">
+
+    <meta name="description" content="How to load .env variables into Bash, using a one-liner. Or three...">
+
+    <meta property="og:description" content="How to load .env variables into Bash, using a one-liner. Or three...">
+    <meta property="og:title" content="TIL: loading .env files into my terminal | Heitor's log">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://heitorpb.github.io/bla/dotenv/">
+
+    <meta property="og:image" content="https://heitorpb.github.io/bla/dotenv/pier.jpg">
+    <meta name="twitter:image" content="https://heitorpb.github.io/bla/dotenv/pier.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How to load .env variables into Bash, using a one-liner. Or three...">
+    <meta name="twitter:title" content="TIL: loading .env files into my terminal | Heitor's log">
+    <meta property="twitter:domain" content="heitorpb.github.io">
+    <meta property="twitter:url" content="https://heitorpb.github.io/bla/dotenv/">
+
+                <link rel="alternate" type="application/atom+xml" title="Heitor&#x27;s log Atom Feed" href="https://heitorpb.github.io/atom.xml" />
+<!-- KaTeX css and JS -->
+<link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '\\(', right: '\\)', display: false},
+          ],
+          // • rendering keys, e.g.:
+          //throwOnError : false
+        });
+    });
+</script>
+
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://heitorpb.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Heitor&#x27;s Log
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://heitorpb.github.io">Home</a></li>
+            
+                <li><a href="https://heitorpb.github.io/me/">About me</a></li>
+            
+                <li><a href="https://flickr.com/photos/heitorpb/">Photos</a></li>
+            
+                <li class="active"><a href="https://heitorpb.github.io/bla/">Articles</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://heitorpb.github.io/bla/dotenv/">TIL: loading .env files into my terminal</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            Oct 01, 2026
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline" style="font-size: .8rem">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/bash/">#Bash</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/til/">#TIL</a>&nbsp;
+                <a class="post-tag" href="https://heitorpb.github.io/tags/terminal/">#terminal</a></span>
+    
+    
+    <br><div class="post-meta-inline"><small>
+        Reading time: 3 minutes
+    </small></div>
+    
+
+        
+        <div class="post-content">
+            <p>I commonly need environment variables for personal or work projects. In many
+cases, they are loaded automatically from a <code>.env</code> file: Docker/Podman can take
+a <code>--env-file .env</code> flag and many programming languages have a <code>dotenv</code> library
+that reads this file automatically. But when I want to run one-off commands in
+the terminal, I need to parse this file manually.</p>
+<center>
+<p><a data-flickr-embed="true" data-header="false" data-footer="false" href="https://www.flickr.com/photos/heitorpb/52035215827/" title="The pier"><img src="https://live.staticflickr.com/65535/52035215827_5a91e80e7c_z.jpg" width="640" height="426" alt="The pier"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script></p>
+</center>
+<p>When it is just one environment variable, I just <code>export FOO=bar</code> and call it a
+day. But when there are more variables, I get lazy. Also, these <code>export</code>
+commands get saved in my shell history file which is very handy and very scary:
+to get a variable I exported in the past I just hit CTRL-R and start typing it
+until I recover the full command. But I don’t want a command with a secret
+saved in plain text in any shell history file (or any file at all).</p>
+<p>Here’s a little trick to load all env vars from a <code>.env</code> file:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> export</span><span> $(</span><span style="color: #FF7B72;">&lt;</span><span>.env)</span></span></code></pre>
+<p>This will read all lines of the <code>.env</code> file, and feed each word to the <code>export</code>
+command.</p>
+<p>For example, if you have this <code>.env</code> file:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span>CAT</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Bob</span></span>
+<span class="giallo-l"><span>OTHERCAT</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Dimitri</span></span></code></pre>
+<p>The <code>$(&lt;.env)</code> magic will produce <code>CAT=Bob OTHERCAT=Dimitri</code>, which is then
+passed to <code>export</code>. This exports all those variables.</p>
+<p>But note: this trick is not a general-purpose <code>.env</code> parser, it only works for
+simple <code>KEY=VALUE</code> lines. Spaces, quotes, special characters, and “comments”
+kind of break this command. For example, this <code>.env</code> file:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span>CAT</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Bob</span></span>
+<span class="giallo-l"><span>OTHERCAT</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Dimitri</span></span>
+<span class="giallo-l"><span style="color: #8B949E;"># What about turtles?</span></span>
+<span class="giallo-l"><span>TURTLE</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Sabrina</span></span></code></pre>
+<p>Leads to this:
+<code>export CAT=Bob OTHERCAT=Dimitri # What about turtles? TURTLE=Sabrina</code>. Each
+word is sent to <code>export</code> as an argument, which gives some errors:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellsession"><span class="giallo-l"><span>$</span><span style="color: #FF7B72;"> export</span><span> $(</span><span style="color: #FF7B72;">&lt;</span><span>.env)</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">-bash: export: `#&#39;: not a valid identifier</span></span>
+<span class="giallo-l"><span style="color: #79C0FF;">-bash: export: `turtles?&#39;: not a valid identifier</span></span></code></pre>
+<p>But we still get the <code>TURTLE</code> variable exported.</p>
+<p>Another way to load a <code>.env</code> file in Bash is to enable the <code>allexport</code> option
+and then <code>source</code> the file:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> set</span><span style="color: #79C0FF;"> -o</span><span style="color: #A5D6FF;"> allexport</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> source .env</span></span>
+<span class="giallo-l"><span style="color: #FFA657;">$</span><span style="color: #A5D6FF;"> set +o allexport</span></span></code></pre>
+<p>Disabling <code>allexport</code> afterwards is good to keep our sanity: <code>allexport</code>
+controls whether new or modified variables get automatically <code>export</code>ed.
+Turning it off restores the default state.</p>
+<p>Another advantage of <code>allexport</code> + <code>source</code> is that it allows us to define
+“dynamic” environment variables: we can use shell expansions and run commands
+to, for example, query a secrets store. A <code>.env</code> file is now a shell script,
+much more powerful than a mere data file:</p>
+<pre class="giallo" style="color: #E6EDF3; background-color: #0D1117;"><code data-lang="shellscript"><span class="giallo-l"><span>CAT</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Bob</span></span>
+<span class="giallo-l"><span>OTHERCAT</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Dimitri</span></span>
+<span class="giallo-l"><span style="color: #8B949E;"># What about turtles?</span></span>
+<span class="giallo-l"><span>TURTLE</span><span style="color: #FF7B72;">=</span><span style="color: #A5D6FF;">Sabrina</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>LUCKY_NUMBER</span><span style="color: #FF7B72;">=</span><span>${RANDOM}</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>API_KEY</span><span style="color: #FF7B72;">=</span><span>$(</span><span style="color: #FFA657;">keepassxc-cli</span><span style="color: #A5D6FF;"> show</span><span style="color: #79C0FF;"> -sa</span><span style="color: #A5D6FF;"> Password ~/.secrets/personal.kdbx &#39;/AWS/groot-key&#39;</span><span>)</span></span></code></pre>
+<p>The disadvantage of this more powerful file (i.e. a Bash script) is that it
+breaks the <code>export $(&lt;.env)</code> trick, and tools (e.g. <code>docker run --env-file .env</code> or a <code>dotenv()</code> function) that expect a simple <code>KEY=VALUE</code> file may
+misbehave or crash completely. And because this <em>executes</em> the script, you
+should only <code>source</code> files you trust.</p>
+<p>PS: <code>set -a</code> is short for <code>set -o allexport</code>.</p>
+
+        </div>
+
+        
+        <div class="pagination">
+            <div class="pagination__title">
+                <span class="pagination__title-h">Thanks for reading! Read more?</span>
+                <hr />
+            </div>
+            <div class="pagination__buttons">
+                    <span class="button previous">
+                        <a href="https://heitorpb.github.io/bla/inclinometer/">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">I didn&#x27;t know I needed an inclinometer</span>
+                        </a>
+                    </span>
+                
+                </div>
+        </div>
+    
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">© 2018-2026 Heitor de Bittencourt</div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
