@@ -13,6 +13,7 @@ const wander = {
     'https://blog.tjll.net/you-dont-love-systemd-timers-enough/',
     'https://blog.yossarian.net/2025/11/21/We-should-all-be-using-dependency-cooldowns',
     'https://cbea.ms/git-commit/',
+    'https://chalmovsky.com/posts/wtf-ubuntu',
     'https://chrismorgan.info/no-query-strings',
     'https://danielmiessler.com/blog/no-moving-your-ssh-port-isnt-security-by-obscurity',
     'https://endler.dev/2025/repeat-yourself/',
